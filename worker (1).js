@@ -6643,9 +6643,39 @@ function buildCityPage(rs, cs) {
 function buildDetailPage(rs, cs, grade, subject) {
   const ci = (eduData[rs]||{})[cs];
   if (!ci) return null;
-  const c = ci.classes.find(x=>x.grade===grade&&x.subject===subject);
-  if (!c) return null;
-  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>${c.title} | 은빛쌤과외</title>${COMMON_STYLE}</head><body>${NAV}<div style="background:#f4f7f6;min-height:60vh;padding:clamp(28px,5vw,60px) 16px;display:flex;justify-content:center;align-items:flex-start;"><div style="background:white;padding:clamp(24px,5vw,48px);border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.08);max-width:760px;width:100%;"><a href="javascript:history.back()" style="color:#3498db;text-decoration:none;font-weight:700;display:inline-block;margin-bottom:22px;">← 이전으로</a><div style="border-bottom:3px solid #C8A96E;padding-bottom:20px;margin-bottom:26px;"><div style="font-size:clamp(22px,4vw,30px);font-weight:900;color:#1A2340;margin-bottom:10px;">📚 ${c.title}</div><div style="font-size:15px;color:#7f8c8d;line-height:1.7;">${c.desc}</div></div><div style="background:#f8f9fa;padding:22px;border-radius:12px;margin-bottom:26px;"><div style="font-size:17px;font-weight:800;color:#1A2340;margin-bottom:14px;">✨ 은빛쌤 1:1 과외의 특별함</div><ul style="padding-left:20px;color:#555;font-size:15px;line-height:2;"><li>학생 수준·성향에 맞춘 <b>100% 맞춤 커리큘럼</b></li><li>학교별 내신 기출문제 철저 분석 대비</li><li>기초부터 수능까지 체계적 학습 관리</li><li>매주 학부모 상담 및 성적 피드백 제공</li></ul></div><a href="https://naver.me/Gnva0jjW" target="_blank" style="display:block;text-align:center;background:linear-gradient(135deg,#C8A96E,#E8D09A);color:#1A2340;padding:18px;border-radius:50px;font-size:17px;font-weight:700;text-decoration:none;box-shadow:0 6px 20px rgba(200,169,110,0.4);">1:1 무료 모의수업 &amp; 상담 신청하기</a></div></div>${CONTACT}${FOOTER}${FLOATING}</body></html>`;
+  const dongs = ci.dongs || [];
+  
+  // 학년/과목별 원본 템플릿 가져오기
+  const rawDesc = (descriptions[grade] || {})[subject];
+  if (!rawDesc) return null;
+
+  // 학년별 테마 컬러 적용
+  const gc = {"초등":"#3498db","중등":"#2ecc71","고등":"#e74c3c"};
+  const color = gc[grade] || "#3498db";
+
+  // 동별 카드 그리드 생성
+  let cards = `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-bottom:30px;">`;
+  
+  if (dongs.length === 0) {
+    cards += `<div style="color:#7f8c8d; padding: 20px;">등록된 동 정보가 없습니다.</div>`;
+  } else {
+    for (const dong of dongs) {
+      const title = `${dong} ${grade} ${subject}과외`;
+      const desc = rawDesc.replace(/{region}/g, dong);
+      
+      cards += `
+      <div style="background:white;border:2px solid ${color};border-radius:12px;padding:16px;height:100%;display:flex;flex-direction:column;">
+        <div style="font-size:16px;font-weight:900;color:${color};margin-bottom:8px;">${title}</div>
+        <div style="font-size:13px;color:#7f8c8d;line-height:1.5;flex:1;">${desc}</div>
+        <a href="https://naver.me/Gnva0jjW" target="_blank" style="margin-top:10px;color:${color};font-weight:700;font-size:13px;text-decoration:none;">
+          상담 신청하기 →
+        </a>
+      </div>`;
+    }
+  }
+  cards += `</div>`;
+
+  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>${ci.name} ${grade} ${subject}과외 | 동별 맞춤 은빛쌤과외</title>${COMMON_STYLE}</head><body>${NAV}<div style="background:#f4f7f6;min-height:60vh;padding:clamp(28px,5vw,60px) 16px;display:flex;justify-content:center;align-items:flex-start;"><div style="background:white;padding:clamp(24px,5vw,48px);border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.08);max-width:900px;width:100%;"><a href="javascript:history.back()" style="color:#3498db;text-decoration:none;font-weight:700;display:inline-block;margin-bottom:22px;">← ${ci.name} 목록으로 돌아가기</a><div style="border-bottom:3px solid #C8A96E;padding-bottom:20px;margin-bottom:26px;"><div style="font-size:clamp(22px,4vw,30px);font-weight:900;color:#1A2340;margin-bottom:10px;">📚 ${ci.name} ${grade} ${subject}과외 (동별 안내)</div><div style="font-size:15px;color:#7f8c8d;line-height:1.7;">원하시는 동네를 확인하시고 1:1 맞춤 과외 상담을 받아보세요.</div></div>${cards}<div style="background:#f8f9fa;padding:22px;border-radius:12px;margin-bottom:26px;"><div style="font-size:17px;font-weight:800;color:#1A2340;margin-bottom:14px;">✨ 은빛쌤 1:1 과외의 특별함</div><ul style="padding-left:20px;color:#555;font-size:15px;line-height:2;"><li>학생 수준·성향에 맞춘 <b>100% 맞춤 커리큘럼</b></li><li>학교별 내신 기출문제 철저 분석 대비</li><li>기초부터 수능까지 체계적 학습 관리</li><li>매주 학부모 상담 및 성적 피드백 제공</li></ul></div><a href="https://naver.me/Gnva0jjW" target="_blank" style="display:block;text-align:center;background:linear-gradient(135deg,#C8A96E,#E8D09A);color:#1A2340;padding:18px;border-radius:50px;font-size:17px;font-weight:700;text-decoration:none;box-shadow:0 6px 20px rgba(200,169,110,0.4);">1:1 무료 모의수업 &amp; 상담 신청하기</a></div></div>${CONTACT}${FOOTER}${FLOATING}</body></html>`;
 }
 
 function handleSearch(q) {
