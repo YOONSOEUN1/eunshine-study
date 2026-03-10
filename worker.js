@@ -6768,7 +6768,7 @@ async function handle(req) {
       const res = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: {
-          "Authorization": "Bearer " + (env.RESEND_API_KEY || ""),
+          "Authorization": "Bearer " + (typeof RESEND_API_KEY !== "undefined" ? RESEND_API_KEY : ""),
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
