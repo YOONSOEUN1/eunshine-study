@@ -6649,19 +6649,57 @@ function buildDongPage(rs, cs, dong) {
   const kn = ci.name;
   const rd = ci.region_display;
   const gc = {"초등":"#3498db","중등":"#2ecc71","고등":"#e74c3c"};
+  const gcBg = {"초등":"#eaf4fd","중등":"#e8f8f5","고등":"#fdecea"};
+
   let cards = "";
   for (const g of grades) {
-    cards += `<h3 style="color:${gc[g]};border-left:5px solid ${gc[g]};padding-left:12px;margin:28px 0 14px;font-size:17px;">${g} ${dong} 과외 과목</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;">`;
+    cards += `
+    <div style="margin-bottom:36px;">
+      <h3 style="display:flex;align-items:center;gap:10px;color:${gc[g]};border-left:5px solid ${gc[g]};padding-left:14px;margin:0 0 16px;font-size:18px;font-weight:800;">
+        ${g === "초등" ? "🌱" : g === "중등" ? "📘" : "🔥"} ${g} ${dong} 과외 과목
+      </h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;">`;
     for (const s of subjects) {
       const url = "/" + rs + "/" + cs + "/" + encodeURIComponent(dong) + "/" + encodeURIComponent(g) + "/" + encodeURIComponent(s);
       const rawDesc = (descriptions[g]||{})[s]||"";
       const desc = rawDesc.replace(/\{region\}/g, dong);
-      cards += `<a href="${url}" style="text-decoration:none;"><div style="background:white;border:2px solid ${gc[g]};border-radius:12px;padding:14px;height:100%;display:flex;flex-direction:column;"><div style="font-size:15px;font-weight:900;color:${gc[g]};margin-bottom:6px;">${dong} ${g} ${s}과외</div><div style="font-size:12px;color:#7f8c8d;line-height:1.5;flex:1;">${desc.substring(0,50)}...</div><div style="margin-top:8px;color:${gc[g]};font-weight:700;font-size:12px;">자세히 보기 →</div></div></a>`;
+      cards += `
+        <a href="${url}" style="text-decoration:none;">
+          <div style="background:white;border:2px solid ${gc[g]};border-radius:14px;padding:18px;height:100%;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;cursor:pointer;"
+               onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.12)'"
+               onmouseout="this.style.transform='';this.style.boxShadow=''">
+            <div style="display:inline-block;background:${gcBg[g]};color:${gc[g]};font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:10px;">${g}</div>
+            <div style="font-size:15px;font-weight:900;color:#1A2340;margin-bottom:8px;">${dong} ${g} ${s}과외</div>
+            <div style="font-size:12px;color:#7f8c8d;line-height:1.6;flex:1;">${desc.substring(0,55)}...</div>
+            <div style="margin-top:12px;color:${gc[g]};font-weight:700;font-size:12px;display:flex;align-items:center;gap:4px;">자세히 보기 <span>→</span></div>
+          </div>
+        </a>`;
     }
-    cards += `</div>`;
+    cards += `</div></div>`;
   }
-  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">` + `<meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976" /><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>${dong} 과외 - ${dong} 초중고 1:1 방문 화상 은빛쌤</title><meta name="description" content="${dong} 초등 중등 고등 국어 영어 수학 사회 과학 1:1 맞춤 방문·화상 과외. 은빛쌤과외.">${COMMON_STYLE}</head><body>${NAV}<div style="max-width:1100px;margin:36px auto;background:white;padding:clamp(20px,4vw,48px);border-radius:20px;box-shadow:0 8px 28px rgba(0,0,0,0.08);"><div style="background:linear-gradient(135deg,${tc},${tc}bb);color:white;border-radius:16px;padding:clamp(24px,4vw,40px);margin-bottom:24px;text-align:center;"><p style="font-size:13px;opacity:.85;margin-bottom:6px;">📍 <a href="/${rs}/${cs}" style="color:white;text-decoration:underline;">${rd}</a> &gt; ${dong}</p><h1 style="font-size:clamp(22px,4vw,34px);font-weight:900;margin-bottom:8px;">${dong} 과외</h1><p style="font-size:14px;opacity:.85;">초·중·고 국영수사과 | 방문·화상 1:1 맞춤 수업</p></div><div style="background:#f8faff;border-left:5px solid ${tc};border-radius:0 12px 12px 0;padding:18px 20px;margin-bottom:24px;"><p style="font-size:14px;color:#555;line-height:1.8;"><strong style="color:${tc}">${dong}</strong> 지역 학생 전문 1:1 맞춤 과외. 초등·중등·고등 국어·영어·수학·사회·과학 전 과목. 방문·화상 모두 가능.</p></div><h2 style="font-size:clamp(17px,3vw,22px);font-weight:900;color:#1A2340;border-bottom:3px solid ${tc};padding-bottom:10px;">📚 ${dong} 학년별 과외 목록</h2>${cards}</div>${CONTACT}${FOOTER}${FLOATING}</body></html>`;
+
+  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">` +
+  `<meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976" />` +
+  `<meta name="viewport" content="width=device-width,initial-scale=1.0">` +
+  `<title>${dong} 과외 - ${dong} 초중고 1:1 방문 화상 은빛쌤</title>` +
+  `<meta name="description" content="${dong} 초등 중등 고등 국어 영어 수학 사회 과학 1:1 맞춤 방문·화상 과외. 은빛쌤과외.">` +
+  `${COMMON_STYLE}</head><body>${NAV}` +
+  `<div style="max-width:1100px;margin:36px auto;background:white;padding:clamp(20px,4vw,48px);border-radius:20px;box-shadow:0 8px 28px rgba(0,0,0,0.08);">` +
+
+  `<div style="background:linear-gradient(135deg,${tc},${tc}bb);color:white;border-radius:16px;padding:clamp(28px,5vw,48px);margin-bottom:28px;text-align:center;">` +
+  `<p style="font-size:13px;opacity:.85;margin-bottom:8px;">📍 <a href="/${rs}/${cs}" style="color:white;text-decoration:underline;">${rd}</a> &gt; ${dong}</p>` +
+  `<h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;margin-bottom:10px;">${dong} 과외</h1>` +
+  `<p style="font-size:15px;opacity:.85;">초·중·고 국영수사과 | 방문·화상 1:1 맞춤 수업</p></div>` +
+
+  `<div style="border-left:5px solid ${tc};background:#f8faff;border-radius:0 12px 12px 0;padding:22px 24px;margin-bottom:28px;">` +
+  `<h2 style="font-size:17px;font-weight:800;color:#1A2340;margin-bottom:10px;">왜 은빛쌤 ${dong} 과외일까요?</h2>` +
+  `<p style="font-size:14px;color:#555;line-height:1.8;"><strong style="color:${tc}">${dong}</strong> 지역 학생만을 위한 완전 1:1 맞춤 과외입니다. 초등·중등·고등 전 학년 국어·영어·수학·사회·과학 전 과목을 커버하며, 방문·화상 수업 모두 가능합니다.</p></div>` +
+
+  `<h2 style="font-size:clamp(18px,3vw,22px);font-weight:900;color:#1A2340;border-bottom:3px solid ${tc};padding-bottom:10px;margin-bottom:24px;">📚 ${dong} 학년별 과외 목록</h2>` +
+  `${cards}` +
+  `</div>${CONTACT}${FOOTER}${FLOATING}</body></html>`;
 }
+
 
 function buildDongDetailPage(rs, cs, dong, grade, subject) {
   const ci = (eduData[rs]||{})[cs];
