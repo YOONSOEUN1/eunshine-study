@@ -6695,7 +6695,6 @@ function buildCityPage(rs, cs) {
       <div>
         <div style="font-weight:800;color:#b7770d;font-size:15px;margin-bottom:6px;">수업 방식 안내</div>
         <p style="font-size:14px;color:#555;line-height:1.8;margin:0;">
-          <strong>${rd}</strong> 지역은 방문과외 여부를 사전에 확정하기 어렵습니다.<br>
           <strong>무료 상담 → 선생님·학생 테스트 매칭 → 방문과외 / 화상과외 중 최종 결정</strong> 방식으로 진행됩니다.<br>
           지역·거리·스케줄에 따라 최적의 수업 방식을 함께 결정해 드립니다.
         </p>
@@ -6757,13 +6756,61 @@ function buildCityPage(rs, cs) {
       </div>
     </div>
 
-    <!-- FAQ -->
+
+    <!-- 공부법 & 과외 특징 글밥 -->
+    <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:20px;">📖 은빛쌤이 생각하는 올바른 공부법</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-bottom:24px;">
+        <div style="background:#f8faff;border-radius:14px;padding:20px;">
+          <div style="font-size:26px;margin-bottom:10px;">🧠</div>
+          <div style="font-weight:800;color:#1A2340;margin-bottom:8px;">개념 먼저, 문제는 나중에</div>
+          <div style="font-size:13px;color:#555;line-height:1.8;">많은 학생이 문제만 반복해서 풀다 막히면 포기합니다. 은빛쌤은 개념을 완전히 이해한 뒤 문제에 적용하는 순서를 지킵니다. 기초가 탄탄해야 심화도 흔들리지 않습니다.</div>
+        </div>
+        <div style="background:#f8faff;border-radius:14px;padding:20px;">
+          <div style="font-size:26px;margin-bottom:10px;">✏️</div>
+          <div style="font-weight:800;color:#1A2340;margin-bottom:8px;">오답 노트가 성적을 바꾼다</div>
+          <div style="font-size:13px;color:#555;line-height:1.8;">틀린 문제를 그냥 넘기면 같은 실수를 반복합니다. 은빛쌤은 오답 원인을 함께 분석하고, 같은 유형에서 다시 틀리지 않도록 체계적으로 관리합니다.</div>
+        </div>
+        <div style="background:#f8faff;border-radius:14px;padding:20px;">
+          <div style="font-size:26px;margin-bottom:10px;">📅</div>
+          <div style="font-weight:800;color:#1A2340;margin-bottom:8px;">꾸준함이 실력이다</div>
+          <div style="font-size:13px;color:#555;line-height:1.8;">하루 10시간 벼락치기보다 매일 1시간 꾸준한 학습이 장기 기억에 훨씬 효과적입니다. 은빛쌤은 학생이 스스로 공부 습관을 만들 수 있도록 함께 루틴을 설계합니다.</div>
+        </div>
+        <div style="background:#f8faff;border-radius:14px;padding:20px;">
+          <div style="font-size:26px;margin-bottom:10px;">🗣️</div>
+          <div style="font-weight:800;color:#1A2340;margin-bottom:8px;">말로 설명할 수 있어야 진짜 안다</div>
+          <div style="font-size:13px;color:#555;line-height:1.8;">배운 내용을 선생님 없이 스스로 설명할 수 있는지 확인합니다. 설명하지 못하면 아직 이해가 덜 된 것입니다. 은빛쌤은 학생이 직접 말해보는 활동을 수업에 반드시 포함합니다.</div>
+        </div>
+      </div>
+
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:16px;margin-top:8px;">💡 은빛쌤 1:1 과외만의 특징</h2>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="display:flex;gap:14px;align-items:flex-start;background:#f8faff;border-radius:12px;padding:16px 18px;">
+          <div style="background:${tc};color:white;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0;">1</div>
+          <div><div style="font-weight:800;color:#1A2340;margin-bottom:4px;font-size:14px;">수업 전 학생 진단</div><div style="font-size:13px;color:#555;line-height:1.7;">첫 수업 전 학생의 현재 수준·학습 습관·목표를 파악합니다. 진단 결과를 바탕으로 딱 맞는 커리큘럼을 설계합니다.</div></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;background:#f8faff;border-radius:12px;padding:16px 18px;">
+          <div style="background:${tc};color:white;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0;">2</div>
+          <div><div style="font-weight:800;color:#1A2340;margin-bottom:4px;font-size:14px;">시험 직전 집중 대비</div><div style="font-size:13px;color:#555;line-height:1.7;">중간·기말고사 2~3주 전부터 학교별 기출 분석과 예상 문제 풀이를 강화합니다. 시험 직전 핵심만 빠르게 정리하는 벼락치기 플랜도 함께 진행합니다.</div></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;background:#f8faff;border-radius:12px;padding:16px 18px;">
+          <div style="background:${tc};color:white;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0;">3</div>
+          <div><div style="font-weight:800;color:#1A2340;margin-bottom:4px;font-size:14px;">카카오톡 24시간 질문</div><div style="font-size:13px;color:#555;line-height:1.7;">수업이 없는 날도 모르는 문제가 생기면 언제든 카카오톡으로 질문할 수 있습니다. 질문을 미루지 않는 습관이 성적을 만듭니다.</div></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;background:#f8faff;border-radius:12px;padding:16px 18px;">
+          <div style="background:${tc};color:white;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0;">4</div>
+          <div><div style="font-weight:800;color:#1A2340;margin-bottom:4px;font-size:14px;">매주 학부모 피드백</div><div style="font-size:13px;color:#555;line-height:1.7;">매주 수업 후 학습 진도·과제 완료율·성적 변화를 부모님께 공유합니다. 투명한 소통으로 학부모님도 안심하고 맡길 수 있습니다.</div></div>
+        </div>
+      </div>
+    </div>
+
+        <!-- FAQ -->
     <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
       <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:16px;">❓ 자주 묻는 질문</h2>
       <div style="display:flex;flex-direction:column;gap:10px;">
         <details style="background:#f8faff;border-radius:12px;padding:16px 20px;cursor:pointer;">
           <summary style="font-weight:700;color:#1A2340;font-size:14px;list-style:none;display:flex;justify-content:space-between;">방문과외가 무조건 가능한가요? <span style="color:${tc}">▼</span></summary>
-          <p style="margin-top:12px;font-size:13px;color:#555;line-height:1.8;">${rd} 지역은 방문과외 여부를 사전에 보장하기 어렵습니다. 무료 상담 → 선생님 매칭 테스트 → 방문 또는 화상 수업 방식을 최종 결정하는 절차로 진행됩니다. 지역·거리·스케줄에 따라 최적의 방식을 함께 결정해 드립니다.</p>
+          <p style="margin-top:12px;font-size:13px;color:#555;line-height:1.8;">무료 상담 후 선생님 매칭 테스트를 거쳐 방문 또는 화상 수업 방식을 함께 최종 결정합니다.</p>
         </details>
         <details style="background:#f8faff;border-radius:12px;padding:16px 20px;cursor:pointer;">
           <summary style="font-weight:700;color:#1A2340;font-size:14px;list-style:none;display:flex;justify-content:space-between;">내신과 수능을 동시에 준비할 수 있나요? <span style="color:${tc}">▼</span></summary>
@@ -6872,7 +6919,6 @@ function buildDongPage(rs, cs, dong) {
       <div>
         <div style="font-weight:800;color:#b7770d;font-size:14px;margin-bottom:5px;">수업 방식 안내</div>
         <p style="font-size:13px;color:#555;line-height:1.8;margin:0;">
-          <strong>${dong}</strong> 지역은 방문과외 여부를 사전에 확정하기 어렵습니다.<br>
           <strong>무료 상담 → 선생님·학생 테스트 매칭 → 방문과외 / 화상과외 중 최종 결정</strong> 방식으로 진행됩니다.
         </p>
       </div>
@@ -6913,13 +6959,61 @@ function buildDongPage(rs, cs, dong) {
     <!-- 인근 학교 -->
     ${schoolBlock}
 
-    <!-- FAQ -->
+
+    <!-- 공부법 & 과외 특징 글밥 -->
+    <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:20px;">📖 ${dong} 학생들을 위한 공부법 가이드</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-bottom:22px;">
+        <div style="background:#f8faff;border-radius:14px;padding:18px;">
+          <div style="font-size:24px;margin-bottom:8px;">🧠</div>
+          <div style="font-weight:800;color:#1A2340;margin-bottom:6px;font-size:14px;">개념 이해 → 문제 적용</div>
+          <div style="font-size:12px;color:#555;line-height:1.7;">무작정 문제만 풀다 막히면 포기하게 됩니다. 개념을 완전히 이해한 후 문제에 적용하는 순서가 핵심입니다.</div>
+        </div>
+        <div style="background:#f8faff;border-radius:14px;padding:18px;">
+          <div style="font-size:24px;margin-bottom:8px;">✏️</div>
+          <div style="font-weight:800;color:#1A2340;margin-bottom:6px;font-size:14px;">오답 분석으로 실수 없애기</div>
+          <div style="font-size:12px;color:#555;line-height:1.7;">틀린 문제를 그냥 넘기지 않습니다. 왜 틀렸는지 원인을 찾고, 같은 유형에서 다시 틀리지 않도록 관리합니다.</div>
+        </div>
+        <div style="background:#f8faff;border-radius:14px;padding:18px;">
+          <div style="font-size:24px;margin-bottom:8px;">📅</div>
+          <div style="font-weight:800;color:#1A2340;margin-bottom:6px;font-size:14px;">매일 꾸준한 학습 루틴</div>
+          <div style="font-size:12px;color:#555;line-height:1.7;">벼락치기보다 매일 일정 시간 꾸준히 공부하는 습관이 장기적으로 훨씬 효과적입니다. 루틴을 함께 만들어 드립니다.</div>
+        </div>
+        <div style="background:#f8faff;border-radius:14px;padding:18px;">
+          <div style="font-size:24px;margin-bottom:8px;">🎯</div>
+          <div style="font-weight:800;color:#1A2340;margin-bottom:6px;font-size:14px;">시험 직전 핵심 정리</div>
+          <div style="font-size:12px;color:#555;line-height:1.7;">시험 2~3주 전 학교 기출 분석과 예상 문제를 집중 훈련합니다. 시험 전날까지 함께 준비합니다.</div>
+        </div>
+      </div>
+
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">✨ 은빛쌤 과외의 특징</h2>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid #f0f2f5;">
+          <span style="color:${tc};font-weight:900;font-size:18px;flex-shrink:0;">✓</span>
+          <div><div style="font-weight:800;color:#1A2340;margin-bottom:3px;font-size:14px;">수업 전 학생 진단 및 맞춤 커리큘럼 설계</div><div style="font-size:12px;color:#555;line-height:1.7;">첫 수업 전 현재 수준·습관·목표를 파악해 ${dong} 학생에게 딱 맞는 커리큘럼을 만듭니다.</div></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid #f0f2f5;">
+          <span style="color:${tc};font-weight:900;font-size:18px;flex-shrink:0;">✓</span>
+          <div><div style="font-weight:800;color:#1A2340;margin-bottom:3px;font-size:14px;">인근 학교 기출 문제 기반 내신 집중 대비</div><div style="font-size:12px;color:#555;line-height:1.7;">단순 교과서 풀이가 아닌, 실제 시험에 출제된 기출 유형 중심으로 수업합니다.</div></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid #f0f2f5;">
+          <span style="color:${tc};font-weight:900;font-size:18px;flex-shrink:0;">✓</span>
+          <div><div style="font-weight:800;color:#1A2340;margin-bottom:3px;font-size:14px;">카카오톡 24시간 질문 가능</div><div style="font-size:12px;color:#555;line-height:1.7;">수업 외 시간에도 모르는 문제가 생기면 바로 질문할 수 있습니다. 질문을 미루지 않는 것이 성적을 만듭니다.</div></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;padding:14px 0;">
+          <span style="color:${tc};font-weight:900;font-size:18px;flex-shrink:0;">✓</span>
+          <div><div style="font-weight:800;color:#1A2340;margin-bottom:3px;font-size:14px;">매주 학부모님께 학습 피드백 제공</div><div style="font-size:12px;color:#555;line-height:1.7;">학습 진도, 과제 완료율, 성적 변화를 매주 공유해 드립니다. 투명한 소통으로 신뢰를 드립니다.</div></div>
+        </div>
+      </div>
+    </div>
+
+        <!-- FAQ -->
     <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
       <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">❓ ${dong} 학부모님이 자주 묻는 질문</h2>
       <div style="display:flex;flex-direction:column;gap:10px;">
         <details style="background:#f8faff;border-radius:12px;padding:14px 18px;cursor:pointer;">
           <summary style="font-weight:700;color:#1A2340;font-size:13px;list-style:none;display:flex;justify-content:space-between;">${dong} 방문과외가 가능한가요? <span style="color:${tc}">▼</span></summary>
-          <p style="margin-top:10px;font-size:13px;color:#555;line-height:1.8;">${dong} 지역은 방문과외 여부를 사전에 보장하기 어렵습니다. 무료 상담 후 선생님 매칭 테스트를 거쳐, 방문 또는 화상 수업 방식을 함께 최종 결정합니다.</p>
+          <p style="margin-top:10px;font-size:13px;color:#555;line-height:1.8;">무료 상담 후 선생님 매칭 테스트를 거쳐, 방문 또는 화상 수업 방식을 함께 최종 결정합니다.</p>
         </details>
         <details style="background:#f8faff;border-radius:12px;padding:14px 18px;cursor:pointer;">
           <summary style="font-weight:700;color:#1A2340;font-size:13px;list-style:none;display:flex;justify-content:space-between;">${dong} 과외 비용은 어떻게 되나요? <span style="color:${tc}">▼</span></summary>
