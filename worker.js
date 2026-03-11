@@ -6110,7 +6110,7 @@ async function handle(req) {
   const H = {"Content-Type":"text/html;charset=UTF-8"};
   const J = {"Content-Type":"application/json;charset=UTF-8"};
 
-    // ── 상담 신청 이메일 전송 ──────────────────────────────
+    // ── 상담 신청 ──────────────────────────────
   if (p === "/api/contact" && req.method === "POST") {
     try {
       const data = await req.json();
