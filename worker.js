@@ -6623,43 +6623,46 @@ function buildCityPage(rs, cs) {
   const tc = ri.color||"#3498db";
   const rd = ci.region_display;
   const kn = ci.name;
-  const dongStr  = ci.dongs.slice(0,5).join("·")+(ci.dongs.length>5?` 등 ${ci.dongs.length}개 지역`:"");
-  const schoolStr= ci.schools.slice(0,4).join("·")+(ci.schools.length>4?` 외`:"");
-  const gc = {"초등":"#3498db","중등":"#2ecc71","고등":"#e74c3c"};
-  const gcBg = {"초등":"#eaf4fd","중등":"#e8f8f5","고등":"#fdecea"};
+  const dongStr   = ci.dongs.slice(0,5).join("·")+(ci.dongs.length>5?` 등 ${ci.dongs.length}개 지역`:"");
+  const schoolStr = ci.schools.slice(0,4).join("·")+(ci.schools.length>4?` 외`:"");
+  const gc  = {"초등":"#3498db","중등":"#2ecc71","고등":"#e74c3c"};
+  const gcBg= {"초등":"#eaf4fd","중등":"#e8f8f5","고등":"#fdecea"};
 
+  // ── 동 카드
   const dongCards = ci.dongs.map(d=>`
     <a href="/${rs}/${cs}/${encodeURIComponent(d)}" style="text-decoration:none;">
-      <div style="background:white;border:2px solid ${tc};border-radius:14px;padding:18px 16px;display:flex;flex-direction:column;cursor:pointer;transition:transform .2s,box-shadow .2s;"
+      <div style="background:white;border:2px solid ${tc};border-radius:14px;padding:16px;display:flex;flex-direction:column;cursor:pointer;transition:transform .2s,box-shadow .2s;"
            onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 20px rgba(0,0,0,0.12)'"
            onmouseout="this.style.transform='';this.style.boxShadow=''">
-        <div style="font-size:15px;font-weight:900;color:#1A2340;margin-bottom:6px;">📍 ${d} 과외</div>
-        <div style="font-size:12px;color:#888;margin-bottom:10px;">초·중·고 1:1 맞춤 수업</div>
-        <div style="color:${tc};font-size:12px;font-weight:700;">자세히 보기 →</div>
+        <div style="font-size:14px;font-weight:900;color:#1A2340;margin-bottom:5px;">📍 ${d} 과외</div>
+        <div style="font-size:11px;color:#888;margin-bottom:10px;">초·중·고 1:1 맞춤</div>
+        <div style="color:${tc};font-size:11px;font-weight:700;">자세히 보기 →</div>
       </div>
     </a>`).join("");
 
-  const schoolTags = ci.schools.map(s=>`<span style="display:inline-block;background:#fef9e7;color:#d35400;border-radius:20px;padding:5px 14px;margin:4px;font-size:13px;font-weight:600;">🏫 ${s}</span>`).join("");
+  // ── 학교 태그
+  const schoolTags = ci.schools.map(s=>`<span style="display:inline-block;background:#fef9e7;color:#b7770d;border-radius:20px;padding:5px 14px;margin:4px;font-size:13px;font-weight:600;">🏫 ${s}</span>`).join("");
 
+  // ── 과목 카드
   let subjectCards = "";
   for (const g of grades) {
     subjectCards += `
-    <div style="margin-bottom:36px;">
-      <h3 style="font-size:18px;font-weight:800;color:${gc[g]};border-left:5px solid ${gc[g]};padding-left:12px;margin:0 0 16px;">
+    <div style="margin-bottom:32px;">
+      <h3 style="font-size:17px;font-weight:800;color:${gc[g]};border-left:5px solid ${gc[g]};padding-left:12px;margin:0 0 14px;">
         ${g==="초등"?"🌱":g==="중등"?"📘":"🔥"} ${g} ${kn} 과외 과목
       </h3>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;">`;
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">`;
     for (const c of ci.classes) {
       if (c.grade!==g) continue;
       subjectCards += `
         <a href="/${rs}/${cs}/${encodeURIComponent(g)}/${encodeURIComponent(c.subject)}" style="text-decoration:none;">
-          <div style="background:white;border:2px solid ${gc[g]};border-radius:14px;padding:18px;height:100%;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;"
-               onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 20px rgba(0,0,0,0.12)'"
+          <div style="background:white;border:2px solid ${gc[g]};border-radius:14px;padding:16px;height:100%;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;"
+               onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 20px rgba(0,0,0,0.1)'"
                onmouseout="this.style.transform='';this.style.boxShadow=''">
-            <div style="background:${gcBg[g]};color:${gc[g]};font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:10px;display:inline-block;">${g}</div>
-            <div style="font-size:15px;font-weight:900;color:#1A2340;margin-bottom:8px;">${c.title}</div>
-            <div style="font-size:13px;color:#666;line-height:1.6;flex:1;">${c.desc.substring(0,60)}...</div>
-            <div style="margin-top:12px;color:${gc[g]};font-weight:700;font-size:12px;">자세히 보기 →</div>
+            <div style="background:${gcBg[g]};color:${gc[g]};font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;margin-bottom:8px;display:inline-block;">${g}</div>
+            <div style="font-size:14px;font-weight:900;color:#1A2340;margin-bottom:6px;">${c.title}</div>
+            <div style="font-size:12px;color:#666;line-height:1.6;flex:1;">${c.desc.substring(0,55)}...</div>
+            <div style="margin-top:10px;color:${gc[g]};font-weight:700;font-size:11px;">자세히 보기 →</div>
           </div>
         </a>`;
     }
@@ -6670,14 +6673,15 @@ function buildCityPage(rs, cs) {
   <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>${rd} 과외 | 초중고 1:1 맞춤 방문·화상 과외 | 은빛쌤</title>
-  <meta name="description" content="${rd} 과외 전문. ${dongStr} 방문·화상 1:1 수업. ${schoolStr} 내신·수능 완벽 대비. 첫 상담·체험 무료.">
+  <meta name="description" content="${rd} 과외 전문 은빛쌤. ${dongStr} 상담 후 방문·화상 결정. ${schoolStr} 내신 완벽 대비. 첫 상담·체험 무료.">
   ${COMMON_STYLE}</head><body>${NAV}
   <div style="max-width:1100px;margin:40px auto;padding:0 16px;">
 
-    <div style="background:linear-gradient(135deg,${tc},${tc}cc);color:white;border-radius:20px;padding:clamp(32px,5vw,56px);margin-bottom:32px;text-align:center;">
+    <!-- 히어로 배너 -->
+    <div style="background:linear-gradient(135deg,${tc},${tc}cc);color:white;border-radius:20px;padding:clamp(32px,5vw,56px);margin-bottom:24px;text-align:center;">
       <p style="font-size:13px;opacity:.8;margin-bottom:8px;">📍 은빛쌤 1:1 맞춤 과외</p>
-      <h1 style="font-size:clamp(28px,5vw,44px);font-weight:900;margin-bottom:14px;">${rd} 과외</h1>
-      <p style="font-size:15px;opacity:.9;margin-bottom:22px;">초·중·고 전 과목 | 방문·화상 1:1 맞춤 수업 | 내신·수능 완벽 대비</p>
+      <h1 style="font-size:clamp(28px,5vw,44px);font-weight:900;margin-bottom:12px;">${rd} 과외</h1>
+      <p style="font-size:15px;opacity:.9;margin-bottom:20px;">초·중·고 전 과목 | 무료 상담 후 방문·화상 수업 방식 결정</p>
       <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;">
         <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:7px 18px;font-size:13px;font-weight:600;">✅ 첫 상담 무료</span>
         <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:7px 18px;font-size:13px;font-weight:600;">✅ 체험 수업 무료</span>
@@ -6685,53 +6689,81 @@ function buildCityPage(rs, cs) {
       </div>
     </div>
 
-    <div style="background:white;border-radius:20px;box-shadow:0 4px 24px rgba(0,0,0,0.08);padding:clamp(24px,4vw,44px);margin-bottom:24px;">
-      <h2 style="font-size:20px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:16px;">🏙️ ${rd}에서 은빛쌤을 선택하는 이유</h2>
+    <!-- 수업 방식 안내 -->
+    <div style="background:#fff8e6;border:2px solid #f5c842;border-radius:16px;padding:20px 24px;margin-bottom:24px;display:flex;gap:14px;align-items:flex-start;">
+      <div style="font-size:28px;flex-shrink:0;">📋</div>
+      <div>
+        <div style="font-weight:800;color:#b7770d;font-size:15px;margin-bottom:6px;">수업 방식 안내</div>
+        <p style="font-size:14px;color:#555;line-height:1.8;margin:0;">
+          <strong>${rd}</strong> 지역은 방문과외 여부를 사전에 확정하기 어렵습니다.<br>
+          <strong>무료 상담 → 선생님·학생 테스트 매칭 → 방문과외 / 화상과외 중 최종 결정</strong> 방식으로 진행됩니다.<br>
+          지역·거리·스케줄에 따라 최적의 수업 방식을 함께 결정해 드립니다.
+        </p>
+      </div>
+    </div>
+
+    <!-- 지역 소개 + 특징 -->
+    <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:16px;">🏙️ ${rd} 과외, 왜 은빛쌤일까요?</h2>
       <p style="font-size:14px;color:#444;line-height:2;margin-bottom:20px;">
-        <strong style="color:${tc}">${rd}</strong>은 ${dongStr} 등 다양한 주거지역으로 이루어진 곳으로, 학령기 자녀를 둔 가정의 교육 관심이 높은 지역입니다.
-        은빛쌤은 ${rd} 학생들의 학교별 시험 출제 경향을 분석하고, 학생 한 명 한 명에게 딱 맞는 커리큘럼을 설계합니다.
-        내신 기출 완벽 분석부터 수능 유형 훈련까지, 목표에 맞는 수업을 제공합니다.
+        <strong style="color:${tc}">${rd}</strong>은 ${dongStr} 등 다양한 주거지역으로 이루어진 교육 수요가 높은 지역입니다.
+        은빛쌤은 ${rd} 학교들의 내신 출제 경향을 분석하고, 학생 한 명 한 명에게 꼭 맞는 커리큘럼을 설계합니다.
+        단순 문제 풀이가 아닌 <strong>왜 틀렸는지</strong>를 파악하고 근본부터 잡아주는 수업을 제공합니다.
       </p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;">
-        <div style="border:1px solid #e8edf5;border-radius:14px;padding:20px;">
-          <div style="font-size:26px;margin-bottom:10px;">🎯</div>
-          <div style="font-weight:800;color:#1A2340;margin-bottom:6px;">완전 맞춤 커리큘럼</div>
-          <div style="font-size:13px;color:#666;line-height:1.7;">${rd} 학교별 출제 경향을 분석해 내신에 꼭 맞는 수업 계획을 세웁니다.</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;">
+        <div style="border:1px solid #e8edf5;border-radius:14px;padding:18px;">
+          <div style="font-size:24px;margin-bottom:8px;">🎯</div>
+          <div style="font-weight:800;color:#1A2340;margin-bottom:5px;font-size:14px;">완전 맞춤 커리큘럼</div>
+          <div style="font-size:12px;color:#666;line-height:1.7;">${rd} 학교별 출제 경향을 분석해 내신에 꼭 맞는 수업을 진행합니다.</div>
         </div>
-        <div style="border:1px solid #e8edf5;border-radius:14px;padding:20px;">
-          <div style="font-size:26px;margin-bottom:10px;">🏠</div>
-          <div style="font-weight:800;color:#1A2340;margin-bottom:6px;">방문·화상 선택 가능</div>
-          <div style="font-size:13px;color:#666;line-height:1.7;">학생 상황에 맞게 방문 또는 화상 수업을 자유롭게 선택·병행할 수 있습니다.</div>
+        <div style="border:1px solid #e8edf5;border-radius:14px;padding:18px;">
+          <div style="font-size:24px;margin-bottom:8px;">🏠</div>
+          <div style="font-weight:800;color:#1A2340;margin-bottom:5px;font-size:14px;">상담 후 수업 방식 결정</div>
+          <div style="font-size:12px;color:#666;line-height:1.7;">방문·화상 중 학생 상황에 맞는 최적의 방식을 상담 후 함께 결정합니다.</div>
         </div>
-        <div style="border:1px solid #e8edf5;border-radius:14px;padding:20px;">
-          <div style="font-size:26px;margin-bottom:10px;">📈</div>
-          <div style="font-weight:800;color:#1A2340;margin-bottom:6px;">체계적 성적 관리</div>
-          <div style="font-size:13px;color:#666;line-height:1.7;">매 수업 후 피드백을 제공하고 성적 변화를 함께 추적합니다.</div>
+        <div style="border:1px solid #e8edf5;border-radius:14px;padding:18px;">
+          <div style="font-size:24px;margin-bottom:8px;">📈</div>
+          <div style="font-weight:800;color:#1A2340;margin-bottom:5px;font-size:14px;">체계적 성적 관리</div>
+          <div style="font-size:12px;color:#666;line-height:1.7;">매 수업 후 피드백과 성적 추적으로 목표까지 빈틈없이 이끌어 드립니다.</div>
         </div>
-        <div style="border:1px solid #e8edf5;border-radius:14px;padding:20px;">
-          <div style="font-size:26px;margin-bottom:10px;">⚡</div>
-          <div style="font-weight:800;color:#1A2340;margin-bottom:6px;">빠른 수업 시작</div>
-          <div style="font-size:13px;color:#666;line-height:1.7;">상담 후 빠르면 2~3일 내 첫 수업 시작이 가능합니다.</div>
+        <div style="border:1px solid #e8edf5;border-radius:14px;padding:18px;">
+          <div style="font-size:24px;margin-bottom:8px;">⚡</div>
+          <div style="font-weight:800;color:#1A2340;margin-bottom:5px;font-size:14px;">빠른 수업 시작</div>
+          <div style="font-size:12px;color:#666;line-height:1.7;">상담 후 빠르면 2~3일 내 첫 수업이 가능합니다.</div>
         </div>
       </div>
     </div>
 
-    <div style="background:white;border-radius:20px;box-shadow:0 4px 24px rgba(0,0,0,0.08);padding:clamp(24px,4vw,44px);margin-bottom:24px;">
-      <h2 style="font-size:20px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:16px;">🏘️ 수업 가능 지역(동) — 클릭해서 과목 선택</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px;">${dongCards}</div>
+    <!-- 주요 학교 -->
+    <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:6px;">🏫 ${rd} 주요 학교</h2>
+      <p style="font-size:13px;color:#888;margin-bottom:14px;">아래 학교 재학생 내신 기출 분석 및 맞춤 수업 가능합니다.</p>
+      <div style="margin-bottom:12px;">
+        <span style="font-size:13px;font-weight:700;color:#e74c3c;margin-right:8px;">고등학교</span>
+        ${ci.schools.filter(s=>s.includes('고')||s.includes('고등')).length>0
+          ? ci.schools.filter(s=>s.includes('고')||s.includes('고등')).map(s=>`<span style="display:inline-block;background:#fdecea;color:#c0392b;border-radius:20px;padding:4px 12px;margin:3px;font-size:13px;font-weight:600;">${s}</span>`).join("")
+          : ci.schools.slice(0, Math.ceil(ci.schools.length/2)).map(s=>`<span style="display:inline-block;background:#fdecea;color:#c0392b;border-radius:20px;padding:4px 12px;margin:3px;font-size:13px;font-weight:600;">${s}</span>`).join("")
+        }
+      </div>
+      <div>
+        <span style="font-size:13px;font-weight:700;color:#2ecc71;margin-right:8px;">중학교</span>
+        ${ci.schools.filter(s=>s.includes('중')||s.includes('중학')).length>0
+          ? ci.schools.filter(s=>s.includes('중')||s.includes('중학')).map(s=>`<span style="display:inline-block;background:#e8f8f5;color:#1a8a6a;border-radius:20px;padding:4px 12px;margin:3px;font-size:13px;font-weight:600;">${s}</span>`).join("")
+          : ci.schools.slice(Math.ceil(ci.schools.length/2)).map(s=>`<span style="display:inline-block;background:#e8f8f5;color:#1a8a6a;border-radius:20px;padding:4px 12px;margin:3px;font-size:13px;font-weight:600;">${s}</span>`).join("")
+        }
+      </div>
+      <div style="margin-top:16px;background:#f8faff;border-radius:12px;padding:16px 18px;font-size:13px;color:#555;line-height:1.8;">
+        💡 위 학교 외에도 ${rd} 내 모든 학교 재학생 수업이 가능합니다. 학교명을 상담 시 알려주시면 해당 학교 기출 자료를 준비해 드립니다.
+      </div>
     </div>
 
-    <div style="background:white;border-radius:20px;box-shadow:0 4px 24px rgba(0,0,0,0.08);padding:clamp(24px,4vw,44px);margin-bottom:24px;">
-      <h2 style="font-size:20px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">🏫 주요 대상 학교</h2>
-      <div>${schoolTags}</div>
-    </div>
-
-    <div style="background:white;border-radius:20px;box-shadow:0 4px 24px rgba(0,0,0,0.08);padding:clamp(24px,4vw,44px);margin-bottom:24px;">
-      <h2 style="font-size:20px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:8px;">❓ 자주 묻는 질문</h2>
-      <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;">
+    <!-- FAQ -->
+    <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:16px;">❓ 자주 묻는 질문</h2>
+      <div style="display:flex;flex-direction:column;gap:10px;">
         <details style="background:#f8faff;border-radius:12px;padding:16px 20px;cursor:pointer;">
-          <summary style="font-weight:700;color:#1A2340;font-size:14px;list-style:none;display:flex;justify-content:space-between;">${rd}에서 방문 과외가 가능한가요? <span style="color:${tc}">▼</span></summary>
-          <p style="margin-top:12px;font-size:13px;color:#555;line-height:1.8;">${rd} 전 지역 방문이 가능합니다. ${dongStr} 어디든 직접 방문하며, 화상 수업도 동일한 수준으로 운영합니다.</p>
+          <summary style="font-weight:700;color:#1A2340;font-size:14px;list-style:none;display:flex;justify-content:space-between;">방문과외가 무조건 가능한가요? <span style="color:${tc}">▼</span></summary>
+          <p style="margin-top:12px;font-size:13px;color:#555;line-height:1.8;">${rd} 지역은 방문과외 여부를 사전에 보장하기 어렵습니다. 무료 상담 → 선생님 매칭 테스트 → 방문 또는 화상 수업 방식을 최종 결정하는 절차로 진행됩니다. 지역·거리·스케줄에 따라 최적의 방식을 함께 결정해 드립니다.</p>
         </details>
         <details style="background:#f8faff;border-radius:12px;padding:16px 20px;cursor:pointer;">
           <summary style="font-weight:700;color:#1A2340;font-size:14px;list-style:none;display:flex;justify-content:space-between;">내신과 수능을 동시에 준비할 수 있나요? <span style="color:${tc}">▼</span></summary>
@@ -6744,8 +6776,15 @@ function buildCityPage(rs, cs) {
       </div>
     </div>
 
-    <div style="background:white;border-radius:20px;box-shadow:0 4px 24px rgba(0,0,0,0.08);padding:clamp(24px,4vw,44px);margin-bottom:32px;">
-      <h2 style="font-size:20px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:24px;">📚 ${kn} 학년별 과외 목록</h2>
+    <!-- 수업 가능 지역 -->
+    <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">🏘️ 수업 가능 지역(동) — 클릭해서 과목 선택</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:10px;">${dongCards}</div>
+    </div>
+
+    <!-- 과목 목록 -->
+    <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:32px;">
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:20px;">📚 ${kn} 학년별 과외 목록</h2>
       ${subjectCards}
     </div>
 
@@ -6758,107 +6797,145 @@ function buildDongPage(rs, cs, dong) {
   const ri = locations[rs]||{};
   const tc = ri.color||"#3498db";
   const rd = ci.region_display;
-  const schoolStr = ci.schools.slice(0,3).join("·")+(ci.schools.length>3?" 외":"");
-  const gc = {"초등":"#3498db","중등":"#2ecc71","고등":"#e74c3c"};
-  const gcBg = {"초등":"#eaf4fd","중등":"#e8f8f5","고등":"#fdecea"};
-  const emoji = {"초등":"🌱","중등":"📘","고등":"🔥"};
+  const schools = ci.schools||[];
+  const schoolStr = schools.slice(0,3).join("·")+(schools.length>3?" 외":"");
+  const gc  = {"초등":"#3498db","중등":"#2ecc71","고등":"#e74c3c"};
+  const gcBg= {"초등":"#eaf4fd","중등":"#e8f8f5","고등":"#fdecea"};
+  const emoji={"초등":"🌱","중등":"📘","고등":"🔥"};
 
+  // 탭
   let tabBtns="", tabContents="";
   for (let gi=0; gi<grades.length; gi++) {
     const g=grades[gi], isFirst=gi===0;
-    tabBtns += `<button onclick="switchTab('${g}')" id="tab-${g}"
-      style="flex:1;padding:14px 8px;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;background:${isFirst?gc[g]:"#f0f2f5"};color:${isFirst?"#fff":"#888"};">
+    tabBtns+=`<button onclick="switchTab('${g}')" id="tab-${g}"
+      style="flex:1;padding:13px 8px;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;background:${isFirst?gc[g]:"#f0f2f5"};color:${isFirst?"#fff":"#888"};">
       ${emoji[g]} ${g}</button>`;
     let cards="";
     for (const s of subjects) {
       const url="/"+rs+"/"+cs+"/"+encodeURIComponent(dong)+"/"+encodeURIComponent(g)+"/"+encodeURIComponent(s);
       const desc=((descriptions[g]||{})[s]||"").replace(/\{region\}/g,dong);
       cards+=`<a href="${url}" style="text-decoration:none;">
-        <div style="background:white;border:2px solid ${gc[g]};border-radius:14px;padding:18px;height:100%;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;"
-             onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 20px rgba(0,0,0,0.12)'"
+        <div style="background:white;border:2px solid ${gc[g]};border-radius:14px;padding:16px;height:100%;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;"
+             onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 20px rgba(0,0,0,0.1)'"
              onmouseout="this.style.transform='';this.style.boxShadow=''">
-          <div style="background:${gcBg[g]};color:${gc[g]};font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:10px;display:inline-block;">${g}</div>
-          <div style="font-size:15px;font-weight:900;color:#1A2340;margin-bottom:8px;">${dong} ${g} ${s}과외</div>
+          <div style="background:${gcBg[g]};color:${gc[g]};font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;margin-bottom:8px;display:inline-block;">${g}</div>
+          <div style="font-size:14px;font-weight:900;color:#1A2340;margin-bottom:6px;">${dong} ${g} ${s}과외</div>
           <div style="font-size:12px;color:#666;line-height:1.6;flex:1;">${desc.substring(0,60)}...</div>
-          <div style="margin-top:12px;color:${gc[g]};font-weight:700;font-size:12px;">자세히 보기 →</div>
+          <div style="margin-top:10px;color:${gc[g]};font-weight:700;font-size:11px;">자세히 보기 →</div>
         </div></a>`;
     }
-    tabContents+=`<div id="content-${g}" style="display:${isFirst?"grid":"none"};grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;">${cards}</div>`;
+    tabContents+=`<div id="content-${g}" style="display:${isFirst?"grid":"none"};grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">${cards}</div>`;
   }
-
   const tabScript=`<script>function switchTab(g){const gc={초등:"#3498db",중등:"#2ecc71",고등:"#e74c3c"};["초등","중등","고등"].forEach(function(gr){var b=document.getElementById("tab-"+gr),c=document.getElementById("content-"+gr);if(gr===g){b.style.background=gc[g];b.style.color="#fff";c.style.display="grid";}else{b.style.background="#f0f2f5";b.style.color="#888";c.style.display="none";}});}</script>`;
+
+  // 학교 분류
+  const highSchools = schools.filter(s=>s.includes('고')).map(s=>`<span style="display:inline-block;background:#fdecea;color:#c0392b;border-radius:20px;padding:4px 12px;margin:3px;font-size:13px;font-weight:600;">${s}</span>`).join("");
+  const midSchools  = schools.filter(s=>s.includes('중')).map(s=>`<span style="display:inline-block;background:#e8f8f5;color:#1a8a6a;border-radius:20px;padding:4px 12px;margin:3px;font-size:13px;font-weight:600;">${s}</span>`).join("");
+  const elemSchools = schools.filter(s=>s.includes('초')||s.includes('초등')).map(s=>`<span style="display:inline-block;background:#eaf4fd;color:#1a5fa8;border-radius:20px;padding:4px 12px;margin:3px;font-size:13px;font-weight:600;">${s}</span>`).join("");
+  const otherSchools= schools.filter(s=>!s.includes('고')&&!s.includes('중')&&!s.includes('초')).map(s=>`<span style="display:inline-block;background:#f8f9fa;color:#555;border-radius:20px;padding:4px 12px;margin:3px;font-size:13px;font-weight:600;">${s}</span>`).join("");
+  const schoolBlock = (highSchools||midSchools||elemSchools||otherSchools) ? `
+    <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:6px;">🏫 ${dong} 인근 주요 학교</h2>
+      <p style="font-size:13px;color:#888;margin-bottom:14px;">아래 학교 재학생 내신 기출 분석 및 맞춤 수업 가능합니다.</p>
+      ${highSchools?`<div style="margin-bottom:10px;"><span style="font-size:12px;font-weight:700;color:#e74c3c;margin-right:6px;">고등학교</span>${highSchools}</div>`:""}
+      ${midSchools?`<div style="margin-bottom:10px;"><span style="font-size:12px;font-weight:700;color:#2ecc71;margin-right:6px;">중학교</span>${midSchools}</div>`:""}
+      ${elemSchools?`<div style="margin-bottom:10px;"><span style="font-size:12px;font-weight:700;color:#3498db;margin-right:6px;">초등학교</span>${elemSchools}</div>`:""}
+      ${otherSchools?`<div>${otherSchools}</div>`:""}
+      <div style="margin-top:14px;background:#f8faff;border-radius:12px;padding:14px 16px;font-size:13px;color:#555;line-height:1.8;">
+        💡 위 학교 외 ${dong} 인근 모든 학교 재학생 수업이 가능합니다. 상담 시 학교명을 알려주시면 기출 자료를 준비해 드립니다.
+      </div>
+    </div>` : "";
 
   return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
   <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>${dong} 과외 | 초중고 1:1 방문·화상 과외 | 은빛쌤</title>
-  <meta name="description" content="${dong} 과외 전문 은빛쌤. 초·중·고 국어·영어·수학 1:1 방문·화상 맞춤 수업. ${schoolStr} 내신 완벽 대비. 첫 상담·체험 무료.">
+  <meta name="description" content="${dong} 과외 전문 은빛쌤. 초·중·고 국어·영어·수학 1:1 맞춤 수업. ${schoolStr} 내신 완벽 대비. 상담 후 방문·화상 결정. 첫 체험 무료.">
   ${COMMON_STYLE}</head><body>${NAV}
   <div style="max-width:1100px;margin:40px auto;padding:0 16px;">
 
-    <div style="background:linear-gradient(135deg,${tc},${tc}cc);color:white;border-radius:20px;padding:clamp(32px,5vw,56px);margin-bottom:28px;text-align:center;">
-      <p style="font-size:13px;opacity:.8;margin-bottom:8px;">📍 <a href="/${rs}/${cs}" style="color:white;text-decoration:underline;">${rd}</a> &gt; ${dong}</p>
-      <h1 style="font-size:clamp(28px,5vw,44px);font-weight:900;margin-bottom:12px;">${dong} 과외</h1>
-      <p style="font-size:15px;opacity:.9;margin-bottom:20px;">초·중·고 전 과목 | 방문·화상 1:1 맞춤 수업</p>
+    <!-- 히어로 -->
+    <div style="background:linear-gradient(135deg,${tc},${tc}cc);color:white;border-radius:20px;padding:clamp(30px,5vw,52px);margin-bottom:24px;text-align:center;">
+      <p style="font-size:13px;opacity:.8;margin-bottom:6px;">📍 <a href="/${rs}/${cs}" style="color:white;text-decoration:underline;">${rd}</a> &gt; ${dong}</p>
+      <h1 style="font-size:clamp(26px,5vw,42px);font-weight:900;margin-bottom:10px;">${dong} 과외</h1>
+      <p style="font-size:14px;opacity:.9;margin-bottom:18px;">초·중·고 전 과목 | 상담 후 방문·화상 수업 방식 결정</p>
       <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;">
-        <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:7px 18px;font-size:13px;font-weight:600;">✅ 첫 상담·체험 무료</span>
-        <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:7px 18px;font-size:13px;font-weight:600;">✅ ${dong} 직접 방문</span>
-        <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:7px 18px;font-size:13px;font-weight:600;">✅ 빠른 수업 시작</span>
+        <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ 첫 상담·체험 무료</span>
+        <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ 상담 후 방문·화상 결정</span>
+        <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ 빠른 수업 시작</span>
       </div>
     </div>
 
-    <div style="background:white;border-radius:20px;box-shadow:0 4px 24px rgba(0,0,0,0.08);padding:clamp(24px,4vw,44px);margin-bottom:24px;">
-      <h2 style="font-size:20px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:16px;">🏘️ ${dong}, 이렇게 공부하세요</h2>
-      <p style="font-size:14px;color:#444;line-height:2;margin-bottom:20px;">
-        <strong style="color:${tc}">${dong}</strong>은 <strong>${rd}</strong> 내 주거 밀집 지역으로, 학령기 자녀를 둔 가정이 많습니다.
-        ${schoolStr} 등 인근 학교에 다니는 학생들의 내신 관리와 선행학습 수요가 높습니다.
-        은빛쌤은 <strong>${dong} 학생들의 학교별 시험 패턴</strong>을 집중 분석하여 내신에 직결되는 수업을 제공합니다.
+    <!-- 수업 방식 안내 -->
+    <div style="background:#fff8e6;border:2px solid #f5c842;border-radius:16px;padding:18px 22px;margin-bottom:24px;display:flex;gap:12px;align-items:flex-start;">
+      <div style="font-size:26px;flex-shrink:0;">📋</div>
+      <div>
+        <div style="font-weight:800;color:#b7770d;font-size:14px;margin-bottom:5px;">수업 방식 안내</div>
+        <p style="font-size:13px;color:#555;line-height:1.8;margin:0;">
+          <strong>${dong}</strong> 지역은 방문과외 여부를 사전에 확정하기 어렵습니다.<br>
+          <strong>무료 상담 → 선생님·학생 테스트 매칭 → 방문과외 / 화상과외 중 최종 결정</strong> 방식으로 진행됩니다.
+        </p>
+      </div>
+    </div>
+
+    <!-- 지역 소개 -->
+    <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">🏘️ ${dong} 맞춤 과외 안내</h2>
+      <p style="font-size:14px;color:#444;line-height:2;margin-bottom:18px;">
+        <strong style="color:${tc}">${dong}</strong>은 <strong>${rd}</strong> 내 주거 밀집 지역으로 학령기 자녀를 둔 가정이 많습니다.
+        ${schoolStr} 등 인근 학교 학생들의 내신 관리와 선행학습 수요가 높습니다.
+        은빛쌤은 <strong>${dong} 학생들의 시험 패턴</strong>을 분석해 내신에 직결되는 수업을 제공합니다.
       </p>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">
-        <div style="border:1px solid #e8edf5;border-radius:14px;padding:18px;">
-          <div style="font-size:24px;margin-bottom:8px;">📍</div>
-          <div style="font-weight:800;color:#1A2340;margin-bottom:6px;font-size:14px;">${dong} 직접 방문</div>
-          <div style="font-size:12px;color:#666;line-height:1.7;">이동 시간 없이 집에서 편안하게 수업. 집중력과 학습 효율이 높아집니다.</div>
+        <div style="border:1px solid #e8edf5;border-radius:14px;padding:16px;">
+          <div style="font-size:22px;margin-bottom:7px;">🔍</div>
+          <div style="font-weight:800;color:#1A2340;margin-bottom:5px;font-size:13px;">내신 기출 완벽 분석</div>
+          <div style="font-size:12px;color:#666;line-height:1.7;">${schoolStr} 기출을 분석해 시험에 직결되는 핵심 내용만 수업합니다.</div>
         </div>
-        <div style="border:1px solid #e8edf5;border-radius:14px;padding:18px;">
-          <div style="font-size:24px;margin-bottom:8px;">📋</div>
-          <div style="font-weight:800;color:#1A2340;margin-bottom:6px;font-size:14px;">내신 기출 완벽 분석</div>
-          <div style="font-size:12px;color:#666;line-height:1.7;">${schoolStr} 기출 문제를 분석해 시험에 직결되는 핵심 내용만 수업합니다.</div>
+        <div style="border:1px solid #e8edf5;border-radius:14px;padding:16px;">
+          <div style="font-size:22px;margin-bottom:7px;">📈</div>
+          <div style="font-weight:800;color:#1A2340;margin-bottom:5px;font-size:13px;">평균 3개월 성적 향상</div>
+          <div style="font-size:12px;color:#666;line-height:1.7;">취약점을 집중 공략하는 커리큘럼으로 빠른 성적 향상을 이끕니다.</div>
         </div>
-        <div style="border:1px solid #e8edf5;border-radius:14px;padding:18px;">
-          <div style="font-size:24px;margin-bottom:8px;">📈</div>
-          <div style="font-weight:800;color:#1A2340;margin-bottom:6px;font-size:14px;">평균 3개월 성적 향상</div>
-          <div style="font-size:12px;color:#666;line-height:1.7;">취약점을 집중 공략하는 커리큘럼으로 빠른 성적 향상을 이끌어 냅니다.</div>
-        </div>
-        <div style="border:1px solid #e8edf5;border-radius:14px;padding:18px;">
-          <div style="font-size:24px;margin-bottom:8px;">💬</div>
-          <div style="font-weight:800;color:#1A2340;margin-bottom:6px;font-size:14px;">매 수업 피드백 제공</div>
+        <div style="border:1px solid #e8edf5;border-radius:14px;padding:16px;">
+          <div style="font-size:22px;margin-bottom:7px;">💬</div>
+          <div style="font-weight:800;color:#1A2340;margin-bottom:5px;font-size:13px;">매 수업 피드백 제공</div>
           <div style="font-size:12px;color:#666;line-height:1.7;">수업 후 학습 내용과 과제를 공유하고 부모님께 진행 상황을 안내합니다.</div>
         </div>
+        <div style="border:1px solid #e8edf5;border-radius:14px;padding:16px;">
+          <div style="font-size:22px;margin-bottom:7px;">⏰</div>
+          <div style="font-weight:800;color:#1A2340;margin-bottom:5px;font-size:13px;">유연한 시간 조율</div>
+          <div style="font-size:12px;color:#666;line-height:1.7;">학교·학원 스케줄에 맞춰 수업 시간을 자유롭게 조율합니다.</div>
+        </div>
       </div>
     </div>
 
-    <div style="background:white;border-radius:20px;box-shadow:0 4px 24px rgba(0,0,0,0.08);padding:clamp(24px,4vw,44px);margin-bottom:24px;">
-      <h2 style="font-size:20px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:16px;">❓ ${dong} 학부모님이 자주 묻는 질문</h2>
+    <!-- 인근 학교 -->
+    ${schoolBlock}
+
+    <!-- FAQ -->
+    <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">❓ ${dong} 학부모님이 자주 묻는 질문</h2>
       <div style="display:flex;flex-direction:column;gap:10px;">
-        <details style="background:#f8faff;border-radius:12px;padding:16px 20px;cursor:pointer;">
-          <summary style="font-weight:700;color:#1A2340;font-size:14px;list-style:none;display:flex;justify-content:space-between;">${dong}에서 바로 수업 시작이 가능한가요? <span style="color:${tc}">▼</span></summary>
-          <p style="margin-top:12px;font-size:13px;color:#555;line-height:1.8;">상담 후 빠르면 2~3일 내 첫 수업이 가능합니다. 급하신 경우 카카오톡으로 먼저 문의 주시면 최대한 빠르게 연결해 드립니다.</p>
+        <details style="background:#f8faff;border-radius:12px;padding:14px 18px;cursor:pointer;">
+          <summary style="font-weight:700;color:#1A2340;font-size:13px;list-style:none;display:flex;justify-content:space-between;">${dong} 방문과외가 가능한가요? <span style="color:${tc}">▼</span></summary>
+          <p style="margin-top:10px;font-size:13px;color:#555;line-height:1.8;">${dong} 지역은 방문과외 여부를 사전에 보장하기 어렵습니다. 무료 상담 후 선생님 매칭 테스트를 거쳐, 방문 또는 화상 수업 방식을 함께 최종 결정합니다.</p>
         </details>
-        <details style="background:#f8faff;border-radius:12px;padding:16px 20px;cursor:pointer;">
-          <summary style="font-weight:700;color:#1A2340;font-size:14px;list-style:none;display:flex;justify-content:space-between;">${dong} 방문 과외 비용은 어떻게 되나요? <span style="color:${tc}">▼</span></summary>
-          <p style="margin-top:12px;font-size:13px;color:#555;line-height:1.8;">학년·과목·수업 횟수에 따라 다릅니다. 무료 상담을 통해 맞춤 견적을 안내해 드리며, 첫 체험 수업은 완전 무료입니다.</p>
+        <details style="background:#f8faff;border-radius:12px;padding:14px 18px;cursor:pointer;">
+          <summary style="font-weight:700;color:#1A2340;font-size:13px;list-style:none;display:flex;justify-content:space-between;">${dong} 과외 비용은 어떻게 되나요? <span style="color:${tc}">▼</span></summary>
+          <p style="margin-top:10px;font-size:13px;color:#555;line-height:1.8;">학년·과목·수업 횟수에 따라 달라집니다. 무료 상담을 통해 맞춤 견적을 안내해 드리며, 첫 체험 수업은 완전 무료입니다.</p>
         </details>
-        <details style="background:#f8faff;border-radius:12px;padding:16px 20px;cursor:pointer;">
-          <summary style="font-weight:700;color:#1A2340;font-size:14px;list-style:none;display:flex;justify-content:space-between;">초등학생도 수업이 가능한가요? <span style="color:${tc}">▼</span></summary>
-          <p style="margin-top:12px;font-size:13px;color:#555;line-height:1.8;">초등 1학년부터 가능합니다. 공부 습관 형성과 기초 개념 완성에 집중하며, 아이가 공부를 즐길 수 있는 방식으로 진행합니다.</p>
+        <details style="background:#f8faff;border-radius:12px;padding:14px 18px;cursor:pointer;">
+          <summary style="font-weight:700;color:#1A2340;font-size:13px;list-style:none;display:flex;justify-content:space-between;">초등학생도 수업이 가능한가요? <span style="color:${tc}">▼</span></summary>
+          <p style="margin-top:10px;font-size:13px;color:#555;line-height:1.8;">초등 1학년부터 가능합니다. 공부 습관 형성과 기초 개념 완성에 집중하며 재미있는 방식으로 진행합니다.</p>
         </details>
       </div>
     </div>
 
-    <div style="background:white;border-radius:20px;box-shadow:0 4px 24px rgba(0,0,0,0.08);padding:clamp(24px,4vw,44px);margin-bottom:32px;">
-      <h2 style="font-size:20px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:20px;">📚 ${dong} 학년별 과외 목록</h2>
-      <div style="display:flex;gap:10px;margin-bottom:20px;">${tabBtns}</div>
+    <!-- 과목 탭 -->
+    <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:32px;">
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:18px;">📚 ${dong} 학년별 과외 목록</h2>
+      <div style="display:flex;gap:10px;margin-bottom:18px;">${tabBtns}</div>
       ${tabContents}
     </div>
 
