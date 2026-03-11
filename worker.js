@@ -6646,37 +6646,68 @@ function buildDongPage(rs, cs, dong) {
   if (!ci) return null;
   const ri = locations[rs]||{};
   const tc = ri.color||"#3498db";
-  const kn = ci.name;
   const rd = ci.region_display;
   const gc = {"초등":"#3498db","중등":"#2ecc71","고등":"#e74c3c"};
   const gcBg = {"초등":"#eaf4fd","중등":"#e8f8f5","고등":"#fdecea"};
+  const emoji = {"초등":"🌱","중등":"📘","고등":"🔥"};
 
-  let cards = "";
-  for (const g of grades) {
-    cards += `
-    <div style="margin-bottom:36px;">
-      <h3 style="display:flex;align-items:center;gap:10px;color:${gc[g]};border-left:5px solid ${gc[g]};padding-left:14px;margin:0 0 16px;font-size:18px;font-weight:800;">
-        ${g === "초등" ? "🌱" : g === "중등" ? "📘" : "🔥"} ${g} ${dong} 과외 과목
-      </h3>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;">`;
+  let tabBtns = "";
+  let tabContents = "";
+
+  for (let gi = 0; gi < grades.length; gi++) {
+    const g = grades[gi];
+    const isFirst = gi === 0;
+    tabBtns += `
+      <button onclick="switchTab('${g}')" id="tab-${g}"
+        style="flex:1;padding:14px 10px;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;
+               background:${isFirst ? gc[g] : '#f0f2f5'};
+               color:${isFirst ? '#fff' : '#888'};">
+        ${emoji[g]} ${g}
+      </button>`;
+
+    let cards = "";
     for (const s of subjects) {
       const url = "/" + rs + "/" + cs + "/" + encodeURIComponent(dong) + "/" + encodeURIComponent(g) + "/" + encodeURIComponent(s);
       const rawDesc = (descriptions[g]||{})[s]||"";
       const desc = rawDesc.replace(/\{region\}/g, dong);
       cards += `
         <a href="${url}" style="text-decoration:none;">
-          <div style="background:white;border:2px solid ${gc[g]};border-radius:14px;padding:18px;height:100%;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;cursor:pointer;"
+          <div style="background:white;border:2px solid ${gc[g]};border-radius:14px;padding:18px;height:100%;display:flex;flex-direction:column;cursor:pointer;"
                onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.12)'"
                onmouseout="this.style.transform='';this.style.boxShadow=''">
             <div style="display:inline-block;background:${gcBg[g]};color:${gc[g]};font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:10px;">${g}</div>
             <div style="font-size:15px;font-weight:900;color:#1A2340;margin-bottom:8px;">${dong} ${g} ${s}과외</div>
-            <div style="font-size:12px;color:#7f8c8d;line-height:1.6;flex:1;">${desc.substring(0,55)}...</div>
-            <div style="margin-top:12px;color:${gc[g]};font-weight:700;font-size:12px;display:flex;align-items:center;gap:4px;">자세히 보기 <span>→</span></div>
+            <div style="font-size:12px;color:#7f8c8d;line-height:1.6;flex:1;">${desc.substring(0,60)}...</div>
+            <div style="margin-top:12px;color:${gc[g]};font-weight:700;font-size:12px;">자세히 보기 →</div>
           </div>
         </a>`;
     }
-    cards += `</div></div>`;
+
+    tabContents += `
+      <div id="content-${g}" style="display:${isFirst ? 'grid' : 'none'};grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;">
+        ${cards}
+      </div>`;
   }
+
+  const tabScript = `
+    <script>
+    function switchTab(g) {
+      const gc = {초등:"#3498db",중등:"#2ecc71",고등:"#e74c3c"};
+      ["초등","중등","고등"].forEach(function(gr) {
+        var btn = document.getElementById("tab-"+gr);
+        var content = document.getElementById("content-"+gr);
+        if (gr === g) {
+          btn.style.background = gc[g];
+          btn.style.color = "#fff";
+          content.style.display = "grid";
+        } else {
+          btn.style.background = "#f0f2f5";
+          btn.style.color = "#888";
+          content.style.display = "none";
+        }
+      });
+    }
+    </script>`;
 
   return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">` +
   `<meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976" />` +
@@ -6692,12 +6723,14 @@ function buildDongPage(rs, cs, dong) {
   `<p style="font-size:15px;opacity:.85;">초·중·고 국영수사과 | 방문·화상 1:1 맞춤 수업</p></div>` +
 
   `<div style="border-left:5px solid ${tc};background:#f8faff;border-radius:0 12px 12px 0;padding:22px 24px;margin-bottom:28px;">` +
-  `<h2 style="font-size:17px;font-weight:800;color:#1A2340;margin-bottom:10px;">왜 은빛쌤 ${dong} 과외일까요?</h2>` +
-  `<p style="font-size:14px;color:#555;line-height:1.8;"><strong style="color:${tc}">${dong}</strong> 지역 학생만을 위한 완전 1:1 맞춤 과외입니다. 초등·중등·고등 전 학년 국어·영어·수학·사회·과학 전 과목을 커버하며, 방문·화상 수업 모두 가능합니다.</p></div>` +
+  `<h2 style="font-size:17px;font-weight:800;color:#1A2340;margin-bottom:8px;">왜 은빛쌤 ${dong} 과외일까요?</h2>` +
+  `<p style="font-size:14px;color:#555;line-height:1.8;"><strong style="color:${tc}">${dong}</strong> 지역 학생만을 위한 완전 1:1 맞춤 과외입니다. 방문·화상 수업 모두 가능하며 초·중·고 전 과목을 커버합니다.</p></div>` +
 
-  `<h2 style="font-size:clamp(18px,3vw,22px);font-weight:900;color:#1A2340;border-bottom:3px solid ${tc};padding-bottom:10px;margin-bottom:24px;">📚 ${dong} 학년별 과외 목록</h2>` +
-  `${cards}` +
-  `</div>${CONTACT}${FOOTER}${FLOATING}</body></html>`;
+  `<h2 style="font-size:clamp(18px,3vw,22px);font-weight:900;color:#1A2340;border-bottom:3px solid ${tc};padding-bottom:10px;margin-bottom:20px;">📚 ${dong} 학년별 과외 목록</h2>` +
+
+  `<div style="display:flex;gap:10px;margin-bottom:24px;">${tabBtns}</div>` +
+  `${tabContents}` +
+  `</div>${CONTACT}${FOOTER}${FLOATING}${tabScript}</body></html>`;
 }
 
 
