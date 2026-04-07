@@ -5541,6 +5541,38 @@ function buildCityPage(rs, cs) {
       </div>
     </div>
 
+    <!-- OUR STRENGTH 통계 배너 -->
+    <div style="text-align:center;padding:48px 20px 40px;margin-bottom:24px;">
+      <p style="font-size:12px;letter-spacing:4px;color:#999;margin-bottom:10px;font-weight:600;">OUR STRENGTH</p>
+      <h2 style="font-size:clamp(22px,4.5vw,32px);font-weight:900;color:#1A2340;line-height:1.5;margin-bottom:36px;">35년의 교육 노하우,<br>은빛과외 입니다</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;max-width:900px;margin:0 auto;">
+        <div style="background:#f5f7fb;border-radius:16px;padding:28px 16px 24px;text-align:center;">
+          <div style="font-size:36px;margin-bottom:10px;">⭐</div>
+          <div style="font-size:clamp(28px,4vw,38px);font-weight:900;color:#1A2340;margin-bottom:4px;">98%</div>
+          <div style="font-size:13px;font-weight:700;color:${tc};margin-bottom:6px;">수강생 만족도</div>
+          <div style="font-size:12px;color:#888;line-height:1.6;">학생·학부모 모두 만족</div>
+        </div>
+        <div style="background:#f5f7fb;border-radius:16px;padding:28px 16px 24px;text-align:center;">
+          <div style="font-size:36px;margin-bottom:10px;">🏆</div>
+          <div style="font-size:clamp(28px,4vw,38px);font-weight:900;color:#1A2340;margin-bottom:4px;">5년+</div>
+          <div style="font-size:13px;font-weight:700;color:${tc};margin-bottom:6px;">누적 과외 경력</div>
+          <div style="font-size:12px;color:#888;line-height:1.6;">남다른 교육·코칭 노하우</div>
+        </div>
+        <div style="background:#f5f7fb;border-radius:16px;padding:28px 16px 24px;text-align:center;">
+          <div style="font-size:36px;margin-bottom:10px;">👨‍🎓</div>
+          <div style="font-size:clamp(28px,4vw,38px);font-weight:900;color:#1A2340;margin-bottom:4px;">200명+</div>
+          <div style="font-size:13px;font-weight:700;color:${tc};margin-bottom:6px;">누적 수강생</div>
+          <div style="font-size:12px;color:#888;line-height:1.6;">검증된 1:1 맞춤 관리</div>
+        </div>
+        <div style="background:#f5f7fb;border-radius:16px;padding:28px 16px 24px;text-align:center;">
+          <div style="font-size:36px;margin-bottom:10px;">📈</div>
+          <div style="font-size:clamp(28px,4vw,38px);font-weight:900;color:#1A2340;margin-bottom:4px;">3개월</div>
+          <div style="font-size:13px;font-weight:700;color:${tc};margin-bottom:6px;">평균 성적 향상 기간</div>
+          <div style="font-size:12px;color:#888;line-height:1.6;">빠른 성적 향상 실현</div>
+        </div>
+      </div>
+    </div>
+
     <!-- 수업 방식 안내 -->
     <div style="background:#fff8e6;border:2px solid #f5c842;border-radius:16px;padding:20px 24px;margin-bottom:24px;display:flex;gap:14px;align-items:flex-start;">
       <div style="font-size:28px;flex-shrink:0;">📋</div>
@@ -5750,6 +5782,38 @@ function buildDongPage(rs, cs, dong) {
         <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ 첫 상담·체험 무료</span>
         <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ 상담 후 방문·화상 결정</span>
         <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ 빠른 수업 시작</span>
+      </div>
+    </div>
+
+    <!-- OUR STRENGTH 통계 배너 -->
+    <div style="text-align:center;padding:48px 20px 40px;margin-bottom:24px;">
+      <p style="font-size:12px;letter-spacing:4px;color:#999;margin-bottom:10px;font-weight:600;">OUR STRENGTH</p>
+      <h2 style="font-size:clamp(22px,4.5vw,32px);font-weight:900;color:#1A2340;line-height:1.5;margin-bottom:36px;">35년의 교육 노하우,<br>은빛과외 입니다</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;max-width:900px;margin:0 auto;">
+        <div style="background:#f5f7fb;border-radius:16px;padding:28px 16px 24px;text-align:center;">
+          <div style="font-size:36px;margin-bottom:10px;">⭐</div>
+          <div style="font-size:clamp(28px,4vw,38px);font-weight:900;color:#1A2340;margin-bottom:4px;">98%</div>
+          <div style="font-size:13px;font-weight:700;color:${tc};margin-bottom:6px;">수강생 만족도</div>
+          <div style="font-size:12px;color:#888;line-height:1.6;">학생·학부모 모두 만족</div>
+        </div>
+        <div style="background:#f5f7fb;border-radius:16px;padding:28px 16px 24px;text-align:center;">
+          <div style="font-size:36px;margin-bottom:10px;">🏆</div>
+          <div style="font-size:clamp(28px,4vw,38px);font-weight:900;color:#1A2340;margin-bottom:4px;">5년+</div>
+          <div style="font-size:13px;font-weight:700;color:${tc};margin-bottom:6px;">누적 과외 경력</div>
+          <div style="font-size:12px;color:#888;line-height:1.6;">남다른 교육·코칭 노하우</div>
+        </div>
+        <div style="background:#f5f7fb;border-radius:16px;padding:28px 16px 24px;text-align:center;">
+          <div style="font-size:36px;margin-bottom:10px;">👨‍🎓</div>
+          <div style="font-size:clamp(28px,4vw,38px);font-weight:900;color:#1A2340;margin-bottom:4px;">200명+</div>
+          <div style="font-size:13px;font-weight:700;color:${tc};margin-bottom:6px;">누적 수강생</div>
+          <div style="font-size:12px;color:#888;line-height:1.6;">검증된 1:1 맞춤 관리</div>
+        </div>
+        <div style="background:#f5f7fb;border-radius:16px;padding:28px 16px 24px;text-align:center;">
+          <div style="font-size:36px;margin-bottom:10px;">📈</div>
+          <div style="font-size:clamp(28px,4vw,38px);font-weight:900;color:#1A2340;margin-bottom:4px;">3개월</div>
+          <div style="font-size:13px;font-weight:700;color:${tc};margin-bottom:6px;">평균 성적 향상 기간</div>
+          <div style="font-size:12px;color:#888;line-height:1.6;">빠른 성적 향상 실현</div>
+        </div>
       </div>
     </div>
 
