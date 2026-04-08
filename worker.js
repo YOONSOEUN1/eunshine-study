@@ -5426,17 +5426,22 @@ function getIndex() {
   return new TextDecoder("utf-8").decode(bytes);
 }
 
-const NAV = `<nav class="global-nav" id="globalNav" style="position:fixed;top:0;left:0;right:0;z-index:99999;display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:60px;background:rgba(13,21,38,0.95);backdrop-filter:blur(14px);border-bottom:1px solid rgba(200,169,110,0.18);font-family:'Malgun Gothic',sans-serif;">
-  <a href="/" style="font-size:20px;font-weight:700;color:#fff;text-decoration:none;display:flex;align-items:center;gap:6px;">🌟 <span>은빛과외</span></a>
-  <div style="display:flex;align-items:center;gap:10px;">
-    <a href="/directory" style="display:flex;align-items:center;gap:6px;background:#4A90D9;color:#fff;padding:9px 18px;border-radius:50px;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;">🗺️ <span>전국 지역 보기</span></a>
-    <a href="https://eunshinestudy.com/#form" target="_blank" style="display:flex;align-items:center;gap:6px;background:#fff;color:#1A2340;border:2px solid #ddd;padding:8px 16px;border-radius:50px;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;">📝 <span>무료 상담 신청하기</span></a>
-    <a href="https://pf.kakao.com/_KRAjG/chat" target="_blank" style="display:flex;align-items:center;gap:6px;background:#FEE500;color:#3A1D1D;padding:9px 18px;border-radius:50px;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;">💬 <span>카카오톡 문의</span></a>
-    <a href="tel:01023370458" style="display:flex;align-items:center;gap:6px;background:#fff;color:#1A2340;border:2px solid #ddd;padding:8px 16px;border-radius:50px;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;">📞 <span>전화 문의</span></a>
+const NAV = `<nav class="global-nav" id="globalNav" style="position:fixed;top:0;left:0;right:0;z-index:99999;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:70px;background:#fff;border-bottom:1px solid #e5e5e5;font-family:'Malgun Gothic',sans-serif;">
+  <div style="display:flex;align-items:center;gap:20px;">
+    <a href="/" style="font-size:22px;font-weight:800;color:#1A2340;text-decoration:none;display:flex;align-items:center;gap:8px;">🌟 <span style="color:#4A90D9;">은빛</span><span>과외</span></a>
+    <div style="background:#4A90D9;color:#fff;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:600;">누적 방문자<br><span style="font-size:16px;font-weight:800;">50,000명+</span></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:28px;">
+    <a href="/directory" style="color:#333;text-decoration:none;font-size:15px;font-weight:600;">지역별수업</a>
+    <a href="/subject" style="color:#333;text-decoration:none;font-size:15px;font-weight:600;">과목수업</a>
+    <a href="/academy" style="color:#333;text-decoration:none;font-size:15px;font-weight:600;">학원수업</a>
+    <a href="/language" style="color:#333;text-decoration:none;font-size:15px;font-weight:600;">제2외국어</a>
+    <a href="/etc" style="color:#333;text-decoration:none;font-size:15px;font-weight:600;">기타교육</a>
+    <a href="https://eunshinestudy.com/#form" target="_blank" style="color:#C8A96E;text-decoration:none;font-size:15px;font-weight:700;">문의하기</a>
   </div>
 </nav>
-<div style="height:60px;"></div>`;
-const COMMON_STYLE = `<style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Malgun Gothic',sans-serif;background:#f4f7f6;padding-top:60px;}</style>`;
+<div style="height:70px;"></div>`;
+const COMMON_STYLE = `<style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Malgun Gothic',sans-serif;background:#f4f7f6;padding-top:70px;}</style>`;
 const FLOATING = `<div style="position:fixed;bottom:24px;right:18px;display:flex;flex-direction:column;gap:8px;z-index:9998;">
   <a href="tel:01023370458"
      style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:white;color:#1A2340;text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.18);white-space:nowrap;">
