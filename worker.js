@@ -5681,14 +5681,14 @@ function renderUniqueContent(ct,dong,grade,subj,tc,rd,schools){
   // ── 학부모 후기 + 성적 사례 통합 ──
   h+=`<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
     <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">💬 ${area} 학부모님 생생 후기</h2>
-    <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:24px;">`;
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:24px;">`;
   ct.reviews.forEach(function(rv){
-    h+=`<div style="background:#f8faff;border-radius:16px;padding:20px 24px;">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+    h+=`<div style="border:2px solid ${tc}22;border-radius:16px;padding:20px;background:white;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
         <div style="width:40px;height:40px;border-radius:50%;background:${tc};color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;">${rv.name.charAt(0)}</div>
         <div><div style="font-weight:700;color:#1A2340;font-size:14px;">${rv.name} 학부모님</div>
         <div style="font-size:12px;color:#888;">${area} · ${rv.grade} ${rv.subj}</div></div></div>
-      <p style="font-size:14px;color:#333;line-height:1.9;margin:0;">"${rv.body}"</p></div>`;});
+      <p style="font-size:13px;color:#555;line-height:1.8;margin:0;">"${rv.body}"</p></div>`;});
   h+=`</div>
     <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">📈 실제 성적 향상 사례</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;">`;
