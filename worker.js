@@ -5656,27 +5656,32 @@ function genContent(loc,city,dong,grade,subj){
   return{tips:tips,strat:strat,reviews:reviewMeta,analysis:analysis,faqs:faqs,stories:stories,columns:columns};
 }
 
-function renderUniqueContent(ct,dong,grade,subj,tc,rd){
+function renderUniqueContent(ct,dong,grade,subj,tc,rd,schools){
   let h="";
   const area=dong||rd||"";
+  const schoolStr=(schools||[]).slice(0,4).join(", ");
+  // ── 교육 환경 분석 + 학습법 통합 ──
   h+=`<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
     <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">📊 ${area} 교육 환경 분석</h2>
-    <p style="font-size:14px;color:#444;line-height:2;">${ct.analysis.replace(/이 지역/g,area)}</p></div>`;
+    <p style="font-size:14px;color:#444;line-height:2;margin-bottom:20px;">${ct.analysis.replace(/이 지역/g,area)}</p>`;
   if(ct.tips.length>0){
-    h+=`<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
-      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">📖 ${area} ${grade||""} ${subj||""} 학습법 가이드</h2>`;
+    h+=`<h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">📖 ${area}${grade?" "+grade:""}${subj?" "+subj:""} 학습법 가이드</h2>`;
     ct.tips.forEach(function(t){h+=`<div style="background:#f8faff;border-radius:14px;padding:18px 22px;margin-bottom:12px;"><p style="font-size:14px;color:#333;line-height:2;margin:0;">${t}</p></div>`;});
-    h+=`</div>`;}
+  }
   if(ct.strat){
-    h+=`<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
-      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">🎓 ${grade} 학습 전략</h2>
-      <p style="font-size:14px;color:#444;line-height:2;">${ct.strat}</p></div>`;}
+    h+=`<h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin:20px 0 14px;">🎓 ${grade||""} 학습 전략</h2>
+    <p style="font-size:14px;color:#444;line-height:2;">${ct.strat}</p>`;
+  }
+  h+=`</div>`;
+  // ── 교육 칼럼 ──
   if(ct.columns.length>0){ct.columns.forEach(function(col){
     h+=`<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
       <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">📝 ${col.title}</h2>
       <p style="font-size:14px;color:#444;line-height:2;">${col.body}</p></div>`;});}
+  // ── 학부모 후기 + 성적 사례 통합 ──
   h+=`<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
-    <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">💬 ${area} 학부모님 생생 후기</h2><div style="display:flex;flex-direction:column;gap:16px;">`;
+    <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">💬 ${area} 학부모님 생생 후기</h2>
+    <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:24px;">`;
   ct.reviews.forEach(function(rv){
     h+=`<div style="background:#f8faff;border-radius:16px;padding:20px 24px;">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
@@ -5684,9 +5689,9 @@ function renderUniqueContent(ct,dong,grade,subj,tc,rd){
         <div><div style="font-weight:700;color:#1A2340;font-size:14px;">${rv.name} 학부모님</div>
         <div style="font-size:12px;color:#888;">${area} · ${rv.grade} ${rv.subj}</div></div></div>
       <p style="font-size:14px;color:#333;line-height:1.9;margin:0;">"${rv.body}"</p></div>`;});
-  h+=`</div></div>`;
-  h+=`<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
-    <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">📈 실제 성적 향상 사례</h2><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;">`;
+  h+=`</div>
+    <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">📈 실제 성적 향상 사례</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;">`;
   ct.stories.forEach(function(st){
     h+=`<div style="border:2px solid ${tc}22;border-radius:16px;padding:20px;background:white;">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
@@ -5699,13 +5704,19 @@ function renderUniqueContent(ct,dong,grade,subj,tc,rd){
         <span style="font-size:12px;color:#888;">(${st.period})</span></div>
       <p style="font-size:13px;color:#555;line-height:1.8;margin:0;">${st.story}</p></div>`;});
   h+=`</div></div>`;
+  // ── 자주 묻는 질문 (펼쳐진 형태, 지역명 포함) ──
   if(ct.faqs.length>0){
     h+=`<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
-      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">❓ 자주 묻는 질문</h2><div style="display:flex;flex-direction:column;gap:10px;">`;
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:20px;">자주 묻는 질문</h2>
+      <div style="display:flex;flex-direction:column;gap:24px;">`;
     ct.faqs.forEach(function(fq){
-      h+=`<details style="background:#f8faff;border-radius:12px;padding:14px 18px;cursor:pointer;">
-        <summary style="font-weight:700;color:#1A2340;font-size:13px;list-style:none;display:flex;justify-content:space-between;">${fq.q} <span style="color:${tc}">▼</span></summary>
-        <p style="margin-top:10px;font-size:13px;color:#555;line-height:1.8;">${fq.a}</p></details>`;});
+      var q=fq.q.replace(/과외/,"과외 선생님").replace(/되나요/,"되나요");
+      var a=fq.a;
+      if(schoolStr&&a.indexOf("학교")>=0){a=a;}
+      else if(schoolStr){a=a.replace(/\\.$/,". "+schoolStr+" 등 인근 학교 기출을 잘 아는 선생님 위주로 추천해드립니다.");}
+      h+=`<div style="margin-bottom:0;">
+        <p style="font-weight:700;color:#2563eb;font-size:15px;margin-bottom:8px;">Q. ${area}${subj?" "+subj:""} ${q}</p>
+        <p style="font-size:14px;color:#444;line-height:1.8;margin:0;">${a}</p></div>`;});
     h+=`</div></div>`;}
   return h;
 }
@@ -5969,20 +5980,24 @@ function buildCityPage(rs, cs) {
 
         <!-- FAQ -->
     <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
-      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:16px;">❓ 자주 묻는 질문</h2>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <details style="background:#f8faff;border-radius:12px;padding:16px 20px;cursor:pointer;">
-          <summary style="font-weight:700;color:#1A2340;font-size:14px;list-style:none;display:flex;justify-content:space-between;">방문과외가 무조건 가능한가요? <span style="color:${tc}">▼</span></summary>
-          <p style="margin-top:12px;font-size:13px;color:#555;line-height:1.8;">무료 상담 후 선생님 매칭 테스트를 거쳐 방문 또는 화상 수업 방식을 함께 최종 결정합니다.</p>
-        </details>
-        <details style="background:#f8faff;border-radius:12px;padding:16px 20px;cursor:pointer;">
-          <summary style="font-weight:700;color:#1A2340;font-size:14px;list-style:none;display:flex;justify-content:space-between;">내신과 수능을 동시에 준비할 수 있나요? <span style="color:${tc}">▼</span></summary>
-          <p style="margin-top:12px;font-size:13px;color:#555;line-height:1.8;">${schoolStr} 등 ${rd} 학교의 내신 기출을 분석하면서 수능 유형도 병행 훈련합니다. 두 목표를 동시에 달성하는 커리큘럼을 제공합니다.</p>
-        </details>
-        <details style="background:#f8faff;border-radius:12px;padding:16px 20px;cursor:pointer;">
-          <summary style="font-weight:700;color:#1A2340;font-size:14px;list-style:none;display:flex;justify-content:space-between;">첫 수업은 어떻게 진행되나요? <span style="color:${tc}">▼</span></summary>
-          <p style="margin-top:12px;font-size:13px;color:#555;line-height:1.8;">무료 상담으로 학생 수준과 목표를 파악한 뒤 커리큘럼을 구성합니다. 첫 체험 수업은 완전 무료로 진행됩니다.</p>
-        </details>
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:20px;">자주 묻는 질문</h2>
+      <div style="display:flex;flex-direction:column;gap:24px;">
+        <div>
+          <p style="font-weight:700;color:#2563eb;font-size:15px;margin-bottom:8px;">Q. ${rd}에서 과외 선생님 찾는 데 얼마나 걸리나요?</p>
+          <p style="font-size:14px;color:#444;line-height:1.8;">상담 신청 후 24시간 이내 코디네이터가 연락드립니다. ${schoolStr} 기출을 잘 아는 선생님 위주로 추천해드립니다. 빠르면 당일 매칭도 가능합니다.</p>
+        </div>
+        <div>
+          <p style="font-weight:700;color:#2563eb;font-size:15px;margin-bottom:8px;">Q. 수업료는 어떻게 되나요?</p>
+          <p style="font-size:14px;color:#444;line-height:1.8;">선생님 경력·학력·수업 방식에 따라 다르며, 무료 상담 후 학부모님 예산에 맞는 선생님을 투명하게 안내해드립니다. 첫 체험 수업은 무료입니다.</p>
+        </div>
+        <div>
+          <p style="font-weight:700;color:#2563eb;font-size:15px;margin-bottom:8px;">Q. 학원과 과외를 병행해도 되나요?</p>
+          <p style="font-size:14px;color:#444;line-height:1.8;">학원에서 부족한 부분을 1:1로 집중 보완하는 방식으로 병행하는 학생이 많습니다. 학원 진도에 맞춰 선행·복습을 병행하는 커리큘럼으로 운영합니다.</p>
+        </div>
+        <div>
+          <p style="font-weight:700;color:#2563eb;font-size:15px;margin-bottom:8px;">Q. 몇 개월 정도 수업하면 효과가 나타나나요?</p>
+          <p style="font-size:14px;color:#444;line-height:1.8;">학생마다 다르지만 보통 2~3개월 꾸준히 수업하면 내신 성적 변화가 나타납니다. 단기 집중 과외(시험 대비 4~8주)도 운영합니다.</p>
+        </div>
       </div>
     </div>
 
@@ -6170,26 +6185,8 @@ function buildDongPage(rs, cs, dong) {
       </div>
     </div>
 
-        <!-- FAQ -->
-    <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
-      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">❓ ${dong} 학부모님이 자주 묻는 질문</h2>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <details style="background:#f8faff;border-radius:12px;padding:14px 18px;cursor:pointer;">
-          <summary style="font-weight:700;color:#1A2340;font-size:13px;list-style:none;display:flex;justify-content:space-between;">${dong} 방문과외가 가능한가요? <span style="color:${tc}">▼</span></summary>
-          <p style="margin-top:10px;font-size:13px;color:#555;line-height:1.8;">무료 상담 후 선생님 매칭 테스트를 거쳐, 방문 또는 화상 수업 방식을 함께 최종 결정합니다.</p>
-        </details>
-        <details style="background:#f8faff;border-radius:12px;padding:14px 18px;cursor:pointer;">
-          <summary style="font-weight:700;color:#1A2340;font-size:13px;list-style:none;display:flex;justify-content:space-between;">${dong} 과외 비용은 어떻게 되나요? <span style="color:${tc}">▼</span></summary>
-          <p style="margin-top:10px;font-size:13px;color:#555;line-height:1.8;">학년·과목·수업 횟수에 따라 달라집니다. 무료 상담을 통해 맞춤 견적을 안내해 드리며, 첫 체험 수업은 완전 무료입니다.</p>
-        </details>
-        <details style="background:#f8faff;border-radius:12px;padding:14px 18px;cursor:pointer;">
-          <summary style="font-weight:700;color:#1A2340;font-size:13px;list-style:none;display:flex;justify-content:space-between;">초등학생도 수업이 가능한가요? <span style="color:${tc}">▼</span></summary>
-          <p style="margin-top:10px;font-size:13px;color:#555;line-height:1.8;">초등 1학년부터 가능합니다. 공부 습관 형성과 기초 개념 완성에 집중하며 재미있는 방식으로 진행합니다.</p>
-        </details>
-      </div>
-    </div>
     <!-- 고유 콘텐츠 (SEO) -->
-    ${renderUniqueContent(genContent(rs,cs,dong,"",""),dong,"","",tc,rd)}
+    ${renderUniqueContent(genContent(rs,cs,dong,"",""),dong,"","",tc,rd,schools)}
 
 
     <!-- 과목 탭 -->
@@ -6282,7 +6279,7 @@ function buildDongDetailPage(rs, cs, dong, grade, subject) {
       </ul>
     </div>
     <!-- 고유 콘텐츠 (SEO) -->
-    ${renderUniqueContent(genContent(rs,cs,dong,grade,subject),dong,grade,subject,color,rd)}
+    ${renderUniqueContent(genContent(rs,cs,dong,grade,subject),dong,grade,subject,color,rd,ci.schools)}
 
 
     <div style="text-align:center;margin-bottom:40px;">
@@ -6375,7 +6372,7 @@ function buildDetailPage(rs, cs, grade, subject) {
       </ul>
     </div>
     <!-- 고유 콘텐츠 (SEO) -->
-    ${renderUniqueContent(genContent(rs,cs,"",grade,subject),rd,grade,subject,color,rd)}
+    ${renderUniqueContent(genContent(rs,cs,"",grade,subject),rd,grade,subject,color,rd,ci.schools)}
 
 
     <div style="text-align:center;margin-bottom:40px;">
