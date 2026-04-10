@@ -1677,6 +1677,44 @@ function renderUniqueContent(ct,dong,grade,subj,tc,rd,schools){
   return h;
 }
 
+
+// ============================================================
+// 배경 이미지 시스템 (페이지별 고유 썸네일)
+// ============================================================
+// Unsplash 무료 CDN 사용 - 사람 없는 교육/도시/학교 테마 이미지
+const BG_IMG_BOOKS=["1481627834876-b7833e8f5570","1456513080510-7bf3a84b82f8","1532012197267-da84d127e765","1497633762265-9d179a990aa6","1507842217343-583bb7270b66","1513475382585-d06e58bcb0e0","1544947950-fa07a98d237f","1457369804613-52c61a468e7d","1543002588-bfa74002ed7e","1495446815901-a7297e633e8d"];
+const BG_IMG_SCHOOL=["1580582932707-520aed937b7b","1503676260728-1c00da094a0b","1519682337058-a94d519337bc","1497486751825-1233686f5d54","1523050854058-8df90110c9f1","1562774053-701939374585","1568667256549-094345857637"];
+const BG_IMG_CITY=["1538485399081-7191377e8241","1517154421773-0529f29ea451","1534430480872-3498386e7856","1486325212027-8081e485255e","1549490349-8643362247b5","1540541338287-41700207dee6","1596422846543-75c6fc197f07","1578637387939-43c525550085"];
+const BG_IMG_MATH=["1635070041078-e363dbe005cb","1509228468518-180dd4864904","1518152006812-edab29b069ac","1453733190371-0a9bedd82893","1596495577886-d920f1fb7238"];
+const BG_IMG_SCIENCE=["1532094349884-543bc11b234d","1581093588401-fbb62a02f120","1582719471384-894fbb16e074","1576086213369-97a306d36557","1564325724739-bae0bd08762c"];
+const BG_IMG_KOREAN=["1481627834876-b7833e8f5570","1456513080510-7bf3a84b82f8","1532012197267-da84d127e765","1455390582262-044cdead277a","1457369804613-52c61a468e7d"];
+const BG_IMG_ENGLISH=["1455390582262-044cdead277a","1546410531-bb4caa6b424d","1543002588-bfa74002ed7e","1481627834876-b7833e8f5570","1505063366573-38928ae5567e"];
+const BG_IMG_SOCIAL=["1524178232363-1fb2b075b655","1502920917128-1aa500764cbd","1568667256549-094345857637","1495446815901-a7297e633e8d","1535905557558-afc4877a26fc"];
+
+function bgImg(category,seed){
+  let pool;
+  if(category==="school")pool=BG_IMG_SCHOOL;
+  else if(category==="city")pool=BG_IMG_CITY;
+  else if(category==="수학")pool=BG_IMG_MATH;
+  else if(category==="과학")pool=BG_IMG_SCIENCE;
+  else if(category==="국어")pool=BG_IMG_KOREAN;
+  else if(category==="영어")pool=BG_IMG_ENGLISH;
+  else if(category==="사회")pool=BG_IMG_SOCIAL;
+  else pool=BG_IMG_BOOKS;
+  const id=pool[((seed>>>0)+pool.length)%pool.length];
+  return "https://images.unsplash.com/photo-"+id+"?w=1400&q=70&auto=format&fit=crop";
+}
+
+function hexToRgba(hex,alpha){
+  hex=hex.replace("#","");
+  if(hex.length===3)hex=hex.split("").map(function(c){return c+c}).join("");
+  const r=parseInt(hex.substr(0,2),16);
+  const g=parseInt(hex.substr(2,2),16);
+  const b=parseInt(hex.substr(4,2),16);
+  return "rgba("+r+","+g+","+b+","+alpha+")";
+}
+
+
 function buildEduData() {
   const data = {};
   for (const [rs, ri] of Object.entries(locations)) {
@@ -1819,7 +1857,7 @@ function buildCityPage(rs, cs) {
   <div style="max-width:1100px;margin:40px auto;padding:0 16px;">
 
     <!-- 히어로 배너 -->
-    <div style="background:linear-gradient(135deg,${tc},${tc}cc);color:white;border-radius:20px;padding:clamp(32px,5vw,56px);margin-bottom:24px;text-align:center;">
+    <div style="background:linear-gradient(135deg,${hexToRgba(tc,0.92)},${hexToRgba(tc,0.78)}),url('${bgImg("city",cH(rs+cs))}') center/cover;color:white;border-radius:20px;padding:clamp(32px,5vw,56px);margin-bottom:24px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
       <p style="font-size:13px;opacity:.8;margin-bottom:8px;">📍 은빛쌤 1:1 맞춤 과외</p>
       <h1 style="font-size:clamp(28px,5vw,44px);font-weight:900;margin-bottom:12px;">${rd} 과외</h1>
       <p style="font-size:15px;opacity:.9;margin-bottom:20px;">초·중·고 전 과목 | 무료 상담 후 방문·화상 수업 방식 결정</p>
@@ -2048,7 +2086,7 @@ function buildDongPage(rs, cs, dong) {
   <div style="max-width:1100px;margin:40px auto;padding:0 16px;">
 
     <!-- 히어로 -->
-    <div style="background:linear-gradient(135deg,${tc},${tc}cc);color:white;border-radius:20px;padding:clamp(30px,5vw,52px);margin-bottom:24px;text-align:center;">
+    <div style="background:linear-gradient(135deg,${hexToRgba(tc,0.92)},${hexToRgba(tc,0.78)}),url('${bgImg("city",cH(rs+cs+dong))}') center/cover;color:white;border-radius:20px;padding:clamp(30px,5vw,52px);margin-bottom:24px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
       <p style="font-size:13px;opacity:.8;margin-bottom:6px;">📍 <a href="/${rs}/${cs}" style="color:white;text-decoration:underline;">${rd}</a> &gt; ${dong}</p>
       <h1 style="font-size:clamp(26px,5vw,42px);font-weight:900;margin-bottom:10px;">${dong} 과외</h1>
       <p style="font-size:14px;opacity:.9;margin-bottom:18px;">초·중·고 전 과목 | 상담 후 방문·화상 수업 방식 결정</p>
@@ -2194,7 +2232,7 @@ function buildDongDetailPage(rs, cs, dong, grade, subject) {
   ${COMMON_STYLE}</head><body>${NAV}
   <div style="max-width:960px;margin:40px auto;padding:0 16px;">
 
-    <div style="background:linear-gradient(135deg,${color},${color}cc);color:white;border-radius:20px;padding:clamp(28px,5vw,52px);margin-bottom:28px;">
+    <div style="background:linear-gradient(135deg,${hexToRgba(color,0.92)},${hexToRgba(color,0.78)}),url('${bgImg(subject,cH(rs+cs+dong+grade+subject))}') center/cover;color:white;border-radius:20px;padding:clamp(28px,5vw,52px);margin-bottom:28px;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
       <p style="font-size:13px;opacity:.8;margin-bottom:8px;">
         <a href="/${rs}/${cs}" style="color:white;text-decoration:underline;">${rd}</a> &gt;
         <a href="/${rs}/${cs}/${encodeURIComponent(dong)}" style="color:white;text-decoration:underline;">${dong}</a> &gt; ${grade} ${subject}
@@ -2288,7 +2326,7 @@ function buildDetailPage(rs, cs, grade, subject) {
   ${COMMON_STYLE}</head><body>${NAV}
   <div style="max-width:960px;margin:40px auto;padding:0 16px;">
 
-    <div style="background:linear-gradient(135deg,${color},${color}cc);color:white;border-radius:20px;padding:clamp(28px,5vw,52px);margin-bottom:28px;">
+    <div style="background:linear-gradient(135deg,${hexToRgba(color,0.92)},${hexToRgba(color,0.78)}),url('${bgImg(subject,cH(rs+cs+grade+subject))}') center/cover;color:white;border-radius:20px;padding:clamp(28px,5vw,52px);margin-bottom:28px;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
       <p style="font-size:13px;opacity:.8;margin-bottom:8px;">
         <a href="/${rs}/${cs}" style="color:white;text-decoration:underline;">${rd}</a> &gt; ${grade} ${subject}
       </p>
@@ -2669,7 +2707,7 @@ function buildSchoolPage(rs, cs, schoolShort) {
     </p>
 
     <!-- 히어로 -->
-    <div style="background:linear-gradient(135deg,${typeColor},${typeColor}cc);color:white;border-radius:20px;padding:clamp(30px,5vw,52px);margin-bottom:24px;text-align:center;">
+    <div style="background:linear-gradient(135deg,${hexToRgba(typeColor,0.92)},${hexToRgba(typeColor,0.78)}),url('${bgImg("school",seed)}') center/cover;color:white;border-radius:20px;padding:clamp(30px,5vw,52px);margin-bottom:24px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
       <p style="font-size:13px;opacity:.8;margin-bottom:6px;">📍 ${rd} ${kn} · ${schoolType}</p>
       <h1 style="font-size:clamp(26px,5vw,42px);font-weight:900;margin-bottom:10px;">${schoolFull} 과외</h1>
       <p style="font-size:14px;opacity:.9;margin-bottom:18px;">은빛쌤 1:1 맞춤 과외 | 상담 후 방문·화상 수업 결정</p>
