@@ -1626,7 +1626,7 @@ function renderUniqueContent(ct,dong,grade,subj,tc,rd,schools){
   // ── 학교별 맞춤 정보 & 공부법 ──
   if(ct.schoolContents&&ct.schoolContents.length>0){
     h+=`<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
-      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:20px;">🏫 ${area} 인근 학교별 맞춤 정보 & 공부법</h2>`;
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:20px;">⭐ ${area} 인근 학교별 맞춤 정보 & 공부법</h2>`;
     ct.schoolContents.forEach(function(sc){
       h+=`<div style="background:#f8faff;border-radius:14px;padding:20px 22px;margin-bottom:14px;border-left:4px solid ${tc};">
         <h3 style="font-size:16px;font-weight:800;color:${tc};margin:0 0 10px 0;">${sc.school} 재학생 맞춤 학습 가이드</h3>
@@ -1771,14 +1771,13 @@ function buildCityPage(rs, cs) {
       <div style="background:white;border:2px solid ${tc};border-radius:14px;padding:16px;display:flex;flex-direction:column;cursor:pointer;transition:transform .2s,box-shadow .2s;"
            onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 20px rgba(0,0,0,0.12)'"
            onmouseout="this.style.transform='';this.style.boxShadow=''">
-        <div style="font-size:14px;font-weight:900;color:#1A2340;margin-bottom:5px;">📍 ${d} 과외</div>
-        <div style="font-size:11px;color:#888;margin-bottom:10px;">초·중·고 1:1 맞춤</div>
+        <div style="font-size:14px;font-weight:900;color:#1A2340;margin-bottom:10px;">📍 ${d} 과외</div>
         <div style="color:${tc};font-size:11px;font-weight:700;">자세히 보기 →</div>
       </div>
     </a>`).join("");
 
   // ── 학교 태그
-  const schoolTags = ci.schools.map(s=>`<span style="display:inline-block;background:#fef9e7;color:#b7770d;border-radius:20px;padding:5px 14px;margin:4px;font-size:13px;font-weight:600;">🏫 ${s}</span>`).join("");
+  const schoolTags = ci.schools.map(s=>`<span style="display:inline-block;background:#fef9e7;color:#b7770d;border-radius:20px;padding:5px 14px;margin:4px;font-size:13px;font-weight:600;">⭐ ${s}</span>`).join("");
   const highList = ci.schools.filter(s=>s.endsWith('고')||s.includes('고등'));
   const midList  = ci.schools.filter(s=>s.endsWith('중')||s.includes('중학'));
   const highTags = highList.map(s=>`<span style="display:inline-block;background:#fdecea;color:#c0392b;border-radius:20px;padding:5px 14px;margin:3px;font-size:13px;font-weight:600;">${s}</span>`).join("");
@@ -1876,7 +1875,7 @@ function buildCityPage(rs, cs) {
 
     <!-- 주요 학교 -->
     <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
-      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:6px;">🏫 ${rd} 주요 학교</h2>
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:6px;">⭐ ${rd} 주요 학교</h2>
       <p style="font-size:13px;color:#888;margin-bottom:16px;">아래 학교 재학생 내신 기출 분석 및 맞춤 수업이 가능합니다.</p>
       ${highTags ? `<div style="margin-bottom:12px;display:flex;align-items:center;flex-wrap:wrap;gap:4px;"><span style="font-size:13px;font-weight:700;color:#e74c3c;margin-right:6px;white-space:nowrap;">고등학교</span>${highTags}</div>` : ""}
       ${midTags  ? `<div style="margin-bottom:12px;display:flex;align-items:center;flex-wrap:wrap;gap:4px;"><span style="font-size:13px;font-weight:700;color:#27ae60;margin-right:6px;white-space:nowrap;">중학교</span>${midTags}</div>` : ""}
@@ -1962,7 +1961,7 @@ function buildCityPage(rs, cs) {
            onmouseover="this.style.transform='translateY(-3px)'"
            onmouseout="this.style.transform=''">
         <div>
-          <div style="font-size:22px;font-weight:900;margin-bottom:6px;">🏫 ${kn} 학교별 과외</div>
+          <div style="font-size:22px;font-weight:900;margin-bottom:6px;">⭐ ${kn} 학교별 과외</div>
           <div style="font-size:14px;opacity:.9;">${kn} 지역 초·중·고 ${(ci.schools||[]).length}개 학교별 맞춤 1:1 과외 →</div>
         </div>
         <div style="font-size:32px;">→</div>
@@ -2028,7 +2027,7 @@ function buildDongPage(rs, cs, dong) {
   const otherSchools= schools.filter(s=>!s.includes('고')&&!s.includes('중')&&!s.includes('초')).map(s=>`<span style="display:inline-block;background:#f8f9fa;color:#555;border-radius:20px;padding:4px 12px;margin:3px;font-size:13px;font-weight:600;">${s}</span>`).join("");
   const schoolBlock = (highSchools||midSchools||elemSchools||otherSchools) ? `
     <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
-      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:6px;">🏫 ${dong} 인근 주요 학교</h2>
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:6px;">⭐ ${dong} 인근 주요 학교</h2>
       <p style="font-size:13px;color:#888;margin-bottom:14px;">아래 학교 재학생 내신 기출 분석 및 맞춤 수업 가능합니다.</p>
       ${highSchools?`<div style="margin-bottom:10px;"><span style="font-size:12px;font-weight:700;color:#e74c3c;margin-right:6px;">고등학교</span>${highSchools}</div>`:""}
       ${midSchools?`<div style="margin-bottom:10px;"><span style="font-size:12px;font-weight:700;color:#2ecc71;margin-right:6px;">중학교</span>${midSchools}</div>`:""}
@@ -2396,27 +2395,30 @@ function buildSchoolListPage(rs, cs) {
   const elemList = schools.filter(s => s.endsWith('초'));
   const midList  = schools.filter(s => s.endsWith('중'));
   const highList = schools.filter(s => s.endsWith('고'));
+  const totalCount = schools.length;
 
-  function renderGroup(title, emoji, color, list) {
+  function renderGroup(title, badge, color, bgColor, list) {
     if (list.length === 0) return "";
     let cards = "";
     list.forEach(s => {
       const fullName = expandSchoolName(s);
       cards += `<a href="/${rs}/${cs}/school/${encodeURIComponent(s)}" style="text-decoration:none;">
-        <div style="background:white;border:1.5px solid #e8edf5;border-radius:12px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;transition:all .2s;cursor:pointer;"
-             onmouseover="this.style.borderColor='${color}';this.style.transform='translateX(4px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,0.08)'"
-             onmouseout="this.style.borderColor='#e8edf5';this.style.transform='';this.style.boxShadow=''">
-          <div style="display:flex;align-items:center;gap:10px;">
-            <span style="font-size:18px;">${emoji}</span>
-            <span style="font-weight:700;color:#1A2340;font-size:15px;">${fullName}</span>
-          </div>
-          <span style="color:${color};font-size:18px;font-weight:700;">→</span>
+        <div style="background:white;border:2px solid ${color};border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;cursor:pointer;transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden;"
+             onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.12)'"
+             onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <div style="position:absolute;top:-8px;right:-8px;width:40px;height:40px;background:${bgColor};border-radius:50%;opacity:0.5;"></div>
+          <div style="font-size:15px;font-weight:900;color:#1A2340;margin-bottom:10px;position:relative;z-index:1;">⭐ ${fullName}</div>
+          <div style="color:${color};font-size:12px;font-weight:700;position:relative;z-index:1;">자세히 보기 →</div>
         </div>
       </a>`;
     });
-    return `<div style="margin-bottom:36px;">
-      <h2 style="font-size:20px;font-weight:900;color:#1A2340;margin:0 0 16px 0;">${title} (${list.length}개)</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;">${cards}</div>
+    return `<div style="margin-bottom:44px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;">
+        <span style="display:inline-flex;align-items:center;justify-content:center;background:${color};color:white;width:36px;height:36px;border-radius:10px;font-size:18px;font-weight:900;">${badge}</span>
+        <h2 style="font-size:22px;font-weight:900;color:#1A2340;margin:0;">${title}</h2>
+        <span style="background:${bgColor};color:${color};padding:5px 14px;border-radius:20px;font-size:13px;font-weight:800;">${list.length}개교</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;">${cards}</div>
     </div>`;
   }
 
@@ -2426,21 +2428,70 @@ function buildSchoolListPage(rs, cs) {
   <title>${kn} 학교별 과외 | 초·중·고 1:1 맞춤 과외 | 은빛쌤</title>
   <meta name="description" content="${kn} 지역 초등·중등·고등학교 재학생을 위한 학교별 맞춤 1:1 과외. 해당 학교 기출을 완벽히 파악한 검증된 선생님을 빠르게 매칭해드립니다.">
   ${COMMON_STYLE}</head><body>${NAV}
-  <div style="max-width:1100px;margin:40px auto;padding:0 16px;">
-    <p style="font-size:13px;color:#888;margin-bottom:12px;">
-      <a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo;
-      <a href="/directory" style="color:#888;text-decoration:none;">학교별 과외</a> &rsaquo;
-      <a href="/${rs}/${cs}" style="color:#888;text-decoration:none;">${rd}</a> &rsaquo;
-      <span style="color:#1A2340;font-weight:600;">${kn}</span>
-    </p>
-    <h1 style="font-size:clamp(28px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 16px 0;">🏫 ${kn} 학교별 과외</h1>
-    <p style="font-size:15px;color:#555;line-height:1.8;margin-bottom:40px;">
-      ${kn} 지역 초등·중등·고등학교 재학생을 위한 학교별 맞춤 1:1 과외를 연결합니다.
-      해당 학교 기출을 완벽히 파악한 검증된 선생님을 빠르게 매칭해드립니다.
-    </p>
-    ${renderGroup("초등학교", "🏫", "#3498db", elemList)}
-    ${renderGroup("중학교", "🏫", "#2ecc71", midList)}
-    ${renderGroup("고등학교", "🏫", "#e74c3c", highList)}
+
+  <!-- 히어로: 은빛 브랜드 다크 그라디언트 -->
+  <div style="background:linear-gradient(135deg,#0D1526 0%,#1A2340 50%,#2a3d6b 100%);color:white;padding:clamp(44px,6vw,72px) 20px 56px;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-100px;right:-100px;width:420px;height:420px;background:radial-gradient(circle,rgba(200,169,110,0.18) 0%,transparent 70%);border-radius:50%;"></div>
+    <div style="position:absolute;bottom:-80px;left:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(200,169,110,0.1) 0%,transparent 70%);border-radius:50%;"></div>
+    <div style="max-width:1100px;margin:0 auto;padding:0 16px;position:relative;z-index:1;">
+      <p style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:16px;">
+        <a href="/" style="color:rgba(255,255,255,0.6);text-decoration:none;">홈</a> &rsaquo;
+        <a href="/directory" style="color:rgba(255,255,255,0.6);text-decoration:none;">학교별 과외</a> &rsaquo;
+        <a href="/${rs}/${cs}" style="color:rgba(255,255,255,0.6);text-decoration:none;">${rd}</a> &rsaquo;
+        <span style="color:#C8A96E;font-weight:700;">${kn}</span>
+      </p>
+      <div style="display:inline-block;background:linear-gradient(135deg,#C8A96E,#E8D09A);color:#1A2340;padding:6px 16px;border-radius:30px;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:16px;">⭐ 35년 교육 노하우 · 은빛쌤 과외</div>
+      <h1 style="font-size:clamp(30px,5vw,46px);font-weight:900;margin:0 0 14px 0;line-height:1.2;">
+        ${kn} <span style="background:linear-gradient(135deg,#C8A96E,#E8D09A);-webkit-background-clip:text;background-clip:text;color:transparent;">학교별 과외</span>
+      </h1>
+      <p style="font-size:16px;color:rgba(255,255,255,0.8);line-height:1.8;margin:0 0 28px 0;max-width:720px;">
+        ${kn} 지역 <strong style="color:white;">${totalCount}개교</strong> 재학생을 위한 학교별 맞춤 1:1 과외.
+        해당 학교 기출을 완벽히 파악한 은빛쌤이 직접 1:1로 지도합니다.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        <div style="background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:10px 18px;display:flex;align-items:center;gap:8px;">
+          <span style="color:#C8A96E;font-size:18px;">✓</span>
+          <span style="font-size:13px;font-weight:600;">학교별 기출 분석</span>
+        </div>
+        <div style="background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:10px 18px;display:flex;align-items:center;gap:8px;">
+          <span style="color:#C8A96E;font-size:18px;">✓</span>
+          <span style="font-size:13px;font-weight:600;">1:1 맞춤 수업</span>
+        </div>
+        <div style="background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:10px 18px;display:flex;align-items:center;gap:8px;">
+          <span style="color:#C8A96E;font-size:18px;">✓</span>
+          <span style="font-size:13px;font-weight:600;">첫 체험 무료</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 통계 바 -->
+  <div style="background:white;border-bottom:1px solid #e8edf5;padding:22px 20px;">
+    <div style="max-width:1100px;margin:0 auto;padding:0 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;text-align:center;">
+      <div>
+        <div style="font-size:28px;font-weight:900;color:#1A2340;">${totalCount}</div>
+        <div style="font-size:12px;color:#888;font-weight:600;">전체 학교</div>
+      </div>
+      <div style="border-left:1px solid #e8edf5;">
+        <div style="font-size:28px;font-weight:900;color:#3498db;">${elemList.length}</div>
+        <div style="font-size:12px;color:#888;font-weight:600;">초등학교</div>
+      </div>
+      <div style="border-left:1px solid #e8edf5;">
+        <div style="font-size:28px;font-weight:900;color:#2ecc71;">${midList.length}</div>
+        <div style="font-size:12px;color:#888;font-weight:600;">중학교</div>
+      </div>
+      <div style="border-left:1px solid #e8edf5;">
+        <div style="font-size:28px;font-weight:900;color:#e74c3c;">${highList.length}</div>
+        <div style="font-size:12px;color:#888;font-weight:600;">고등학교</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 학교 목록 -->
+  <div style="max-width:1100px;margin:0 auto;padding:44px 16px 60px;">
+    ${renderGroup("초등학교", "초", "#3498db", "#eaf4fd", elemList)}
+    ${renderGroup("중학교", "중", "#2ecc71", "#e8f8f5", midList)}
+    ${renderGroup("고등학교", "고", "#e74c3c", "#fdecea", highList)}
   </div>${CONTACT}${FOOTER}${FLOATING}</body></html>`;
 }
 
@@ -2484,7 +2535,7 @@ function buildSchoolPage(rs, cs, schoolShort) {
 
   // ── 학교 개요 섹션 HTML 생성 ──
   let overview = `<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
-    <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${typeColor};padding-left:14px;margin-bottom:16px;">🏫 ${schoolFull} 과외 개요</h2>
+    <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${typeColor};padding-left:14px;margin-bottom:16px;">⭐ ${schoolFull} 과외 개요</h2>
     <p style="font-size:14px;color:#444;line-height:2;margin:0;">${overviewText}</p>
   </div>`;
 
