@@ -1285,7 +1285,7 @@ const subjects = ["국어","영어","수학","사회","과학"];
 // ============================================================
 function cH(s){let h=5381;for(let i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))&0x7fffffff;return h;}
 function pk(a,h,o){return a[((h>>>0)+(o||0))%a.length];}
-function pkU(a,h,n,b){const r=[],u=new Set(),l=a.length;let c=0;for(let i=0;r.length<n&&c<l*3;i++){const x=((h>>>0)+(b||0)+i*7919+i*i*31)%l;if(!u.has(x)){u.add(x);r.push(a[x]);}c++;}return r;}
+function pkU(a,h,n,b){const arr=a.slice(),r=[];let rng=(Math.imul(h>>>0,2654435769)^Math.imul((b||0)+1,1597334677))>>>0;for(let i=0;i<n&&arr.length>0;i++){rng=(Math.imul(rng,1664525)+1013904223)>>>0;rng=(rng^(rng>>>16))>>>0;const idx=rng%arr.length;r.push(arr.splice(idx,1)[0]);}return r;}
 
 const TIP_SUBJ={
 "국어":[
@@ -1487,7 +1487,41 @@ const SCHOOL_CONTENT_POOL=[
 "{school} 재학생 중 내신과 모의고사 격차가 큰 학생이 있습니다. 이는 교과서 중심 학습과 수능 유형 훈련을 동시에 해야 해결됩니다. 은빛쌤은 학교 내신과 수능을 동시에 대비하는 이중 전략을 제공하며, 1:1 맞춤으로 학생의 격차를 좁혀드립니다.",
 "{school} 학생이 자기주도학습 능력을 키우려면 계획-실행-점검의 사이클을 반복해야 합니다. 처음에는 선생님과 함께 계획하고 점차 스스로 만들도록 이끕니다. 은빛쌤은 자기주도 능력까지 함께 키우며, 학생의 장기적 학습 역량 향상을 목표로 합니다.",
 "{school} 시험 기간 학습 전략은 평소와 달라야 합니다. 시험 2~3주 전부터는 새 내용보다 복습과 기출 풀이에 집중합니다. 은빛쌤은 시험 대비 모드로 수업을 전환해 집중 관리하며, 35년 경력으로 쌓인 시험 대비 노하우를 학생에게 전수합니다.",
-"{school} 학생이 학습 동기를 유지하려면 작은 성취를 자주 경험해야 합니다. 단기 목표를 세우고 달성하며 성취감을 느끼는 것이 중요합니다. 은빛쌤은 학생의 페이스에 맞춰 달성 가능한 목표를 함께 세우고, 매주 진행 상황을 학부모님께 투명하게 보고합니다."
+"{school} 학생이 학습 동기를 유지하려면 작은 성취를 자주 경험해야 합니다. 단기 목표를 세우고 달성하며 성취감을 느끼는 것이 중요합니다. 은빛쌤은 학생의 페이스에 맞춰 달성 가능한 목표를 함께 세우고, 매주 진행 상황을 학부모님께 투명하게 보고합니다.",
+"{school}에서 필기 잘하는 학생이 성적도 잘 나옵니다. 수업 중 선생님의 설명을 키워드 중심으로 정리하고 색깔로 중요도를 구분하면 복습 효율이 크게 올라갑니다. 은빛쌤은 학생의 필기 습관을 점검하고 효율적인 노트 작성법을 지도해 드립니다.",
+"{school} 학생이 질문을 많이 하는 습관은 성적 향상의 지름길입니다. 모르는 것을 부끄러워하지 말고 바로 질문해야 배움이 완성됩니다. 은빛쌤은 수업 중 질문 시간을 충분히 확보하고, 카카오톡으로도 24시간 질문을 받아 학생의 궁금증을 해소합니다.",
+"{school} 학생의 독서 습관은 모든 과목 성적에 영향을 미칩니다. 매일 20분 독서로 어휘력과 이해력이 함께 향상되며, 특히 국어와 사회 과목에 직접적인 도움이 됩니다. 은빛쌤은 학생 수준에 맞는 도서를 추천하고 독서 후 대화로 이해도를 확인합니다.",
+"{school} 재학생이 수학 심화 문제에 도전하려면 먼저 개념을 완벽히 이해해야 합니다. 심화는 기본 개념의 다양한 응용이므로 기본기가 탄탄할수록 심화가 쉬워집니다. 은빛쌤은 단계별 학습 로드맵으로 학생을 기본에서 심화까지 안전하게 이끕니다.",
+"{school} 학생이 영어 실력을 빠르게 올리려면 매일 꾸준한 노출이 필요합니다. 단어 암기, 지문 독해, 듣기 훈련을 루틴으로 만들면 한 달 후 체감할 수 있는 변화가 생깁니다. 은빛쌤은 35년 경험으로 학생에게 맞는 영어 학습 루틴을 설계합니다.",
+"{school} 학생이 과학을 어려워한다면 실험 원리부터 다시 이해해야 합니다. 교과서의 실험 활동을 꼼꼼히 정리하고 왜 그런 결과가 나오는지 설명할 수 있어야 응용 문제도 풀 수 있습니다. 은빛쌤은 실험 원리 중심의 체계적 수업을 제공합니다.",
+"{school} 국어 실력은 하루아침에 오르지 않습니다. 꾸준한 독서와 지문 분석 훈련이 쌓여야 독해력이 완성됩니다. 은빛쌤은 학생의 현재 독해 수준을 진단하고 매일 할 수 있는 독해 과제를 제공하며, 매주 학부모님께 진도를 공유합니다.",
+"{school} 학생의 사회 공부는 암기가 아닌 이해 중심이어야 합니다. 개념 간의 관계를 파악하고 실생활 사례와 연결하면 장기 기억으로 전환됩니다. 은빛쌤은 마인드맵을 활용한 사회 수업으로 학생이 스스로 지식을 구조화하도록 돕습니다.",
+"{school}에서 학급 친구들과 함께 공부하는 스터디 그룹은 양날의 검입니다. 잘 활용하면 효과적이지만 잘못 운영하면 시간 낭비가 됩니다. 은빛쌤은 학생이 스터디에 참여할 때 활용법을 조언하고, 개인 학습과 그룹 학습의 균형을 잡아드립니다.",
+"{school} 학생이 집에서도 효율적으로 공부하려면 학습 공간 관리가 중요합니다. 책상 정리, 스마트폰 분리, 적절한 조명이 집중력을 좌우합니다. 은빛쌤은 학생의 학습 환경까지 점검하며, 실천 가능한 개선 방안을 함께 고민합니다.",
+"{school} 재학생의 학습 부담을 줄이려면 선택과 집중이 필요합니다. 모든 과목을 동시에 완벽히 하는 것보다 중요 과목에 집중하는 전략이 효과적입니다. 은빛쌤은 학생의 목표와 진로를 고려해 과목별 우선순위를 함께 결정합니다.",
+"{school} 학생들이 자주 범하는 실수는 풀이 과정을 생략하는 것입니다. 특히 수학과 과학에서 풀이 과정을 빠뜨리면 서술형 점수를 잃게 됩니다. 은빛쌤은 풀이 과정을 논리적으로 작성하는 훈련을 체계적으로 지도하며, 첫 체험 수업은 무료입니다.",
+"{school} 학생이 발표에 자신이 없다면 수행평가에서 손해를 봅니다. 발표는 연습으로 극복 가능하며, 거울 앞 연습부터 시작해 점차 익숙해지면 됩니다. 은빛쌤은 수행평가 발표 준비를 함께하며 학생의 자신감을 키워드립니다.",
+"{school} 학생의 영어 단어 암기는 문맥 속에서 해야 오래 기억됩니다. 단어장에 예문과 함께 정리하고 주 3회 반복 테스트로 장기 기억으로 전환합니다. 은빛쌤은 학교별 빈출 어휘 리스트를 제공하며 시험에 직결되는 단어만 집중 학습합니다.",
+"{school} 재학생이 공부 슬럼프에 빠졌을 때는 학습량을 잠시 줄이고 기본으로 돌아가는 것이 도움됩니다. 쉬운 문제부터 다시 풀어 자신감을 회복한 뒤 난이도를 올리는 전략이 효과적입니다. 은빛쌤은 학생의 심리 상태까지 고려한 수업을 제공합니다.",
+"{school} 학생이 모르는 문제를 만났을 때 바로 답을 보면 안 됩니다. 최소 10분은 혼자 고민한 뒤 해설을 봐야 사고력이 길러집니다. 은빛쌤은 학생이 스스로 생각할 수 있도록 질문 중심의 수업을 진행하며, 사고력 향상을 목표로 합니다."
+];
+
+const OVERVIEW_POOL=[
+"{school}는 {city} 지역의 주요 {type} 중 하나로, 학생들의 내신 관리가 매우 중요한 시기입니다. 은빛쌤은 35년 교육 노하우를 바탕으로 {school} 학생 한 명 한 명에게 딱 맞는 1:1 맞춤 수업을 제공합니다. 방문과외와 화상과외 중 학생 스케줄에 맞는 방식을 무료 상담 후 함께 결정하며, 첫 상담과 체험 수업은 완전 무료입니다.",
+"{school} 재학생을 위한 전문 1:1 과외 서비스입니다. 학교별 내신 출제 경향을 정확히 파악한 35년 경력의 은빛쌤이 학생 개개인의 수준과 목표에 맞는 맞춤 커리큘럼을 설계해 드립니다. 매주 학부모님께 학습 현황을 투명하게 피드백하며, 카카오톡 24시간 질문으로 학습 공백을 최소화합니다.",
+"{city}에 위치한 {school}는 지역 교육의 중심 학교로 많은 학부모님이 관심을 갖고 있습니다. 은빛쌤 35년 교육 노하우로 {school}의 기출 패턴을 분석하고, 학생의 취약점을 정확히 파악해 1:1 맞춤 수업으로 보완합니다. 수행평가와 내신 시험까지 빠짐없이 관리해 드립니다.",
+"{school} 학생의 학습 고민을 해결해 드립니다. 은빛쌤은 35년간 수천 명의 학생을 지도한 베테랑 교육 전문가로, {school} 재학생의 특성에 맞는 체계적인 학습 플랜을 제공합니다. 방문과외와 화상과외 중 최적의 방식을 상담 후 결정하며, 카카오톡으로 24시간 질문이 가능합니다.",
+"{school} 재학생이라면 놓치지 마세요. 은빛쌤의 1:1 맞춤 과외는 {school} 학생의 내신 성적 향상과 자기주도학습 능력 개발을 동시에 목표로 합니다. 35년 교육 경험으로 학생의 약점을 정확히 진단하고, 매주 학부모 피드백으로 가정과 함께 관리합니다. 첫 체험 수업은 완전 무료입니다.",
+"{city}의 {school}는 학업에 열의가 높은 학생들이 많은 {type}입니다. 은빛쌤은 이러한 {school} 학생들의 특성을 이해하고, 학교별 내신 기출을 체계적으로 분석해 시험에 직결되는 핵심 내용만 집중 수업합니다. 방문 또는 화상 수업은 상담 후 결정하며 수행평가까지 함께 관리합니다.",
+"{school} 학생의 성적 향상을 위한 1:1 맞춤 과외 전문 은빛쌤입니다. 35년의 풍부한 교육 경험을 바탕으로 학생의 현재 수준을 정확히 진단하고, 목표 성적까지 이끄는 체계적 커리큘럼을 제공합니다. 학습 진도와 이해도는 매주 학부모님께 상세히 리포트됩니다.",
+"{school} 재학생 맞춤 과외로 내신 1등급을 목표로 하세요. 은빛쌤은 {school}의 내신 출제 경향을 꿰뚫고 있으며, 35년 교육 노하우로 학생의 실수 패턴까지 분석해 근본적으로 해결해 드립니다. 카카오톡 24시간 질문이 가능하고, 첫 상담과 체험 수업은 완전 무료로 진행됩니다.",
+"은빛쌤과 함께하는 {school} 1:1 맞춤 과외. 학생의 현재 수준과 목표에 맞춰 설계된 개별 커리큘럼으로 내신과 수능을 동시에 대비합니다. 35년 경력의 베테랑 교육자가 직접 수업하며, 방문과외와 화상과외 중 학생 편의에 맞는 방식을 함께 결정합니다.",
+"{school} 학생의 학습 성공을 책임지는 은빛쌤 과외입니다. 단순 문제 풀이가 아닌 개념 이해부터 응용까지, 학생이 스스로 문제를 해결할 수 있는 사고력을 길러드립니다. 35년 교육 노하우로 각 학생에게 맞는 최적의 학습 전략을 제시하며, 매주 학부모님께 피드백을 드립니다.",
+"{city} {school}의 내신 대비부터 입시 준비까지 은빛쌤에게 맡겨보세요. 35년 교육 노하우로 축적된 학교별 기출 분석 자료와 1:1 맞춤 커리큘럼으로 학생을 체계적으로 이끕니다. 방문과 화상 어떤 수업 방식이든 동일한 퀄리티를 보장하며, 수업 외에도 카카오톡 24시간 질문이 가능합니다.",
+"{school} 학생의 성적이 걱정되신다면 은빛쌤과 함께하세요. 35년 경험으로 학생의 강점과 약점을 정확히 파악하고, 맞춤형 학습 계획을 수립해 드립니다. 학원에서 따라가기 어려운 학생, 특정 과목을 집중 보완해야 하는 학생에게 1:1 과외가 훨씬 효과적입니다.",
+"{school} 재학생의 내신 관리는 학기 초부터 꾸준히 이어져야 합니다. 은빛쌤은 학기 초 진단 테스트로 학생의 현재 수준을 파악하고, 학교 진도에 맞춰 매 수업 체계적으로 지도합니다. 시험 2~3주 전부터는 특별 대비 모드로 전환해 집중 관리하며, 35년 노하우의 힘을 발휘합니다.",
+"{school} 학생을 위한 1:1 맞춤 과외가 시작됩니다. 은빛쌤은 학생의 학습 스타일과 성격을 파악하고, 가장 효과적인 수업 방식을 적용합니다. {city} 지역 {school}의 내신 출제 경향을 반영한 맞춤 수업으로 성적 향상을 실현하며, 매주 학부모님께 학습 현황을 투명하게 공유합니다.",
+"{school} 재학생의 학업 고민, 은빛쌤이 해결합니다. 35년 교육 노하우로 학생 한 명 한 명에게 맞는 학습 로드맵을 설계하며, 내신 기출 분석부터 수행평가 준비까지 전방위로 지원합니다. 첫 상담과 체험 수업은 완전 무료이니 부담 없이 문의하세요."
 ];
 
 const COLUMN_POOL=[
@@ -1922,6 +1956,19 @@ function buildCityPage(rs, cs) {
       </div>
     </div>
 
+    <!-- 학교별 과외 링크 -->
+    <a href="/${rs}/${cs}/schools" style="text-decoration:none;">
+      <div style="background:linear-gradient(135deg,${tc},${tc}cc);color:white;border-radius:20px;padding:clamp(22px,4vw,32px);margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;transition:transform .2s;box-shadow:0 4px 20px rgba(0,0,0,0.1);"
+           onmouseover="this.style.transform='translateY(-3px)'"
+           onmouseout="this.style.transform=''">
+        <div>
+          <div style="font-size:22px;font-weight:900;margin-bottom:6px;">🏫 ${kn} 학교별 과외</div>
+          <div style="font-size:14px;opacity:.9;">${kn} 지역 초·중·고 ${(ci.schools||[]).length}개 학교별 맞춤 1:1 과외 →</div>
+        </div>
+        <div style="font-size:32px;">→</div>
+      </div>
+    </a>
+
     <!-- 수업 가능 지역 -->
     <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
       <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">🏘️ 수업 가능 지역(동) — 클릭해서 과목 선택</h2>
@@ -2307,6 +2354,277 @@ function buildDetailPage(rs, cs, grade, subject) {
 }
 
 
+
+// ── 학교 이름 축약 → 전체 이름 복원 ──
+function expandSchoolName(s) {
+  if (s.endsWith('여초')) return s.replace(/여초$/, '여자초등학교');
+  if (s.endsWith('여중')) return s.replace(/여중$/, '여자중학교');
+  if (s.endsWith('여고')) return s.replace(/여고$/, '여자고등학교');
+  if (s.endsWith('초')) return s + '등학교';
+  if (s.endsWith('중')) return s + '학교';
+  if (s.endsWith('고')) return s + '등학교';
+  return s;
+}
+
+function getSchoolType(s) {
+  if (s.endsWith('초')) return '초등학교';
+  if (s.endsWith('중')) return '중학교';
+  if (s.endsWith('고')) return '고등학교';
+  return '학교';
+}
+
+function getSchoolGrade(s) {
+  if (s.endsWith('초')) return '초등';
+  if (s.endsWith('중')) return '중등';
+  if (s.endsWith('고')) return '고등';
+  return null;
+}
+
+// ─────────────────────────────────────────
+// 학교 목록 페이지 빌더
+// ─────────────────────────────────────────
+function buildSchoolListPage(rs, cs) {
+  const ci = (eduData[rs]||{})[cs];
+  if (!ci) return null;
+  const ri = locations[rs]||{};
+  const tc = ri.color||"#3498db";
+  const rd = ci.region_display;
+  const kn = ci.name;
+  const schools = ci.schools||[];
+
+  // 학교 유형별 분류
+  const elemList = schools.filter(s => s.endsWith('초'));
+  const midList  = schools.filter(s => s.endsWith('중'));
+  const highList = schools.filter(s => s.endsWith('고'));
+
+  function renderGroup(title, emoji, color, list) {
+    if (list.length === 0) return "";
+    let cards = "";
+    list.forEach(s => {
+      const fullName = expandSchoolName(s);
+      cards += `<a href="/${rs}/${cs}/school/${encodeURIComponent(s)}" style="text-decoration:none;">
+        <div style="background:white;border:1.5px solid #e8edf5;border-radius:12px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;transition:all .2s;cursor:pointer;"
+             onmouseover="this.style.borderColor='${color}';this.style.transform='translateX(4px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,0.08)'"
+             onmouseout="this.style.borderColor='#e8edf5';this.style.transform='';this.style.boxShadow=''">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span style="font-size:18px;">${emoji}</span>
+            <span style="font-weight:700;color:#1A2340;font-size:15px;">${fullName}</span>
+          </div>
+          <span style="color:${color};font-size:18px;font-weight:700;">→</span>
+        </div>
+      </a>`;
+    });
+    return `<div style="margin-bottom:36px;">
+      <h2 style="font-size:20px;font-weight:900;color:#1A2340;margin:0 0 16px 0;">${title} (${list.length}개)</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;">${cards}</div>
+    </div>`;
+  }
+
+  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
+  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>${kn} 학교별 과외 | 초·중·고 1:1 맞춤 과외 | 은빛쌤</title>
+  <meta name="description" content="${kn} 지역 초등·중등·고등학교 재학생을 위한 학교별 맞춤 1:1 과외. 해당 학교 기출을 완벽히 파악한 검증된 선생님을 빠르게 매칭해드립니다.">
+  ${COMMON_STYLE}</head><body>${NAV}
+  <div style="max-width:1100px;margin:40px auto;padding:0 16px;">
+    <p style="font-size:13px;color:#888;margin-bottom:12px;">
+      <a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo;
+      <a href="/directory" style="color:#888;text-decoration:none;">학교별 과외</a> &rsaquo;
+      <a href="/${rs}/${cs}" style="color:#888;text-decoration:none;">${rd}</a> &rsaquo;
+      <span style="color:#1A2340;font-weight:600;">${kn}</span>
+    </p>
+    <h1 style="font-size:clamp(28px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 16px 0;">🏫 ${kn} 학교별 과외</h1>
+    <p style="font-size:15px;color:#555;line-height:1.8;margin-bottom:40px;">
+      ${kn} 지역 초등·중등·고등학교 재학생을 위한 학교별 맞춤 1:1 과외를 연결합니다.
+      해당 학교 기출을 완벽히 파악한 검증된 선생님을 빠르게 매칭해드립니다.
+    </p>
+    ${renderGroup("초등학교", "🏫", "#3498db", elemList)}
+    ${renderGroup("중학교", "🏫", "#2ecc71", midList)}
+    ${renderGroup("고등학교", "🏫", "#e74c3c", highList)}
+  </div>${CONTACT}${FOOTER}${FLOATING}</body></html>`;
+}
+
+// ─────────────────────────────────────────
+// 학교별 상세 페이지 빌더 (3000자 글밥 + 과목 카드)
+// ─────────────────────────────────────────
+function buildSchoolPage(rs, cs, schoolShort) {
+  const ci = (eduData[rs]||{})[cs];
+  if (!ci) return null;
+  const ri = locations[rs]||{};
+  const tc = ri.color||"#3498db";
+  const rd = ci.region_display;
+  const kn = ci.name;
+  const schools = ci.schools||[];
+  if (!schools.includes(schoolShort)) return null;
+
+  const schoolFull = expandSchoolName(schoolShort);
+  const schoolType = getSchoolType(schoolShort);
+  const gradeKey = getSchoolGrade(schoolShort);
+  const gc  = {"초등":"#3498db","중등":"#2ecc71","고등":"#e74c3c"};
+  const gcBg= {"초등":"#eaf4fd","중등":"#e8f8f5","고등":"#fdecea"};
+  const typeColor = gradeKey ? gc[gradeKey] : tc;
+  const typeBg = gradeKey ? gcBg[gradeKey] : "#f8faff";
+
+  // 학교별 3000자 콘텐츠 생성 (학교명이 시드에 포함되어 고유)
+  const ct = genContent(rs, cs, schoolShort, gradeKey||"", "", schools);
+
+  // 공부법 팁 풀에서 학교 유형별 선택
+  const seed = cH("school|"+rs+"|"+cs+"|"+schoolShort);
+  const moreTips = pkU(TIP_SUBJ["국어"].concat(TIP_SUBJ["수학"]).concat(TIP_SUBJ["영어"]).concat(TIP_SUBJ["사회"]).concat(TIP_SUBJ["과학"]), seed, 4, 37);
+
+  // 학교 개요: OVERVIEW_POOL에서 1개 선택 후 placeholder 교체
+  const overviewTpl = pk(OVERVIEW_POOL, seed, 41);
+  const overviewText = overviewTpl.replace(/\{school\}/g, schoolFull).replace(/\{city\}/g, rd+" "+kn).replace(/\{type\}/g, schoolType);
+
+  // 학교별 공부법: SCHOOL_CONTENT_POOL에서 4개 독립 선택 (ct.schoolContents 대체)
+  const schoolTpls = pkU(SCHOOL_CONTENT_POOL, seed, 4, 43);
+  const schoolSections = schoolTpls.map(function(tpl){
+    return tpl.replace(/\{school\}/g, schoolFull);
+  });
+
+  // ── 학교 개요 섹션 HTML 생성 ──
+  let overview = `<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+    <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${typeColor};padding-left:14px;margin-bottom:16px;">🏫 ${schoolFull} 과외 개요</h2>
+    <p style="font-size:14px;color:#444;line-height:2;margin:0;">${overviewText}</p>
+  </div>`;
+
+  // ── 학교 맞춤 공부법 섹션 ──
+  let studyGuide = `<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+    <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${typeColor};padding-left:14px;margin-bottom:16px;">📖 ${schoolFull} 재학생 맞춤 공부법</h2>`;
+  schoolSections.forEach(function(body){
+    studyGuide += `<div style="background:${typeBg};border-radius:14px;padding:18px 22px;margin-bottom:12px;border-left:4px solid ${typeColor};">
+      <p style="font-size:14px;color:#333;line-height:2;margin:0;">${body}</p>
+    </div>`;
+  });
+  moreTips.forEach(function(t){
+    studyGuide += `<div style="background:#f8faff;border-radius:14px;padding:18px 22px;margin-bottom:12px;">
+      <p style="font-size:14px;color:#333;line-height:2;margin:0;">${t}</p>
+    </div>`;
+  });
+  studyGuide += `</div>`;
+
+  // ── 교육 칼럼 2개 ──
+  let columns = "";
+  ct.columns.slice(0,2).forEach(function(col){
+    columns += `<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${typeColor};padding-left:14px;margin-bottom:14px;">📝 ${col.title}</h2>
+      <p style="font-size:14px;color:#444;line-height:2;">${col.body}</p>
+    </div>`;
+  });
+
+  // ── 학부모 후기 (3개, 카드 그리드) ──
+  let reviewSection = `<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+    <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${typeColor};padding-left:14px;margin-bottom:14px;">💬 ${schoolFull} 학부모님 생생 후기</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:24px;">`;
+  ct.reviews.slice(0,4).forEach(function(rv){
+    reviewSection += `<div style="border:2px solid ${typeColor}22;border-radius:16px;padding:20px;background:white;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+        <div style="width:40px;height:40px;border-radius:50%;background:${typeColor};color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;">${rv.name.charAt(0)}</div>
+        <div><div style="font-weight:700;color:#1A2340;font-size:14px;">${rv.name} 학부모님</div>
+        <div style="font-size:12px;color:#888;">${schoolFull} · ${rv.grade} ${rv.subj}</div></div>
+      </div>
+      <p style="font-size:13px;color:#555;line-height:1.8;margin:0;">"${rv.body}"</p>
+    </div>`;
+  });
+  reviewSection += `</div>
+    <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${typeColor};padding-left:14px;margin-bottom:14px;">📈 실제 성적 향상 사례</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;">`;
+  ct.stories.slice(0,4).forEach(function(st){
+    reviewSection += `<div style="border:2px solid ${typeColor}22;border-radius:16px;padding:20px;background:white;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <span style="font-weight:800;color:#1A2340;font-size:15px;">${st.name} 학생</span>
+        <span style="background:${typeColor}15;color:${typeColor};padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;">${st.grade} ${st.subj}</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="background:#fdecea;color:#e74c3c;padding:6px 14px;border-radius:8px;font-weight:800;font-size:15px;">${st.from}</span>
+        <span style="font-size:20px;color:${typeColor};">→</span>
+        <span style="background:#e8f8f5;color:#27ae60;padding:6px 14px;border-radius:8px;font-weight:800;font-size:15px;">${st.to}</span>
+        <span style="font-size:12px;color:#888;">(${st.period})</span>
+      </div>
+      <p style="font-size:13px;color:#555;line-height:1.8;margin:0;">${st.story}</p>
+    </div>`;
+  });
+  reviewSection += `</div></div>`;
+
+  // ── FAQ (4개, 펼쳐진 형태) ──
+  let faqSection = `<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+    <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${typeColor};padding-left:14px;margin-bottom:20px;">자주 묻는 질문</h2>
+    <div style="display:flex;flex-direction:column;gap:24px;">`;
+  ct.faqs.slice(0,4).forEach(function(fq){
+    faqSection += `<div>
+      <p style="font-weight:700;color:#2563eb;font-size:15px;margin-bottom:8px;">Q. ${fq.q}</p>
+      <p style="font-size:14px;color:#444;line-height:1.8;margin:0;">${fq.a}</p>
+    </div>`;
+  });
+  faqSection += `</div></div>`;
+
+  // ── 과목 카드 (학교 유형에 맞는 학년 + 5과목) ──
+  let subjectCards = "";
+  if (gradeKey) {
+    const g = gradeKey;
+    subjectCards = `<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:32px;">
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${typeColor};padding-left:14px;margin-bottom:18px;">📚 ${schoolFull} ${g} 과외 과목</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">`;
+    for (const c of ci.classes) {
+      if (c.grade !== g) continue;
+      subjectCards += `<a href="/${rs}/${cs}/${encodeURIComponent(g)}/${encodeURIComponent(c.subject)}" style="text-decoration:none;">
+        <div style="background:white;border:2px solid ${gc[g]};border-radius:14px;padding:16px;height:100%;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;"
+             onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 20px rgba(0,0,0,0.1)'"
+             onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <div style="background:${gcBg[g]};color:${gc[g]};font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;margin-bottom:8px;display:inline-block;">${g}</div>
+          <div style="font-size:14px;font-weight:900;color:#1A2340;margin-bottom:6px;">${schoolFull} ${c.subject}과외</div>
+          <div style="font-size:12px;color:#666;line-height:1.6;flex:1;">${c.desc.substring(0,55)}...</div>
+          <div style="margin-top:10px;color:${gc[g]};font-weight:700;font-size:11px;">자세히 보기 →</div>
+        </div>
+      </a>`;
+    }
+    subjectCards += `</div></div>`;
+  }
+
+  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
+  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>${schoolFull} 과외 | 1:1 방문·화상 과외 | 은빛쌤</title>
+  <meta name="description" content="${schoolFull} 과외 전문 은빛쌤. ${schoolFull} 내신 기출 완벽 분석, 1:1 맞춤 수업, 35년 교육 노하우. 첫 상담·체험 무료.">
+  ${COMMON_STYLE}</head><body>${NAV}
+  <div style="max-width:1100px;margin:40px auto;padding:0 16px;">
+    <p style="font-size:13px;color:#888;margin-bottom:12px;">
+      <a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo;
+      <a href="/${rs}/${cs}/schools" style="color:#888;text-decoration:none;">학교별 과외</a> &rsaquo;
+      <a href="/${rs}/${cs}" style="color:#888;text-decoration:none;">${rd}</a> &rsaquo;
+      <span style="color:#1A2340;font-weight:600;">${schoolFull}</span>
+    </p>
+
+    <!-- 히어로 -->
+    <div style="background:linear-gradient(135deg,${typeColor},${typeColor}cc);color:white;border-radius:20px;padding:clamp(30px,5vw,52px);margin-bottom:24px;text-align:center;">
+      <p style="font-size:13px;opacity:.8;margin-bottom:6px;">📍 ${rd} ${kn} · ${schoolType}</p>
+      <h1 style="font-size:clamp(26px,5vw,42px);font-weight:900;margin-bottom:10px;">${schoolFull} 과외</h1>
+      <p style="font-size:14px;opacity:.9;margin-bottom:18px;">은빛쌤 1:1 맞춤 과외 | 상담 후 방문·화상 수업 결정</p>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;">
+        <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ 35년 교육 노하우</span>
+        <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ 내신 기출 완벽 분석</span>
+        <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ 첫 상담·체험 무료</span>
+      </div>
+    </div>
+
+    ${overview}
+    ${studyGuide}
+    ${columns}
+    ${reviewSection}
+    ${faqSection}
+    ${subjectCards}
+
+    <div style="text-align:center;margin-bottom:40px;">
+      <a href="/#form" style="display:inline-block;background:linear-gradient(135deg,#C8A96E,#e0c080);color:#1A2340;font-size:17px;font-weight:900;padding:20px 48px;border-radius:50px;text-decoration:none;box-shadow:0 6px 24px rgba(200,169,110,0.4);">
+        📝 ${schoolFull} 1:1 무료 모의수업 &amp; 상담 신청
+      </a>
+      <p style="font-size:13px;color:#999;margin-top:12px;">첫 상담 및 체험 수업은 완전 무료입니다</p>
+    </div>
+
+  </div>${CONTACT}${FOOTER}${FLOATING}</body></html>`;
+}
+
+
 function handleSearch(q) {
   if (!q) return {redirect:"/directory"};
   const kws = q.split(/\s+/).filter(Boolean);
@@ -2455,6 +2773,17 @@ ${urls.map(u => `  <url><loc>${u}</loc><changefreq>weekly</changefreq><priority>
   }
   if (parts.length===2) {
     const html=buildCityPage(parts[0],parts[1]);
+    if(!html) return Response.redirect(new URL("/directory",url.origin).href,302);
+    return new Response(html,{headers:H});
+  }
+  if (parts.length===3 && parts[2]==="schools") {
+    const html = buildSchoolListPage(parts[0], parts[1]);
+    if(!html) return Response.redirect(new URL("/directory",url.origin).href,302);
+    return new Response(html,{headers:H});
+  }
+  if (parts.length===4 && parts[2]==="school") {
+    const school = decodeURIComponent(parts[3]);
+    const html = buildSchoolPage(parts[0], parts[1], school);
     if(!html) return Response.redirect(new URL("/directory",url.origin).href,302);
     return new Response(html,{headers:H});
   }
