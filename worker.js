@@ -1570,7 +1570,8 @@ const SUCCESS_POOL=[
 {name:"신○○",grade:"중3",subj:"수학",from:"35점",to:"78점",period:"6개월",story:"수학을 완전히 포기한 상태에서 시작했습니다. 은빛쌤이 초등 수학 기초부터 차근차근 1:1 맞춤으로 올라가며 자신감을 회복시켜주셨습니다. 카카오톡 24시간 질문이 큰 도움이 되었습니다."},
 {name:"오○○",grade:"초4",subj:"영어",from:"알파벳만",to:"영어 독해 가능",period:"5개월",story:"알파벳만 알던 상태에서 파닉스, 기본 문법, 간단한 독해까지 단계별로 학습했습니다. 지금은 영어 동화책을 스스로 읽으며, 매주 학부모 피드백으로 가정에서도 영어 노출을 늘렸습니다."},
 {name:"류○○",grade:"고2",subj:"과학",from:"3등급",to:"1등급",period:"4개월",story:"화학 개념이 약해 반응식 균형 맞추기부터 다시 시작했습니다. 은빛쌤이 학교 기출을 완벽 분석하고 수행평가 실험 보고서까지 함께 관리해주셔서 내신 1등급을 달성했습니다."},
-{name:"배○○",grade:"중1",subj:"국어",from:"65점",to:"92점",period:"3개월",story:"글 읽기를 싫어하던 학생이 독해 전략을 배우고 나서 오히려 독서를 즐기게 되었습니다. 은빛쌤의 35년 교육 노하우로 국어뿐 아니라 전 과목 성적이 올랐습니다."}
+{name:"배○○",grade:"중1",subj:"국어",from:"65점",to:"92점",period:"3개월",story:"글 읽기를 싫어하던 학생이 독해 전략을 배우고 나서 오히려 독서를 즐기게 되었습니다. 은빛쌤의 35년 교육 노하우로 국어뿐 아니라 전 과목 성적이 올랐습니다."},
+{name:"권○○",grade:"초3",subj:"수학",from:"60점대",to:"95점대",period:"4개월",story:"초등 저학년 수학 기초가 부족했는데 은빛쌤이 1:1 맞춤으로 차근차근 잡아주셨습니다. 매주 학부모 피드백으로 가정에서도 학습 습관을 함께 만들었습니다."}
 ];
 
 function genContent(loc,city,dong,grade,subj,schools){
@@ -2563,16 +2564,24 @@ function buildSchoolPage(rs, cs, schoolShort) {
     </div>`;
   });
 
-  // ── 학부모 후기 (3개, 카드 그리드) ──
+  // ── 학부모 후기 (학교 유형에 맞는 학년으로 교체) ──
+  const gradePoolByType = {
+    "초등": ["초3","초4","초5","초6"],
+    "중등": ["중1","중2","중3"],
+    "고등": ["고1","고2","고3"]
+  };
+  const validGrades = gradePoolByType[gradeKey] || RV_GRADES;
+
   let reviewSection = `<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
     <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${typeColor};padding-left:14px;margin-bottom:14px;">💬 ${schoolFull} 학부모님 생생 후기</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:24px;">`;
-  ct.reviews.slice(0,4).forEach(function(rv){
+  ct.reviews.slice(0,4).forEach(function(rv,i){
+    const fixedGrade = validGrades[(cH(rv.name+i+schoolShort)>>>0)%validGrades.length];
     reviewSection += `<div style="border:2px solid ${typeColor}22;border-radius:16px;padding:20px;background:white;">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
         <div style="width:40px;height:40px;border-radius:50%;background:${typeColor};color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;">${rv.name.charAt(0)}</div>
         <div><div style="font-weight:700;color:#1A2340;font-size:14px;">${rv.name} 학부모님</div>
-        <div style="font-size:12px;color:#888;">${schoolFull} · ${rv.grade} ${rv.subj}</div></div>
+        <div style="font-size:12px;color:#888;">${schoolFull} · ${fixedGrade} ${rv.subj}</div></div>
       </div>
       <p style="font-size:13px;color:#555;line-height:1.8;margin:0;">"${rv.body}"</p>
     </div>`;
@@ -2580,11 +2589,24 @@ function buildSchoolPage(rs, cs, schoolShort) {
   reviewSection += `</div>
     <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${typeColor};padding-left:14px;margin-bottom:14px;">📈 실제 성적 향상 사례</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;">`;
-  ct.stories.slice(0,4).forEach(function(st){
+  // 학교 유형에 맞는 성적 사례만 필터링 (없으면 전체에서 사용 후 학년만 교체)
+  const matchingStories = SUCCESS_POOL.filter(function(s){
+    if(gradeKey==="초등") return s.grade.indexOf("초")===0;
+    if(gradeKey==="중등") return s.grade.indexOf("중")===0;
+    if(gradeKey==="고등") return s.grade.indexOf("고")===0;
+    return true;
+  });
+  const storiesToShow = matchingStories.length>=4 ? pkU(matchingStories,seed,4,53) : ct.stories.slice(0,4);
+  storiesToShow.forEach(function(st,i){
+    const stGrade = (st.grade && (
+      (gradeKey==="초등"&&st.grade.indexOf("초")===0) ||
+      (gradeKey==="중등"&&st.grade.indexOf("중")===0) ||
+      (gradeKey==="고등"&&st.grade.indexOf("고")===0)
+    )) ? st.grade : validGrades[(cH(st.name+i+schoolShort)>>>0)%validGrades.length];
     reviewSection += `<div style="border:2px solid ${typeColor}22;border-radius:16px;padding:20px;background:white;">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
         <span style="font-weight:800;color:#1A2340;font-size:15px;">${st.name} 학생</span>
-        <span style="background:${typeColor}15;color:${typeColor};padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;">${st.grade} ${st.subj}</span>
+        <span style="background:${typeColor}15;color:${typeColor};padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;">${stGrade} ${st.subj}</span>
       </div>
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
         <span style="background:#fdecea;color:#e74c3c;padding:6px 14px;border-radius:8px;font-weight:800;font-size:15px;">${st.from}</span>
