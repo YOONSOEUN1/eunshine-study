@@ -1467,6 +1467,29 @@ const EDU_ANALYSIS=[
 "이 지역 초등학교들은 창의 융합 교육을 강화하고 있어 교과 지식뿐 아니라 융합적 사고력을 키워주는 수업이 필요합니다. 은빛쌤은 1:1 맞춤으로 학생의 호기심과 탐구력을 함께 키우며, 수행평가까지 완벽 관리합니다."
 ];
 
+const SCHOOL_CONTENT_POOL=[
+"{school}은 지역 내 학생들의 관심이 높은 학교 중 하나로, 내신 시험에서 교과서 본문 이해와 응용 문제가 자주 출제됩니다. 은빛쌤은 35년 교육 노하우로 {school} 내신 기출을 분석해 시험에 직결되는 핵심만 집중 훈련하며, 매주 학부모님께 학습 진도를 상세히 피드백합니다.",
+"{school} 재학생이 내신 1등급을 받으려면 교과서 본문 암기와 함께 프린트물, 수업 중 강조 사항까지 꼼꼼히 정리해야 합니다. 은빛쌤은 학생의 노트를 직접 점검하고 부족한 부분을 1:1 맞춤으로 보완하며, 카카오톡 24시간 질문으로 학습 공백을 최소화합니다.",
+"{school} 학생들이 가장 어려워하는 부분은 서술형 문제입니다. 조건을 정확히 파악하고 핵심 내용을 빠짐없이 서술하는 연습이 필요합니다. 은빛쌤은 {school} 기출 서술형 패턴을 분석해 예상 문제를 직접 출제하고, 수행평가 대비까지 함께 관리합니다.",
+"{school} 시험 대비의 핵심은 학교별 출제 경향을 정확히 파악하는 것입니다. 35년 교육 경험을 가진 은빛쌤은 {school}의 최근 3년치 내신 기출을 분석해 반복 출제되는 유형과 신유형을 구분해 드립니다. 첫 상담과 체험 수업은 완전 무료입니다.",
+"{school} 내신 대비를 위해서는 교과 진도에 맞춘 선행 학습과 심화 학습이 병행되어야 합니다. 은빛쌤은 {school} 학생에게 맞는 개별 커리큘럼을 설계하며, 방문과외와 화상과외 중 학생 스케줄에 맞는 방식을 상담 후 결정합니다.",
+"{school} 학생이 성적을 올리려면 꾸준한 오답 분석이 필수입니다. 틀린 문제의 원인을 개념 오류, 계산 실수, 시간 부족으로 분류하면 약점이 명확해집니다. 은빛쌤은 1:1 맞춤 수업에서 학생의 오답 패턴을 체계적으로 관리하며, 매주 학부모 피드백을 제공합니다.",
+"{school} 재학생 중 상위권으로 도약하려는 학생들에게는 심화 문제 풀이 전략이 필요합니다. 기본 개념을 완벽히 이해한 뒤 응용과 심화로 단계별 진행이 효과적이며, 은빛쌤은 35년 노하우로 학생의 현재 수준을 정확히 진단해 무리 없는 속도로 이끌어 드립니다.",
+"{school}에서 수행평가 비중이 점점 커지고 있습니다. 발표, 토론, 보고서 작성 등 다양한 형식의 수행평가에 대비하려면 평소 꾸준한 연습이 필요합니다. 은빛쌤은 수행평가 준비부터 발표 연습까지 함께하며, 수행평가 점수도 내신에 직결되므로 빠짐없이 관리합니다.",
+"{school} 학생들에게 추천하는 공부법은 매일 일정 시간 학습하는 루틴 만들기입니다. 벼락치기보다 꾸준한 학습이 장기 기억에 훨씬 효과적입니다. 은빛쌤은 학생의 생활 패턴에 맞는 학습 루틴을 함께 설계하고, 실천 여부를 매주 학부모님께 보고합니다.",
+"{school} 학생이 공부에 집중하지 못한다면 학습 환경 점검이 우선입니다. 스마트폰 사용 시간 관리, 공부 공간 정리, 목표 설정이 선행되어야 합니다. 은빛쌤은 학생의 학습 태도까지 지도하며, 35년 교육 노하우로 동기부여 방법을 함께 찾아드립니다.",
+"{school} 재학생의 내신 관리는 학기 초부터 꾸준히 이어져야 효과가 있습니다. 시험 2주 전 벼락치기로는 상위권 진입이 어렵습니다. 은빛쌤은 학기 초부터 매 수업 교과 진도에 맞춰 수업하며, 매주 학부모님께 학습 현황을 투명하게 공유합니다.",
+"{school} 학생들이 자주 질문하는 것은 효율적인 암기법입니다. 단순 반복보다 이해 기반 암기, 연상 기법, 스스로 설명하기가 효과적입니다. 은빛쌤은 1:1 맞춤으로 학생에게 맞는 암기 전략을 찾아드리며, 카카오톡으로 수업 외 질문도 24시간 가능합니다.",
+"{school} 학생이 시험에서 시간이 부족하다면 문제 풀이 전략을 점검해야 합니다. 쉬운 문제를 빠르게 풀어 시간을 확보하는 훈련이 필요합니다. 은빛쌤은 실전 감각을 키우는 모의 시험과 시간 관리 전략을 지도하며, 35년 경험으로 시험 전략을 조언합니다.",
+"{school}의 수업 진도는 학생마다 체감 난이도가 다릅니다. 같은 수업을 들어도 이해도가 다른 이유는 기본기 차이 때문입니다. 은빛쌤은 진단 테스트로 학생의 현재 수준을 정확히 파악한 뒤 부족한 개념을 1:1 맞춤으로 보완해드리며, 첫 체험 수업은 무료입니다.",
+"{school} 학생이 전 과목 균형을 맞추려면 과목별 시간 배분 전략이 필요합니다. 강점 과목은 유지하고 약점 과목에 시간을 더 투자하는 것이 효율적입니다. 은빛쌤은 학생의 성적표를 분석해 맞춤 시간 배분 계획을 세우며, 매주 학부모 피드백을 제공합니다.",
+"{school} 학생들의 공부 고민 중 하나는 집중력 부족입니다. 25분 집중 + 5분 휴식의 뽀모도로 기법, 학습 환경 개선, 적절한 수면 등이 도움됩니다. 은빛쌤은 35년 교육 노하우로 학생의 집중력을 높이는 실천 가능한 방법을 함께 찾아드립니다.",
+"{school} 재학생 중 내신과 모의고사 격차가 큰 학생이 있습니다. 이는 교과서 중심 학습과 수능 유형 훈련을 동시에 해야 해결됩니다. 은빛쌤은 학교 내신과 수능을 동시에 대비하는 이중 전략을 제공하며, 1:1 맞춤으로 학생의 격차를 좁혀드립니다.",
+"{school} 학생이 자기주도학습 능력을 키우려면 계획-실행-점검의 사이클을 반복해야 합니다. 처음에는 선생님과 함께 계획하고 점차 스스로 만들도록 이끕니다. 은빛쌤은 자기주도 능력까지 함께 키우며, 학생의 장기적 학습 역량 향상을 목표로 합니다.",
+"{school} 시험 기간 학습 전략은 평소와 달라야 합니다. 시험 2~3주 전부터는 새 내용보다 복습과 기출 풀이에 집중합니다. 은빛쌤은 시험 대비 모드로 수업을 전환해 집중 관리하며, 35년 경력으로 쌓인 시험 대비 노하우를 학생에게 전수합니다.",
+"{school} 학생이 학습 동기를 유지하려면 작은 성취를 자주 경험해야 합니다. 단기 목표를 세우고 달성하며 성취감을 느끼는 것이 중요합니다. 은빛쌤은 학생의 페이스에 맞춰 달성 가능한 목표를 함께 세우고, 매주 진행 상황을 학부모님께 투명하게 보고합니다."
+];
+
 const COLUMN_POOL=[
 {title:"올바른 학습 습관이 성적을 만듭니다",body:"많은 학부모님이 어떤 교재가 좋은지 묻습니다. 하지만 교재보다 중요한 것은 학습 습관입니다. 매일 정해진 시간에 공부하는 루틴, 모르는 것을 질문하는 습관, 틀린 문제를 분석하는 태도가 성적의 80%를 결정합니다. 은빛쌤은 35년 교육 노하우를 바탕으로 첫 수업부터 학생과 함께 학습 루틴을 설계하고, 매주 학부모님께 실천 여부를 피드백합니다."},
 {title:"1:1 과외 vs 학원, 우리 아이에게 맞는 선택은?",body:"학원은 체계적인 커리큘럼과 경쟁 환경이 장점이고, 과외는 맞춤형 수업과 유연한 진도가 장점입니다. 학원에서 진도를 따라가기 어려운 학생, 특정 약점을 집중 보완해야 하는 학생에게는 1:1 과외가 더 효과적입니다. 은빛쌤은 무료 상담에서 학생에게 맞는 학습 방식을 함께 찾아드리며, 방문과외와 화상과외 중 최적의 방식을 결정합니다."},
@@ -1516,20 +1539,32 @@ const SUCCESS_POOL=[
 {name:"배○○",grade:"중1",subj:"국어",from:"65점",to:"92점",period:"3개월",story:"글 읽기를 싫어하던 학생이 독해 전략을 배우고 나서 오히려 독서를 즐기게 되었습니다. 은빛쌤의 35년 교육 노하우로 국어뿐 아니라 전 과목 성적이 올랐습니다."}
 ];
 
-function genContent(loc,city,dong,grade,subj){
+function genContent(loc,city,dong,grade,subj,schools){
   const seed=cH(loc+"|"+city+"|"+(dong||"")+"|"+(grade||"")+"|"+(subj||""));
   const tips=subj?pkU(TIP_SUBJ[subj]||TIP_SUBJ["국어"],seed,4,1):pkU(TIP_SUBJ["국어"].concat(TIP_SUBJ["수학"]).concat(TIP_SUBJ["영어"]),seed,3,1);
   const strat=grade?pk(STRAT_GRADE[grade]||STRAT_GRADE["초등"],seed,3):"";
-  const reviews=pkU(RV_BODIES,seed,7,7);
+  const reviews=pkU(RV_BODIES,seed,4,7);
   const reviewMeta=reviews.map(function(r,i){
     const s2=cH(loc+city+(dong||"")+(grade||"")+(subj||"")+i);
     return{name:pk(RV_NAMES,s2,i*3),grade:pk(RV_GRADES,s2,i*5+1),subj:pk(RV_SUBJS,s2,i*7+2),body:r};
   });
   const analysis=pk(EDU_ANALYSIS,seed,11);
-  const faqs=pkU(FAQ_POOL,seed,7,13);
+  const faqs=pkU(FAQ_POOL,seed,5,13);
   const stories=pkU(SUCCESS_POOL,seed,4,17);
-  const columns=pkU(COLUMN_POOL,seed,3,23);
-  return{tips:tips,strat:strat,reviews:reviewMeta,analysis:analysis,faqs:faqs,stories:stories,columns:columns};
+  const columns=pkU(COLUMN_POOL,seed,2,23);
+  // 학교별 맞춤 콘텐츠: 학교 3개 × 서로 다른 템플릿 3개 선택
+  let schoolContents=[];
+  if(schools&&schools.length>0){
+    const pickedSchools=pkU(schools,seed,3,29);
+    const pickedTemplates=pkU(SCHOOL_CONTENT_POOL,seed,3,31);
+    for(let i=0;i<pickedSchools.length&&i<pickedTemplates.length;i++){
+      schoolContents.push({
+        school:pickedSchools[i],
+        body:pickedTemplates[i].replace(/\{school\}/g,pickedSchools[i])
+      });
+    }
+  }
+  return{tips:tips,strat:strat,reviews:reviewMeta,analysis:analysis,faqs:faqs,stories:stories,columns:columns,schoolContents:schoolContents};
 }
 
 function renderUniqueContent(ct,dong,grade,subj,tc,rd,schools){
@@ -1554,6 +1589,16 @@ function renderUniqueContent(ct,dong,grade,subj,tc,rd,schools){
     h+=`<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
       <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">📝 ${col.title}</h2>
       <p style="font-size:14px;color:#444;line-height:2;">${col.body}</p></div>`;});}
+  // ── 학교별 맞춤 정보 & 공부법 ──
+  if(ct.schoolContents&&ct.schoolContents.length>0){
+    h+=`<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:20px;">🏫 ${area} 인근 학교별 맞춤 정보 & 공부법</h2>`;
+    ct.schoolContents.forEach(function(sc){
+      h+=`<div style="background:#f8faff;border-radius:14px;padding:20px 22px;margin-bottom:14px;border-left:4px solid ${tc};">
+        <h3 style="font-size:16px;font-weight:800;color:${tc};margin:0 0 10px 0;">${sc.school} 재학생 맞춤 학습 가이드</h3>
+        <p style="font-size:14px;color:#333;line-height:2;margin:0;">${sc.body}</p></div>`;});
+    h+=`</div>`;
+  }
   // ── 학부모 후기 + 성적 사례 통합 ──
   h+=`<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
     <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">💬 ${area} 학부모님 생생 후기</h2>
@@ -2062,7 +2107,7 @@ function buildDongPage(rs, cs, dong) {
     </div>
 
     <!-- 고유 콘텐츠 (SEO) -->
-    ${renderUniqueContent(genContent(rs,cs,dong,"",""),dong,"","",tc,rd,schools)}
+    ${renderUniqueContent(genContent(rs,cs,dong,"","",schools),dong,"","",tc,rd,schools)}
 
 
     <!-- 과목 탭 -->
@@ -2155,7 +2200,7 @@ function buildDongDetailPage(rs, cs, dong, grade, subject) {
       </ul>
     </div>
     <!-- 고유 콘텐츠 (SEO) -->
-    ${renderUniqueContent(genContent(rs,cs,dong,grade,subject),dong,grade,subject,color,rd,ci.schools)}
+    ${renderUniqueContent(genContent(rs,cs,dong,grade,subject,ci.schools),dong,grade,subject,color,rd,ci.schools)}
 
 
     <div style="text-align:center;margin-bottom:40px;">
@@ -2248,7 +2293,7 @@ function buildDetailPage(rs, cs, grade, subject) {
       </ul>
     </div>
     <!-- 고유 콘텐츠 (SEO) -->
-    ${renderUniqueContent(genContent(rs,cs,"",grade,subject),rd,grade,subject,color,rd,ci.schools)}
+    ${renderUniqueContent(genContent(rs,cs,"",grade,subject,ci.schools),rd,grade,subject,color,rd,ci.schools)}
 
 
     <div style="text-align:center;margin-bottom:40px;">
