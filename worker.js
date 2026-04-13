@@ -2001,6 +2001,28 @@ function buildRegionPage(rs) {
     totalSchools += (ci.schools||[]).length;
   }
 
+  // 지역별 풍경 그라데이션
+  const sceneBgs = {
+    "seoul":"linear-gradient(135deg,#667eea 0%,#764ba2 100%)",
+    "gyeonggi":"linear-gradient(135deg,#11998e 0%,#38ef7d 100%)",
+    "incheon":"linear-gradient(135deg,#2193b0 0%,#6dd5ed 100%)",
+    "busan":"linear-gradient(135deg,#ee9ca7 0%,#ffdde1 100%)",
+    "daegu":"linear-gradient(135deg,#fc5c7d 0%,#6a82fb 100%)",
+    "gwangju":"linear-gradient(135deg,#a8edea 0%,#fed6e3 100%)",
+    "daejeon":"linear-gradient(135deg,#d299c2 0%,#fef9d7 100%)",
+    "ulsan":"linear-gradient(135deg,#89f7fe 0%,#66a6ff 100%)",
+    "sejong":"linear-gradient(135deg,#c1dfc4 0%,#deecdd 100%)",
+    "gangwon":"linear-gradient(135deg,#0f2027 0%,#203a43 50%,#2c5364 100%)",
+    "chungbuk":"linear-gradient(135deg,#56ab2f 0%,#a8e063 100%)",
+    "chungnam":"linear-gradient(135deg,#3a7bd5 0%,#3a6073 100%)",
+    "jeonbuk":"linear-gradient(135deg,#134e5e 0%,#71b280 100%)",
+    "jeonnam":"linear-gradient(135deg,#005c97 0%,#363795 100%)",
+    "gyeongbuk":"linear-gradient(135deg,#e65c00 0%,#f9d423 100%)",
+    "gyeongnam":"linear-gradient(135deg,#2980b9 0%,#6dd5fa 50%,#ffffff 100%)",
+    "jeju":"linear-gradient(135deg,#f12711 0%,#f5af19 100%)"
+  };
+  const sceneBg = sceneBgs[rs] || "linear-gradient(135deg,#667eea 0%,#764ba2 100%)";
+
   let cards = "";
   for (const [cs, ci] of cities) {
     const dongCnt = (ci.dongs||[]).length;
@@ -2028,30 +2050,36 @@ function buildRegionPage(rs) {
   <meta name="description" content="${rn} 전 지역 1:1 맞춤 과외. 방문/화상 모두 가능, 35년 경력 은빛쌤. 첫 상담·체험 수업 무료.">
   ${COMMON_STYLE}</head><body>${NAV}
 
-  <div style="background:linear-gradient(135deg,#0D1526 0%,#1A2340 50%,#2a3d6b 100%);color:white;padding:clamp(44px,6vw,72px) 20px 56px;position:relative;overflow:hidden;">
-    <div style="position:absolute;top:-100px;right:-100px;width:420px;height:420px;background:radial-gradient(circle,rgba(200,169,110,0.18) 0%,transparent 70%);border-radius:50%;"></div>
-    <div style="position:absolute;bottom:-80px;left:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(200,169,110,0.1) 0%,transparent 70%);border-radius:50%;"></div>
-    <div style="position:absolute;top:40%;left:60%;width:200px;height:200px;background:radial-gradient(circle,rgba(52,152,219,0.1) 0%,transparent 70%);border-radius:50%;"></div>
-    <div style="max-width:900px;margin:0 auto;padding:0 16px;position:relative;z-index:1;">
-      <p style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:16px;">
-        <a href="/" style="color:rgba(255,255,255,0.6);text-decoration:none;">홈</a> &rsaquo;
-        <a href="/directory" style="color:rgba(255,255,255,0.6);text-decoration:none;">지역별 과외</a> &rsaquo;
-        <span style="color:#C8A96E;font-weight:700;">${rn}</span>
-      </p>
-      <div style="display:inline-block;background:linear-gradient(135deg,#C8A96E,#E8D09A);color:#1A2340;padding:6px 16px;border-radius:30px;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:16px;">⭐ 35년 교육 노하우 · 은빛쌤 과외</div>
-      <h1 style="font-size:clamp(28px,5vw,44px);font-weight:900;margin:0 0 14px 0;line-height:1.2;">
-        📍 ${rn} <span style="background:linear-gradient(135deg,#C8A96E,#E8D09A);-webkit-background-clip:text;background-clip:text;color:transparent;">1:1 맞춤 과외</span>
-      </h1>
-      <p style="font-size:16px;color:rgba(255,255,255,0.7);line-height:1.8;max-width:700px;">${rn} 전 지역에서 방문·화상 1:1 맞춤 과외를 제공합니다. ${cities.length}개 시·구·군, ${totalDongs}개 동·읍·면, ${totalSchools}개 학교를 지원합니다.</p>
-      <div style="display:flex;gap:16px;margin-top:24px;flex-wrap:wrap;">
-        <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px 22px;text-align:center;"><div style="font-size:24px;font-weight:900;color:#C8A96E;">${cities.length}</div><div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px;">시·구·군</div></div>
-        <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px 22px;text-align:center;"><div style="font-size:24px;font-weight:900;color:#C8A96E;">${totalDongs}</div><div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px;">동·읍·면</div></div>
-        <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px 22px;text-align:center;"><div style="font-size:24px;font-weight:900;color:#C8A96E;">${totalSchools}</div><div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px;">학교</div></div>
+  <!-- 상단 텍스트 (흰 배경) -->
+  <div style="max-width:900px;margin:36px auto 0;padding:0 20px;">
+    <p style="font-size:13px;color:#888;margin-bottom:16px;">
+      <a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo;
+      <a href="/directory" style="color:#888;text-decoration:none;">지역별 과외</a> &rsaquo;
+      <span style="color:#1A2340;font-weight:700;">${rn}</span>
+    </p>
+    <div style="display:inline-block;background:${tc};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:14px;">📍 ${rn}</div>
+    <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${rn} 과외 | 지역별 맞춤 1:1 과외 안내</h1>
+    <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${rn} 전 지역 초·중·고 전 과목 1:1 맞춤 과외. 방문/화상 모두 가능하며, 첫 상담과 체험 수업은 완전 무료입니다.</p>
+  </div>
+
+  <!-- 풍경 썸네일 배너 -->
+  <div style="max-width:900px;margin:0 auto 36px;padding:0 20px;">
+    <div style="position:relative;border-radius:20px;overflow:hidden;height:clamp(200px,30vw,320px);${sceneBg.includes('url')?'':'background:'+sceneBg+';'}">
+      <div style="position:absolute;inset:0;background:rgba(0,0,0,0.35);"></div>
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:clamp(24px,4vw,40px);">
+        <p style="font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:6px;">${rn} 전 지역</p>
+        <h2 style="font-size:clamp(24px,4vw,36px);font-weight:900;color:#fff;margin:0 0 12px 0;">${rn} 과외</h2>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 첫 상담 무료</span>
+          <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 체험 수업 무료</span>
+          <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 24시간 내 연락</span>
+        </div>
       </div>
     </div>
   </div>
 
-  <div style="max-width:900px;margin:36px auto;padding:0 20px;">
+  <!-- 본문 카드 -->
+  <div style="max-width:900px;margin:0 auto;padding:0 20px 36px;">
     <h2 style="font-size:20px;font-weight:900;color:#1A2340;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid #1A2340;">${rn} 시·구·군별 과외 (${cities.length}개)</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px;">${cards}</div>
   </div>
@@ -2734,37 +2762,32 @@ function buildSchoolListPage(rs, cs) {
   <meta name="description" content="${kn} 지역 초등·중등·고등학교 재학생을 위한 학교별 맞춤 1:1 과외. 해당 학교 기출을 완벽히 파악한 검증된 선생님을 빠르게 매칭해드립니다.">
   ${COMMON_STYLE}</head><body>${NAV}
 
-  <!-- 히어로: 은빛 브랜드 다크 그라디언트 -->
-  <div style="background:linear-gradient(135deg,#0D1526 0%,#1A2340 50%,#2a3d6b 100%);color:white;padding:clamp(44px,6vw,72px) 20px 56px;position:relative;overflow:hidden;">
-    <div style="position:absolute;top:-100px;right:-100px;width:420px;height:420px;background:radial-gradient(circle,rgba(200,169,110,0.18) 0%,transparent 70%);border-radius:50%;"></div>
-    <div style="position:absolute;bottom:-80px;left:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(200,169,110,0.1) 0%,transparent 70%);border-radius:50%;"></div>
-    <div style="max-width:1100px;margin:0 auto;padding:0 16px;position:relative;z-index:1;">
-      <p style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:16px;">
-        <a href="/" style="color:rgba(255,255,255,0.6);text-decoration:none;">홈</a> &rsaquo;
-        <a href="/directory" style="color:rgba(255,255,255,0.6);text-decoration:none;">학교별 과외</a> &rsaquo;
-        <a href="/${rs}/${cs}" style="color:rgba(255,255,255,0.6);text-decoration:none;">${rd}</a> &rsaquo;
-        <span style="color:#C8A96E;font-weight:700;">${kn}</span>
-      </p>
-      <div style="display:inline-block;background:linear-gradient(135deg,#C8A96E,#E8D09A);color:#1A2340;padding:6px 16px;border-radius:30px;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:16px;">⭐ 35년 교육 노하우 · 은빛쌤 과외</div>
-      <h1 style="font-size:clamp(30px,5vw,46px);font-weight:900;margin:0 0 14px 0;line-height:1.2;">
-        ${kn} <span style="background:linear-gradient(135deg,#C8A96E,#E8D09A);-webkit-background-clip:text;background-clip:text;color:transparent;">학교별 과외</span>
-      </h1>
-      <p style="font-size:16px;color:rgba(255,255,255,0.8);line-height:1.8;margin:0 0 28px 0;max-width:720px;">
-        ${kn} 지역 <strong style="color:white;">${totalCount}개교</strong> 재학생을 위한 학교별 맞춤 1:1 과외.
-        해당 학교 기출을 완벽히 파악한 은빛쌤이 직접 1:1로 지도합니다.
-      </p>
-      <div style="display:flex;flex-wrap:wrap;gap:10px;">
-        <div style="background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:10px 18px;display:flex;align-items:center;gap:8px;">
-          <span style="color:#C8A96E;font-size:18px;">✓</span>
-          <span style="font-size:13px;font-weight:600;">학교별 기출 분석</span>
-        </div>
-        <div style="background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:10px 18px;display:flex;align-items:center;gap:8px;">
-          <span style="color:#C8A96E;font-size:18px;">✓</span>
-          <span style="font-size:13px;font-weight:600;">1:1 맞춤 수업</span>
-        </div>
-        <div style="background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:10px 18px;display:flex;align-items:center;gap:8px;">
-          <span style="color:#C8A96E;font-size:18px;">✓</span>
-          <span style="font-size:13px;font-weight:600;">첫 체험 무료</span>
+  <!-- 상단 텍스트 (흰 배경) -->
+  <div style="max-width:1100px;margin:36px auto 0;padding:0 20px;">
+    <p style="font-size:13px;color:#888;margin-bottom:16px;">
+      <a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo;
+      <a href="/schools" style="color:#888;text-decoration:none;">학교별 과외</a> &rsaquo;
+      <a href="/${rs}/${cs}" style="color:#888;text-decoration:none;">${rd}</a> &rsaquo;
+      <span style="color:#1A2340;font-weight:700;">${kn}</span>
+    </p>
+    <div style="display:inline-block;background:${tc};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:14px;">🏫 ${kn}</div>
+    <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${kn} 학교별 과외 | ${totalCount}개교 맞춤 1:1 과외</h1>
+    <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${kn} 지역 초등·중등·고등학교 재학생을 위한 학교별 맞춤 1:1 과외를 연결합니다. 해당 학교 기출을 완벽히 파악한 검증된 선생님을 빠르게 매칭해드립니다.</p>
+  </div>
+
+  <!-- 풍경 썸네일 배너 -->
+  <div style="max-width:1100px;margin:0 auto 36px;padding:0 20px;">
+    <div style="position:relative;border-radius:20px;overflow:hidden;height:clamp(200px,30vw,320px);background:linear-gradient(135deg,#0D1526 0%,#1A2340 50%,#2a3d6b 100%);">
+      <div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);"></div>
+      <div style="position:absolute;top:-60px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(200,169,110,0.2) 0%,transparent 70%);border-radius:50%;"></div>
+      <div style="position:absolute;bottom:-40px;left:-40px;width:200px;height:200px;background:radial-gradient(circle,${tc}33 0%,transparent 70%);border-radius:50%;"></div>
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:clamp(24px,4vw,40px);">
+        <p style="font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:6px;">📍 은빛쌤 1:1 맞춤 과외</p>
+        <h2 style="font-size:clamp(24px,4vw,36px);font-weight:900;color:#fff;margin:0 0 12px 0;">${rd} ${kn} 학교별 과외</h2>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 첫 상담 무료</span>
+          <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 체험 수업 무료</span>
+          <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 24시간 내 연락</span>
         </div>
       </div>
     </div>
