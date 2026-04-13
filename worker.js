@@ -2001,27 +2001,27 @@ function buildRegionPage(rs) {
     totalSchools += (ci.schools||[]).length;
   }
 
-  // 지역별 풍경 그라데이션
-  const sceneBgs = {
-    "seoul":"linear-gradient(135deg,#667eea 0%,#764ba2 100%)",
-    "gyeonggi":"linear-gradient(135deg,#11998e 0%,#38ef7d 100%)",
-    "incheon":"linear-gradient(135deg,#2193b0 0%,#6dd5ed 100%)",
-    "busan":"linear-gradient(135deg,#ee9ca7 0%,#ffdde1 100%)",
-    "daegu":"linear-gradient(135deg,#fc5c7d 0%,#6a82fb 100%)",
-    "gwangju":"linear-gradient(135deg,#a8edea 0%,#fed6e3 100%)",
-    "daejeon":"linear-gradient(135deg,#d299c2 0%,#fef9d7 100%)",
-    "ulsan":"linear-gradient(135deg,#89f7fe 0%,#66a6ff 100%)",
-    "sejong":"linear-gradient(135deg,#c1dfc4 0%,#deecdd 100%)",
-    "gangwon":"linear-gradient(135deg,#0f2027 0%,#203a43 50%,#2c5364 100%)",
-    "chungbuk":"linear-gradient(135deg,#56ab2f 0%,#a8e063 100%)",
-    "chungnam":"linear-gradient(135deg,#3a7bd5 0%,#3a6073 100%)",
-    "jeonbuk":"linear-gradient(135deg,#134e5e 0%,#71b280 100%)",
-    "jeonnam":"linear-gradient(135deg,#005c97 0%,#363795 100%)",
-    "gyeongbuk":"linear-gradient(135deg,#e65c00 0%,#f9d423 100%)",
-    "gyeongnam":"linear-gradient(135deg,#2980b9 0%,#6dd5fa 50%,#ffffff 100%)",
-    "jeju":"linear-gradient(135deg,#f12711 0%,#f5af19 100%)"
+  // 지역별 풍경 배경 이미지 (Unsplash)
+  const sceneImgs = {
+    "seoul":"https://images.unsplash.com/photo-1546874177-9e664107314e?w=1200&h=400&fit=crop",
+    "gyeonggi":"https://images.unsplash.com/photo-1580137189272-c9379f8864fd?w=1200&h=400&fit=crop",
+    "incheon":"https://images.unsplash.com/photo-1590077428593-a55bb07c4665?w=1200&h=400&fit=crop",
+    "busan":"https://images.unsplash.com/photo-1595882080887-db25e0c0e44e?w=1200&h=400&fit=crop",
+    "daegu":"https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=1200&h=400&fit=crop",
+    "gwangju":"https://images.unsplash.com/photo-1548115184-bc6544d06a58?w=1200&h=400&fit=crop",
+    "daejeon":"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=400&fit=crop",
+    "ulsan":"https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&h=400&fit=crop",
+    "sejong":"https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&h=400&fit=crop",
+    "gangwon":"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&h=400&fit=crop",
+    "chungbuk":"https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1200&h=400&fit=crop",
+    "chungnam":"https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&h=400&fit=crop",
+    "jeonbuk":"https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=1200&h=400&fit=crop",
+    "jeonnam":"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=400&fit=crop",
+    "gyeongbuk":"https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1200&h=400&fit=crop",
+    "gyeongnam":"https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=1200&h=400&fit=crop",
+    "jeju":"https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=1200&h=400&fit=crop"
   };
-  const sceneBg = sceneBgs[rs] || "linear-gradient(135deg,#667eea 0%,#764ba2 100%)";
+  const sceneImg = sceneImgs[rs] || "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=400&fit=crop";
 
   let cards = "";
   for (const [cs, ci] of cities) {
@@ -2064,8 +2064,8 @@ function buildRegionPage(rs) {
 
   <!-- 풍경 썸네일 배너 -->
   <div style="max-width:900px;margin:0 auto 36px;padding:0 20px;">
-    <div style="position:relative;border-radius:20px;overflow:hidden;height:clamp(200px,30vw,320px);${sceneBg.includes('url')?'':'background:'+sceneBg+';'}">
-      <div style="position:absolute;inset:0;background:rgba(0,0,0,0.35);"></div>
+    <div style="position:relative;border-radius:20px;overflow:hidden;height:clamp(200px,30vw,320px);background:url('${sceneImg}') center/cover no-repeat,linear-gradient(135deg,#1A2340,#2a3d6b);">
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.2) 50%,rgba(0,0,0,0.15) 100%);"></div>
       <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:clamp(24px,4vw,40px);">
         <p style="font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:6px;">${rn} 전 지역</p>
         <h2 style="font-size:clamp(24px,4vw,36px);font-weight:900;color:#fff;margin:0 0 12px 0;">${rn} 과외</h2>
@@ -2777,13 +2777,14 @@ function buildSchoolListPage(rs, cs) {
 
   <!-- 풍경 썸네일 배너 -->
   <div style="max-width:1100px;margin:0 auto 36px;padding:0 20px;">
-    <div style="position:relative;border-radius:20px;overflow:hidden;height:clamp(200px,30vw,320px);background:linear-gradient(135deg,#0D1526 0%,#1A2340 50%,#2a3d6b 100%);">
-      <div style="position:absolute;inset:0;background:rgba(0,0,0,0.3);"></div>
-      <div style="position:absolute;top:-60px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(200,169,110,0.2) 0%,transparent 70%);border-radius:50%;"></div>
-      <div style="position:absolute;bottom:-40px;left:-40px;width:200px;height:200px;background:radial-gradient(circle,${tc}33 0%,transparent 70%);border-radius:50%;"></div>
+    <div style="position:relative;border-radius:20px;overflow:hidden;height:clamp(200px,30vw,320px);background:url('${(() => {
+      const imgs = {"seoul":"https://images.unsplash.com/photo-1546874177-9e664107314e?w=1200&h=400&fit=crop","gyeonggi":"https://images.unsplash.com/photo-1580137189272-c9379f8864fd?w=1200&h=400&fit=crop","incheon":"https://images.unsplash.com/photo-1590077428593-a55bb07c4665?w=1200&h=400&fit=crop","busan":"https://images.unsplash.com/photo-1595882080887-db25e0c0e44e?w=1200&h=400&fit=crop","daegu":"https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=1200&h=400&fit=crop","gwangju":"https://images.unsplash.com/photo-1548115184-bc6544d06a58?w=1200&h=400&fit=crop","daejeon":"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=400&fit=crop","ulsan":"https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&h=400&fit=crop","sejong":"https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&h=400&fit=crop","gangwon":"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&h=400&fit=crop","chungbuk":"https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1200&h=400&fit=crop","chungnam":"https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&h=400&fit=crop","jeonbuk":"https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=1200&h=400&fit=crop","jeonnam":"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=400&fit=crop","gyeongbuk":"https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1200&h=400&fit=crop","gyeongnam":"https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=1200&h=400&fit=crop","jeju":"https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=1200&h=400&fit=crop"};
+      return imgs[rs] || "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=400&fit=crop";
+    })()}') center/cover no-repeat,linear-gradient(135deg,#1A2340,#2a3d6b);">
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.2) 50%,rgba(0,0,0,0.15) 100%);"></div>
       <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:clamp(24px,4vw,40px);">
         <p style="font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:6px;">📍 은빛쌤 1:1 맞춤 과외</p>
-        <h2 style="font-size:clamp(24px,4vw,36px);font-weight:900;color:#fff;margin:0 0 12px 0;">${rd} ${kn} 학교별 과외</h2>
+        <h2 style="font-size:clamp(24px,4vw,36px);font-weight:900;color:#fff;margin:0 0 12px 0;">${kn} 학교별 과외</h2>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
           <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 첫 상담 무료</span>
           <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 체험 수업 무료</span>
