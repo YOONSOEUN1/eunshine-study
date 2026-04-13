@@ -1991,22 +1991,71 @@ function buildRegionSchoolsPage(rs) {
 function buildRegionPage(rs) {
   const ri = locations[rs];
   if (!ri) return null;
-  const c = ri.color || "#3498db";
+  const rn = ri.region_name;
+  const tc = ri.color || "#3498db";
   const cities = Object.entries(ri.cities).sort((a,b)=>a[1].name.localeCompare(b[1].name));
-  let body = `<div style="max-width:1100px;margin:36px auto;background:white;padding:clamp(20px,4vw,48px);border-radius:20px;box-shadow:0 8px 28px rgba(0,0,0,0.08);">
-    <h1 style="text-align:center;font-size:clamp(22px,4vw,32px);color:#1A2340;margin-bottom:8px;">📍 ${ri.region_name} 1:1 맞춤 과외</h1>
-    <p style="text-align:center;color:#7f8c8d;margin-bottom:28px;font-size:15px;">방문/화상 모두 가능 · ${cities.length}개 시·구 · 시·구를 선택하세요</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;">`;
-  for (const [cs, ci] of cities) {
-    body += `<a href="/${rs}/${cs}" style="display:block;text-align:center;padding:16px 8px;border-radius:12px;font-weight:700;font-size:16px;text-decoration:none;color:#fff;background:${c};box-shadow:0 4px 14px rgba(0,0,0,0.08);">${ci.name}</a>`;
+
+  let totalDongs = 0, totalSchools = 0;
+  for (const ci of Object.values(ri.cities)) {
+    totalDongs += (ci.dongs||[]).length;
+    totalSchools += (ci.schools||[]).length;
   }
-  body += `</div>
-    <div style="margin-top:36px;padding:24px;background:#f8faff;border-radius:14px;">
-      <h2 style="font-size:18px;color:#1A2340;margin-bottom:10px;">🌟 ${ri.region_name} 은빛과외 안내</h2>
-      <p style="font-size:14px;color:#444;line-height:1.9;">${ri.region_name} 전 지역에서 35년 경력 은빛쌤의 1:1 맞춤 과외를 받으실 수 있습니다. 방문과외와 화상과외 중 학생 스케줄에 맞는 방식을 무료 상담 후 함께 결정하며, 첫 상담과 체험 수업은 완전 무료입니다. 카카오톡 24시간 질문도 가능합니다.</p>
+
+  let cards = "";
+  for (const [cs, ci] of cities) {
+    const dongCnt = (ci.dongs||[]).length;
+    const schCnt = (ci.schools||[]).length;
+    cards += `<a href="/${rs}/${cs}" style="text-decoration:none;">
+      <div style="background:#fff;border:1px solid #e8edf2;border-radius:14px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;transition:transform .2s,box-shadow .2s;cursor:pointer;"
+           onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,0.1)'"
+           onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;background:${tc};color:#fff;border-radius:10px;font-size:16px;">📍</span>
+          <div>
+            <div style="font-size:16px;font-weight:800;color:#1A2340;">${ci.name}</div>
+            <div style="font-size:12px;color:#888;margin-top:2px;">${dongCnt}개 동·읍·면 · ${schCnt}개 학교</div>
+          </div>
+        </div>
+        <span style="color:#aaa;font-size:18px;">→</span>
+      </div>
+    </a>`;
+  }
+
+  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
+  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>${rn} 과외 | 방문·화상 1:1 맞춤 과외 | 은빛쌤</title>
+  <meta name="description" content="${rn} 전 지역 1:1 맞춤 과외. 방문/화상 모두 가능, 35년 경력 은빛쌤. 첫 상담·체험 수업 무료.">
+  ${COMMON_STYLE}</head><body>${NAV}
+
+  <div style="background:linear-gradient(135deg,#0D1526 0%,#1A2340 50%,#2a3d6b 100%);color:white;padding:clamp(44px,6vw,72px) 20px 56px;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-100px;right:-100px;width:420px;height:420px;background:radial-gradient(circle,rgba(200,169,110,0.18) 0%,transparent 70%);border-radius:50%;"></div>
+    <div style="position:absolute;bottom:-80px;left:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(200,169,110,0.1) 0%,transparent 70%);border-radius:50%;"></div>
+    <div style="position:absolute;top:40%;left:60%;width:200px;height:200px;background:radial-gradient(circle,rgba(52,152,219,0.1) 0%,transparent 70%);border-radius:50%;"></div>
+    <div style="max-width:900px;margin:0 auto;padding:0 16px;position:relative;z-index:1;">
+      <p style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:16px;">
+        <a href="/" style="color:rgba(255,255,255,0.6);text-decoration:none;">홈</a> &rsaquo;
+        <a href="/directory" style="color:rgba(255,255,255,0.6);text-decoration:none;">지역별 과외</a> &rsaquo;
+        <span style="color:#C8A96E;font-weight:700;">${rn}</span>
+      </p>
+      <div style="display:inline-block;background:linear-gradient(135deg,#C8A96E,#E8D09A);color:#1A2340;padding:6px 16px;border-radius:30px;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:16px;">⭐ 35년 교육 노하우 · 은빛쌤 과외</div>
+      <h1 style="font-size:clamp(28px,5vw,44px);font-weight:900;margin:0 0 14px 0;line-height:1.2;">
+        📍 ${rn} <span style="background:linear-gradient(135deg,#C8A96E,#E8D09A);-webkit-background-clip:text;background-clip:text;color:transparent;">1:1 맞춤 과외</span>
+      </h1>
+      <p style="font-size:16px;color:rgba(255,255,255,0.7);line-height:1.8;max-width:700px;">${rn} 전 지역에서 방문·화상 1:1 맞춤 과외를 제공합니다. ${cities.length}개 시·구·군, ${totalDongs}개 동·읍·면, ${totalSchools}개 학교를 지원합니다.</p>
+      <div style="display:flex;gap:16px;margin-top:24px;flex-wrap:wrap;">
+        <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px 22px;text-align:center;"><div style="font-size:24px;font-weight:900;color:#C8A96E;">${cities.length}</div><div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px;">시·구·군</div></div>
+        <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px 22px;text-align:center;"><div style="font-size:24px;font-weight:900;color:#C8A96E;">${totalDongs}</div><div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px;">동·읍·면</div></div>
+        <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px 22px;text-align:center;"><div style="font-size:24px;font-weight:900;color:#C8A96E;">${totalSchools}</div><div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px;">학교</div></div>
+      </div>
     </div>
-  </div>`;
-  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>${ri.region_name} 과외 - 은빛과외 1:1 맞춤 수업</title><meta name="description" content="${ri.region_name} 전 지역 1:1 맞춤 과외. 방문/화상 모두 가능, 35년 경력 은빛쌤. 첫 상담·체험 수업 무료.">${COMMON_STYLE}</head><body>${NAV}${body}${CONTACT}${FOOTER}${FLOATING}</body></html>`;
+  </div>
+
+  <div style="max-width:900px;margin:36px auto;padding:0 20px;">
+    <h2 style="font-size:20px;font-weight:900;color:#1A2340;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid #1A2340;">${rn} 시·구·군별 과외 (${cities.length}개)</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px;">${cards}</div>
+  </div>
+  ${CONTACT}${FOOTER}${FLOATING}</body></html>`;
 }
 
 function buildCityPage(rs, cs) {
