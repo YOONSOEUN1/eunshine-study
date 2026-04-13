@@ -1843,17 +1843,47 @@ const FOOTER = `<footer style="background:#07101e;color:rgba(255,255,255,0.38);t
 
 function buildDirectoryPage() {
   const sorted = Object.entries(locations).sort((a,b)=>a[1].region_name.localeCompare(b[1].region_name));
-  let body = "";
+  let cards = "";
   for (const [rs,ri] of sorted) {
-    const c = ri.color||"#3498db";
-    const cities = Object.entries(ri.cities).sort((a,b)=>a[1].name.localeCompare(b[1].name));
-    body += `<div id="${encodeURIComponent(ri.region_name)}" style="margin-top:48px;"><h2 style="color:${c};border-bottom:3px solid ${c};padding-bottom:8px;display:inline-block;font-size:20px;">📍 ${ri.region_name}</h2></div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;margin-top:16px;">`;
-    for (const [citySlug,ci] of cities) {
-      body += `<a href="/${rs}/${citySlug}" style="display:block;text-align:center;padding:12px 6px;border-radius:10px;font-weight:700;font-size:15px;text-decoration:none;color:#fff;background:${c};">${ci.name}</a>`;
+    const rn = ri.region_name;
+    const tc = ri.color||"#3498db";
+    let totalCities = 0, totalDongs = 0;
+    for (const ci of Object.values(ri.cities)) {
+      totalCities++;
+      totalDongs += (ci.dongs||[]).length;
     }
-    body += `</div>`;
+    cards += `<a href="/${rs}" style="text-decoration:none;">
+      <div style="background:#fff;border:1px solid #e8edf2;border-radius:14px;padding:22px 24px;display:flex;align-items:center;justify-content:space-between;transition:transform .2s,box-shadow .2s;cursor:pointer;"
+           onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,0.1)'"
+           onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <span style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;background:${tc};color:#fff;border-radius:12px;font-size:20px;">📍</span>
+          <div>
+            <div style="font-size:17px;font-weight:800;color:#1A2340;">${rn}</div>
+            <div style="font-size:13px;color:#888;margin-top:3px;">${totalCities}개 시·구·군 · ${totalDongs}개 동·읍·면</div>
+          </div>
+        </div>
+        <span style="color:#aaa;font-size:20px;">→</span>
+      </div>
+    </a>`;
   }
-  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>은빛과외 - 전국 지역 과외</title>${COMMON_STYLE}</head><body>${NAV}<div style="max-width:1100px;margin:36px auto;background:white;padding:clamp(20px,4vw,48px);border-radius:20px;box-shadow:0 8px 28px rgba(0,0,0,0.08);"><h1 style="text-align:center;font-size:clamp(22px,4vw,32px);color:#1A2340;margin-bottom:8px;">🌐 은빛과외 전국 지역 목록</h1><p style="text-align:center;color:#7f8c8d;margin-bottom:28px;font-size:15px;">방문/화상 모두 가능 · 지역을 선택하세요</p><form action="/search" method="GET" style="display:flex;max-width:500px;margin:0 auto 36px;border-radius:50px;overflow:hidden;border:2px solid #C8A96E;background:white;"><input name="q" style="flex:1;padding:14px 20px;border:none;font-size:15px;outline:none;" placeholder="동·구 검색 (예: 대치동, 강남구)"><button style="background:#C8A96E;border:none;padding:0 24px;font-size:15px;font-weight:700;cursor:pointer;color:#1A2340;">검색 🔍</button></form>${body}</div>${CONTACT}${FOOTER}${FLOATING}</body></html>`;
+  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
+  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>전국 지역별 과외 | 방문·화상 1:1 맞춤 과외 | 은빛쌤</title>
+  <meta name="description" content="전국 시·도별 1:1 맞춤 방문·화상 과외. 35년 경력 은빛쌤이 학생 한 명 한 명에게 맞춤 커리큘럼을 설계합니다. 첫 상담·체험 수업 무료.">
+  ${COMMON_STYLE}</head><body>${NAV}
+  <div style="max-width:900px;margin:36px auto;padding:0 20px;">
+    <p style="font-size:13px;color:#888;margin-bottom:20px;">
+      <a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo;
+      <span style="color:#1A2340;font-weight:700;">지역별 과외</span>
+    </p>
+    <h1 style="font-size:clamp(26px,5vw,36px);font-weight:900;color:#1A2340;margin-bottom:12px;">🗺️ 전국 지역별 과외</h1>
+    <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:36px;">전국 시·도별 1:1 맞춤 방문·화상 과외를 연결합니다. 35년 경력 은빛쌤이 학생 한 명 한 명에게 딱 맞는 커리큘럼을 설계하며, 첫 상담과 체험 수업은 완전 무료입니다.</p>
+    <h2 style="font-size:20px;font-weight:900;color:#1A2340;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid #1A2340;">전국 시·도별 지역 과외</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:14px;">${cards}</div>
+  </div>
+  ${CONTACT}${FOOTER}${FLOATING}</body></html>`;
 }
 
 // ── 전국 학교별 과외 페이지 (/schools) ──
