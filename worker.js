@@ -3446,6 +3446,16 @@ function buildGradePage(gradeCode) {
       <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:16px;">⭐ ${gd.name} 과외 개요</h2>
       <p style="font-size:14px;color:#444;line-height:2;margin:0;">${gd.desc}</p>
     </div>
+    <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:18px;">📚 ${gd.short} 과목별 과외</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">
+        ${subjects.map(function(s){
+          const subjEmoji={"국어":"📖","영어":"🔤","수학":"🔢","사회":"🌍","과학":"🔬"};
+          const subjDesc = (descriptions[gd.level]||descriptions["초등"])[s]||"";
+          return '<a href="/grade/'+gradeCode+'/'+encodeURIComponent(s)+'" style="text-decoration:none;"><div style="background:white;border:2px solid '+tc+';border-radius:14px;padding:16px;height:100%;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform=\'translateY(-4px)\';this.style.boxShadow=\'0 8px 20px rgba(0,0,0,0.1)\'" onmouseout="this.style.transform=\'\';this.style.boxShadow=\'\'"><div style="font-size:24px;margin-bottom:8px;">'+(subjEmoji[s]||"📚")+'</div><div style="font-size:15px;font-weight:900;color:#1A2340;margin-bottom:6px;">'+gd.short+' '+s+'과외</div><div style="font-size:12px;color:#666;line-height:1.6;flex:1;">'+subjDesc.replace(/\{\{region\}\}/g,"").substring(0,55)+'...</div><div style="margin-top:10px;color:'+tc+';font-weight:700;font-size:11px;">자세히 보기 →</div></div></a>';
+        }).join("")}
+      </div>
+    </div>
     ${tipSection}
     ${reviewSection}
     ${faqSection}
@@ -3458,12 +3468,146 @@ function buildGradePage(gradeCode) {
   </div>${CONTACT}${FOOTER}${FLOATING}</body></html>`;
 }
 
+function buildGradeSubjectPage(gradeCode, subject) {
+  const gd = GRADE_DATA[gradeCode];
+  if (!gd) return null;
+  if (subjects.indexOf(subject) < 0) return null;
+  const tc = gd.color;
+  const level = gd.level;
+  const seed = cH("gradeSubj|"+gradeCode+"|"+subject);
+  const subjDesc = ((descriptions[level]||descriptions["초등"])[subject]||"").replace(/\{\{region\}\}/g, "");
+  var tipPool = TIP_SUBJ;
+  if(level==="초등") tipPool = TIP_SUBJ_ELEM;
+  else if(level==="중등") tipPool = TIP_SUBJ_MID;
+  // 해당 과목 팁 6개
+  const tips = pkU(tipPool[subject]||tipPool["국어"], seed, 6, 1);
+  let tipSection = `<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+    <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:16px;">📖 ${gd.short} ${subject} 공부법 & 학습 전략</h2>`;
+  tips.forEach(function(t){
+    tipSection += `<div style="background:#f8faff;border-radius:14px;padding:18px 22px;margin-bottom:12px;border-left:4px solid ${tc};">
+      <p style="font-size:14px;color:#333;line-height:2;margin:0;">${t}</p>
+    </div>`;
+  });
+  tipSection += `</div>`;
+  // 전략 (STRAT_GRADE에서)
+  const strat = pk(STRAT_GRADE[level]||STRAT_GRADE["초등"], seed, 3);
+  let stratSection = `<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+    <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:16px;">🎯 ${gd.short} 학습 전략</h2>
+    <p style="font-size:14px;color:#444;line-height:2;margin:0;">${strat}</p>
+  </div>`;
+  // 교육 칼럼
+  const columns = pkU(COLUMN_POOL, seed, 2, 23);
+  let colSection = "";
+  columns.forEach(function(col){
+    colSection += `<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">📝 ${col.title}</h2>
+      <p style="font-size:14px;color:#444;line-height:2;">${col.body}</p>
+    </div>`;
+  });
+  // 후기
+  var rvPool = RV_BODIES;
+  if(level==="초등") rvPool = RV_BODIES.filter(function(r){return r.indexOf("고등학교")<0&&r.indexOf("수능")<0&&r.indexOf("모의고사")<0;});
+  else if(level==="중등") rvPool = RV_BODIES.filter(function(r){return r.indexOf("수능")<0&&r.indexOf("모의고사")<0;});
+  if(rvPool.length<4) rvPool = RV_BODIES;
+  const reviews = pkU(rvPool, seed, 4, 7);
+  const reviewMeta = reviews.map(function(r,i){
+    const s2 = cH(gradeCode+subject+i);
+    return {name:pk(RV_NAMES,s2,i*3),grade:gd.short,subj:subject,body:r};
+  });
+  let reviewSection = `<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+    <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">💬 ${gd.short} ${subject} 학부모님 생생 후기</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:24px;">`;
+  reviewMeta.forEach(function(rv){
+    reviewSection += `<div style="border:2px solid ${tc}22;border-radius:16px;padding:20px;background:white;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+        <div style="width:40px;height:40px;border-radius:50%;background:${tc};color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;">${rv.name.charAt(0)}</div>
+        <div><div style="font-weight:700;color:#1A2340;font-size:14px;">${maskName(rv.name)} 학부모님</div>
+        <div style="font-size:12px;color:#888;">${rv.grade} ${rv.subj}</div></div></div>
+      <p style="font-size:13px;color:#555;line-height:1.8;margin:0;">"${rv.body}"</p></div>`;
+  });
+  reviewSection += `</div>`;
+  // 성적 향상 사례 (과목 필터)
+  var storyPool = SUCCESS_POOL.filter(function(s){return s.subj===subject;});
+  if(storyPool.length<3) storyPool = SUCCESS_POOL;
+  const stories = pkU(storyPool, seed, 3, 17);
+  reviewSection += `<h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">📈 ${gd.short} ${subject} 실제 성적 향상 사례</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;">`;
+  stories.forEach(function(st){
+    reviewSection += `<div style="border:2px solid ${tc}22;border-radius:16px;padding:20px;background:white;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <span style="font-weight:800;color:#1A2340;font-size:15px;">${st.name} 학생</span>
+        <span style="background:${tc}15;color:${tc};padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;">${gd.short} ${st.subj}</span></div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="background:#fdecea;color:#e74c3c;padding:6px 14px;border-radius:8px;font-weight:800;font-size:15px;">${st.from}</span>
+        <span style="font-size:20px;color:${tc};">→</span>
+        <span style="background:#e8f8f5;color:#27ae60;padding:6px 14px;border-radius:8px;font-weight:800;font-size:15px;">${st.to}</span>
+        <span style="font-size:12px;color:#888;">(${st.period})</span></div>
+      <p style="font-size:13px;color:#555;line-height:1.8;margin:0;">${st.story}</p></div>`;
+  });
+  reviewSection += `</div></div>`;
+  // FAQ
+  const faqs = pkU(FAQ_POOL, seed, 5, 13);
+  let faqSection = `<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+    <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:20px;">자주 묻는 질문</h2>
+    <div style="display:flex;flex-direction:column;gap:24px;">`;
+  faqs.forEach(function(fq){
+    faqSection += `<div>
+      <p style="font-weight:700;color:#2563eb;font-size:15px;margin-bottom:8px;">Q. ${gd.short} ${subject} ${fq.q}</p>
+      <p style="font-size:14px;color:#444;line-height:1.8;margin:0;">${fq.a}</p></div>`;
+  });
+  faqSection += `</div></div>`;
+  // 배경 이미지
+  const heroImg = bgImg(subject, seed);
+
+  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
+  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>${gd.name} ${subject}과외 | 1:1 방문·화상 과외 | 은빛쌤</title>
+  <meta name="description" content="${gd.name} ${subject} 과외 전문 은빛쌤. ${subjDesc.substring(0,60)} 35년 교육 노하우, 첫 상담·체험 무료.">
+  ${COMMON_STYLE}</head><body>${NAV}
+  <div style="max-width:1100px;margin:40px auto;padding:0 16px;">
+    <p style="font-size:13px;color:#888;margin-bottom:12px;">
+      <a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo;
+      <a href="/grade/${gradeCode}" style="color:#888;text-decoration:none;">${gd.name}</a> &rsaquo;
+      <span style="color:#1A2340;font-weight:600;">${subject}과외</span>
+    </p>
+    <div style="background:linear-gradient(135deg,${hexToRgba(tc,0.92)},${hexToRgba(tc,0.78)}),url('${heroImg}') center/cover;color:white;border-radius:20px;padding:clamp(30px,5vw,52px);margin-bottom:24px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
+      <p style="font-size:13px;opacity:.8;margin-bottom:6px;">${gd.emoji} ${gd.name}</p>
+      <h1 style="font-size:clamp(26px,5vw,42px);font-weight:900;margin-bottom:10px;">${gd.short} ${subject}과외</h1>
+      <p style="font-size:14px;opacity:.9;margin-bottom:18px;">은빛쌤 1:1 맞춤 과외 | 상담 후 방문·화상 수업 결정</p>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;">
+        <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ 35년 교육 노하우</span>
+        <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ ${subject} 기출 완벽 분석</span>
+        <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ 첫 상담·체험 무료</span>
+      </div>
+    </div>
+    <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:16px;">⭐ ${gd.short} ${subject}과외 개요</h2>
+      <p style="font-size:14px;color:#444;line-height:2;margin:0;">${subjDesc} ${gd.desc}</p>
+    </div>
+    ${tipSection}
+    ${stratSection}
+    ${colSection}
+    ${reviewSection}
+    ${faqSection}
+    <div style="text-align:center;margin-bottom:40px;">
+      <a href="/#form" style="display:inline-block;background:linear-gradient(135deg,#C8A96E,#e0c080);color:#1A2340;font-size:17px;font-weight:900;padding:20px 48px;border-radius:50px;text-decoration:none;box-shadow:0 6px 24px rgba(200,169,110,0.4);">
+        📝 ${gd.short} ${subject} 1:1 무료 모의수업 &amp; 상담 신청
+      </a>
+      <p style="font-size:13px;color:#999;margin-top:12px;">첫 상담 및 체험 수업은 완전 무료입니다</p>
+    </div>
+  </div>${CONTACT}${FOOTER}${FLOATING}</body></html>`;
+}
+
 function buildAllSiteUrls() {
   const base = "https://" + SITE_HOST;
   const urls = [base + "/", base + "/directory", base + "/schools"];
   // 학년별 과외 URL 추가
   for (const gc of Object.keys(GRADE_DATA)) {
     urls.push(base + "/grade/" + gc);
+    for (const s of subjects) {
+      urls.push(base + "/grade/" + gc + "/" + encodeURIComponent(s));
+    }
   }
   for (const [rs, ri] of Object.entries(locations)) {
     urls.push(base + "/" + rs);
@@ -3706,6 +3850,9 @@ async function handle(req) {
     // 학년별 과외 URL
     for (const gc of Object.keys(GRADE_DATA)) {
       urls.push("https://eunshinestudy.com/grade/" + gc);
+      for (const s of subjects) {
+        urls.push("https://eunshinestudy.com/grade/" + gc + "/" + encodeURIComponent(s));
+      }
     }
     for (const [rs, ri] of Object.entries(locations)) {
       urls.push("https://eunshinestudy.com/schools/" + rs);
@@ -3728,6 +3875,12 @@ ${urls.map(u => `  <url><loc>${u}</loc><changefreq>weekly</changefreq><priority>
   // ── 학년별 과외 페이지 라우팅 ──
   if (parts.length===2 && parts[0]==="grade" && GRADE_DATA[parts[1]]) {
     const html = buildGradePage(parts[1]);
+    if(html) return new Response(html,{headers:H});
+  }
+  // ── 학년+과목 상세 페이지 라우팅 ──
+  if (parts.length===3 && parts[0]==="grade" && GRADE_DATA[parts[1]]) {
+    const subj = decodeURIComponent(parts[2]);
+    const html = buildGradeSubjectPage(parts[1], subj);
     if(html) return new Response(html,{headers:H});
   }
   if (parts.length===1 && locations[parts[0]]) {
