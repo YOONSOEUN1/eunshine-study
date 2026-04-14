@@ -1285,9 +1285,114 @@ const subjects = ["국어","영어","수학","사회","과학"];
 // 핵심: 35년 교육 노하우, 1:1 맞춤, 방문·화상, 첫 체험 무료,
 //       카톡 24시간, 기출 분석, 수행평가 관리, 매주 학부모 피드백
 // ============================================================
+function maskName(n){if(!n||n.length<2)return n;return n.charAt(0)+"○".repeat(n.length-1);}
 function cH(s){let h=5381;for(let i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))&0x7fffffff;return h;}
 function pk(a,h,o){return a[((h>>>0)+(o||0))%a.length];}
 function pkU(a,h,n,b){const arr=a.slice(),r=[];let rng=(Math.imul(h>>>0,2654435769)^Math.imul((b||0)+1,1597334677))>>>0;for(let i=0;i<n&&arr.length>0;i++){rng=(Math.imul(rng,1664525)+1013904223)>>>0;rng=(rng^(rng>>>16))>>>0;const idx=rng%arr.length;r.push(arr.splice(idx,1)[0]);}return r;}
+
+const TIP_SUBJ_ELEM={
+"국어":[
+"초등 국어의 핵심은 독해력입니다. 글을 읽고 '누가, 무엇을, 왜' 했는지 정리하는 습관을 들이면 지문 이해력이 빠르게 향상됩니다. 은빛쌤은 35년 교육 노하우로 학생 수준에 맞는 독해 훈련을 1:1로 진행합니다.",
+"초등학생 어휘력은 전 과목 성적의 기초입니다. 교과서에 나오는 새로운 낱말을 매일 5개씩 뜻과 예문을 함께 정리하면 어휘력이 눈에 띄게 늘어납니다. 매주 학부모님께 어휘 학습 현황을 상세히 피드백합니다.",
+"받아쓰기와 일기 쓰기는 맞춤법과 표현력을 동시에 키우는 최고의 방법입니다. 매일 짧은 글쓰기를 반복하면 글을 쓰는 것에 대한 자신감이 생깁니다. 은빛쌤은 학생의 글을 꼼꼼히 첨삭하며 표현력을 키워줍니다.",
+"독서 습관은 국어 실력의 기반입니다. 학생 수준에 맞는 책을 읽고 한 줄 감상문을 쓰는 활동을 꾸준히 하면 독해력과 사고력이 함께 성장합니다. 은빛쌤은 학생에게 맞는 독서 목록을 추천하고 독서 지도까지 함께합니다.",
+"초등 국어 시험에서 서술형 문제 비중이 늘고 있습니다. 물음에 맞게 문장으로 답을 쓰는 연습을 반복하면 서술형에서 감점을 줄일 수 있습니다. 카카오톡 24시간 질문으로 수업 외 시간에도 글쓰기 첨삭이 가능합니다.",
+"시나 이야기를 읽고 인물의 마음이나 느낌을 표현하는 연습은 문학 감상 능력의 기초입니다. 교과서 작품을 함께 읽고 생각을 나누는 수업으로 흥미를 키웁니다. 첫 상담과 체험 수업은 완전 무료입니다.",
+"초등학교 국어에서 띄어쓰기와 문장 부호 사용법을 정확히 익히면 글의 완성도가 크게 올라갑니다. 은빛쌤은 학생이 쓴 글을 함께 점검하며 올바른 국어 사용 습관을 자연스럽게 만들어줍니다.",
+"교과서 지문을 소리 내어 읽는 낭독 훈련은 독해력과 발표력을 동시에 기르는 효과가 있습니다. 매일 10분 낭독 습관을 들이면 수업 시간 발표에도 자신감이 생깁니다. 매주 학부모님께 학습 현황을 리포트합니다."
+],
+"영어":[
+"초등 영어는 파닉스가 기초입니다. 알파벳 소리를 정확히 익히면 처음 보는 단어도 읽을 수 있게 됩니다. 은빛쌤은 35년 교육 노하우로 학생 수준에 맞는 파닉스 훈련을 체계적으로 진행합니다.",
+"초등학생은 영어 동화책으로 재미있게 영어에 노출되는 것이 효과적입니다. 그림과 함께 이야기를 읽으며 자연스럽게 어휘와 문장 패턴을 익힙니다. 매주 학부모님께 독서 현황과 학습 진도를 상세히 피드백합니다.",
+"기본 영어 회화 표현을 익히면 영어에 대한 자신감이 생깁니다. 인사, 자기소개, 좋아하는 것 말하기 등 실생활 표현을 반복하며 자연스럽게 말하는 연습을 합니다. 카카오톡 24시간 질문으로 발음 교정도 가능합니다.",
+"초등 영어 단어는 그림 카드와 함께 외우면 기억에 오래 남습니다. 주제별(음식, 동물, 가족, 학교 등)로 분류해 학습하면 체계적으로 어휘력을 키울 수 있습니다. 은빛쌤은 학생의 수준에 맞는 어휘 학습 계획을 세워드립니다.",
+"영어 알파벳 대문자와 소문자를 정확히 쓰고 기본 단어를 받아쓸 수 있으면 영어 학습의 토대가 완성됩니다. 매일 5개 단어 쓰기를 습관화하면 맞춤법 실력이 빠르게 향상됩니다. 첫 상담과 체험 수업은 완전 무료입니다.",
+"초등학교 영어 교과서 본문을 완벽히 이해하는 것이 시험 대비의 핵심입니다. 본문 문장을 읽고 해석하는 연습을 반복하면 학교 시험에서 좋은 성적을 받을 수 있습니다. 방문수업이든 화상수업이든 동일한 퀄리티로 진행됩니다.",
+"영어 노래와 챈트를 활용하면 영어 리듬감과 발음을 자연스럽게 익힐 수 있습니다. 놀이처럼 즐기면서 배우는 영어가 초등학생에게 가장 효과적입니다. 은빛쌤은 학생 성향에 맞춘 재미있는 수업을 설계합니다.",
+"초등 영어에서 'be동사'와 '일반동사'의 차이를 이해하면 중학교 영문법에 대한 두려움이 사라집니다. 기초 문법을 재미있는 예문과 함께 자연스럽게 익힙니다. 매주 학습 현황을 학부모님께 투명하게 보고합니다."
+],
+"수학":[
+"초등 수학에서 연산 정확도가 가장 중요합니다. 덧셈, 뺄셈, 곱셈, 나눗셈의 기본 연산을 정확히 할 수 있어야 응용 문제도 풀 수 있습니다. 은빛쌤은 매일 연산 연습 분량을 학생 수준에 맞게 설계합니다.",
+"분수와 소수 개념은 초등 수학의 핵심입니다. 피자나 케이크를 나누는 것처럼 실생활 예시로 설명하면 개념이 직관적으로 와닿습니다. 분수·소수 기초가 탄탄해야 중학교 수학이 수월합니다. 첫 상담과 체험 수업은 완전 무료입니다.",
+"초등학생이 서술형 수학 문제를 어려워하는 이유는 문제 읽기 능력이 부족하기 때문입니다. 문제에서 구하는 것과 주어진 조건을 밑줄 치며 읽는 습관을 들이면 풀이 방향이 명확해집니다. 매주 학부모님께 학습 진도를 피드백합니다.",
+"구구단은 수학 연산의 기본 중 기본입니다. 게임이나 노래를 활용해 재미있게 외우면 곱셈과 나눗셈이 빨라집니다. 은빛쌤은 35년 교육 노하우로 학생이 흥미를 잃지 않도록 다양한 방법을 활용합니다.",
+"도형 단원에서는 직접 그리고 자르고 붙이는 활동이 효과적입니다. 삼각형, 사각형의 특징을 손으로 만들어보면 넓이와 둘레 공식이 자연스럽게 이해됩니다. 카카오톡 24시간 질문으로 숙제에서 막히는 문제도 바로 도움받을 수 있습니다.",
+"단위 환산(cm↔m, g↔kg, mL↔L 등)은 초등학생이 자주 틀리는 영역입니다. 실제 길이를 재거나 물을 계량하는 활동으로 단위 감각을 키우면 실수가 줄어듭니다. 은빛쌤은 1:1 맞춤으로 학생의 취약 영역을 집중 보완합니다.",
+"초등 수학 풀이 과정을 깔끔하게 쓰는 습관은 중학교 이후까지 이어집니다. 식을 세우고 계산하고 답을 쓰는 3단계를 매번 지키도록 지도합니다. 은빛쌤은 학생의 풀이 습관을 꼼꼼히 점검하며 올바른 습관을 만들어줍니다.",
+"초등학교 수학 문장제 문제는 독해력이 뒷받침되어야 합니다. 문제를 읽고 그림으로 그려보는 습관을 들이면 어떤 연산을 써야 하는지 쉽게 판단할 수 있습니다. 방문과외와 화상과외 중 상담 후 최적의 방식을 함께 결정합니다."
+],
+"사회":[
+"초등 사회는 우리 고장과 지역사회에 대해 배우는 것에서 시작합니다. 실제로 동네를 탐방하거나 지도를 보며 학습하면 교과서 내용이 생생해집니다. 은빛쌤은 학생의 생활과 연결한 재미있는 사회 수업을 진행합니다.",
+"지도 읽기는 초등 사회의 기본 능력입니다. 방위, 축척, 기호를 정확히 이해하면 지리 단원이 쉬워집니다. 은빛쌤은 35년 교육 노하우로 실물 지도와 함께 재미있게 가르칩니다. 첫 상담과 체험 수업은 무료입니다.",
+"초등학교 한국사는 시대순으로 큰 흐름을 이해하는 것이 중요합니다. 연표를 직접 만들어보고 중요한 사건과 인물을 정리하면 역사 공부가 재미있어집니다. 매주 학부모님께 학습 진도를 상세히 피드백합니다.",
+"사회 교과서에 나오는 사진, 그림, 그래프를 꼼꼼히 보는 습관을 들이면 시험에서 자료 해석 문제를 쉽게 풀 수 있습니다. 은빛쌤은 교과서 자료를 활용한 문제 풀이 연습을 함께 진행합니다.",
+"초등 사회 서술형은 배운 내용을 자기 말로 설명할 수 있어야 합니다. 핵심 용어를 포함해 짧은 문장으로 답하는 연습을 반복하면 서술형 점수가 올라갑니다. 카카오톡 24시간 질문으로 수업 외 시간에도 도움받을 수 있습니다.",
+"초등학교 사회에서 경제 단원은 용돈 관리, 시장 등 생활 속 경제 개념과 연결하면 이해가 쉬워집니다. 은빛쌤은 학생이 경험한 실생활 사례로 경제 개념을 쉽게 설명합니다. 수행평가 대비까지 함께 관리합니다.",
+"우리나라의 자연환경과 생활 모습을 연결 지어 공부하면 지리 단원이 훨씬 재미있어집니다. 기후와 지형이 사람들의 생활에 미치는 영향을 사진과 영상으로 함께 배웁니다. 방문·화상 중 상담 후 수업 방식을 결정합니다.",
+"초등 사회에서 민주주의와 시민의 역할에 대해 배울 때 학교 학생회 활동과 연결하면 쉽게 이해할 수 있습니다. 은빛쌤은 학생의 학교생활과 교과 내용을 연결하여 흥미롭게 가르칩니다."
+],
+"과학":[
+"초등 과학은 관찰과 실험이 핵심입니다. 교과서의 실험 목적과 과정을 미리 이해하고 결과를 예측하는 습관을 들이면 과학적 사고력이 길러집니다. 은빛쌤은 실험 원리를 쉽게 설명하며 실험 보고서 작성까지 함께 지도합니다.",
+"동식물의 생김새와 생활 환경을 관찰일기로 기록하면 생물 단원이 재미있어집니다. 직접 키우거나 관찰하는 활동은 교과서 지식을 생생하게 만들어줍니다. 매주 학부모님께 학습 진도와 과학적 호기심 성장을 피드백합니다.",
+"초등 과학에서 물질의 상태(고체, 액체, 기체)를 실생활 예시와 연결하면 이해가 빨라집니다. 물이 얼음이 되고 수증기가 되는 과정을 직접 관찰하며 배우면 오래 기억됩니다. 첫 상담과 체험 수업은 완전 무료입니다.",
+"날씨와 계절의 변화를 관찰 기록하면 지구과학 단원이 쉬워집니다. 매일 날씨를 기록하고 기온 변화를 그래프로 그려보는 활동이 효과적입니다. 은빛쌤은 교과 연계 탐구 활동을 안내하며 수행평가까지 함께 관리합니다.",
+"초등 과학 시험에서 실험 과정과 결과를 묻는 문제가 자주 나옵니다. 교과서의 탐구 활동을 표로 정리하면 시험 대비가 쉬워집니다. 은빛쌤은 35년 교육 노하우로 시험에 자주 나오는 실험을 집중적으로 다룹니다.",
+"초등학교 과학에서 태양계와 별자리 단원은 천체 앱이나 영상을 활용하면 이해도가 높아집니다. 직접 밤하늘을 관찰하는 과제와 연결하면 과학에 대한 흥미가 커집니다. 카카오톡 24시간 질문으로 궁금한 것을 바로 물어볼 수 있습니다.",
+"식물의 광합성과 동물의 소화 과정 등 생명과학 단원은 그림을 그리며 공부하면 효과적입니다. 은빛쌤은 학생이 직접 그림을 그려가며 과정을 설명할 수 있도록 지도합니다. 방문과외와 화상과외 모두 동일한 퀄리티로 진행됩니다.",
+"초등 과학에서 전기 회로 단원은 직접 회로를 꾸며보는 활동이 가장 효과적입니다. 직렬연결과 병렬연결의 차이를 실험으로 확인하면 원리가 명확해집니다. 은빛쌤은 교구를 활용한 체험형 수업으로 과학의 재미를 알려줍니다."
+]};
+
+const TIP_SUBJ_MID={
+"국어":[
+"중학교 국어는 교과서 본문 이해가 시험의 80%입니다. 작품의 주제, 갈등 구조, 표현 기법을 정리하면 시험 문제가 쉬워집니다. 은빛쌤은 35년 교육 노하우로 학교별 기출을 분석해 시험에 직결되는 핵심만 수업합니다.",
+"중학교 국어 서술형 문제는 출제 조건을 정확히 파악하는 것이 핵심입니다. 조건에 밑줄을 긋고 빠짐없이 반영하는 연습을 반복하면 서술형에서 감점 없이 만점을 노릴 수 있습니다. 수행평가 대비까지 은빛쌤이 함께 관리합니다.",
+"중학교 문법 영역은 품사, 문장 성분, 단어 형성법 등 기본 개념을 확실히 다지는 것이 중요합니다. 원리를 이해하면 문법 문제를 자신 있게 풀 수 있습니다. 매주 학부모님께 학습 진도와 이해도를 상세히 피드백합니다.",
+"비문학 지문은 문단별 핵심 키워드를 표시하며 읽는 습관을 들이면 독해력이 빠르게 향상됩니다. 중학교 시험에서 비문학 비중이 높아지고 있어 꾸준한 연습이 필요합니다. 카카오톡 24시간 질문으로 모르는 문제를 바로 해결합니다.",
+"교과서에 수록된 문학 작품의 갈등 구조, 인물 분석, 주제를 카드로 정리하면 시험에서 당황하지 않습니다. 은빛쌤은 학교별 출제 경향을 분석해 자주 나오는 작품을 집중적으로 다룹니다. 첫 상담과 체험 수업은 완전 무료입니다.",
+"중학교 국어 어휘력은 독해의 핵심입니다. 교과서에 나오는 한자어와 관용 표현을 매일 정리하면 지문 이해 속도가 올라갑니다. 은빛쌤은 학교별 빈출 어휘를 정리해 시험에 직결되는 어휘만 집중 학습합니다.",
+"수행평가에서 발표와 토론 비중이 높아지고 있습니다. 자신의 의견을 논리적으로 정리하고 발표하는 연습이 필요합니다. 은빛쌤은 수행평가 발표 원고 작성과 발표 연습까지 함께 준비합니다.",
+"독서 활동은 국어 실력의 기반입니다. 읽은 후 핵심 내용을 한 문단으로 요약하는 습관을 들이면 요약력과 서술형 답안 작성 능력이 동시에 향상됩니다. 은빛쌤은 학생 수준에 맞는 독서 목록을 추천합니다."
+],
+"영어":[
+"중학교 영어 문법의 기초를 확실히 잡아야 합니다. 5형식, 시제, 관계대명사 등 핵심 문법을 완벽히 이해하면 고등학교 영어에서 자신감을 가질 수 있습니다. 은빛쌤은 학교별 기출 문법 문제를 분석해 빈출 문법만 집중합니다.",
+"영어 교과서 본문의 모든 문장을 해석하고 변형 문제를 풀어보는 것이 내신 대비의 핵심입니다. 은빛쌤은 교과서 변형 문제를 직접 출제하며, 매주 학부모님께 학습 진도와 취약점을 상세히 피드백합니다.",
+"중학교 영어 어휘는 문맥 속에서 외워야 오래 기억됩니다. 단어장을 예문과 함께 정리하고 주 3회 반복 테스트로 장기 기억으로 전환합니다. 카카오톡 24시간 질문으로 수업 외에도 단어 테스트가 가능합니다.",
+"영어 서술형 대비는 기본 문장 패턴 암기가 핵심입니다. 주요 구문을 영작할 수 있을 정도로 연습하면 감점 없이 답안을 작성할 수 있습니다. 수행평가 영어 발표와 에세이 작성까지 은빛쌤이 함께 준비합니다.",
+"영어 듣기는 매일 15분 반복 노출이 가장 효과적입니다. 교과서 리스닝 자료를 꾸준히 듣고 따라하면 듣기 영역에서 안정적인 점수를 확보합니다. 방문수업과 화상수업 중 상담 후 최적의 방식을 함께 결정합니다.",
+"내신 영어 만점의 핵심은 교과서 본문을 문장 구조까지 이해하며 학습하는 것입니다. 단순 암기가 아니라 구조를 파악하면 변형 문제에서도 당황하지 않습니다. 은빛쌤은 학교별 내신 기출을 완벽 분석해 수업합니다.",
+"글의 논리 흐름을 파악하는 것이 독해의 핵심입니다. 연결어에 주목하며 읽는 습관을 들이면 주제 파악이 훨씬 쉬워집니다. 무료 상담에서 현재 영어 실력을 정확히 진단하고 맞춤 커리큘럼을 설계해드립니다.",
+"방학 기간을 활용해 다음 학기 교과서 본문을 미리 학습하면 학기 중 수업이 훨씬 수월해집니다. 은빛쌤은 방학 특강으로 선행과 취약점 보강을 동시에 진행합니다. 첫 상담과 체험 수업은 완전 무료입니다."
+],
+"수학":[
+"중학교 수학은 개념 이해가 80%입니다. 공식만 외우면 조금만 변형된 문제에도 막힙니다. 은빛쌤은 35년 교육 노하우로 개념이 왜 그렇게 되는지 원리부터 설명하고 학생이 스스로 설명할 수 있을 때까지 지도합니다.",
+"방정식과 함수 단원은 고등수학의 기초입니다. 이 단원 개념이 흔들리면 고등학교에서 큰 어려움을 겪습니다. 은빛쌤은 첫 수업에서 무료 진단 테스트로 빈 곳을 찾아내고 1:1 맞춤 커리큘럼으로 채워갑니다.",
+"수학 오답 노트는 성적 향상의 지름길입니다. 틀린 문제의 원인을 개념 오류, 계산 실수, 풀이 전략 오류로 분류하면 약점이 명확해집니다. 은빛쌤은 오답 패턴을 분석해 같은 유형에서 다시 틀리지 않도록 관리합니다.",
+"도형의 성질과 증명 단원이 어렵다면 기본 정의와 성질을 카드로 정리하는 것부터 시작하세요. 은빛쌤은 학교별 기출 도형 문제를 분석해 시험에 자주 나오는 유형만 집중 연습합니다. 매주 학부모님께 진행 상황을 보고합니다.",
+"수학 서술형은 풀이 과정을 논리적으로 서술하는 연습이 필요합니다. 풀이의 근거를 명시하고 결론을 정확히 기재하는 습관을 들이면 감점을 최소화할 수 있습니다. 수행평가의 서술형 문제까지 은빛쌤이 함께 준비합니다.",
+"중학교 수학은 매일 일정량을 꾸준히 풀어야 실력이 유지됩니다. 하루 10문제씩 30일이면 300문제로 한 단원을 완벽히 소화할 수 있습니다. 카카오톡 24시간 질문으로 수업 외에도 막히는 문제를 바로 해결합니다.",
+"수학 기초가 부족한 학생은 이전 학년 개념부터 점검해야 합니다. 현재 단원에서 막히는 이유가 대부분 이전 개념이 불완전하기 때문입니다. 은빛쌤은 진단 테스트로 빈 곳을 정확히 찾아 맞춤으로 채워갑니다.",
+"수학 시험에서 시간 관리가 성적을 좌우합니다. 쉬운 문제를 빠르게 풀어 시간을 확보한 뒤 어려운 문제에 집중하는 전략을 연습합니다. 학교별 내신 기출을 완벽 분석해 시험에 직결되는 문제만 훈련합니다."
+],
+"사회":[
+"중학교 사회는 역사, 지리, 일반사회가 통합되어 폭넓은 이해가 필요합니다. 영역별 핵심 개념을 먼저 정리한 뒤 연결고리를 찾으면 효율적입니다. 은빛쌤은 35년 교육 노하우로 학교별 기출을 분석합니다.",
+"한국사는 시대별 큰 흐름을 먼저 잡고 세부 사건을 채워가는 방법이 효과적입니다. 연표를 직접 그려보며 시간 순서를 정리하면 원인-결과 관계가 명확해집니다. 카카오톡 24시간 질문으로 모르는 내용을 바로 해결합니다.",
+"사회 서술형 문제는 제시된 자료를 정확히 분석하는 것이 핵심입니다. 그래프나 표의 수치 변화를 읽고 원인을 논리적으로 서술하는 연습을 합니다. 은빛쌤은 수행평가 보고서 작성과 발표 준비까지 함께 관리합니다.",
+"지리 영역은 백지 지도에 핵심 내용을 직접 채워가며 공부하면 위치, 기후, 산업이 시각적으로 연결됩니다. 매주 학부모님께 학습 진도와 이해도를 상세히 피드백하며, 첫 상담과 체험 수업은 완전 무료입니다.",
+"교과서 핵심 용어를 자신만의 말로 정의해보는 것이 효과적입니다. 자기 말로 풀어쓸 수 있어야 진정한 이해입니다. 수행평가 토론·발표 준비까지 은빛쌤이 함께 관리하니 수행평가도 안심하고 맡기세요.",
+"사회 탐구에서 자료 해석 능력은 필수입니다. 통계표, 그래프, 지도 등 다양한 자료를 정확히 읽는 연습을 매일 3문제씩 하면 자료 해석력이 크게 향상됩니다. 은빛쌤은 학교별 기출 자료를 분석해 맞춤 수업을 진행합니다.",
+"중학교 사회에서 민주주의와 인권, 법 단원은 실제 사례와 연결하면 이해가 빨라집니다. 뉴스 속 현상을 교과서 개념으로 설명하는 연습을 하면 실전 문제 적용력이 향상됩니다. 은빛쌤은 시사 이슈를 활용한 수업을 제공합니다.",
+"시사 이슈를 교과 개념으로 분석하는 연습을 하면 서술형에서 높은 점수를 받을 수 있습니다. 매주 뉴스 1건을 골라 분석하는 활동을 추천합니다. 은빛쌤은 1:1 맞춤으로 학생의 취약 영역을 정확히 파악해 집중 보완합니다."
+],
+"과학":[
+"중학교 과학은 실험 원리를 이해하는 것이 시험 대비의 핵심입니다. 교과서의 모든 실험 목적, 과정, 결과, 결론을 정리하면 실험 관련 문제를 놓치지 않습니다. 은빛쌤은 학교별 기출 실험 문제를 분석해 핵심만 수업합니다.",
+"과학 탐구 문제에서 변인 통제가 자주 출제됩니다. 독립 변인, 종속 변인, 통제 변인을 정확히 구분하면 탐구 설계 문제에서 만점을 노릴 수 있습니다. 수행평가 실험 보고서 작성까지 은빛쌤이 함께 관리합니다.",
+"과학 그래프 해석 능력은 필수입니다. x축과 y축의 의미를 정확히 파악하고 변화 추세를 해석하는 훈련을 반복합니다. 매주 학부모님께 학습 진도와 이해도를 상세히 피드백합니다. 첫 상담과 체험 수업은 완전 무료입니다.",
+"중학교 과학에서 힘과 운동 단원은 그림을 그리며 이해하면 효과적입니다. 힘의 방향과 크기를 화살표로 표시하는 습관을 들이면 문제 풀이가 쉬워집니다. 은빛쌤은 1:1 맞춤 수업으로 학생의 이해 속도에 맞춰 진도를 조절합니다.",
+"화학 단원에서 원소 기호와 화학식을 정확히 외우는 것이 기본입니다. 암기가 아니라 원리를 이해하면 화학 반응식도 자연스럽게 풀 수 있습니다. 카카오톡 24시간 질문으로 수업 외 시간에도 모르는 문제를 바로 해결합니다.",
+"생물 영역은 그림과 함께 공부해야 합니다. 세포 구조, 소화 과정, 광합성 등을 직접 그려가며 공부하면 시각적으로 기억됩니다. 매주 학부모님께 학습 진도와 이해도를 상세히 피드백하며 투명한 소통을 약속합니다.",
+"과학 서술형은 과학 용어를 정확히 사용해야 합니다. 증가, 감소, 정확한 수치 비교로 답안을 작성하는 습관을 들이면 감점이 줄어듭니다. 은빛쌤은 학교별 서술형 출제 경향을 분석해 맞춤 대비를 진행합니다.",
+"교과서 탐구 활동은 시험에 직접 출제되는 경우가 많습니다. 탐구 목적, 방법, 결과를 완벽히 정리하는 습관이 중요합니다. 은빛쌤은 학교별 내신 기출을 분석해 시험에 직결되는 탐구만 집중합니다."
+]};
 
 const TIP_SUBJ={
 "국어":[
@@ -1578,16 +1683,36 @@ const SUCCESS_POOL=[
 
 function genContent(loc,city,dong,grade,subj,schools){
   const seed=cH(loc+"|"+city+"|"+(dong||"")+"|"+(grade||"")+"|"+(subj||""));
-  const tips=subj?pkU(TIP_SUBJ[subj]||TIP_SUBJ["국어"],seed,4,1):pkU(TIP_SUBJ["국어"].concat(TIP_SUBJ["수학"]).concat(TIP_SUBJ["영어"]),seed,3,1);
+  // 학교급별 팁 풀 선택
+  var tipPool=TIP_SUBJ;
+  if(grade==="초등")tipPool=TIP_SUBJ_ELEM;
+  else if(grade==="중등")tipPool=TIP_SUBJ_MID;
+  const tips=subj?pkU(tipPool[subj]||tipPool["국어"],seed,4,1):pkU(tipPool["국어"].concat(tipPool["수학"]).concat(tipPool["영어"]),seed,3,1);
   const strat=grade?pk(STRAT_GRADE[grade]||STRAT_GRADE["초등"],seed,3):"";
-  const reviews=pkU(RV_BODIES,seed,4,7);
+  // 학교급별 후기 필터링 (초등에 고등학교/수능 내용 제외)
+  var rvPool=RV_BODIES;
+  if(grade==="초등")rvPool=RV_BODIES.filter(function(r){return r.indexOf("고등학교")<0&&r.indexOf("수능")<0&&r.indexOf("모의고사")<0&&r.indexOf("내신과 수능")<0;});
+  else if(grade==="중등")rvPool=RV_BODIES.filter(function(r){return r.indexOf("수능")<0&&r.indexOf("모의고사")<0;});
+  if(rvPool.length<4)rvPool=RV_BODIES;
+  const reviews=pkU(rvPool,seed,4,7);
+  // 학교급별 후기 학년 풀
+  var rvGradePool=RV_GRADES;
+  if(grade==="초등")rvGradePool=["초3","초4","초5","초6"];
+  else if(grade==="중등")rvGradePool=["중1","중2","중3"];
+  else if(grade==="고등")rvGradePool=["고1","고2","고3"];
   const reviewMeta=reviews.map(function(r,i){
     const s2=cH(loc+city+(dong||"")+(grade||"")+(subj||"")+i);
-    return{name:pk(RV_NAMES,s2,i*3),grade:pk(RV_GRADES,s2,i*5+1),subj:pk(RV_SUBJS,s2,i*7+2),body:r};
+    return{name:pk(RV_NAMES,s2,i*3),grade:pk(rvGradePool,s2,i*5+1),subj:pk(RV_SUBJS,s2,i*7+2),body:r};
   });
   const analysis=pk(EDU_ANALYSIS,seed,11);
   const faqs=pkU(FAQ_POOL,seed,5,13);
-  const stories=pkU(SUCCESS_POOL,seed,4,17);
+  // 학교급별 성적 향상 사례 필터링
+  var storyPool=SUCCESS_POOL;
+  if(grade==="초등")storyPool=SUCCESS_POOL.filter(function(s){return s.grade.indexOf("초")===0;})||SUCCESS_POOL;
+  else if(grade==="중등")storyPool=SUCCESS_POOL.filter(function(s){return s.grade.indexOf("중")===0;})||SUCCESS_POOL;
+  else if(grade==="고등")storyPool=SUCCESS_POOL.filter(function(s){return s.grade.indexOf("고")===0;})||SUCCESS_POOL;
+  if(storyPool.length<4)storyPool=SUCCESS_POOL;
+  const stories=pkU(storyPool,seed,4,17);
   const columns=pkU(COLUMN_POOL,seed,2,23);
   // 학교별 맞춤 콘텐츠: 학교 3개 × 서로 다른 템플릿 3개 선택
   let schoolContents=[];
@@ -1644,7 +1769,7 @@ function renderUniqueContent(ct,dong,grade,subj,tc,rd,schools){
     h+=`<div style="border:2px solid ${tc}22;border-radius:16px;padding:20px;background:white;">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
         <div style="width:40px;height:40px;border-radius:50%;background:${tc};color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;">${rv.name.charAt(0)}</div>
-        <div><div style="font-weight:700;color:#1A2340;font-size:14px;">${rv.name} 학부모님</div>
+        <div><div style="font-weight:700;color:#1A2340;font-size:14px;">${maskName(rv.name)} 학부모님</div>
         <div style="font-size:12px;color:#888;">${area} · ${rv.grade} ${rv.subj}</div></div></div>
       <p style="font-size:13px;color:#555;line-height:1.8;margin:0;">"${rv.body}"</p></div>`;});
   h+=`</div>
@@ -1763,11 +1888,23 @@ const NAV = `<style>
 .nav-region-toggle.open{background:#1A2340;color:#C8A96E;border-radius:50px;padding:8px 18px;}
 .nav-region-toggle .arrow-down{font-size:11px;transition:transform .2s;}
 .nav-region-toggle.open .arrow-down{transform:rotate(180deg);}
-.nav-region-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);width:min(680px,calc(100vw - 40px));background:#1A2340;border:1px solid rgba(200,169,110,0.35);border-radius:18px;padding:22px 24px;box-shadow:0 18px 48px rgba(0,0,0,0.35);display:none;z-index:99998;}
+.nav-region-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);width:min(720px,calc(100vw - 40px));background:#1A2340;border:1px solid rgba(200,169,110,0.35);border-radius:18px;padding:0;box-shadow:0 18px 48px rgba(0,0,0,0.35);display:none;z-index:99998;overflow:hidden;}
 .nav-region-panel.open{display:block;}
-.nav-region-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;}
+.nav-panel-tabs{display:flex;border-bottom:1px solid rgba(255,255,255,0.1);}
+.nav-panel-tab{flex:1;padding:14px 16px;background:transparent;border:none;color:rgba(255,255,255,0.5);font-size:14px;font-weight:700;cursor:pointer;font-family:'Malgun Gothic',sans-serif;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px;}
+.nav-panel-tab:hover{color:rgba(255,255,255,0.8);}
+.nav-panel-tab.active{background:rgba(200,169,110,0.15);color:#C8A96E;}
+.nav-panel-content{display:none;padding:20px 24px;}
+.nav-panel-content.active{display:block;}
+.nav-region-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}
 .nav-region-grid a{display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,169,110,0.25);color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:11px 6px;border-radius:50px;white-space:nowrap;transition:background .15s,transform .15s;font-family:'Malgun Gothic',sans-serif;}
 .nav-region-grid a:hover{background:rgba(200,169,110,0.18);transform:translateY(-1px);}
+.nav-grade-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.nav-grade-grid a{display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,169,110,0.25);color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:12px 10px;border-radius:50px;white-space:nowrap;transition:background .15s,transform .15s;font-family:'Malgun Gothic',sans-serif;}
+.nav-grade-grid a:hover{background:rgba(200,169,110,0.18);transform:translateY(-1px);}
+.nav-school-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}
+.nav-school-grid a{display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,169,110,0.25);color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:11px 6px;border-radius:50px;white-space:nowrap;transition:background .15s,transform .15s;font-family:'Malgun Gothic',sans-serif;}
+.nav-school-grid a:hover{background:rgba(200,169,110,0.18);transform:translateY(-1px);}
 @media (max-width: 900px){
   .global-nav{padding:0 16px;}
   .nav-badge{display:none;}
@@ -1781,6 +1918,9 @@ const NAV = `<style>
   .nav-region-toggle.open{background:none;color:#333;border-radius:0;padding:16px 24px;}
   .nav-region-panel{position:static;transform:none;width:100%;border-radius:0;border-left:none;border-right:none;background:#0f1729;}
   .nav-region-grid{grid-template-columns:repeat(3,1fr);}
+  .nav-grade-grid{grid-template-columns:repeat(3,1fr);}
+  .nav-school-grid{grid-template-columns:repeat(3,1fr);}
+  .nav-panel-tab{padding:12px 8px;font-size:13px;}
 }
 @media (max-width: 380px){
   .nav-logo{font-size:16px;}
@@ -1795,26 +1935,62 @@ const NAV = `<style>
   <button class="nav-toggle" id="navToggle" aria-label="메뉴" onclick="var m=document.getElementById('navMenu');m.classList.toggle('open');this.innerHTML=m.classList.contains('open')?'✕':'☰';">☰</button>
   <div class="nav-menu" id="navMenu">
     <div class="nav-region-wrap">
-      <button type="button" class="nav-region-toggle" id="navRegionToggle" onclick="(function(e){e.stopPropagation();var b=document.getElementById('navRegionToggle');var p=document.getElementById('navRegionPanel');var o=p.classList.toggle('open');b.classList.toggle('open',o);})(event)">지역별수업 <span class="arrow-down">▾</span></button>
+      <button type="button" class="nav-region-toggle" id="navRegionToggle" onclick="(function(e){e.stopPropagation();var b=document.getElementById('navRegionToggle');var p=document.getElementById('navRegionPanel');var o=p.classList.toggle('open');b.classList.toggle('open',o);})(event)">과외찾기 <span class="arrow-down">▾</span></button>
       <div class="nav-region-panel" id="navRegionPanel">
-        <div class="nav-region-grid">
-          <a href="/seoul">📍 서울</a>
-          <a href="/gyeonggi">🌳 경기</a>
-          <a href="/incheon">🌊 인천</a>
-          <a href="/busan">🐟 부산</a>
-          <a href="/daegu">🍎 대구</a>
-          <a href="/daejeon">🌲 대전</a>
-          <a href="/gwangju">🌺 광주</a>
-          <a href="/ulsan">⚙ 울산</a>
-          <a href="/sejong">🏛 세종</a>
-          <a href="/gangwon">🏔 강원</a>
-          <a href="/chungbuk">🌾 충북</a>
-          <a href="/chungnam">🌊 충남</a>
-          <a href="/jeonbuk">🌿 전북</a>
-          <a href="/jeonnam">🍃 전남</a>
-          <a href="/gyeongbuk">🍎 경북</a>
-          <a href="/gyeongnam">🌊 경남</a>
-          <a href="/jeju">🌸 제주</a>
+        <div class="nav-panel-tabs">
+          <button class="nav-panel-tab active" onclick="switchNavTab(0)">📍 지역별 과외</button>
+          <button class="nav-panel-tab" onclick="switchNavTab(1)">🎓 학년별 과외</button>
+          <button class="nav-panel-tab" onclick="switchNavTab(2)">🏫 학교별 과외</button>
+        </div>
+        <div class="nav-panel-content active" id="navTabContent0">
+          <div class="nav-region-grid">
+            <a href="/seoul">📍 서울</a>
+            <a href="/gyeonggi">🌳 경기</a>
+            <a href="/incheon">🌊 인천</a>
+            <a href="/busan">🐟 부산</a>
+            <a href="/daegu">🍎 대구</a>
+            <a href="/daejeon">🌲 대전</a>
+            <a href="/gwangju">🌺 광주</a>
+            <a href="/ulsan">⚙ 울산</a>
+            <a href="/sejong">🏛 세종</a>
+            <a href="/gangwon">🏔 강원</a>
+            <a href="/chungbuk">🌾 충북</a>
+            <a href="/chungnam">🌊 충남</a>
+            <a href="/jeonbuk">🌿 전북</a>
+            <a href="/jeonnam">🍃 전남</a>
+            <a href="/gyeongbuk">🍎 경북</a>
+            <a href="/gyeongnam">🌊 경남</a>
+            <a href="/jeju">🌸 제주</a>
+          </div>
+        </div>
+        <div class="nav-panel-content" id="navTabContent1">
+          <div class="nav-grade-grid">
+            <a href="/grade/elementary">🌱 초등학생</a>
+            <a href="/grade/middle">📘 중학생</a>
+            <a href="/grade/high">📕 고등학생</a>
+            <a href="/grade/n-su">🔥 N수생</a>
+          </div>
+        </div>
+        <div class="nav-panel-content" id="navTabContent2">
+          <div class="nav-school-grid">
+            <a href="/schools/seoul">📍 서울</a>
+            <a href="/schools/gyeonggi">🌳 경기</a>
+            <a href="/schools/incheon">🌊 인천</a>
+            <a href="/schools/busan">🐟 부산</a>
+            <a href="/schools/daegu">🍎 대구</a>
+            <a href="/schools/daejeon">🌲 대전</a>
+            <a href="/schools/gwangju">🌺 광주</a>
+            <a href="/schools/ulsan">⚙ 울산</a>
+            <a href="/schools/sejong">🏛 세종</a>
+            <a href="/schools/gangwon">🏔 강원</a>
+            <a href="/schools/chungbuk">🌾 충북</a>
+            <a href="/schools/chungnam">🌊 충남</a>
+            <a href="/schools/jeonbuk">🌿 전북</a>
+            <a href="/schools/jeonnam">🍃 전남</a>
+            <a href="/schools/gyeongbuk">🍎 경북</a>
+            <a href="/schools/gyeongnam">🌊 경남</a>
+            <a href="/schools/jeju">🌸 제주</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1825,7 +2001,10 @@ const NAV = `<style>
     <a href="https://eunshinestudy.com/#form" target="_blank" class="nav-cta">문의하기</a>
   </div>
 </nav>
-<script>document.addEventListener('click',function(e){var w=document.querySelector('.nav-region-wrap');var p=document.getElementById('navRegionPanel');var b=document.getElementById('navRegionToggle');if(!w||!p||!b)return;if(!w.contains(e.target)){p.classList.remove('open');b.classList.remove('open');}});</script>
+<script>
+function switchNavTab(idx){var tabs=document.querySelectorAll('.nav-panel-tab');var contents=document.querySelectorAll('.nav-panel-content');tabs.forEach(function(t,i){t.classList.toggle('active',i===idx);});contents.forEach(function(c,i){c.classList.toggle('active',i===idx);});}
+document.addEventListener('click',function(e){var w=document.querySelector('.nav-region-wrap');var p=document.getElementById('navRegionPanel');var b=document.getElementById('navRegionToggle');if(!w||!p||!b)return;if(!w.contains(e.target)){p.classList.remove('open');b.classList.remove('open');}});
+</script>
 <div style="height:70px;"></div>`;
 const COMMON_STYLE = `<style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Malgun Gothic',sans-serif;background:#f4f7f6;padding-top:70px;}</style>`;
 const FLOATING = `<div style="position:fixed;bottom:24px;right:18px;display:flex;flex-direction:column;gap:8px;z-index:9998;">
@@ -2741,15 +2920,22 @@ function buildSchoolListPage(rs, cs) {
   function renderGroup(title, badge, color, bgColor, list) {
     if (list.length === 0) return "";
     let cards = "";
-    list.forEach(s => {
+    list.forEach((s,idx) => {
       const fullName = expandSchoolName(s);
+      const imgSeed = cH(rs+cs+s);
+      const imgUrl = bgImg("school", imgSeed);
       cards += `<a href="/${rs}/${cs}/school/${encodeURIComponent(s)}" style="text-decoration:none;">
-        <div style="background:white;border:2px solid ${color};border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;cursor:pointer;transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden;"
+        <div style="border:2px solid ${color};border-radius:14px;display:flex;flex-direction:column;cursor:pointer;transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden;"
              onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.12)'"
              onmouseout="this.style.transform='';this.style.boxShadow=''">
-          <div style="position:absolute;top:-8px;right:-8px;width:40px;height:40px;background:${bgColor};border-radius:50%;opacity:0.5;"></div>
-          <div style="font-size:15px;font-weight:900;color:#1A2340;margin-bottom:10px;position:relative;z-index:1;">⭐ ${fullName}</div>
-          <div style="color:${color};font-size:12px;font-weight:700;position:relative;z-index:1;">자세히 보기 →</div>
+          <div style="height:110px;background:url('${imgUrl}') center/cover no-repeat,linear-gradient(135deg,${color}22,${bgColor});position:relative;">
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.45) 0%,rgba(0,0,0,0.05) 100%);"></div>
+            <div style="position:absolute;top:10px;left:10px;background:${color};color:#fff;font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;">${badge}</div>
+          </div>
+          <div style="padding:14px 18px;background:white;">
+            <div style="font-size:15px;font-weight:900;color:#1A2340;margin-bottom:8px;">⭐ ${fullName}</div>
+            <div style="color:${color};font-size:12px;font-weight:700;">자세히 보기 →</div>
+          </div>
         </div>
       </a>`;
     });
@@ -2858,7 +3044,10 @@ function buildSchoolPage(rs, cs, schoolShort) {
 
   // 공부법 팁 풀에서 학교 유형별 선택
   const seed = cH("school|"+rs+"|"+cs+"|"+schoolShort);
-  const moreTips = pkU(TIP_SUBJ["국어"].concat(TIP_SUBJ["수학"]).concat(TIP_SUBJ["영어"]).concat(TIP_SUBJ["사회"]).concat(TIP_SUBJ["과학"]), seed, 4, 37);
+  var schoolTipPool=TIP_SUBJ;
+  if(gradeKey==="초등")schoolTipPool=TIP_SUBJ_ELEM;
+  else if(gradeKey==="중등")schoolTipPool=TIP_SUBJ_MID;
+  const moreTips = pkU(schoolTipPool["국어"].concat(schoolTipPool["수학"]).concat(schoolTipPool["영어"]).concat(schoolTipPool["사회"]).concat(schoolTipPool["과학"]), seed, 4, 37);
 
   // 학교 개요: OVERVIEW_POOL에서 1개 선택 후 placeholder 교체
   const overviewTpl = pk(OVERVIEW_POOL, seed, 41);
@@ -2916,7 +3105,7 @@ function buildSchoolPage(rs, cs, schoolShort) {
     reviewSection += `<div style="border:2px solid ${typeColor}22;border-radius:16px;padding:20px;background:white;">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
         <div style="width:40px;height:40px;border-radius:50%;background:${typeColor};color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;">${rv.name.charAt(0)}</div>
-        <div><div style="font-weight:700;color:#1A2340;font-size:14px;">${rv.name} 학부모님</div>
+        <div><div style="font-weight:700;color:#1A2340;font-size:14px;">${maskName(rv.name)} 학부모님</div>
         <div style="font-size:12px;color:#888;">${schoolFull} · ${fixedGrade} ${rv.subj}</div></div>
       </div>
       <p style="font-size:13px;color:#555;line-height:1.8;margin:0;">"${rv.body}"</p>
