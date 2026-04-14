@@ -1870,6 +1870,112 @@ function getIndex() {
     '<a href="/" class="nav-logo">🌟 <span',
     '<a href="/" class="nav-logo"><img src="data:image/jpeg;base64,' + BRAND_B64 + '" alt="은빛과외" style="width:36px;height:36px;object-fit:contain;"> <span'
   );
+  // 드롭다운 버튼 텍스트 변경 (지역별수업 → 과외찾기)
+  html = html.replace('>지역별수업 <', '>과외찾기 <');
+  // 탭 스타일 주입
+  const tabStyles = `.nav-panel-tabs{display:flex;border-bottom:1px solid rgba(255,255,255,0.1);}.nav-panel-tab{flex:1;padding:14px 16px;background:transparent;border:none;color:rgba(255,255,255,0.5);font-size:14px;font-weight:700;cursor:pointer;font-family:'Malgun Gothic',sans-serif;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px;}.nav-panel-tab:hover{color:rgba(255,255,255,0.8);}.nav-panel-tab.active{background:rgba(200,169,110,0.15);color:#C8A96E;}.nav-panel-content{display:none;padding:20px 24px;}.nav-panel-content.active{display:block;}.nav-grade-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}.nav-grade-grid a{display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,169,110,0.25);color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:12px 10px;border-radius:50px;white-space:nowrap;transition:background .15s,transform .15s;font-family:'Malgun Gothic',sans-serif;}.nav-grade-grid a:hover{background:rgba(200,169,110,0.18);transform:translateY(-1px);}.nav-school-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}.nav-school-grid a{display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,169,110,0.25);color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:11px 6px;border-radius:50px;white-space:nowrap;transition:background .15s,transform .15s;font-family:'Malgun Gothic',sans-serif;}.nav-school-grid a:hover{background:rgba(200,169,110,0.18);transform:translateY(-1px);}@media(max-width:900px){.nav-grade-grid{grid-template-columns:repeat(3,1fr);}.nav-school-grid{grid-template-columns:repeat(3,1fr);}.nav-panel-tab{padding:12px 8px;font-size:13px;}}`;
+  html = html.replace('</style>', tabStyles + '</style>');
+  // 기존 지역 전용 드롭다운을 3탭 버전으로 교체
+  const oldPanel = `<div class="nav-region-panel" id="navRegionPanel">
+        <div class="nav-region-grid">
+          <a href="/seoul">📍 서울</a>
+          <a href="/gyeonggi">🌳 경기</a>
+          <a href="/incheon">🌊 인천</a>
+          <a href="/busan">🐟 부산</a>
+          <a href="/daegu">🍎 대구</a>
+          <a href="/daejeon">🌲 대전</a>
+          <a href="/gwangju">🌺 광주</a>
+          <a href="/ulsan">⚙ 울산</a>
+          <a href="/sejong">🏛 세종</a>
+          <a href="/gangwon">🏔 강원</a>
+          <a href="/chungbuk">🌾 충북</a>
+          <a href="/chungnam">🌊 충남</a>
+          <a href="/jeonbuk">🌿 전북</a>
+          <a href="/jeonnam">🍃 전남</a>
+          <a href="/gyeongbuk">🍎 경북</a>
+          <a href="/gyeongnam">🌊 경남</a>
+          <a href="/jeju">🌸 제주</a>
+        </div>
+      </div>`;
+  const newPanel = `<div class="nav-region-panel" id="navRegionPanel">
+        <div class="nav-panel-tabs">
+          <button class="nav-panel-tab active" onclick="switchNavTab(0)">📍 지역별 과외</button>
+          <button class="nav-panel-tab" onclick="switchNavTab(1)">🎓 학년별 과외</button>
+          <button class="nav-panel-tab" onclick="switchNavTab(2)">🏫 학교별 과외</button>
+        </div>
+        <div class="nav-panel-content active" id="navTabContent0">
+          <div class="nav-region-grid">
+            <a href="/seoul">📍 서울</a>
+            <a href="/gyeonggi">🌳 경기</a>
+            <a href="/incheon">🌊 인천</a>
+            <a href="/busan">🐟 부산</a>
+            <a href="/daegu">🍎 대구</a>
+            <a href="/daejeon">🌲 대전</a>
+            <a href="/gwangju">🌺 광주</a>
+            <a href="/ulsan">⚙ 울산</a>
+            <a href="/sejong">🏛 세종</a>
+            <a href="/gangwon">🏔 강원</a>
+            <a href="/chungbuk">🌾 충북</a>
+            <a href="/chungnam">🌊 충남</a>
+            <a href="/jeonbuk">🌿 전북</a>
+            <a href="/jeonnam">🍃 전남</a>
+            <a href="/gyeongbuk">🍎 경북</a>
+            <a href="/gyeongnam">🌊 경남</a>
+            <a href="/jeju">🌸 제주</a>
+          </div>
+        </div>
+        <div class="nav-panel-content" id="navTabContent1">
+          <div style="padding-bottom:6px;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08);"><span style="color:#C8A96E;font-size:12px;font-weight:700;">🌱 초등학생</span></div>
+          <div class="nav-grade-grid" style="margin-bottom:16px;">
+            <a href="/grade/elem1">초1</a>
+            <a href="/grade/elem2">초2</a>
+            <a href="/grade/elem3">초3</a>
+            <a href="/grade/elem4">초4</a>
+            <a href="/grade/elem5">초5</a>
+            <a href="/grade/elem6">초6</a>
+          </div>
+          <div style="padding-bottom:6px;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08);"><span style="color:#C8A96E;font-size:12px;font-weight:700;">📘 중학생</span></div>
+          <div class="nav-grade-grid" style="margin-bottom:16px;">
+            <a href="/grade/mid1">중1</a>
+            <a href="/grade/mid2">중2</a>
+            <a href="/grade/mid3">중3</a>
+          </div>
+          <div style="padding-bottom:6px;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08);"><span style="color:#C8A96E;font-size:12px;font-weight:700;">📕 고등학생</span></div>
+          <div class="nav-grade-grid" style="margin-bottom:16px;">
+            <a href="/grade/high1">고1</a>
+            <a href="/grade/high2">고2</a>
+            <a href="/grade/high3">고3</a>
+          </div>
+          <div class="nav-grade-grid">
+            <a href="/grade/nsu" style="border-color:#e74c3c;color:#e74c3c;">🔥 재수생</a>
+          </div>
+        </div>
+        <div class="nav-panel-content" id="navTabContent2">
+          <div class="nav-school-grid">
+            <a href="/schools/seoul">📍 서울</a>
+            <a href="/schools/gyeonggi">🌳 경기</a>
+            <a href="/schools/incheon">🌊 인천</a>
+            <a href="/schools/busan">🐟 부산</a>
+            <a href="/schools/daegu">🍎 대구</a>
+            <a href="/schools/daejeon">🌲 대전</a>
+            <a href="/schools/gwangju">🌺 광주</a>
+            <a href="/schools/ulsan">⚙ 울산</a>
+            <a href="/schools/sejong">🏛 세종</a>
+            <a href="/schools/gangwon">🏔 강원</a>
+            <a href="/schools/chungbuk">🌾 충북</a>
+            <a href="/schools/chungnam">🌊 충남</a>
+            <a href="/schools/jeonbuk">🌿 전북</a>
+            <a href="/schools/jeonnam">🍃 전남</a>
+            <a href="/schools/gyeongbuk">🍎 경북</a>
+            <a href="/schools/gyeongnam">🌊 경남</a>
+            <a href="/schools/jeju">🌸 제주</a>
+          </div>
+        </div>
+      </div>`;
+  html = html.replace(oldPanel, newPanel);
+  // switchNavTab 함수 주입
+  const tabScript = `<script>function switchNavTab(idx){var tabs=document.querySelectorAll('.nav-panel-tab');var contents=document.querySelectorAll('.nav-panel-content');tabs.forEach(function(t,i){t.classList.toggle('active',i===idx);});contents.forEach(function(c,i){c.classList.toggle('active',i===idx);});}</script>`;
+  html = html.replace('</body>', tabScript + '</body>');
   return html;
 }
 
@@ -1964,11 +2070,29 @@ const NAV = `<style>
           </div>
         </div>
         <div class="nav-panel-content" id="navTabContent1">
+          <div style="padding-bottom:6px;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08);"><span style="color:#C8A96E;font-size:12px;font-weight:700;">🌱 초등학생</span></div>
+          <div class="nav-grade-grid" style="margin-bottom:16px;">
+            <a href="/grade/elem1">초1</a>
+            <a href="/grade/elem2">초2</a>
+            <a href="/grade/elem3">초3</a>
+            <a href="/grade/elem4">초4</a>
+            <a href="/grade/elem5">초5</a>
+            <a href="/grade/elem6">초6</a>
+          </div>
+          <div style="padding-bottom:6px;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08);"><span style="color:#C8A96E;font-size:12px;font-weight:700;">📘 중학생</span></div>
+          <div class="nav-grade-grid" style="margin-bottom:16px;">
+            <a href="/grade/mid1">중1</a>
+            <a href="/grade/mid2">중2</a>
+            <a href="/grade/mid3">중3</a>
+          </div>
+          <div style="padding-bottom:6px;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08);"><span style="color:#C8A96E;font-size:12px;font-weight:700;">📕 고등학생</span></div>
+          <div class="nav-grade-grid" style="margin-bottom:16px;">
+            <a href="/grade/high1">고1</a>
+            <a href="/grade/high2">고2</a>
+            <a href="/grade/high3">고3</a>
+          </div>
           <div class="nav-grade-grid">
-            <a href="/grade/elementary">🌱 초등학생</a>
-            <a href="/grade/middle">📘 중학생</a>
-            <a href="/grade/high">📕 고등학생</a>
-            <a href="/grade/n-su">🔥 N수생</a>
+            <a href="/grade/nsu" style="border-color:#e74c3c;color:#e74c3c;">🔥 재수생</a>
           </div>
         </div>
         <div class="nav-panel-content" id="navTabContent2">
@@ -3223,9 +3347,124 @@ const INDEXNOW_KEY = "8a3f2c6e9b1d7405f8e2a4c6b9d1e3f5";
 const INDEXNOW_ADMIN_TOKEN = "eunshine_naver_ping_2026_silver";
 const SITE_HOST = "eunshinestudy.com";
 
+// ── 학년별 과외 페이지 데이터 ──
+const GRADE_DATA = {
+  "elem1":{name:"초등학교 1학년",short:"초1",level:"초등",color:"#3498db",emoji:"🌱",desc:"초등학교 1학년은 학교생활의 첫걸음입니다. 올바른 학습 습관과 기본기를 다지는 것이 가장 중요한 시기입니다. 은빛쌤은 35년 교육 노하우로 놀이와 학습을 연결하여 공부에 흥미를 갖도록 도와드립니다."},
+  "elem2":{name:"초등학교 2학년",short:"초2",level:"초등",color:"#3498db",emoji:"🌱",desc:"초등학교 2학년은 구구단, 받아쓰기 등 기초 학력이 형성되는 시기입니다. 이때 기초가 탄탄해야 고학년에서 빛을 발합니다. 은빛쌤은 학생 수준에 맞는 맞춤 학습을 설계합니다."},
+  "elem3":{name:"초등학교 3학년",short:"초3",level:"초등",color:"#3498db",emoji:"🌱",desc:"초등학교 3학년부터 본격적인 교과 학습이 시작됩니다. 사회, 과학이 새로 추가되고 수학 난이도도 올라가는 시기입니다. 은빛쌤은 1:1 맞춤으로 학생의 빈틈을 정확히 채워드립니다."},
+  "elem4":{name:"초등학교 4학년",short:"초4",level:"초등",color:"#3498db",emoji:"🌱",desc:"초등학교 4학년은 분수, 소수 등 추상적 수학 개념이 등장하여 학력 차이가 벌어지기 시작하는 시기입니다. 은빛쌤은 실생활 예시로 쉽게 설명하며 개념을 확실히 잡아줍니다."},
+  "elem5":{name:"초등학교 5학년",short:"초5",level:"초등",color:"#3498db",emoji:"🌱",desc:"초등학교 5학년은 중학교 준비가 본격적으로 시작되는 시기입니다. 독해력과 수학적 사고력을 키워야 합니다. 은빛쌤은 35년 교육 노하우로 중학교 대비 기초를 탄탄히 다져드립니다."},
+  "elem6":{name:"초등학교 6학년",short:"초6",level:"초등",color:"#3498db",emoji:"🌱",desc:"초등학교 6학년은 중학교 진학을 앞둔 중요한 시기입니다. 현재 학년 개념을 완벽히 이해해야 중학교에서 훨씬 빠르게 성적을 올릴 수 있습니다. 은빛쌤이 빈틈없이 준비시켜 드립니다."},
+  "mid1":{name:"중학교 1학년",short:"중1",level:"중등",color:"#2ecc71",emoji:"📘",desc:"중학교 1학년은 초등학교와 완전히 다른 시험 체계에 적응해야 합니다. 자유학기제 기간에도 기본 학습을 놓치면 안 됩니다. 은빛쌤은 학교별 기출을 분석해 내신 완벽 대비를 도와드립니다."},
+  "mid2":{name:"중학교 2학년",short:"중2",level:"중등",color:"#2ecc71",emoji:"📘",desc:"중학교 2학년은 고입에 반영되는 중요한 시기입니다. 방정식, 함수 등 고등수학의 기초가 되는 단원을 확실히 잡아야 합니다. 은빛쌤은 35년 노하우로 학교별 기출을 완벽 분석합니다."},
+  "mid3":{name:"중학교 3학년",short:"중3",level:"중등",color:"#2ecc71",emoji:"📘",desc:"중학교 3학년은 고등학교 진학 전 마지막 기회입니다. 수학과 영어 기본기를 완벽히 점검하고 부족한 부분을 집중 보완하는 것이 고1 내신 성적의 출발점입니다."},
+  "high1":{name:"고등학교 1학년",short:"고1",level:"고등",color:"#e74c3c",emoji:"📕",desc:"고등학교 1학년은 전 과정의 기초를 다지는 시기입니다. 수학과 영어 기본기를 확실히 잡아두면 고2, 고3에서 훨씬 수월합니다. 내신과 수능을 동시에 대비하는 전략이 필요합니다."},
+  "high2":{name:"고등학교 2학년",short:"고2",level:"고등",color:"#e74c3c",emoji:"📕",desc:"고등학교 2학년은 수능과 내신을 본격적으로 동시 준비해야 하는 시기입니다. 은빛쌤은 35년 교육 노하우로 학생의 목표에 맞춘 맞춤 전략을 설계합니다."},
+  "high3":{name:"고등학교 3학년",short:"고3",level:"고등",color:"#e74c3c",emoji:"📕",desc:"고등학교 3학년은 수능과 내신의 최종 마무리 시기입니다. 기출 분석과 오답 관리가 핵심입니다. 멘탈 관리까지 은빛쌤이 함께합니다."},
+  "nsu":{name:"재수생(N수생)",short:"재수생",level:"고등",color:"#9b59b6",emoji:"🔥",desc:"재수생은 수능에 올인하는 중요한 시기입니다. 취약 과목 집중 보강과 시간 배분 전략이 핵심입니다. 은빛쌤은 35년 교육 노하우로 목표 대학 합격을 위한 체계적 로드맵을 함께 설계합니다."}
+};
+
+function buildGradePage(gradeCode) {
+  const gd = GRADE_DATA[gradeCode];
+  if (!gd) return null;
+  const tc = gd.color;
+  const level = gd.level;
+  var tipPool = TIP_SUBJ;
+  if(level==="초등") tipPool = TIP_SUBJ_ELEM;
+  else if(level==="중등") tipPool = TIP_SUBJ_MID;
+  const seed = cH("grade|"+gradeCode);
+  const subjects = ["국어","영어","수학","사회","과학"];
+  // 과목별 팁 2개씩
+  let tipSection = "";
+  subjects.forEach(function(subj){
+    const tips = pkU(tipPool[subj]||tipPool["국어"], seed, 2, cH(subj));
+    tipSection += `<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:16px;">📖 ${gd.short} ${subj} 과외 공부법</h2>`;
+    tips.forEach(function(t){
+      tipSection += `<div style="background:#f8faff;border-radius:14px;padding:18px 22px;margin-bottom:12px;border-left:4px solid ${tc};">
+        <p style="font-size:14px;color:#333;line-height:2;margin:0;">${t}</p>
+      </div>`;
+    });
+    tipSection += `</div>`;
+  });
+  // 후기
+  var rvPool = RV_BODIES;
+  if(level==="초등") rvPool = RV_BODIES.filter(function(r){return r.indexOf("고등학교")<0&&r.indexOf("수능")<0&&r.indexOf("모의고사")<0;});
+  else if(level==="중등") rvPool = RV_BODIES.filter(function(r){return r.indexOf("수능")<0&&r.indexOf("모의고사")<0;});
+  if(rvPool.length<4) rvPool = RV_BODIES;
+  const reviews = pkU(rvPool, seed, 4, 7);
+  const reviewMeta = reviews.map(function(r,i){
+    const s2 = cH(gradeCode+i);
+    return {name:pk(RV_NAMES,s2,i*3),grade:gd.short,subj:pk(RV_SUBJS,s2,i*7+2),body:r};
+  });
+  let reviewSection = `<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+    <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">💬 ${gd.short} 학부모님 생생 후기</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;">`;
+  reviewMeta.forEach(function(rv){
+    reviewSection += `<div style="border:2px solid ${tc}22;border-radius:16px;padding:20px;background:white;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+        <div style="width:40px;height:40px;border-radius:50%;background:${tc};color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;">${rv.name.charAt(0)}</div>
+        <div><div style="font-weight:700;color:#1A2340;font-size:14px;">${maskName(rv.name)} 학부모님</div>
+        <div style="font-size:12px;color:#888;">${rv.grade} ${rv.subj}</div></div></div>
+      <p style="font-size:13px;color:#555;line-height:1.8;margin:0;">"${rv.body}"</p></div>`;
+  });
+  reviewSection += `</div></div>`;
+  // FAQ
+  const faqs = pkU(FAQ_POOL, seed, 4, 13);
+  let faqSection = `<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+    <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:20px;">자주 묻는 질문</h2>
+    <div style="display:flex;flex-direction:column;gap:24px;">`;
+  faqs.forEach(function(fq){
+    faqSection += `<div>
+      <p style="font-weight:700;color:#2563eb;font-size:15px;margin-bottom:8px;">Q. ${gd.short} ${fq.q}</p>
+      <p style="font-size:14px;color:#444;line-height:1.8;margin:0;">${fq.a}</p></div>`;
+  });
+  faqSection += `</div></div>`;
+
+  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
+  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>${gd.name} 과외 | 1:1 방문·화상 과외 | 은빛쌤</title>
+  <meta name="description" content="${gd.name} 과외 전문 은빛쌤. ${gd.short} 맞춤 1:1 과외, 35년 교육 노하우. 첫 상담·체험 무료.">
+  ${COMMON_STYLE}</head><body>${NAV}
+  <div style="max-width:1100px;margin:40px auto;padding:0 16px;">
+    <p style="font-size:13px;color:#888;margin-bottom:12px;">
+      <a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo;
+      <span style="color:#1A2340;font-weight:600;">${gd.name} 과외</span>
+    </p>
+    <div style="background:linear-gradient(135deg,${hexToRgba(tc,0.92)},${hexToRgba(tc,0.78)}),url('${bgImg("school",seed)}') center/cover;color:white;border-radius:20px;padding:clamp(30px,5vw,52px);margin-bottom:24px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
+      <p style="font-size:40px;margin-bottom:10px;">${gd.emoji}</p>
+      <h1 style="font-size:clamp(26px,5vw,42px);font-weight:900;margin-bottom:10px;">${gd.name} 과외</h1>
+      <p style="font-size:14px;opacity:.9;margin-bottom:18px;">은빛쌤 1:1 맞춤 과외 | 상담 후 방문·화상 수업 결정</p>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;">
+        <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ 35년 교육 노하우</span>
+        <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ 학교별 기출 분석</span>
+        <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ 첫 상담·체험 무료</span>
+      </div>
+    </div>
+    <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+      <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:16px;">⭐ ${gd.name} 과외 개요</h2>
+      <p style="font-size:14px;color:#444;line-height:2;margin:0;">${gd.desc}</p>
+    </div>
+    ${tipSection}
+    ${reviewSection}
+    ${faqSection}
+    <div style="text-align:center;margin-bottom:40px;">
+      <a href="/#form" style="display:inline-block;background:linear-gradient(135deg,#C8A96E,#e0c080);color:#1A2340;font-size:17px;font-weight:900;padding:20px 48px;border-radius:50px;text-decoration:none;box-shadow:0 6px 24px rgba(200,169,110,0.4);">
+        📝 ${gd.short} 1:1 무료 모의수업 &amp; 상담 신청
+      </a>
+      <p style="font-size:13px;color:#999;margin-top:12px;">첫 상담 및 체험 수업은 완전 무료입니다</p>
+    </div>
+  </div>${CONTACT}${FOOTER}${FLOATING}</body></html>`;
+}
+
 function buildAllSiteUrls() {
   const base = "https://" + SITE_HOST;
   const urls = [base + "/", base + "/directory", base + "/schools"];
+  // 학년별 과외 URL 추가
+  for (const gc of Object.keys(GRADE_DATA)) {
+    urls.push(base + "/grade/" + gc);
+  }
   for (const [rs, ri] of Object.entries(locations)) {
     urls.push(base + "/" + rs);
     urls.push(base + "/schools/" + rs);
@@ -3464,6 +3703,10 @@ async function handle(req) {
   if (p==="/"||p==="") return new Response(getIndex(),{headers:H});
   if (p === "/sitemap.xml") {
     const urls = ["https://eunshinestudy.com/", "https://eunshinestudy.com/directory", "https://eunshinestudy.com/schools"];
+    // 학년별 과외 URL
+    for (const gc of Object.keys(GRADE_DATA)) {
+      urls.push("https://eunshinestudy.com/grade/" + gc);
+    }
     for (const [rs, ri] of Object.entries(locations)) {
       urls.push("https://eunshinestudy.com/schools/" + rs);
       for (const cs of Object.keys(ri.cities)) {
@@ -3480,6 +3723,11 @@ ${urls.map(u => `  <url><loc>${u}</loc><changefreq>weekly</changefreq><priority>
   if (p==="/schools") return new Response(buildNationalSchoolsPage(),{headers:H});
   if (parts.length===2 && parts[0]==="schools" && locations[parts[1]]) {
     const html = buildRegionSchoolsPage(parts[1]);
+    if(html) return new Response(html,{headers:H});
+  }
+  // ── 학년별 과외 페이지 라우팅 ──
+  if (parts.length===2 && parts[0]==="grade" && GRADE_DATA[parts[1]]) {
+    const html = buildGradePage(parts[1]);
     if(html) return new Response(html,{headers:H});
   }
   if (parts.length===1 && locations[parts[0]]) {
