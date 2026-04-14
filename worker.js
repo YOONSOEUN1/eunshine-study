@@ -2922,20 +2922,13 @@ function buildSchoolListPage(rs, cs) {
     let cards = "";
     list.forEach((s,idx) => {
       const fullName = expandSchoolName(s);
-      const imgSeed = cH(rs+cs+s);
-      const imgUrl = bgImg("school", imgSeed);
       cards += `<a href="/${rs}/${cs}/school/${encodeURIComponent(s)}" style="text-decoration:none;">
-        <div style="border:2px solid ${color};border-radius:14px;display:flex;flex-direction:column;cursor:pointer;transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden;"
+        <div style="background:white;border:2px solid ${color};border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;cursor:pointer;transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden;"
              onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.12)'"
              onmouseout="this.style.transform='';this.style.boxShadow=''">
-          <div style="height:110px;background:url('${imgUrl}') center/cover no-repeat,linear-gradient(135deg,${color}22,${bgColor});position:relative;">
-            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.45) 0%,rgba(0,0,0,0.05) 100%);"></div>
-            <div style="position:absolute;top:10px;left:10px;background:${color};color:#fff;font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;">${badge}</div>
-          </div>
-          <div style="padding:14px 18px;background:white;">
-            <div style="font-size:15px;font-weight:900;color:#1A2340;margin-bottom:8px;">⭐ ${fullName}</div>
-            <div style="color:${color};font-size:12px;font-weight:700;">자세히 보기 →</div>
-          </div>
+          <div style="position:absolute;top:-8px;right:-8px;width:40px;height:40px;background:${bgColor};border-radius:50%;opacity:0.5;"></div>
+          <div style="font-size:15px;font-weight:900;color:#1A2340;margin-bottom:10px;position:relative;z-index:1;">⭐ ${fullName}</div>
+          <div style="color:${color};font-size:12px;font-weight:700;position:relative;z-index:1;">자세히 보기 →</div>
         </div>
       </a>`;
     });
