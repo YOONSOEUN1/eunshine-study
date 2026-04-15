@@ -3873,6 +3873,12 @@ function buildAcademyPage() {
   .mgmt-check{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;}
   .mgmt-check span:first-child{font-weight:800;flex-shrink:0;font-size:15px;}
   .mgmt-check span:last-child{font-size:13px;color:#444;line-height:1.7;}
+  .mgmt-slider{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/3;}
+  .mgmt-slider img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s ease;}
+  .mgmt-slider img.active{opacity:1;}
+  .mgmt-slider-dots{display:flex;justify-content:center;gap:8px;margin-top:14px;}
+  .mgmt-slider-dot{width:10px;height:10px;border-radius:50%;background:rgba(0,0,0,.15);border:none;cursor:pointer;padding:0;transition:all .3s;}
+  .mgmt-slider-dot.active{background:#1A2340;transform:scale(1.2);}
   </style>
   </head><body>${NAV}
   <div style="max-width:1100px;margin:40px auto;padding:0 16px;">
@@ -3940,15 +3946,16 @@ function buildAcademyPage() {
         <div class="mgmt-check"><span style="color:#3b82f6;">✓</span><span>1:1 학습 플래너로 실천률 관리</span></div>
         <div class="mgmt-check"><span style="color:#3b82f6;">✓</span><span>계획 → 실행 → 평가 사이클 반복 훈련</span></div>
       </div>
-      <div class="mgmt-visual" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);">
-        <div style="font-size:64px;margin-bottom:8px;">📝</div>
-        <p style="font-size:18px;font-weight:900;color:#1e40af;margin-bottom:4px;">Plan Management</p>
-        <p style="font-size:13px;color:#3b82f6;margin-bottom:20px;">자기주도학습의 기초 체력</p>
-        <div class="mgmt-icon-grid">
-          <div class="mgmt-icon-card"><div style="font-size:28px;margin-bottom:6px;">🎯</div><div style="font-size:11px;font-weight:700;color:#1e3a5f;">목표 설정</div></div>
-          <div class="mgmt-icon-card"><div style="font-size:28px;margin-bottom:6px;">📊</div><div style="font-size:11px;font-weight:700;color:#1e3a5f;">우선순위</div></div>
-          <div class="mgmt-icon-card"><div style="font-size:28px;margin-bottom:6px;">⏰</div><div style="font-size:11px;font-weight:700;color:#1e3a5f;">시간 관리</div></div>
-          <div class="mgmt-icon-card"><div style="font-size:28px;margin-bottom:6px;">✅</div><div style="font-size:11px;font-weight:700;color:#1e3a5f;">실천 점검</div></div>
+      <div class="mgmt-visual" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);padding:20px;">
+        <div class="mgmt-slider" id="planSlider">
+          <img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%94%8C%EB%9E%9C.png" class="active" alt="플랜관리 1">
+          <img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%94%8C%EB%9E%9C2.png" alt="플랜관리 2">
+          <img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%94%8C%EB%9E%9C3.png" alt="플랜관리 3">
+        </div>
+        <div class="mgmt-slider-dots" data-slider="planSlider">
+          <button class="mgmt-slider-dot active" onclick="goSlide('planSlider',0)"></button>
+          <button class="mgmt-slider-dot" onclick="goSlide('planSlider',1)"></button>
+          <button class="mgmt-slider-dot" onclick="goSlide('planSlider',2)"></button>
         </div>
       </div>
     </div>
@@ -3965,15 +3972,16 @@ function buildAcademyPage() {
         <div class="mgmt-check"><span style="color:#10b981;">✓</span><span>학교별 기출 분석 및 내신 대비</span></div>
         <div class="mgmt-check"><span style="color:#10b981;">✓</span><span>공부법이 달라지면, 성적은 자연스럽게 UP</span></div>
       </div>
-      <div class="mgmt-visual" style="background:linear-gradient(135deg,#ecfdf5,#d1fae5);">
-        <div style="font-size:64px;margin-bottom:8px;">📖</div>
-        <p style="font-size:18px;font-weight:900;color:#065f46;margin-bottom:4px;">Study Management</p>
-        <p style="font-size:13px;color:#10b981;margin-bottom:20px;">맞춤형 학습으로 실력 완성</p>
-        <div class="mgmt-icon-grid">
-          <div class="mgmt-icon-card"><div style="font-size:28px;margin-bottom:6px;">📕</div><div style="font-size:11px;font-weight:700;color:#1e3a5f;">맞춤 교재</div></div>
-          <div class="mgmt-icon-card"><div style="font-size:28px;margin-bottom:6px;">📝</div><div style="font-size:11px;font-weight:700;color:#1e3a5f;">오답 노트</div></div>
-          <div class="mgmt-icon-card"><div style="font-size:28px;margin-bottom:6px;">🧠</div><div style="font-size:11px;font-weight:700;color:#1e3a5f;">마인드맵</div></div>
-          <div class="mgmt-icon-card"><div style="font-size:28px;margin-bottom:6px;">📈</div><div style="font-size:11px;font-weight:700;color:#1e3a5f;">성적 분석</div></div>
+      <div class="mgmt-visual" style="background:linear-gradient(135deg,#ecfdf5,#d1fae5);padding:20px;">
+        <div class="mgmt-slider" id="studySlider">
+          <img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%95%99%EC%8A%B5.png" class="active" alt="학습관리 1">
+          <img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%95%99%EC%8A%B52.png" alt="학습관리 2">
+          <img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%95%99%EC%8A%B53.png" alt="학습관리 3">
+        </div>
+        <div class="mgmt-slider-dots" data-slider="studySlider">
+          <button class="mgmt-slider-dot active" onclick="goSlide('studySlider',0)"></button>
+          <button class="mgmt-slider-dot" onclick="goSlide('studySlider',1)"></button>
+          <button class="mgmt-slider-dot" onclick="goSlide('studySlider',2)"></button>
         </div>
       </div>
     </div>
@@ -3990,15 +3998,14 @@ function buildAcademyPage() {
         <div class="mgmt-check"><span style="color:#f59e0b;">✓</span><span>생활 리듬·수면·휴대폰 사용 습관 관리</span></div>
         <div class="mgmt-check"><span style="color:#f59e0b;">✓</span><span>학습 동기 부여 및 목표 의식 강화</span></div>
       </div>
-      <div class="mgmt-visual" style="background:linear-gradient(135deg,#fffbeb,#fef3c7);">
-        <div style="font-size:64px;margin-bottom:8px;">🤝</div>
-        <p style="font-size:18px;font-weight:900;color:#92400e;margin-bottom:4px;">Life Management</p>
-        <p style="font-size:13px;color:#f59e0b;margin-bottom:20px;">생활 밀착형 학습 코칭</p>
-        <div class="mgmt-icon-grid">
-          <div class="mgmt-icon-card"><div style="font-size:28px;margin-bottom:6px;">💬</div><div style="font-size:11px;font-weight:700;color:#1e3a5f;">학생 소통</div></div>
-          <div class="mgmt-icon-card"><div style="font-size:28px;margin-bottom:6px;">👨‍👩‍👧</div><div style="font-size:11px;font-weight:700;color:#1e3a5f;">학부모 피드백</div></div>
-          <div class="mgmt-icon-card"><div style="font-size:28px;margin-bottom:6px;">💪</div><div style="font-size:11px;font-weight:700;color:#1e3a5f;">동기 부여</div></div>
-          <div class="mgmt-icon-card"><div style="font-size:28px;margin-bottom:6px;">📱</div><div style="font-size:11px;font-weight:700;color:#1e3a5f;">생활 습관</div></div>
+      <div class="mgmt-visual" style="background:linear-gradient(135deg,#fffbeb,#fef3c7);padding:20px;">
+        <div class="mgmt-slider" id="lifeSlider">
+          <img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%EC%83%9D%ED%99%9C.png" class="active" alt="생활관리 1">
+          <img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%EC%83%9D%ED%99%9C2.png" alt="생활관리 2">
+        </div>
+        <div class="mgmt-slider-dots" data-slider="lifeSlider">
+          <button class="mgmt-slider-dot active" onclick="goSlide('lifeSlider',0)"></button>
+          <button class="mgmt-slider-dot" onclick="goSlide('lifeSlider',1)"></button>
         </div>
       </div>
     </div>
@@ -4148,6 +4155,24 @@ function buildAcademyPage() {
     });
     document.getElementById('acadCount').textContent=cnt+'개 센터';
   }
+  function goSlide(sliderId,idx){
+    var slider=document.getElementById(sliderId);
+    var imgs=slider.querySelectorAll('img');
+    var dotsWrap=document.querySelector('[data-slider="'+sliderId+'"]');
+    var dots=dotsWrap.querySelectorAll('.mgmt-slider-dot');
+    imgs.forEach(function(img,i){img.classList.toggle('active',i===idx);});
+    dots.forEach(function(d,i){d.classList.toggle('active',i===idx);});
+  }
+  (function(){
+    var sliders=['planSlider','studySlider','lifeSlider'];
+    sliders.forEach(function(id){
+      var el=document.getElementById(id);
+      if(!el)return;
+      var total=el.querySelectorAll('img').length;
+      var cur=0;
+      setInterval(function(){cur=(cur+1)%total;goSlide(id,cur);},3500);
+    });
+  })();
   </script>
   </body></html>`;
 }
