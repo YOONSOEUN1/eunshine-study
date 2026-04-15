@@ -3909,19 +3909,11 @@ function buildAcademyPage() {
       <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(200,169,110,0.15);border-radius:50%;"></div>
       <div style="position:absolute;bottom:-60px;left:-30px;width:160px;height:160px;background:rgba(255,255,255,0.05);border-radius:50%;"></div>
       <p style="font-size:14px;opacity:.7;margin-bottom:10px;font-weight:600;">은빛스터디 × 와와학습코칭센터 · 전국 205개 센터</p>
-      <h1 style="font-size:clamp(24px,4.5vw,38px);font-weight:900;margin-bottom:16px;line-height:1.4;">플랜 × 학습 × 생활<br>3가지가 하나로 연결될 때, 성적이 바뀝니다</h1>
-      <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:20px;">
-        <span style="background:rgba(59,130,246,.2);color:#93c5fd;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:700;">📋 플랜관리</span>
-        <span style="font-size:20px;color:rgba(255,255,255,.4);display:flex;align-items:center;">→</span>
-        <span style="background:rgba(16,185,129,.2);color:#6ee7b7;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:700;">📚 학습관리</span>
-        <span style="font-size:20px;color:rgba(255,255,255,.4);display:flex;align-items:center;">→</span>
-        <span style="background:rgba(245,158,11,.2);color:#fcd34d;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:700;">💬 생활관리</span>
-      </div>
-      <p style="font-size:14px;opacity:.6;line-height:1.8;margin-bottom:20px;">30년 코칭 교육 노하우가 만들어낸 통합 관리 시스템으로<br>학생의 학습 습관부터 일상까지 완벽하게 케어합니다</p>
+      <h1 style="font-size:clamp(24px,4.5vw,38px);font-weight:900;margin-bottom:24px;line-height:1.4;">둥지 × 플랜 × 학습 × 생활<br>4가지가 하나로 연결될 때, 성적이 바뀝니다</h1>
       <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;">
-        <span style="background:rgba(255,255,255,.12);border-radius:50px;padding:8px 20px;font-size:13px;font-weight:700;">🏫 전국 205개 센터</span>
-        <span style="background:rgba(255,255,255,.12);border-radius:50px;padding:8px 20px;font-size:13px;font-weight:700;">📚 초·중·고 전과목</span>
-        <span style="background:rgba(255,255,255,.12);border-radius:50px;padding:8px 20px;font-size:13px;font-weight:700;">🎯 1:1 맞춤 코칭</span>
+        <span style="background:rgba(59,130,246,.2);color:#93c5fd;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:700;">🏫 전국 205개 센터</span>
+        <span style="background:rgba(16,185,129,.2);color:#6ee7b7;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:700;">📚 초·중·고 전과목</span>
+        <span style="background:rgba(245,158,11,.2);color:#fcd34d;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:700;">🎯 1:1 맞춤 코칭</span>
       </div>
     </div>
 
@@ -3959,7 +3951,7 @@ function buildAcademyPage() {
     <div style="text-align:center;margin:56px 0 32px;">
       <span class="mgmt-badge" style="background:#1A234010;color:#1A2340;">와와학습코칭 핵심 시스템</span>
       <h2 style="font-size:clamp(24px,4.5vw,36px);font-weight:900;color:#1A2340;margin-bottom:10px;line-height:1.3;">개별 맞춤 관리 시스템</h2>
-      <p style="font-size:15px;color:#888;line-height:1.8;">단순히 공부만 시키는 학원이 아닙니다<br>계획 · 학습 · 생활, 3가지를 촘촘하게 관리합니다</p>
+      <p style="font-size:15px;color:#888;line-height:1.8;">단순히 공부만 시키는 학원이 아닙니다<br>둥지 · 계획 · 학습 · 생활, 4가지를 촘촘하게 관리합니다</p>
     </div>
 
     <!-- 플랜관리 위: 둥지 학습 시스템 -->
