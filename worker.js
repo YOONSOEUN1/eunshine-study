@@ -4177,7 +4177,7 @@ function buildAcademyPage() {
             </div>
           </div>
           <div class="review-card">
-            <div class="review-img"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%9B%84%EA%B8%B03.png" alt="후기3" style="width:100%;height:100%;object-fit:cover;"></div>
+            <div class="review-img"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%9B%84%EA%B8%B03.jpg" alt="후기3" style="width:100%;height:100%;object-fit:cover;"></div>
             <div class="review-body">
               <h4>영어 80점 → 100점!</h4>
               <p>우리 학교 내신 맞춤 특강을 통해<br>고난이도 유형까지 완벽 마스터!<br>자신감이 생겨서 영어가 재미있어졌어요.</p>
@@ -4185,7 +4185,7 @@ function buildAcademyPage() {
             </div>
           </div>
           <div class="review-card">
-            <div class="review-img"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%9B%84%EA%B8%B04.png" alt="후기4" style="width:100%;height:100%;object-fit:cover;"></div>
+            <div class="review-img"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%9B%84%EA%B8%B04.jpg" alt="후기4" style="width:100%;height:100%;object-fit:cover;"></div>
             <div class="review-body">
               <h4>수학 40점 → 92점!</h4>
               <p>기초가 부족해서 수학을 포기할 뻔했는데<br>코치 선생님이 기초부터 차근차근 잡아주셨어요.<br>이제 수학이 제일 자신 있는 과목이 됐습니다!</p>
@@ -4193,7 +4193,7 @@ function buildAcademyPage() {
             </div>
           </div>
           <div class="review-card">
-            <div class="review-img"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%9B%84%EA%B8%B05.png" alt="후기5" style="width:100%;height:100%;object-fit:cover;"></div>
+            <div class="review-img"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%9B%84%EA%B8%B05.jpg" alt="후기5" style="width:100%;height:100%;object-fit:cover;"></div>
             <div class="review-body">
               <h4>전교 15등 → 3등!</h4>
               <p>플래너 관리 덕분에 공부 습관이 완전히 바뀌었어요.<br>스스로 계획 세우고 실천하는 게 몸에 배었습니다.<br>부모님도 정말 만족해하세요!</p>
@@ -4201,7 +4201,7 @@ function buildAcademyPage() {
             </div>
           </div>
           <div class="review-card">
-            <div class="review-img"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%9B%84%EA%B8%B06.png" alt="후기6" style="width:100%;height:100%;object-fit:cover;"></div>
+            <div class="review-img"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%9B%84%EA%B8%B06.jpg" alt="후기6" style="width:100%;height:100%;object-fit:cover;"></div>
             <div class="review-body">
               <h4>과학 60점 → 95점!</h4>
               <p>개념 정리를 마인드맵으로 하니까<br>이해가 훨씬 잘 되고 시험 때 기억이 잘 나요.<br>오답노트 습관도 생겨서 실수가 확 줄었습니다!</p>
