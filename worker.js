@@ -4040,7 +4040,6 @@ function buildCenterDetailPage(slug) {
       <span style="background:rgba(255,255,255,.15);padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;">${ct.r}</span>
       <h1 style="font-size:clamp(24px,5vw,36px);font-weight:900;margin:12px 0 8px;">${ct.n}</h1>
       <p style="font-size:14px;opacity:.8;">📍 ${ct.a}</p>
-      <p style="font-size:13px;opacity:.6;margin-top:6px;">담당: ${ct.c}</p>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;">
       <div style="background:white;border-radius:16px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
@@ -4088,9 +4087,9 @@ function buildAcademyPage() {
     const slug = c.n.replace(/ /g,'').replace(/\(/g,'_').replace(/\)/g,'').replace(/\//g,'_');
     const dt = ACAD_DETAIL.find(function(d){return d.sl===slug;});
     const schoolLines = [];
-    if(dt&&dt.se) schoolLines.push('<div style="margin-bottom:4px;"><b style="color:#3b82f6;">초</b> '+dt.se.substring(0,40)+'</div>');
-    if(dt&&dt.sm) schoolLines.push('<div style="margin-bottom:4px;"><b style="color:#10b981;">중</b> '+dt.sm.substring(0,40)+'</div>');
-    if(dt&&dt.sh) schoolLines.push('<div><b style="color:#f59e0b;">고</b> '+dt.sh.substring(0,40)+'</div>');
+    if(dt&&dt.se) schoolLines.push('<div style="margin-bottom:5px;"><span style="background:#3b82f620;color:#3b82f6;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:800;margin-right:6px;">초등</span><span style="font-size:11px;color:#555;">'+dt.se.substring(0,50)+'</span></div>');
+    if(dt&&dt.sm) schoolLines.push('<div style="margin-bottom:5px;"><span style="background:#10b98120;color:#10b981;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:800;margin-right:6px;">중등</span><span style="font-size:11px;color:#555;">'+dt.sm.substring(0,50)+'</span></div>');
+    if(dt&&dt.sh) schoolLines.push('<div><span style="background:#f59e0b20;color:#f59e0b;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:800;margin-right:6px;">고등</span><span style="font-size:11px;color:#555;">'+dt.sh.substring(0,50)+'</span></div>');
     const schoolTxt = schoolLines.join('');
     cardsHtml += `<a href="/academy/${encodeURIComponent(slug)}" class="acad-card" data-region="${c.r}" style="text-decoration:none;color:inherit;display:block;">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
@@ -4117,7 +4116,7 @@ function buildAcademyPage() {
   .acad-cnt{font-size:11px;opacity:.7;}
   .acad-card{background:white;border:1px solid #eee;border-radius:16px;padding:20px;transition:transform .2s,box-shadow .2s;}
   .acad-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.08);}
-  .acad-card.hide{display:none;}
+  .acad-card.hide{display:none!important;}
   .coach-step{background:white;border-radius:20px;padding:28px 24px;text-align:center;border:2px solid transparent;transition:border-color .3s,transform .3s;}
   .coach-step:hover{border-color:#C8A96E;transform:translateY(-4px);}
   .nest-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;}
