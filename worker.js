@@ -4086,17 +4086,21 @@ function buildAcademyPage() {
     }).join('');
     const wkBadge = c.w==='주말가능' ? '<span style="background:#10b98115;color:#10b981;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;">주말수업</span>' : '';
     const slug = c.n.replace(/ /g,'').replace(/\(/g,'_').replace(/\)/g,'').replace(/\//g,'_');
+    const dt = ACAD_DETAIL.find(function(d){return d.sl===slug;});
+    const schools = [];
+    if(dt&&dt.se) schools.push('초: '+dt.se.substring(0,30));
+    if(dt&&dt.sm) schools.push('중: '+dt.sm.substring(0,30));
+    if(dt&&dt.sh) schools.push('고: '+dt.sh.substring(0,30));
+    const schoolTxt = schools.length ? schools.join(' / ') : '';
     cardsHtml += `<a href="/academy/${encodeURIComponent(slug)}" class="acad-card" data-region="${c.r}" style="text-decoration:none;color:inherit;display:block;">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
-        <div>
-          <h3 style="font-size:16px;font-weight:900;color:#1A2340;margin:0 0 4px 0;">${c.n}</h3>
-          <p style="font-size:12px;color:#888;margin:0;">📍 ${c.a}</p>
-        </div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+        <h3 style="font-size:16px;font-weight:900;color:#1A2340;margin:0;">${c.n}</h3>
         <span style="background:#C8A96E15;color:#C8A96E;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap;">${c.r}</span>
       </div>
-      <p style="font-size:13px;color:#555;line-height:1.7;margin:0 0 12px 0;min-height:40px;">${c.s}</p>
-      <div style="display:flex;flex-wrap:wrap;gap:6px;">${subjBadges}${wkBadge}</div>
-      <div style="margin-top:10px;text-align:right;"><span style="font-size:12px;color:#C8A96E;font-weight:700;">자세히 보기 →</span></div>
+      <p style="font-size:12px;color:#888;margin:0 0 8px;">📍 ${c.a}</p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;">${subjBadges}${wkBadge}</div>
+      ${schoolTxt ? '<p style="font-size:11px;color:#666;line-height:1.7;margin:0 0 8px;background:#f8f9fa;padding:8px 12px;border-radius:8px;">🏫 '+schoolTxt+'</p>' : ''}
+      <div style="text-align:right;"><span style="font-size:12px;color:#C8A96E;font-weight:700;">자세히 보기 →</span></div>
     </a>`;
   });
 
