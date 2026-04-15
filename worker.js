@@ -3933,28 +3933,72 @@ function buildAcademyPage() {
       </div>
     </div>
 
-    <!-- 교습비 안내 -->
-    <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(28px,5vw,48px);margin-bottom:40px;">
-      <h2 style="font-size:clamp(20px,3.5vw,28px);font-weight:900;color:#1A2340;text-align:center;margin-bottom:8px;">💰 교습비 안내</h2>
-      <p style="font-size:13px;color:#888;text-align:center;margin-bottom:24px;">센터별로 상이할 수 있으며, 자세한 금액은 상담 시 안내드립니다</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;">
-        <div style="border:2px solid #3498db33;border-radius:16px;padding:24px;text-align:center;">
-          <span style="background:#3498db15;color:#3498db;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:800;">초등</span>
-          <div style="font-size:32px;font-weight:900;color:#1A2340;margin:14px 0 6px;"><span style="font-size:18px;color:#888;">월</span> 6만원~</div>
-          <p style="font-size:12px;color:#888;">과목당 / 주 2회 기준</p>
-          <div style="border-top:1px solid #eee;margin-top:14px;padding-top:14px;font-size:12px;color:#666;line-height:1.8;">90~120분 수업<br>내방 공부구도 별도</div>
+    <!-- AI 학습클래스 -->
+    <div style="margin-bottom:40px;">
+      <div style="text-align:center;margin-bottom:28px;">
+        <span style="background:linear-gradient(135deg,#6366f1,#8b5cf6);color:white;padding:6px 20px;border-radius:50px;font-size:12px;font-weight:800;display:inline-block;margin-bottom:14px;">AI 기반 올인원 학습 플랫폼</span>
+        <h2 style="font-size:clamp(22px,4vw,32px);font-weight:900;color:#1A2340;margin-bottom:8px;">🤖 AI 학습클래스</h2>
+        <p style="font-size:14px;color:#888;line-height:1.8;">AI 기술로 학생 개개인의 실력을 정밀 분석하고<br>수준별 맞춤 학습 콘텐츠를 무제한 제공합니다</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;">
+        <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:28px;border-top:4px solid #3b82f6;transition:transform .2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+            <div style="width:50px;height:50px;border-radius:14px;background:#3b82f610;display:flex;align-items:center;justify-content:center;font-size:26px;">🔤</div>
+            <div><h3 style="font-size:17px;font-weight:900;color:#1A2340;margin:0;">AI 영어</h3>
+            <p style="font-size:11px;color:#3b82f6;font-weight:700;margin:0;">AI English Class</p></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#3b82f6;font-weight:800;flex-shrink:0;">✓</span><span style="font-size:13px;color:#555;line-height:1.6;">AI가 분석한 취약 영역별 맞춤 문제 제공</span></div>
+            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#3b82f6;font-weight:800;flex-shrink:0;">✓</span><span style="font-size:13px;color:#555;line-height:1.6;">교과서 본문·내신 대비 지문 마스터</span></div>
+            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#3b82f6;font-weight:800;flex-shrink:0;">✓</span><span style="font-size:13px;color:#555;line-height:1.6;">수능 연계 독해·어법·어휘 트레이닝</span></div>
+            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#3b82f6;font-weight:800;flex-shrink:0;">✓</span><span style="font-size:13px;color:#555;line-height:1.6;">수준별 무제한 문제 자동 생성</span></div>
+          </div>
         </div>
-        <div style="border:2px solid #2ecc7133;border-radius:16px;padding:24px;text-align:center;">
-          <span style="background:#2ecc7115;color:#2ecc71;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:800;">중등</span>
-          <div style="font-size:32px;font-weight:900;color:#1A2340;margin:14px 0 6px;"><span style="font-size:18px;color:#888;">월</span> 6.5만원~</div>
-          <p style="font-size:12px;color:#888;">과목당 / 주 2회 기준</p>
-          <div style="border-top:1px solid #eee;margin-top:14px;padding-top:14px;font-size:12px;color:#666;line-height:1.8;">90~100분 수업<br>내방 공부구도 별도</div>
+        <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:28px;border-top:4px solid #f59e0b;transition:transform .2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+            <div style="width:50px;height:50px;border-radius:14px;background:#f59e0b10;display:flex;align-items:center;justify-content:center;font-size:26px;">🔢</div>
+            <div><h3 style="font-size:17px;font-weight:900;color:#1A2340;margin:0;">AI 수학</h3>
+            <p style="font-size:11px;color:#f59e0b;font-weight:700;margin:0;">AI Math Class</p></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#f59e0b;font-weight:800;flex-shrink:0;">✓</span><span style="font-size:13px;color:#555;line-height:1.6;">초3~고등 미적분까지 전 범위 개념 강의</span></div>
+            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#f59e0b;font-weight:800;flex-shrink:0;">✓</span><span style="font-size:13px;color:#555;line-height:1.6;">학기별 학력 인증 평가·형성 평가 시스템</span></div>
+            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#f59e0b;font-weight:800;flex-shrink:0;">✓</span><span style="font-size:13px;color:#555;line-height:1.6;">AI 교재로 학생별 맞춤 스마트북 제작</span></div>
+            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#f59e0b;font-weight:800;flex-shrink:0;">✓</span><span style="font-size:13px;color:#555;line-height:1.6;">오답 패턴 분석 → 유사 문제 자동 추천</span></div>
+          </div>
         </div>
-        <div style="border:2px solid #e74c3c33;border-radius:16px;padding:24px;text-align:center;">
-          <span style="background:#e74c3c15;color:#e74c3c;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:800;">고등</span>
-          <div style="font-size:32px;font-weight:900;color:#1A2340;margin:14px 0 6px;"><span style="font-size:18px;color:#888;">월</span> 7.5만원~</div>
-          <p style="font-size:12px;color:#888;">과목당 / 주 2회 기준</p>
-          <div style="border-top:1px solid #eee;margin-top:14px;padding-top:14px;font-size:12px;color:#666;line-height:1.8;">90~100분 수업<br>내방 공부구도 별도</div>
+        <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:28px;border-top:4px solid #10b981;transition:transform .2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+            <div style="width:50px;height:50px;border-radius:14px;background:#10b98110;display:flex;align-items:center;justify-content:center;font-size:26px;">📖</div>
+            <div><h3 style="font-size:17px;font-weight:900;color:#1A2340;margin:0;">AI 국어</h3>
+            <p style="font-size:11px;color:#10b981;font-weight:700;margin:0;">AI Korean Class</p></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#10b981;font-weight:800;flex-shrink:0;">✓</span><span style="font-size:13px;color:#555;line-height:1.6;">AI 기반 독해력·어휘력 수준 진단</span></div>
+            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#10b981;font-weight:800;flex-shrink:0;">✓</span><span style="font-size:13px;color:#555;line-height:1.6;">문학·비문학 지문 분석 능력 강화</span></div>
+            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#10b981;font-weight:800;flex-shrink:0;">✓</span><span style="font-size:13px;color:#555;line-height:1.6;">서술형 평가 대비 쓰기 훈련 시스템</span></div>
+            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#10b981;font-weight:800;flex-shrink:0;">✓</span><span style="font-size:13px;color:#555;line-height:1.6;">학교별 내신 국어 기출 분석 제공</span></div>
+          </div>
+        </div>
+        <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:28px;border-top:4px solid #8b5cf6;transition:transform .2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+            <div style="width:50px;height:50px;border-radius:14px;background:#8b5cf610;display:flex;align-items:center;justify-content:center;font-size:26px;">📚</div>
+            <div><h3 style="font-size:17px;font-weight:900;color:#1A2340;margin:0;">AI 독서</h3>
+            <p style="font-size:11px;color:#8b5cf6;font-weight:700;margin:0;">AI Reading Class</p></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#8b5cf6;font-weight:800;flex-shrink:0;">✓</span><span style="font-size:13px;color:#555;line-height:1.6;">AI 추천 도서 리스트 (수준별 맞춤)</span></div>
+            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#8b5cf6;font-weight:800;flex-shrink:0;">✓</span><span style="font-size:13px;color:#555;line-height:1.6;">독서 후 이해도 점검 퀴즈 자동 생성</span></div>
+            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#8b5cf6;font-weight:800;flex-shrink:0;">✓</span><span style="font-size:13px;color:#555;line-height:1.6;">독서 습관 형성을 위한 리딩 플래너</span></div>
+            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#8b5cf6;font-weight:800;flex-shrink:0;">✓</span><span style="font-size:13px;color:#555;line-height:1.6;">배경지식 확장 → 전 과목 학습 효과 UP</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="background:linear-gradient(135deg,#f0f0ff,#fef9ef);border-radius:16px;padding:24px 28px;margin-top:20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+        <div style="font-size:36px;">💡</div>
+        <div style="flex:1;min-width:240px;">
+          <p style="font-size:15px;font-weight:800;color:#1A2340;margin:0 0 6px;">AI + 코치 = 최적의 학습 시너지</p>
+          <p style="font-size:13px;color:#666;line-height:1.7;margin:0;">AI가 실력을 정밀 분석하고 맞춤 콘텐츠를 제공하면, 전문 코치가 학습 방향을 잡아주고 동기를 부여합니다. 기술과 사람의 조화로 학습 효과를 극대화합니다.</p>
         </div>
       </div>
     </div>
