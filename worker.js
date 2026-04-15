@@ -1872,6 +1872,9 @@ function getIndex() {
   );
   // 드롭다운 버튼 텍스트 변경 (지역별수업 → 과외찾기)
   html = html.replace('>지역별수업 <', '>과외찾기 <');
+  // 메인 홈페이지 브랜드명 변경
+  html = html.replaceAll('은빛과외', '은빛스터디');
+  html = html.replace('>과외</span></a>', '>스터디</span></a>');
   // 탭 스타일 주입
   const tabStyles = `.nav-panel-tabs{display:flex;border-bottom:1px solid rgba(255,255,255,0.1);}.nav-panel-tab{flex:1;padding:14px 16px;background:transparent;border:none;color:rgba(255,255,255,0.5);font-size:14px;font-weight:700;cursor:pointer;font-family:'Malgun Gothic',sans-serif;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px;}.nav-panel-tab:hover{color:rgba(255,255,255,0.8);}.nav-panel-tab.active{background:rgba(200,169,110,0.15);color:#C8A96E;}.nav-panel-content{display:none;padding:20px 24px;}.nav-panel-content.active{display:block;}.nav-grade-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}.nav-grade-grid a{display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,169,110,0.25);color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:12px 10px;border-radius:50px;white-space:nowrap;transition:background .15s,transform .15s;font-family:'Malgun Gothic',sans-serif;}.nav-grade-grid a:hover{background:rgba(200,169,110,0.18);transform:translateY(-1px);}.nav-school-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}.nav-school-grid a{display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,169,110,0.25);color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:11px 6px;border-radius:50px;white-space:nowrap;transition:background .15s,transform .15s;font-family:'Malgun Gothic',sans-serif;}.nav-school-grid a:hover{background:rgba(200,169,110,0.18);transform:translateY(-1px);}@media(max-width:900px){.nav-grade-grid{grid-template-columns:repeat(3,1fr);}.nav-school-grid{grid-template-columns:repeat(3,1fr);}.nav-panel-tab{padding:12px 8px;font-size:13px;}}`;
   html = html.replace('</style>', tabStyles + '</style>');
@@ -4126,19 +4129,6 @@ function buildAcademyPage() {
             <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#10b981;font-weight:800;flex-shrink:0;">✓</span><span style="font-size:13px;color:#555;line-height:1.6;">학교별 내신 국어 기출 분석 제공</span></div>
           </div>
         </div>
-        <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:28px;border-top:4px solid #8b5cf6;transition:transform .2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
-            <div style="width:50px;height:50px;border-radius:14px;background:#8b5cf610;display:flex;align-items:center;justify-content:center;font-size:26px;">📚</div>
-            <div><h3 style="font-size:17px;font-weight:900;color:#1A2340;margin:0;">AI 독서</h3>
-            <p style="font-size:11px;color:#8b5cf6;font-weight:700;margin:0;">AI Reading Class</p></div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:10px;">
-            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#8b5cf6;font-weight:800;flex-shrink:0;">✓</span><span style="font-size:13px;color:#555;line-height:1.6;">AI 추천 도서 리스트 (수준별 맞춤)</span></div>
-            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#8b5cf6;font-weight:800;flex-shrink:0;">✓</span><span style="font-size:13px;color:#555;line-height:1.6;">독서 후 이해도 점검 퀴즈 자동 생성</span></div>
-            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#8b5cf6;font-weight:800;flex-shrink:0;">✓</span><span style="font-size:13px;color:#555;line-height:1.6;">독서 습관 형성을 위한 리딩 플래너</span></div>
-            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#8b5cf6;font-weight:800;flex-shrink:0;">✓</span><span style="font-size:13px;color:#555;line-height:1.6;">배경지식 확장 → 전 과목 학습 효과 UP</span></div>
-          </div>
-        </div>
       </div>
       <div style="background:linear-gradient(135deg,#f0f0ff,#fef9ef);border-radius:16px;padding:24px 28px;margin-top:20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
         <div style="font-size:36px;">💡</div>
@@ -4280,6 +4270,19 @@ function buildAcademyPage() {
     track.addEventListener('touchstart',function(e){startX=e.touches[0].clientX;dragging=true;});
     track.addEventListener('touchmove',function(e){if(!dragging)return;curX=e.touches[0].clientX;});
     track.addEventListener('touchend',function(){if(!dragging)return;dragging=false;var diff=startX-curX;if(Math.abs(diff)>40)moveReview(diff>0?1:-1);});
+  })();
+  (function(){
+    var track=document.getElementById('reviewTrack');
+    if(!track)return;
+    setInterval(function(){
+      var cards=track.querySelectorAll('.review-card');
+      var cardW=cards[0].offsetWidth+20;
+      var wrapW=document.getElementById('reviewWrap').offsetWidth;
+      var maxPos=Math.max(0,(cards.length*cardW)-wrapW);
+      rvPos=rvPos+cardW;
+      if(rvPos>maxPos)rvPos=0;
+      track.style.transform='translateX(-'+rvPos+'px)';
+    },3000);
   })();
   </script>
   </body></html>`;
