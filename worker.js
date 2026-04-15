@@ -4087,11 +4087,11 @@ function buildAcademyPage() {
     const wkBadge = c.w==='주말가능' ? '<span style="background:#10b98115;color:#10b981;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;">주말수업</span>' : '';
     const slug = c.n.replace(/ /g,'').replace(/\(/g,'_').replace(/\)/g,'').replace(/\//g,'_');
     const dt = ACAD_DETAIL.find(function(d){return d.sl===slug;});
-    const schools = [];
-    if(dt&&dt.se) schools.push('초: '+dt.se.substring(0,30));
-    if(dt&&dt.sm) schools.push('중: '+dt.sm.substring(0,30));
-    if(dt&&dt.sh) schools.push('고: '+dt.sh.substring(0,30));
-    const schoolTxt = schools.length ? schools.join(' / ') : '';
+    const schoolLines = [];
+    if(dt&&dt.se) schoolLines.push('<div style="margin-bottom:4px;"><b style="color:#3b82f6;">초</b> '+dt.se.substring(0,40)+'</div>');
+    if(dt&&dt.sm) schoolLines.push('<div style="margin-bottom:4px;"><b style="color:#10b981;">중</b> '+dt.sm.substring(0,40)+'</div>');
+    if(dt&&dt.sh) schoolLines.push('<div><b style="color:#f59e0b;">고</b> '+dt.sh.substring(0,40)+'</div>');
+    const schoolTxt = schoolLines.join('');
     cardsHtml += `<a href="/academy/${encodeURIComponent(slug)}" class="acad-card" data-region="${c.r}" style="text-decoration:none;color:inherit;display:block;">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
         <h3 style="font-size:16px;font-weight:900;color:#1A2340;margin:0;">${c.n}</h3>
@@ -4099,7 +4099,7 @@ function buildAcademyPage() {
       </div>
       <p style="font-size:12px;color:#888;margin:0 0 8px;">📍 ${c.a}</p>
       <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;">${subjBadges}${wkBadge}</div>
-      ${schoolTxt ? '<p style="font-size:11px;color:#666;line-height:1.7;margin:0 0 8px;background:#f8f9fa;padding:8px 12px;border-radius:8px;">🏫 '+schoolTxt+'</p>' : ''}
+      ${schoolTxt ? '<div style="font-size:11px;color:#666;line-height:1.8;background:#f8f9fa;padding:8px 12px;border-radius:8px;margin-bottom:8px;">'+schoolTxt+'</div>' : ''}
       <div style="text-align:right;"><span style="font-size:12px;color:#C8A96E;font-weight:700;">자세히 보기 →</span></div>
     </a>`;
   });
