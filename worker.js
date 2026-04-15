@@ -3844,8 +3844,8 @@ function buildAcademyPage() {
   return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
   <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>와와학습코칭 학원수업 | 전국 205개 센터 | 은빛과외</title>
-  <meta name="description" content="와와학습코칭센터 전국 205개 센터 안내. 4C 코칭 시스템, 둥지 학습, 1:1 맞춤 수업. 초중고 전과목 학원수업.">
+  <title>와와학습코칭 학원수업 | 개별 맞춤 관리 시스템 | 전국 205개 센터 | 은빛과외</title>
+  <meta name="description" content="와와학습코칭센터 전국 205개 센터 안내. 플랜관리·학습관리·생활관리 3대 개별 맞춤 관리 시스템. 4C 코칭, 둥지 학습, AI학습클래스. 초중고 전과목 학원수업.">
   ${COMMON_STYLE}
   <style>
   .acad-tab{padding:8px 18px;border:1px solid #e0e0e0;border-radius:50px;background:white;cursor:pointer;font-size:13px;font-weight:600;color:#666;font-family:'Malgun Gothic',sans-serif;transition:all .2s;white-space:nowrap;}
@@ -3859,6 +3859,20 @@ function buildAcademyPage() {
   .coach-step:hover{border-color:#C8A96E;transform:translateY(-4px);}
   .nest-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;}
   @media(max-width:768px){.nest-grid{grid-template-columns:1fr;}}
+  .mgmt-section{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;background:white;border-radius:24px;padding:clamp(28px,5vw,52px);margin-bottom:24px;box-shadow:0 4px 24px rgba(0,0,0,0.06);transition:box-shadow .3s;}
+  .mgmt-section:hover{box-shadow:0 8px 36px rgba(0,0,0,0.1);}
+  .mgmt-section.reverse .mgmt-text{order:2;} .mgmt-section.reverse .mgmt-visual{order:1;}
+  @media(max-width:768px){.mgmt-section{grid-template-columns:1fr;gap:28px;} .mgmt-section.reverse .mgmt-text{order:1;} .mgmt-section.reverse .mgmt-visual{order:2;}}
+  .mgmt-visual{border-radius:20px;padding:clamp(24px,4vw,40px);text-align:center;position:relative;overflow:hidden;}
+  .mgmt-icon-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;}
+  .mgmt-icon-card{background:rgba(255,255,255,.85);backdrop-filter:blur(8px);border-radius:14px;padding:16px 12px;text-align:center;transition:transform .2s;}
+  .mgmt-icon-card:hover{transform:translateY(-3px);}
+  .mgmt-badge{display:inline-block;padding:6px 16px;border-radius:50px;font-size:12px;font-weight:800;margin-bottom:14px;}
+  .mgmt-h2{font-size:clamp(22px,3.8vw,30px);font-weight:900;color:#1A2340;margin-bottom:14px;line-height:1.4;}
+  .mgmt-desc{font-size:14px;color:#555;line-height:2;margin-bottom:20px;}
+  .mgmt-check{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;}
+  .mgmt-check span:first-child{font-weight:800;flex-shrink:0;font-size:15px;}
+  .mgmt-check span:last-child{font-size:13px;color:#444;line-height:1.7;}
   </style>
   </head><body>${NAV}
   <div style="max-width:1100px;margin:40px auto;padding:0 16px;">
@@ -3905,6 +3919,102 @@ function buildAcademyPage() {
           <p style="font-size:13px;color:#666;line-height:1.8;">학부모 피드백, 정기 평가서 발송, 학습 플래너 관리까지. 수업 외 일상 소통으로 학습 습관과 감정까지 살핍니다.</p>
         </div>
       </div>
+    </div>
+
+    <!-- ── 개별 맞춤 관리 시스템 ── -->
+    <div style="text-align:center;margin:56px 0 32px;">
+      <span class="mgmt-badge" style="background:#1A234010;color:#1A2340;">와와학습코칭 핵심 시스템</span>
+      <h2 style="font-size:clamp(24px,4.5vw,36px);font-weight:900;color:#1A2340;margin-bottom:10px;line-height:1.3;">개별 맞춤 관리 시스템</h2>
+      <p style="font-size:15px;color:#888;line-height:1.8;">단순히 공부만 시키는 학원이 아닙니다<br>계획 · 학습 · 생활, 3가지를 촘촘하게 관리합니다</p>
+    </div>
+
+    <!-- 플랜관리 -->
+    <div class="mgmt-section">
+      <div class="mgmt-text">
+        <span class="mgmt-badge" style="background:#3b82f615;color:#3b82f6;">STEP 1</span>
+        <h2 class="mgmt-h2">📋 플랜관리</h2>
+        <p style="font-size:13px;color:#3b82f6;font-weight:700;margin-bottom:16px;">계획을 세우고 실천하는 힘을 기르는</p>
+        <p class="mgmt-desc">단순히 공부하라고 하지 않습니다. 선생님이 학생과 함께 <b style="color:#3b82f6;">학습 목표를 설정</b>하고 우선순위를 정하여, 학습 시간과 분량을 스스로 관리하는 법을 가르칩니다.</p>
+        <div class="mgmt-check"><span style="color:#3b82f6;">✓</span><span>주간·월간 학습 목표 설정 및 점검</span></div>
+        <div class="mgmt-check"><span style="color:#3b82f6;">✓</span><span>과목별 우선순위 배정 및 시간 분배</span></div>
+        <div class="mgmt-check"><span style="color:#3b82f6;">✓</span><span>1:1 학습 플래너로 실천률 관리</span></div>
+        <div class="mgmt-check"><span style="color:#3b82f6;">✓</span><span>계획 → 실행 → 평가 사이클 반복 훈련</span></div>
+      </div>
+      <div class="mgmt-visual" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);">
+        <div style="font-size:64px;margin-bottom:8px;">📝</div>
+        <p style="font-size:18px;font-weight:900;color:#1e40af;margin-bottom:4px;">Plan Management</p>
+        <p style="font-size:13px;color:#3b82f6;margin-bottom:20px;">자기주도학습의 기초 체력</p>
+        <div class="mgmt-icon-grid">
+          <div class="mgmt-icon-card"><div style="font-size:28px;margin-bottom:6px;">🎯</div><div style="font-size:11px;font-weight:700;color:#1e3a5f;">목표 설정</div></div>
+          <div class="mgmt-icon-card"><div style="font-size:28px;margin-bottom:6px;">📊</div><div style="font-size:11px;font-weight:700;color:#1e3a5f;">우선순위</div></div>
+          <div class="mgmt-icon-card"><div style="font-size:28px;margin-bottom:6px;">⏰</div><div style="font-size:11px;font-weight:700;color:#1e3a5f;">시간 관리</div></div>
+          <div class="mgmt-icon-card"><div style="font-size:28px;margin-bottom:6px;">✅</div><div style="font-size:11px;font-weight:700;color:#1e3a5f;">실천 점검</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 학습관리 -->
+    <div class="mgmt-section reverse">
+      <div class="mgmt-text">
+        <span class="mgmt-badge" style="background:#10b98115;color:#10b981;">STEP 2</span>
+        <h2 class="mgmt-h2">📚 학습관리</h2>
+        <p style="font-size:13px;color:#10b981;font-weight:700;margin-bottom:16px;">아이에게 꼭 맞는 방식으로 제대로 공부하는</p>
+        <p class="mgmt-desc">진도만 빠르게 나가는 학원이 아닙니다. 학생의 현재 수준과 이해도에 맞춘 <b style="color:#10b981;">맞춤 교재와 학습법</b>으로 기초부터 탄탄하게 지도합니다. 오답노트, 백지노트, 마인드맵 등 다양한 도구를 활용합니다.</p>
+        <div class="mgmt-check"><span style="color:#10b981;">✓</span><span>학생 수준별 맞춤 교재 및 커리큘럼</span></div>
+        <div class="mgmt-check"><span style="color:#10b981;">✓</span><span>오답노트·백지노트·마인드맵 학습법</span></div>
+        <div class="mgmt-check"><span style="color:#10b981;">✓</span><span>학교별 기출 분석 및 내신 대비</span></div>
+        <div class="mgmt-check"><span style="color:#10b981;">✓</span><span>공부법이 달라지면, 성적은 자연스럽게 UP</span></div>
+      </div>
+      <div class="mgmt-visual" style="background:linear-gradient(135deg,#ecfdf5,#d1fae5);">
+        <div style="font-size:64px;margin-bottom:8px;">📖</div>
+        <p style="font-size:18px;font-weight:900;color:#065f46;margin-bottom:4px;">Study Management</p>
+        <p style="font-size:13px;color:#10b981;margin-bottom:20px;">맞춤형 학습으로 실력 완성</p>
+        <div class="mgmt-icon-grid">
+          <div class="mgmt-icon-card"><div style="font-size:28px;margin-bottom:6px;">📕</div><div style="font-size:11px;font-weight:700;color:#1e3a5f;">맞춤 교재</div></div>
+          <div class="mgmt-icon-card"><div style="font-size:28px;margin-bottom:6px;">📝</div><div style="font-size:11px;font-weight:700;color:#1e3a5f;">오답 노트</div></div>
+          <div class="mgmt-icon-card"><div style="font-size:28px;margin-bottom:6px;">🧠</div><div style="font-size:11px;font-weight:700;color:#1e3a5f;">마인드맵</div></div>
+          <div class="mgmt-icon-card"><div style="font-size:28px;margin-bottom:6px;">📈</div><div style="font-size:11px;font-weight:700;color:#1e3a5f;">성적 분석</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 생활관리 -->
+    <div class="mgmt-section">
+      <div class="mgmt-text">
+        <span class="mgmt-badge" style="background:#f59e0b15;color:#f59e0b;">STEP 3</span>
+        <h2 class="mgmt-h2">💬 생활관리</h2>
+        <p style="font-size:13px;color:#f59e0b;font-weight:700;margin-bottom:16px;">학원 밖에서도 이어지는 촘촘한</p>
+        <p class="mgmt-desc">공부는 수업 시간 안에서만 이뤄지지 않습니다. 학생과의 일상 소통, 학부모와의 긴밀한 피드백을 통해 <b style="color:#f59e0b;">학습 습관, 생활 리듬, 감정 변화</b>까지 함께 살핍니다. 이것이 와와만의 진짜 강점입니다.</p>
+        <div class="mgmt-check"><span style="color:#f59e0b;">✓</span><span>학생과의 일상적 소통 및 멘탈 케어</span></div>
+        <div class="mgmt-check"><span style="color:#f59e0b;">✓</span><span>학부모 정기 피드백 및 상담 리포트</span></div>
+        <div class="mgmt-check"><span style="color:#f59e0b;">✓</span><span>생활 리듬·수면·휴대폰 사용 습관 관리</span></div>
+        <div class="mgmt-check"><span style="color:#f59e0b;">✓</span><span>학습 동기 부여 및 목표 의식 강화</span></div>
+      </div>
+      <div class="mgmt-visual" style="background:linear-gradient(135deg,#fffbeb,#fef3c7);">
+        <div style="font-size:64px;margin-bottom:8px;">🤝</div>
+        <p style="font-size:18px;font-weight:900;color:#92400e;margin-bottom:4px;">Life Management</p>
+        <p style="font-size:13px;color:#f59e0b;margin-bottom:20px;">생활 밀착형 학습 코칭</p>
+        <div class="mgmt-icon-grid">
+          <div class="mgmt-icon-card"><div style="font-size:28px;margin-bottom:6px;">💬</div><div style="font-size:11px;font-weight:700;color:#1e3a5f;">학생 소통</div></div>
+          <div class="mgmt-icon-card"><div style="font-size:28px;margin-bottom:6px;">👨‍👩‍👧</div><div style="font-size:11px;font-weight:700;color:#1e3a5f;">학부모 피드백</div></div>
+          <div class="mgmt-icon-card"><div style="font-size:28px;margin-bottom:6px;">💪</div><div style="font-size:11px;font-weight:700;color:#1e3a5f;">동기 부여</div></div>
+          <div class="mgmt-icon-card"><div style="font-size:28px;margin-bottom:6px;">📱</div><div style="font-size:11px;font-weight:700;color:#1e3a5f;">생활 습관</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 관리 시스템 요약 배너 -->
+    <div style="background:linear-gradient(135deg,#1A2340,#2d3a5c);border-radius:20px;padding:clamp(28px,5vw,44px);margin-bottom:40px;text-align:center;color:white;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:-30px;right:-30px;width:150px;height:150px;background:rgba(200,169,110,0.1);border-radius:50%;"></div>
+      <h3 style="font-size:clamp(18px,3.5vw,26px);font-weight:900;margin-bottom:16px;line-height:1.4;">플랜 × 학습 × 생활<br>3가지가 하나로 연결될 때, 성적이 바뀝니다</h3>
+      <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:20px;">
+        <span style="background:rgba(59,130,246,.2);color:#93c5fd;padding:10px 22px;border-radius:50px;font-size:13px;font-weight:700;">📋 플랜관리</span>
+        <span style="font-size:20px;color:rgba(255,255,255,.4);display:flex;align-items:center;">→</span>
+        <span style="background:rgba(16,185,129,.2);color:#6ee7b7;padding:10px 22px;border-radius:50px;font-size:13px;font-weight:700;">📚 학습관리</span>
+        <span style="font-size:20px;color:rgba(255,255,255,.4);display:flex;align-items:center;">→</span>
+        <span style="background:rgba(245,158,11,.2);color:#fcd34d;padding:10px 22px;border-radius:50px;font-size:13px;font-weight:700;">💬 생활관리</span>
+      </div>
+      <p style="font-size:14px;color:rgba(255,255,255,.6);line-height:1.8;">30년 코칭 교육 노하우가 만들어낸 통합 관리 시스템으로<br>학생의 학습 습관부터 일상까지 완벽하게 케어합니다</p>
     </div>
 
     <!-- 둥지 학습 시스템 -->
