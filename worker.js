@@ -3952,6 +3952,23 @@ function buildAcademyPage() {
       <p style="font-size:15px;color:#888;line-height:1.8;">단순히 공부만 시키는 학원이 아닙니다<br>계획 · 학습 · 생활, 3가지를 촘촘하게 관리합니다</p>
     </div>
 
+    <!-- 플랜관리 위: 둥지 학습 시스템 -->
+    <div class="mgmt-section" style="margin-bottom:32px;">
+      <div class="mgmt-text">
+        <span style="background:#C8A96E15;color:#C8A96E;padding:6px 16px;border-radius:50px;font-size:12px;font-weight:800;display:inline-block;margin-bottom:14px;">와와만의 특별한 공간</span>
+        <h2 class="mgmt-h2">📖 둥지 학습 시스템</h2>
+        <p style="font-size:13px;color:#C8A96E;font-weight:700;margin-bottom:16px;">코치를 중심으로 학생들이 둘러앉는 집중형 구조</p>
+        <p class="mgmt-desc">정서적 안정감과 적절한 긴장감을 동시에 제공합니다. 다른 친구들이 열심히 공부하는 모습을 보며 <b style="color:#C8A96E;">자연스러운 학습 동기</b>가 부여됩니다.</p>
+        <div class="mgmt-check"><span style="color:#C8A96E;">✓</span><span>코치 동선 안에서 즉각적인 1:1 피드백</span></div>
+        <div class="mgmt-check"><span style="color:#C8A96E;">✓</span><span>소수정예 그룹으로 집중력 극대화</span></div>
+        <div class="mgmt-check"><span style="color:#C8A96E;">✓</span><span>자기주도학습 습관 자연스럽게 형성</span></div>
+        <div class="mgmt-check"><span style="color:#C8A96E;">✓</span><span>또래 학습 효과로 학습 동기 부여</span></div>
+      </div>
+      <div class="mgmt-visual" style="background:linear-gradient(135deg,#fef9ef,#f0f4ff);padding:16px;">
+        <img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%EB%91%A5%EC%A7%80%ED%95%99%EC%8A%B5.png" alt="둥지 학습 시스템" style="width:100%;border-radius:14px;object-fit:cover;">
+      </div>
+    </div>
+
     <!-- 플랜관리 -->
     <div class="mgmt-section">
       <div class="mgmt-text">
@@ -4067,31 +4084,6 @@ function buildAcademyPage() {
       </div>
     </div>
 
-    <!-- 둥지 학습 시스템 -->
-    <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(28px,5vw,48px);margin-bottom:40px;">
-      <div class="nest-grid">
-        <div>
-          <span style="background:#C8A96E15;color:#C8A96E;padding:6px 16px;border-radius:50px;font-size:12px;font-weight:800;display:inline-block;margin-bottom:14px;">와와만의 특별한 공간</span>
-          <h2 style="font-size:clamp(20px,3.5vw,28px);font-weight:900;color:#1A2340;margin-bottom:14px;line-height:1.4;">🪺 둥지 학습 시스템</h2>
-          <p style="font-size:14px;color:#555;line-height:2;margin-bottom:16px;">코치를 중심으로 학생들이 둘러앉는 <b style="color:#C8A96E;">집중형 구조</b>로, 정서적 안정감과 적절한 긴장감을 동시에 제공합니다. 다른 친구들이 열심히 공부하는 모습을 보며 자연스러운 학습 동기가 부여됩니다.</p>
-          <div style="display:flex;flex-direction:column;gap:10px;">
-            <div style="display:flex;align-items:center;gap:10px;"><span style="color:#C8A96E;font-weight:800;">✓</span><span style="font-size:13px;color:#444;">코치 동선 안에서 즉각적인 1:1 피드백</span></div>
-            <div style="display:flex;align-items:center;gap:10px;"><span style="color:#C8A96E;font-weight:800;">✓</span><span style="font-size:13px;color:#444;">소수정예 그룹으로 집중력 극대화</span></div>
-            <div style="display:flex;align-items:center;gap:10px;"><span style="color:#C8A96E;font-weight:800;">✓</span><span style="font-size:13px;color:#444;">자기주도학습 습관 자연스럽게 형성</span></div>
-            <div style="display:flex;align-items:center;gap:10px;"><span style="color:#C8A96E;font-weight:800;">✓</span><span style="font-size:13px;color:#444;">또래 학습 효과로 학습 동기 부여</span></div>
-          </div>
-        </div>
-        <div style="background:linear-gradient(135deg,#f0f4ff,#fef9ef);border-radius:20px;padding:32px;text-align:center;">
-          <div style="font-size:80px;margin-bottom:16px;">🪺</div>
-          <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;">
-            <span style="background:#3b82f615;color:#3b82f6;padding:8px 14px;border-radius:12px;font-size:12px;font-weight:700;">👨‍🏫 코치 중심</span>
-            <span style="background:#10b98115;color:#10b981;padding:8px 14px;border-radius:12px;font-size:12px;font-weight:700;">👩‍🎓 학생 밀착</span>
-            <span style="background:#f59e0b15;color:#f59e0b;padding:8px 14px;border-radius:12px;font-size:12px;font-weight:700;">📋 플래너 관리</span>
-            <span style="background:#8b5cf615;color:#8b5cf6;padding:8px 14px;border-radius:12px;font-size:12px;font-weight:700;">💬 학부모 소통</span>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- AI 학습클래스 -->
     <div style="margin-bottom:40px;">
@@ -4169,7 +4161,7 @@ function buildAcademyPage() {
       <div class="review-wrap" id="reviewWrap">
         <div class="review-track" id="reviewTrack">
           <div class="review-card">
-            <div class="review-img" style="background:linear-gradient(135deg,#fef3c7,#fde68a);"><span style="font-size:72px;">📊</span></div>
+            <div class="review-img"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%9B%84%EA%B8%B01.png" alt="후기1" style="width:100%;height:100%;object-fit:cover;"></div>
             <div class="review-body">
               <h4>전과목 평균 99점!</h4>
               <p>방학동안 와와에서의 맞춤 학습 관리로<br>전과목 고득점을 달성했습니다.<br>특히 취약했던 과학이 크게 올랐어요!</p>
@@ -4177,7 +4169,7 @@ function buildAcademyPage() {
             </div>
           </div>
           <div class="review-card">
-            <div class="review-img" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);"><span style="font-size:72px;">📈</span></div>
+            <div class="review-img"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%9B%84%EA%B8%B02.png" alt="후기2" style="width:100%;height:100%;object-fit:cover;"></div>
             <div class="review-body">
               <h4>국어 1등급 달성!</h4>
               <p>최대 약점이었던 국어,<br>와와를 다니고 1등급을 유지하고 있어요!<br>비문학 독해력이 확실히 좋아졌습니다.</p>
@@ -4185,7 +4177,7 @@ function buildAcademyPage() {
             </div>
           </div>
           <div class="review-card">
-            <div class="review-img" style="background:linear-gradient(135deg,#fce7f3,#fbcfe8);"><span style="font-size:72px;">🏆</span></div>
+            <div class="review-img"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%9B%84%EA%B8%B03.png" alt="후기3" style="width:100%;height:100%;object-fit:cover;"></div>
             <div class="review-body">
               <h4>영어 80점 → 100점!</h4>
               <p>우리 학교 내신 맞춤 특강을 통해<br>고난이도 유형까지 완벽 마스터!<br>자신감이 생겨서 영어가 재미있어졌어요.</p>
@@ -4193,7 +4185,7 @@ function buildAcademyPage() {
             </div>
           </div>
           <div class="review-card">
-            <div class="review-img" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0);"><span style="font-size:72px;">✨</span></div>
+            <div class="review-img"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%9B%84%EA%B8%B04.png" alt="후기4" style="width:100%;height:100%;object-fit:cover;"></div>
             <div class="review-body">
               <h4>수학 40점 → 92점!</h4>
               <p>기초가 부족해서 수학을 포기할 뻔했는데<br>코치 선생님이 기초부터 차근차근 잡아주셨어요.<br>이제 수학이 제일 자신 있는 과목이 됐습니다!</p>
@@ -4201,7 +4193,7 @@ function buildAcademyPage() {
             </div>
           </div>
           <div class="review-card">
-            <div class="review-img" style="background:linear-gradient(135deg,#e0e7ff,#c7d2fe);"><span style="font-size:72px;">📚</span></div>
+            <div class="review-img"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%9B%84%EA%B8%B05.png" alt="후기5" style="width:100%;height:100%;object-fit:cover;"></div>
             <div class="review-body">
               <h4>전교 15등 → 3등!</h4>
               <p>플래너 관리 덕분에 공부 습관이 완전히 바뀌었어요.<br>스스로 계획 세우고 실천하는 게 몸에 배었습니다.<br>부모님도 정말 만족해하세요!</p>
@@ -4209,7 +4201,7 @@ function buildAcademyPage() {
             </div>
           </div>
           <div class="review-card">
-            <div class="review-img" style="background:linear-gradient(135deg,#fef9c3,#fde047);"><span style="font-size:72px;">🎯</span></div>
+            <div class="review-img"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%9B%84%EA%B8%B06.png" alt="후기6" style="width:100%;height:100%;object-fit:cover;"></div>
             <div class="review-body">
               <h4>과학 60점 → 95점!</h4>
               <p>개념 정리를 마인드맵으로 하니까<br>이해가 훨씬 잘 되고 시험 때 기억이 잘 나요.<br>오답노트 습관도 생겨서 실수가 확 줄었습니다!</p>
