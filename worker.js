@@ -3905,6 +3905,7 @@ function buildAcademyPage() {
     <div style="background:linear-gradient(135deg,#1A2340 0%,#2d3a5c 50%,#C8A96E 100%);color:white;border-radius:24px;padding:clamp(36px,6vw,64px);margin-bottom:40px;text-align:center;position:relative;overflow:hidden;">
       <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(200,169,110,0.15);border-radius:50%;"></div>
       <div style="position:absolute;bottom:-60px;left:-30px;width:160px;height:160px;background:rgba(255,255,255,0.05);border-radius:50%;"></div>
+      <p style="font-size:14px;opacity:.7;margin-bottom:10px;font-weight:600;">은빛과외 × 와와학습코칭센터 · 전국 205개 센터</p>
       <h1 style="font-size:clamp(24px,4.5vw,38px);font-weight:900;margin-bottom:16px;line-height:1.4;">플랜 × 학습 × 생활<br>3가지가 하나로 연결될 때, 성적이 바뀝니다</h1>
       <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:20px;">
         <span style="background:rgba(59,130,246,.2);color:#93c5fd;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:700;">📋 플랜관리</span>
@@ -3913,7 +3914,12 @@ function buildAcademyPage() {
         <span style="font-size:20px;color:rgba(255,255,255,.4);display:flex;align-items:center;">→</span>
         <span style="background:rgba(245,158,11,.2);color:#fcd34d;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:700;">💬 생활관리</span>
       </div>
-      <p style="font-size:15px;opacity:.7;line-height:1.8;">30년 코칭 교육 노하우가 만들어낸 통합 관리 시스템으로<br>학생의 학습 습관부터 일상까지 완벽하게 케어합니다</p>
+      <p style="font-size:14px;opacity:.6;line-height:1.8;margin-bottom:20px;">30년 코칭 교육 노하우가 만들어낸 통합 관리 시스템으로<br>학생의 학습 습관부터 일상까지 완벽하게 케어합니다</p>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;">
+        <span style="background:rgba(255,255,255,.12);border-radius:50px;padding:8px 20px;font-size:13px;font-weight:700;">🏫 전국 205개 센터</span>
+        <span style="background:rgba(255,255,255,.12);border-radius:50px;padding:8px 20px;font-size:13px;font-weight:700;">📚 초·중·고 전과목</span>
+        <span style="background:rgba(255,255,255,.12);border-radius:50px;padding:8px 20px;font-size:13px;font-weight:700;">🎯 1:1 맞춤 코칭</span>
+      </div>
     </div>
 
     <!-- 4C 코칭 시스템 -->
@@ -4046,18 +4052,6 @@ function buildAcademyPage() {
       </div>
     </div>
 
-    <!-- 관리 시스템 요약 배너 -->
-    <div style="background:linear-gradient(135deg,#1A2340,#2d3a5c);border-radius:20px;padding:clamp(28px,5vw,44px);margin-bottom:40px;text-align:center;color:white;position:relative;overflow:hidden;">
-      <div style="position:absolute;top:-30px;right:-30px;width:150px;height:150px;background:rgba(200,169,110,0.1);border-radius:50%;"></div>
-      <p style="font-size:15px;opacity:.8;margin-bottom:8px;font-weight:600;">은빛과외 × 와와학습코칭센터</p>
-      <h3 style="font-size:clamp(22px,4vw,36px);font-weight:900;margin-bottom:14px;line-height:1.3;">전국 205개 센터<br>학원수업 안내</h3>
-      <p style="font-size:15px;opacity:.7;line-height:1.8;max-width:600px;margin:0 auto 24px;">30년 코칭 교육 노하우 · 4C 프로세스 · 둥지 학습 시스템<br>학생 개개인의 학습 특성을 분석하고 최적의 맞춤 솔루션을 제공합니다</p>
-      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;">
-        <span style="background:rgba(255,255,255,.15);border-radius:50px;padding:10px 24px;font-size:14px;font-weight:700;">🏫 전국 205개 센터</span>
-        <span style="background:rgba(255,255,255,.15);border-radius:50px;padding:10px 24px;font-size:14px;font-weight:700;">📚 초·중·고 전과목</span>
-        <span style="background:rgba(255,255,255,.15);border-radius:50px;padding:10px 24px;font-size:14px;font-weight:700;">🎯 1:1 맞춤 코칭</span>
-      </div>
-    </div>
 
     <!-- 학년별 수업 안내 -->
     <div style="margin-bottom:40px;">
