@@ -3965,7 +3965,7 @@ function buildAcademyPage() {
         <div class="mgmt-check"><span style="color:#C8A96E;">✓</span><span>또래 학습 효과로 학습 동기 부여</span></div>
       </div>
       <div class="mgmt-visual" style="background:linear-gradient(135deg,#fef9ef,#f0f4ff);padding:16px;">
-        <img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%EB%91%A5%EC%A7%80%ED%95%99%EC%8A%B5.png" alt="둥지 학습 시스템" style="width:100%;border-radius:14px;object-fit:cover;">
+        <img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%EB%91%A5%EC%A7%80%ED%95%99%EC%8A%B5.jpg" alt="둥지 학습 시스템" style="width:100%;border-radius:14px;object-fit:cover;">
       </div>
     </div>
 
