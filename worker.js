@@ -3879,6 +3879,24 @@ function buildAcademyPage() {
   .mgmt-slider-dots{display:flex;justify-content:center;gap:8px;margin-top:14px;}
   .mgmt-slider-dot{width:10px;height:10px;border-radius:50%;background:rgba(0,0,0,.15);border:none;cursor:pointer;padding:0;transition:all .3s;}
   .mgmt-slider-dot.active{background:#1A2340;transform:scale(1.2);}
+  .grade-card{background:#f8f9fa;border-radius:20px;padding:32px 24px;text-align:center;transition:transform .3s,box-shadow .3s;border:2px solid transparent;}
+  .grade-card:hover{transform:translateY(-5px);box-shadow:0 8px 28px rgba(0,0,0,0.1);border-color:#C8A96E;}
+  .grade-card h3{font-size:20px;font-weight:900;margin-bottom:16px;}
+  .grade-card p{font-size:13px;color:#555;line-height:2;margin:0;}
+  .grade-badge{display:inline-block;padding:6px 24px;border-radius:50px;font-size:14px;font-weight:900;color:white;margin-bottom:18px;}
+  .review-track{display:flex;gap:20px;transition:transform .5s ease;padding:10px 0;}
+  .review-card{min-width:320px;max-width:320px;background:white;border-radius:20px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.08);flex-shrink:0;transition:transform .3s;}
+  .review-card:hover{transform:translateY(-4px);}
+  .review-img{height:180px;background:#f0f0f0;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
+  .review-img::after{content:'';position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(transparent,rgba(0,0,0,.3));}
+  .review-body{padding:20px 22px;}
+  .review-body h4{font-size:18px;font-weight:900;color:#ea580c;margin:0 0 10px;line-height:1.4;}
+  .review-body p{font-size:13px;color:#555;line-height:1.8;margin:0 0 12px;}
+  .review-body .review-who{font-size:12px;color:#999;font-weight:600;}
+  .review-wrap{overflow:hidden;position:relative;margin-bottom:20px;}
+  .review-nav{display:flex;justify-content:center;gap:10px;margin-top:16px;}
+  .review-nav button{width:38px;height:38px;border-radius:50%;border:2px solid #ddd;background:white;cursor:pointer;font-size:16px;color:#666;transition:all .2s;}
+  .review-nav button:hover{border-color:#1A2340;color:#1A2340;}
   </style>
   </head><body>${NAV}
   <div style="max-width:1100px;margin:40px auto;padding:0 16px;">
@@ -4024,6 +4042,31 @@ function buildAcademyPage() {
       <p style="font-size:14px;color:rgba(255,255,255,.6);line-height:1.8;">30년 코칭 교육 노하우가 만들어낸 통합 관리 시스템으로<br>학생의 학습 습관부터 일상까지 완벽하게 케어합니다</p>
     </div>
 
+    <!-- 학년별 수업 안내 -->
+    <div style="margin-bottom:40px;">
+      <div style="text-align:center;margin-bottom:32px;">
+        <h2 style="font-size:clamp(24px,4.5vw,36px);font-weight:900;color:#1A2340;margin-bottom:6px;line-height:1.3;">학년별 수업은<br>어떻게 진행 하나요?</h2>
+        <p style="font-size:14px;color:#888;">학생의 학년과 수준에 맞는 최적의 수업을 설계합니다</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;">
+        <div class="grade-card">
+          <span class="grade-badge" style="background:linear-gradient(135deg,#3b82f6,#60a5fa);">초등</span>
+          <div style="font-size:56px;margin-bottom:16px;">📝</div>
+          <p>공부 습관 형성<br>흥미 유도 수업<br>기초개념 탄탄 수업<br>중학교 선행 및 복습</p>
+        </div>
+        <div class="grade-card">
+          <span class="grade-badge" style="background:linear-gradient(135deg,#10b981,#34d399);">중등</span>
+          <div style="font-size:56px;margin-bottom:16px;">📚</div>
+          <p>약점 분석 후 확실한 공부<br>개념 &amp; 응용, 내신 완벽 대비<br>고등학교 선행 및 복습<br>특목고, 자사고 준비</p>
+        </div>
+        <div class="grade-card">
+          <span class="grade-badge" style="background:linear-gradient(135deg,#f59e0b,#fbbf24);">고등</span>
+          <div style="font-size:56px;margin-bottom:16px;">🔍</div>
+          <p>내신 &amp; 수행평가, 학생부 관리<br>모의고사 분석 및 수능 대비<br>입시 전문 선생님의 플랜 관리</p>
+        </div>
+      </div>
+    </div>
+
     <!-- 둥지 학습 시스템 -->
     <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(28px,5vw,48px);margin-bottom:40px;">
       <div class="nest-grid">
@@ -4120,6 +4163,67 @@ function buildAcademyPage() {
       </div>
     </div>
 
+    <!-- 성적 향상 후기 -->
+    <div style="background:linear-gradient(135deg,#111827,#1f2937);border-radius:24px;padding:clamp(32px,5vw,56px) clamp(20px,4vw,40px);margin-bottom:40px;">
+      <h2 style="font-size:clamp(22px,4vw,32px);font-weight:900;color:white;text-align:center;margin-bottom:28px;">이미 많은 학생들이 성적 상승을 경험했습니다!</h2>
+      <div class="review-wrap" id="reviewWrap">
+        <div class="review-track" id="reviewTrack">
+          <div class="review-card">
+            <div class="review-img" style="background:linear-gradient(135deg,#fef3c7,#fde68a);"><span style="font-size:72px;">📊</span></div>
+            <div class="review-body">
+              <h4>전과목 평균 99점!</h4>
+              <p>방학동안 와와에서의 맞춤 학습 관리로<br>전과목 고득점을 달성했습니다.<br>특히 취약했던 과학이 크게 올랐어요!</p>
+              <div class="review-who">김O을 회원 ｜ 중2</div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-img" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);"><span style="font-size:72px;">📈</span></div>
+            <div class="review-body">
+              <h4>국어 1등급 달성!</h4>
+              <p>최대 약점이었던 국어,<br>와와를 다니고 1등급을 유지하고 있어요!<br>비문학 독해력이 확실히 좋아졌습니다.</p>
+              <div class="review-who">김O서 회원 ｜ 고2</div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-img" style="background:linear-gradient(135deg,#fce7f3,#fbcfe8);"><span style="font-size:72px;">🏆</span></div>
+            <div class="review-body">
+              <h4>영어 80점 → 100점!</h4>
+              <p>우리 학교 내신 맞춤 특강을 통해<br>고난이도 유형까지 완벽 마스터!<br>자신감이 생겨서 영어가 재미있어졌어요.</p>
+              <div class="review-who">양O림 회원 ｜ 중1</div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-img" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0);"><span style="font-size:72px;">✨</span></div>
+            <div class="review-body">
+              <h4>수학 40점 → 92점!</h4>
+              <p>기초가 부족해서 수학을 포기할 뻔했는데<br>코치 선생님이 기초부터 차근차근 잡아주셨어요.<br>이제 수학이 제일 자신 있는 과목이 됐습니다!</p>
+              <div class="review-who">박O준 회원 ｜ 중3</div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-img" style="background:linear-gradient(135deg,#e0e7ff,#c7d2fe);"><span style="font-size:72px;">📚</span></div>
+            <div class="review-body">
+              <h4>전교 15등 → 3등!</h4>
+              <p>플래너 관리 덕분에 공부 습관이 완전히 바뀌었어요.<br>스스로 계획 세우고 실천하는 게 몸에 배었습니다.<br>부모님도 정말 만족해하세요!</p>
+              <div class="review-who">이O현 회원 ｜ 고1</div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-img" style="background:linear-gradient(135deg,#fef9c3,#fde047);"><span style="font-size:72px;">🎯</span></div>
+            <div class="review-body">
+              <h4>과학 60점 → 95점!</h4>
+              <p>개념 정리를 마인드맵으로 하니까<br>이해가 훨씬 잘 되고 시험 때 기억이 잘 나요.<br>오답노트 습관도 생겨서 실수가 확 줄었습니다!</p>
+              <div class="review-who">최O아 회원 ｜ 중2</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="review-nav">
+        <button onclick="moveReview(-1)">◀</button>
+        <button onclick="moveReview(1)">▶</button>
+      </div>
+    </div>
+
     <!-- 전국 센터 검색 -->
     <div style="margin-bottom:40px;">
       <h2 style="font-size:clamp(22px,4vw,32px);font-weight:900;color:#1A2340;text-align:center;margin-bottom:8px;">🏫 전국 와와학습코칭센터</h2>
@@ -4172,6 +4276,24 @@ function buildAcademyPage() {
       var cur=0;
       setInterval(function(){cur=(cur+1)%total;goSlide(id,cur);},3500);
     });
+  })();
+  var rvPos=0;
+  function moveReview(dir){
+    var track=document.getElementById('reviewTrack');
+    var cards=track.querySelectorAll('.review-card');
+    var cardW=cards[0].offsetWidth+20;
+    var wrapW=document.getElementById('reviewWrap').offsetWidth;
+    var maxPos=Math.max(0,(cards.length*cardW)-wrapW);
+    rvPos=Math.max(0,Math.min(maxPos,rvPos+(dir*cardW)));
+    track.style.transform='translateX(-'+rvPos+'px)';
+  }
+  (function(){
+    var track=document.getElementById('reviewTrack');
+    if(!track)return;
+    var startX=0,curX=0,dragging=false;
+    track.addEventListener('touchstart',function(e){startX=e.touches[0].clientX;dragging=true;});
+    track.addEventListener('touchmove',function(e){if(!dragging)return;curX=e.touches[0].clientX;});
+    track.addEventListener('touchend',function(){if(!dragging)return;dragging=false;var diff=startX-curX;if(Math.abs(diff)>40)moveReview(diff>0?1:-1);});
   })();
   </script>
   </body></html>`;
