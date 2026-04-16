@@ -3874,54 +3874,61 @@ function buildCenterDetailPage(slug) {
  <p style="font-size:13px;color:#555;line-height:1.9;">학생의 수준과 이해도에 맞춘 교재와 학습법으로 기초부터 탄탄하게 지도합니다. 오답노트, 백지노트, 마인드맵 등 다양한 도구를 활용합니다.</p>
  </div>
  </div>
-
- <!-- 4C 프로세스 -->
- <div style="padding:28px;background:linear-gradient(135deg,#1A2340,#2d3a5c);border-radius:16px;color:white;">
- <p style="font-size:12px;color:#C8A96E;font-weight:700;margin-bottom:4px;">철저한 개별 맞춤 코칭</p>
- <h3 style="font-size:22px;font-weight:900;margin-bottom:20px;">4C 프로세스</h3>
- <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
- <div style="background:rgba(255,255,255,.08);border-radius:12px;padding:16px 10px;text-align:center;border:1px solid rgba(200,169,110,.2);">
- <p style="font-size:14px;font-weight:900;color:#C8A96E;margin:0 0 4px;">Check</p>
- <p style="font-size:11px;color:rgba(255,255,255,.6);margin:0;">진단</p>
- </div>
- <div style="background:rgba(255,255,255,.08);border-radius:12px;padding:16px 10px;text-align:center;border:1px solid rgba(200,169,110,.2);">
- <p style="font-size:14px;font-weight:900;color:#C8A96E;margin:0 0 4px;">Curriculum</p>
- <p style="font-size:11px;color:rgba(255,255,255,.6);margin:0;">설계</p>
- </div>
- <div style="background:rgba(255,255,255,.08);border-radius:12px;padding:16px 10px;text-align:center;border:1px solid rgba(200,169,110,.2);">
- <p style="font-size:14px;font-weight:900;color:#C8A96E;margin:0 0 4px;">Consulting</p>
- <p style="font-size:11px;color:rgba(255,255,255,.6);margin:0;">상담</p>
- </div>
- <div style="background:rgba(255,255,255,.08);border-radius:12px;padding:16px 10px;text-align:center;border:1px solid rgba(200,169,110,.2);">
- <p style="font-size:14px;font-weight:900;color:#C8A96E;margin:0 0 4px;">Coaching</p>
- <p style="font-size:11px;color:rgba(255,255,255,.6);margin:0;">코칭</p>
- </div>
- </div>
- </div>
  </div>
 
- <!-- 학년별 수업 -->
+ <!-- 4C 코칭 프로세스 -->
  <div style="background:white;border-radius:20px;padding:36px 28px;margin-bottom:28px;box-shadow:0 2px 12px #0000000f;">
  <div style="text-align:center;margin-bottom:28px;">
- <h2 style="font-size:clamp(20px,4vw,26px);font-weight:900;color:#1A2340;margin-bottom:8px;">학년별 수업 안내</h2>
- <div style="width:40px;height:3px;background:#C8A96E;margin:0 auto;"></div>
+ <h2 style="font-size:clamp(20px,4vw,26px);font-weight:900;color:#1A2340;margin-bottom:8px;">🔄 4C 코칭 프로세스</h2>
+ <p style="font-size:13px;color:#888;">학생 맞춤 학습 솔루션의 4단계 핵심 시스템</p>
+ <div style="width:40px;height:3px;background:#C8A96E;margin:12px auto 0;"></div>
  </div>
- <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
- <div style="background:#fafaf7;border-radius:16px;padding:22px;border:1px solid #f0ebe0;">
- <span style="background:#1A2340;color:#C8A96E;padding:4px 14px;border-radius:50px;font-size:12px;font-weight:800;">초등</span>
- <p style="font-size:13px;color:#555;line-height:1.9;margin:14px 0 0;">공부 습관 형성<br>흥미 유도 수업<br>기초개념 탄탄 수업<br>중학교 선행 및 복습</p>
+ <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;">
+ <div style="background:white;border:2px solid transparent;border-radius:20px;padding:24px 20px;text-align:center;box-shadow:0 4px 16px rgba(59,130,246,0.08);transition:border-color .3s,transform .3s;" onmouseover="this.style.borderColor='#C8A96E';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='transparent';this.style.transform=''">
+ <div style="width:56px;height:56px;border-radius:50%;background:#3b82f615;color:#3b82f6;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 14px;font-weight:900;">1</div>
+ <h3 style="font-size:16px;font-weight:800;color:#1A2340;margin-bottom:8px;">Check 진단</h3>
+ <p style="font-size:12px;color:#666;line-height:1.8;margin:0;">퍼스널 진단검사로 학습 습관, 집중력, 이해도를 정밀 분석하여 학생의 강점과 약점을 파악합니다.</p>
  </div>
- <div style="background:#fafaf7;border-radius:16px;padding:22px;border:1px solid #f0ebe0;">
- <span style="background:#1A2340;color:#C8A96E;padding:4px 14px;border-radius:50px;font-size:12px;font-weight:800;">중등</span>
- <p style="font-size:13px;color:#555;line-height:1.9;margin:14px 0 0;">약점 분석 후 확실한 공부<br>개념 &amp; 응용, 내신 완벽 대비<br>고등학교 선행 및 복습<br>특목고, 자사고 준비</p>
+ <div style="background:white;border:2px solid transparent;border-radius:20px;padding:24px 20px;text-align:center;box-shadow:0 4px 16px rgba(16,185,129,0.08);transition:border-color .3s,transform .3s;" onmouseover="this.style.borderColor='#C8A96E';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='transparent';this.style.transform=''">
+ <div style="width:56px;height:56px;border-radius:50%;background:#10b98115;color:#10b981;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 14px;font-weight:900;">2</div>
+ <h3 style="font-size:16px;font-weight:800;color:#1A2340;margin-bottom:8px;">Curriculum 설계</h3>
+ <p style="font-size:12px;color:#666;line-height:1.8;margin:0;">진단 결과를 바탕으로 학생 맞춤 커리큘럼을 설계합니다. 학교별 기출 분석과 수준별 교재를 선정합니다.</p>
  </div>
- <div style="background:#fafaf7;border-radius:16px;padding:22px;border:1px solid #f0ebe0;">
- <span style="background:#1A2340;color:#C8A96E;padding:4px 14px;border-radius:50px;font-size:12px;font-weight:800;">고등</span>
- <p style="font-size:13px;color:#555;line-height:1.9;margin:14px 0 0;">내신 &amp; 수행평가, 학생부 관리<br>모의고사 분석 및 수능 대비<br>입시 전문 선생님의 플랜 관리</p>
+ <div style="background:white;border:2px solid transparent;border-radius:20px;padding:24px 20px;text-align:center;box-shadow:0 4px 16px rgba(245,158,11,0.08);transition:border-color .3s,transform .3s;" onmouseover="this.style.borderColor='#C8A96E';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='transparent';this.style.transform=''">
+ <div style="width:56px;height:56px;border-radius:50%;background:#f59e0b15;color:#f59e0b;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 14px;font-weight:900;">3</div>
+ <h3 style="font-size:16px;font-weight:800;color:#1A2340;margin-bottom:8px;">Coaching 수업</h3>
+ <p style="font-size:12px;color:#666;line-height:1.8;margin:0;">둥지 학습 시스템으로 소수정예 1:1 맞춤 수업을 진행합니다. 코치가 밀착 관리하며 자기주도학습 습관을 형성합니다.</p>
  </div>
- <div style="background:#fafaf7;border-radius:16px;padding:22px;border:1px solid #f0ebe0;">
- <span style="background:#C8A96E;color:white;padding:4px 14px;border-radius:50px;font-size:12px;font-weight:800;">AI</span>
- <p style="font-size:13px;color:#555;line-height:1.9;margin:14px 0 0;">레테를 통한 학습진단<br>학습 성취도 &amp; 취약점 분석<br>취약 개념 집중 트레이닝<br>(영어, 수학, 국어)</p>
+ <div style="background:white;border:2px solid transparent;border-radius:20px;padding:24px 20px;text-align:center;box-shadow:0 4px 16px rgba(139,92,246,0.08);transition:border-color .3s,transform .3s;" onmouseover="this.style.borderColor='#C8A96E';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='transparent';this.style.transform=''">
+ <div style="width:56px;height:56px;border-radius:50%;background:#8b5cf615;color:#8b5cf6;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 14px;font-weight:900;">4</div>
+ <h3 style="font-size:16px;font-weight:800;color:#1A2340;margin-bottom:8px;">Care 관리</h3>
+ <p style="font-size:12px;color:#666;line-height:1.8;margin:0;">학부모 피드백, 정기 평가서 발송, 학습 플래너 관리까지. 수업 외 일상 소통으로 학습 습관과 감정까지 살핍니다.</p>
+ </div>
+ </div>
+ </div>
+
+ <!-- 학년별 수업 안내 -->
+ <div style="background:white;border-radius:20px;padding:36px 28px;margin-bottom:28px;box-shadow:0 2px 12px #0000000f;">
+ <div style="text-align:center;margin-bottom:28px;">
+ <h2 style="font-size:clamp(20px,4vw,26px);font-weight:900;color:#1A2340;margin-bottom:6px;line-height:1.3;">학년별 수업은<br>어떻게 진행 하나요?</h2>
+ <p style="font-size:13px;color:#888;">학생의 학년과 수준에 맞는 최적의 수업을 설계합니다</p>
+ <div style="width:40px;height:3px;background:#C8A96E;margin:12px auto 0;"></div>
+ </div>
+ <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;">
+ <div style="background:#f8f9fa;border-radius:20px;padding:28px 22px;text-align:center;border:2px solid transparent;transition:all .3s;" onmouseover="this.style.borderColor='#C8A96E';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='transparent';this.style.transform=''">
+ <div style="font-size:48px;margin-bottom:12px;">📝</div>
+ <span style="display:inline-block;background:linear-gradient(135deg,#3b82f6,#60a5fa);color:white;padding:5px 20px;border-radius:50px;font-size:13px;font-weight:900;margin-bottom:14px;">초등</span>
+ <p style="font-size:12px;color:#555;line-height:1.9;margin:0;">공부 습관 형성<br>흥미 유도 수업<br>기초개념 탄탄 수업<br>중학교 선행 및 복습</p>
+ </div>
+ <div style="background:#f8f9fa;border-radius:20px;padding:28px 22px;text-align:center;border:2px solid transparent;transition:all .3s;" onmouseover="this.style.borderColor='#C8A96E';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='transparent';this.style.transform=''">
+ <div style="font-size:48px;margin-bottom:12px;">📚</div>
+ <span style="display:inline-block;background:linear-gradient(135deg,#10b981,#34d399);color:white;padding:5px 20px;border-radius:50px;font-size:13px;font-weight:900;margin-bottom:14px;">중등</span>
+ <p style="font-size:12px;color:#555;line-height:1.9;margin:0;">약점 분석 후 확실한 공부<br>개념 &amp; 응용, 내신 완벽 대비<br>고등학교 선행 및 복습<br>특목고, 자사고 준비</p>
+ </div>
+ <div style="background:#f8f9fa;border-radius:20px;padding:28px 22px;text-align:center;border:2px solid transparent;transition:all .3s;" onmouseover="this.style.borderColor='#C8A96E';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='transparent';this.style.transform=''">
+ <div style="font-size:48px;margin-bottom:12px;">🎓</div>
+ <span style="display:inline-block;background:linear-gradient(135deg,#f59e0b,#fbbf24);color:white;padding:5px 20px;border-radius:50px;font-size:13px;font-weight:900;margin-bottom:14px;">고등</span>
+ <p style="font-size:12px;color:#555;line-height:1.9;margin:0;">내신 &amp; 수행평가, 학생부 관리<br>모의고사 분석 및 수능 대비<br>입시 전문 선생님의 플랜 관리</p>
  </div>
  </div>
  </div>
