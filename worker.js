@@ -3800,11 +3800,23 @@ const ACAD_DETAIL=[
 function buildCenterDetailPage(slug) {
  const ct = ACAD_DETAIL.find(function(c){return c.sl===slug;});
  if(!ct) return null;
+ const subjColors={"국어":"#3b82f6","영어":"#10b981","수학":"#f59e0b","과학":"#8b5cf6","사회":"#ef4444"};
+ const gradeColor=function(gr){
+ if(!gr) return {bg:'#f8f9fa',fg:'#999'};
+ const hasEl=/초/.test(gr), hasMid=/중/.test(gr), hasHigh=/고/.test(gr);
+ if(hasEl&&hasHigh) return {bg:'#1A234010',fg:'#1A2340'};
+ if(hasHigh) return {bg:'#f59e0b15',fg:'#d97706'};
+ if(hasMid) return {bg:'#10b98115',fg:'#059669'};
+ if(hasEl) return {bg:'#3b82f615',fg:'#2563eb'};
+ return {bg:'#f8f9fa',fg:'#666'};
+ };
  const subjBadges = ct.subj.map(function(s){
+ const col = subjColors[s]||'#6b7280';
  let gr = '';
  if(ct.g && ct.g[s]) gr = ct.g[s];
  else if(ct.ga) gr = ct.ga;
- return '<div style="background:#1A234010;color:#1A2340;padding:10px 14px;border-radius:12px;border:1px solid #1A234025;display:flex;justify-content:space-between;align-items:center;gap:8px;"><span style="font-size:13px;font-weight:800;">'+s+'</span>'+(gr?'<span style="font-size:11px;color:#C8A96E;font-weight:700;">'+gr+'</span>':'')+'</div>';
+ const gc = gradeColor(gr);
+ return '<div style="background:'+col+'10;padding:12px 14px;border-radius:12px;border:1px solid '+col+'30;display:flex;justify-content:space-between;align-items:center;gap:8px;"><span style="font-size:13px;font-weight:800;color:'+col+';">'+s+'</span>'+(gr?'<span style="font-size:11px;padding:3px 10px;border-radius:50px;font-weight:700;background:'+gc.bg+';color:'+gc.fg+';">'+gr+'</span>':'')+'</div>';
  }).join('');
  const schoolList = [ct.se?'<div style="padding:10px 0;border-bottom:1px solid #f0f0f0;"><span style="display:inline-block;width:40px;background:#1A2340;color:#C8A96E;padding:3px 0;border-radius:6px;font-size:11px;font-weight:800;text-align:center;margin-right:10px;">초등</span><span style="font-size:13px;color:#444;">'+ct.se+'</span></div>':'',ct.sm?'<div style="padding:10px 0;border-bottom:1px solid #f0f0f0;"><span style="display:inline-block;width:40px;background:#1A2340;color:#C8A96E;padding:3px 0;border-radius:6px;font-size:11px;font-weight:800;text-align:center;margin-right:10px;">중등</span><span style="font-size:13px;color:#444;">'+ct.sm+'</span></div>':'',ct.sh?'<div style="padding:10px 0;"><span style="display:inline-block;width:40px;background:#1A2340;color:#C8A96E;padding:3px 0;border-radius:6px;font-size:11px;font-weight:800;text-align:center;margin-right:10px;">고등</span><span style="font-size:13px;color:#444;">'+ct.sh+'</span></div>':''].join('');
  const wkBadge = ct.w&&ct.w!=='주말불가'&&ct.w!=='' ? '<span style="background:#C8A96E15;color:#C8A96E;padding:6px 16px;border-radius:50px;font-size:13px;font-weight:700;border:1px solid #C8A96E40;">✓ '+ct.w+'</span>' : '<span style="background:#f8f9fa;color:#999;padding:6px 16px;border-radius:50px;font-size:13px;font-weight:700;border:1px solid #e5e5e5;">주말수업 불가</span>';
