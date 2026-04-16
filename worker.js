@@ -3883,7 +3883,7 @@ function buildCenterDetailPage(slug) {
  <p style="font-size:13px;color:#888;">학생 맞춤 학습 솔루션의 4단계 핵심 시스템</p>
  <div style="width:40px;height:3px;background:#C8A96E;margin:12px auto 0;"></div>
  </div>
- <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;">
+ <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
  <div style="background:white;border:2px solid transparent;border-radius:20px;padding:24px 20px;text-align:center;box-shadow:0 4px 16px rgba(59,130,246,0.08);transition:border-color .3s,transform .3s;" onmouseover="this.style.borderColor='#C8A96E';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='transparent';this.style.transform=''">
  <div style="width:56px;height:56px;border-radius:50%;background:#3b82f615;color:#3b82f6;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 14px;font-weight:900;">1</div>
  <h3 style="font-size:16px;font-weight:800;color:#1A2340;margin-bottom:8px;">Check 진단</h3>
