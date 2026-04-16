@@ -3797,6 +3797,204 @@ const ACAD_DETAIL=[
 {n:"동소문점",sl:"동소문점",a:"서울 성북구 아리랑로7길 5 4층",r:"서울",se:"정덕초, 우촌초, 정수초",sm:"성신여중, 동구여중, 삼선중, 고명중",sh:"성신여고, 홍대부고, 고대부고, 한성여고",w:"",g:{영어:"초3~고2",수학:"초3~고2"},subj:["영어","수학"]},
 {n:"상암점",sl:"상암점",a:"서울특별시 마포구 상암동 상암산로1길 73 202호",r:"서울특별시",se:"중동초, 상지초, 상암초",sm:"상암중, 중암중, 성산중, 성사중, 덕은한강중",sh:"상암고, 예일여고, 대성고, 숭실고, 가재울고",w:"",g:{영어:"초3~고3",수학:"초3~고3"},subj:["영어","수학"]}];
 
+const LOC_DATA={
+"가좌점":{d:"남가좌동",l:["남가좌동현대아파트"]},
+"명일점":{d:"강동",l:["명일역 사거리","성덕여중"]},
+"상암점":{d:"상암동",l:["상암월드컵파크6,7단지아파트"]},
+"마포점":{d:"염리동",l:["염리초등학교"]},
+"마포2호점":{d:"용강동",l:["서울 신선초등학교"]},
+"하계점":{d:"하계동",l:["혜성여자고등학교"]},
+"목동점":{d:"신정동",l:["신목초등학교"]},
+"제기점":{d:"용두동",l:["용두롯데캐슬리치아파트","용두동사거리"]},
+"신도림점":{d:"신도림동",l:["서울신미림초등학교"]},
+"동소문점":{d:"동소문동",l:["서울정덕초등학교"]},
+"돈암점":{d:"돈암동",l:["매원초, 고명중"]},
+"종암점":{d:"종암동",l:["종암삼성래미안아파트"]},
+"송파위례점":{d:"장지동",l:["위례송파 푸르지오 아파트"]},
+"구산점":{d:"역촌동",l:["구산역"]},
+"은평점":{d:"진관동",l:["구파발역"]},
+"삼각산점":{d:"미아동",l:["삼양제일교회 앞","삼각산고등학교"]},
+"광장점":{d:"구의동",l:["광장동청구아파트","양진초등학교"]},
+"염창점":{d:"염창동",l:["염창초등학교"]},
+"신방화점":{d:"마곡동",l:["신방화역 6번출구"]},
+"내발산점":{d:"내발산동",l:["우장산힐스테이트아파트","발산역"]},
+"금천점":{d:"시흥동",l:["동일여자고등학교"]},
+"당산점":{d:"당산동",l:["당서초등학교"]},
+"청라점":{d:"청라동",l:["청라풍림엑슬루타워아파트"]},
+"송도점":{d:"",l:["송도힐스테이트 6단지"]},
+"웰카운티점":{d:"송도동",l:["해송중","지식정보단지 역"]},
+"논현점":{d:"남동",l:["인천논현역"]},
+"구월점":{d:"남동",l:["구월아시아드선수촌 아파트"]},
+"부평점":{d:"부평동",l:["부평시장역 앞","부평여자고등학교"]},
+"인천삼산점":{d:"삼산동",l:["삼산타운주공7단지아파트"]},
+"루원시티점":{d:"신현동",l:["루원시티 대성베르힐 아파트 앞"]},
+"동춘점":{d:"동춘동",l:["연수한양2차아파트"]},
+"고잔점":{d:"고잔동",l:["고잔고등학교"]},
+"산본점":{d:"산본동",l:["광정초등학교 앞"]},
+"장기점":{d:"장기동",l:["장기중학교","탐앤탐스건물 5층"]},
+"사우점":{d:"사우동",l:["사우역","한라아파트"]},
+"운양점":{d:"운양동",l:["운양역","하늘빛 초중학교"]},
+"상현점":{d:"상현동",l:["수자원공사 삼거리"]},
+"수지점":{d:"풍덕천동",l:["수지구청역 1번출구"]},
+"동백점":{d:"중동",l:["동백역 1번 2번출구"]},
+"보라점":{d:"보라동",l:["나곡초등학교","노브랜드 맞은편"]},
+"흥덕점":{d:"영덕동",l:["흥덕마을 3단지"]},
+"기흥구청점":{d:"구갈동",l:["기흥구청"]},
+"명지대역점":{d:"역북동",l:["이마트 용인점"]},
+"신봉점":{d:"신봉동",l:["신봉마을자이2차아파트 앞","신일초"]},
+"천천점":{d:"천천동",l:["천천고등학교"]},
+"영통점":{d:"영통동",l:["영덕중학교","수원가정법원"]},
+"망포점":{d:"망포동",l:["망포중학교"]},
+"영통구청점":{d:"매탄동",l:["매탄고등학교"]},
+"호매실점":{d:"금곡동",l:["칠보중학교"]},
+"서수원점":{d:"호매실동",l:["호매실 스위첸아파트"]},
+"미금점":{d:"금곡동",l:["미금역 2번출구"]},
+"이매점":{d:"이매동",l:["이매역 6번출구"]},
+"위례점":{d:"창곡동",l:["위례고운초등학교","위례35단지아파트 앞"]},
+"위례창곡점":{d:"창곡동",l:["위례푸른초 인근 (위례신도시)"]},
+"단대점":{d:"단대동",l:["성남단대푸르지오아파트","금광시장"]},
+"야탑점":{d:"여수동",l:["야탑중학교"]},
+"수진점":{d:"성남동",l:["동광고등학교","성남 중앙초"]},
+"중동점":{d:"중동",l:["부천시청역"]},
+"신중동점":{d:"중동",l:["계남중학교","그린타운우성아파트 맞은편"]},
+"상동점":{d:"상동",l:["상동역 6번출구","서해그랑블아파트 맞은편"]},
+"옥길점":{d:"옥길동",l:["옥길 퀸즈파크 건물","제이드카운티아파트1단지"]},
+"옥길스타점":{d:"옥길동",l:["부천스타필드 뒤 옥길중앙타워"]},
+"범박점":{d:"소사본동",l:["소안초등학교 옆","소사주공 사거리"]},
+"반달점":{d:"상동",l:["반달마을 상가","부인중학교"]},
+"갈산점":{d:"갈산동",l:["이천제일고등학교","갈산휴먼시아 3단지 맞은편"]},
+"부발점":{d:"",l:["이천신일해피트리빌2단지"]},
+"주엽점":{d:"주엽동",l:["주엽역 4번출구","효림요양병원 건물"]},
+"주엽2호점":{d:"주엽동",l:["주엽역 1번출구"]},
+"후곡점":{d:"일산동",l:["신일중학교","태영17단지 아파트 앞"]},
+"덕이점":{d:"덕이동",l:["일산하이파크 3단지 맞은편"]},
+"탄현점":{d:"탄현동",l:["탄현마을12단지","일산고등학교"]},
+"풍동점":{d:"일산동",l:["풍산초등학교"]},
+"마두점":{d:"일산동",l:["마두역"]},
+"화정점":{d:"화정동",l:["옥빛마을 14단지, 근린공원"]},
+"삼송점":{d:"신원동",l:["신원마을 6단지"]},
+"원흥점":{d:"원흥동",l:["원흥역","원흥역 푸르지오"]},
+"행신점":{d:"행신동",l:["부영1단지 아파트"]},
+"원당점":{d:"성사동",l:["원당역"]},
+"중산점":{d:"일산동",l:["모당초등학교"]},
+"향남점":{d:"",l:["향남 홈플러스"]},
+"반송점":{d:"반송동",l:["석우중","위너스타 빌딩"]},
+"병점점":{d:"진안동",l:["병점중학교","중심상가 사거리"]},
+"영천점":{d:"영천동",l:["한백고등학교","상록리슈빌 아파트 맞은편  (동탄2신도시- 동탄5동)"]},
+"화성태안점":{d:"병점동",l:["병점고등학교"]},
+"동탄목동점":{d:"목동",l:["동탄2신도시 호반베르디움 22단지 아파트"]},
+"동탄호수점":{d:"산척동",l:["더레이크시티부영4단지아파트 인근 (동탄2신도시- 동탄6동)"]},
+"봉담점":{d:"",l:["삼봉그린공원","힐스테이트봉담아파트"]},
+"금릉점":{d:"금촌동",l:["금화초등학교","새꽃마을 3단지"]},
+"운정점":{d:"동패동",l:["파주운정점 이마트"]},
+"교하점":{d:"동패동",l:["숲속길마을7단지(월드메르디앙센트럴파크아파트)"]},
+"운정호수점":{d:"와동동",l:["지산초, 가람도서관"]},
+"산내점":{d:"목동동",l:["파주 운정 홈플러스","산들초"]},
+"운정중앙점":{d:"동패동",l:["초롱초등학교","초롱꽃마을12단지아파트"]},
+"센트럴점":{d:"풍산동",l:["미사강변센트럴자이아파트"]},
+"하남풍산점":{d:"덕풍동",l:["하남풍산 대명 세라뷰 아파트"]},
+"미사점":{d:"망월동",l:["미사강변스타힐스아파트"]},
+"다산점":{d:"다산동",l:["남양주다산고등학교"]},
+"다산지금점":{d:"다산동",l:["다산한강중학교","금강 펜테리움 1차"]},
+"별내점":{d:"별내동",l:["별가람중학교"]},
+"별가람점":{d:"별내동",l:["별가람역"]},
+"진접점":{d:"",l:["해밀초등학교"]},
+"다산도농점":{d:"도농동",l:["부영 아파트"]},
+"퇴계원점":{d:"",l:["퇴계원역"]},
+"호평점":{d:"호평동",l:["호평마을 한화 꿈에그린"]},
+"평내점":{d:"평내동",l:["평내마을어울림아파트","평내중학교"]},
+"광명점":{d:"광명동",l:["광명새마을시장","광명해모로아파트"]},
+"소하점":{d:"소하동",l:["광명역세권휴먼시아3단지아파트"]},
+"철산점":{d:"철산동",l:["브라운스톤2단지"]},
+"신곡점":{d:"신곡동",l:["경기도청북부청사역"]},
+"인창점":{d:"인창동",l:["인창주공1단지아파트"]},
+"갈매점":{d:"갈매동",l:["갈매중앙사거리","갈매중"]},
+"비전점":{d:"비전동",l:["비전중학교","이곡사거리 올리브영 건물"]},
+"이충점":{d:"이충동",l:["이충부영3단지","송탄농협 이충지점 옆"]},
+"오산대역":{d:"수청동",l:["오산대역"]},
+"세교점":{d:"금암동",l:["세교신도시","세교센트럴파크 아파트 앞"]},
+"오산점":{d:"오산동",l:["오산시청"]},
+"장곡점":{d:"장곡동",l:["장곡중학교"]},
+"시흥대야점":{d:"대야동",l:["은계지구","시흥시립대야도서관"]},
+"배곧점":{d:"배곧동",l:["배곧초"]},
+"비산점":{d:"비산동",l:["비산삼성래미안아파트"]},
+"탄벌점":{d:"탄벌동",l:["탄벌리현대아파트","탄벌중"]},
+"옥정점":{d:"옥정동",l:["e편한세상옥정어반센트럴아파트"]},
+"도안점":{d:"도안동",l:["도안 어울림하트 12단지","흥도초 인근 (도안신도시)"]},
+"둔산점":{d:"둔산동",l:["대전 시청역"]},
+"관저점":{d:"관저동",l:["느리울중학교"]},
+"송촌점":{d:"송촌동",l:["선비마을 3단지"]},
+"태평점":{d:"태평동",l:["버드내초등학교"]},
+"지족점":{d:"지족동",l:["노은역 3번출구"]},
+"반석점":{d:"지족동",l:["반석고"]},
+"관평점":{d:"관평동",l:["동화중학교"]},
+"수완점":{d:"수완동",l:["한양수자인아파트"]},
+"신창점":{d:"신창동",l:["신창초등학교"]},
+"첨단점":{d:"월계동",l:["첨단3-5차호반리젠시빌"]},
+"선운점":{d:"선암동",l:["선운중학교","선운초"]},
+"치평점":{d:"치평동",l:["운천초등학교","계수초","상무지구"]},
+"진월점":{d:"진월동",l:["진월한신아파트, 새한아파트"]},
+"좌동점":{d:"좌동",l:["해운대문화회관사거리"]},
+"반여점":{d:"반여동",l:["인지초등학교","아시아선수촌아파트 앞"]},
+"화명점":{d:"화명동",l:["화명역","코오롱 하늘채 앞 (화명신도시)"]},
+"동래점":{d:"온천동",l:["내산초등학교","동래역"]},
+"사직점":{d:"사직동",l:["사직쌍용예가 1차 아파트 상가","예원초등학교 옆"]},
+"남외점":{d:"남외동",l:["남외초등학교"]},
+"복산점":{d:"복산동",l:["복산초등학교"]},
+"송정점":{d:"송정동",l:["울산송정반도유보라, 한양수자인 아파트"]},
+"삼산점":{d:"삼산동",l:["평창현대2단지 아파트","삼산고"]},
+"침산점":{d:"침산동",l:["침산중학교"]},
+"대구도남점":{d:"도남동",l:["힐스테이트데시앙 도남3단지 아파트"]},
+"칠곡점":{d:"동천동",l:["보성서한타운2차아파트"]},
+"복현점":{d:"복현동",l:["대구북중학교"]},
+"신월성점":{d:"월성동",l:["조암초등학교"]},
+"대구장기점":{d:"장기동",l:["대구장동초등학교"]},
+"이곡점":{d:"이곡동",l:["대구성서경찰서"]},
+"율하점":{d:"율하동",l:["율하휴먼시아 9단지 앞","율원중"]},
+"수성만촌점":{d:"만촌동",l:["효신초등학교","메트로팔레스 1단지"]},
+"알파시티점":{d:"시지동",l:["수성알파시티동화아이위시아파트"]},
+"수성2가점":{d:"수성동",l:["수성시장역 2번출구"]},
+"대구역점":{d:"수창동",l:["대구역센트럴자이 상가"]},
+"대구역점2호점":{d:"수창동",l:["대구역센트럴자이 상가"]},
+"반월당점":{d:"봉산동",l:["센트로펠리스아파트"]},
+"이시아폴리스점":{d:"봉무동",l:["이시아폴리스더샵3차아파트"]},
+"개신점":{d:"개신동",l:["개신주공그린빌3단지아파트","개신동우체국"]},
+"복대점":{d:"복대동",l:["복대중, 증안초등학교"]},
+"산남점":{d:"산남동",l:["현진에버빌아파트"]},
+"가경점":{d:"가경동",l:["가로수마을대원칸타빌아파트"]},
+"천안불당점":{d:"불당동",l:["신불당 스타벅스 옆","서울대정병원 옆 (신불당)"]},
+"신방점":{d:"신방동",l:["성지새말2단지아파트"]},
+"두정점":{d:"두정동",l:["천안두정초등학교"]},
+"쌍용점":{d:"쌍용동",l:["쌍용초등학교"]},
+"당진중앙점":{d:"읍내동",l:["다이소 당진본점"]},
+"칠금점":{d:"칠금동",l:["탄금초등학교"]},
+"충주용산점":{d:"호암동",l:["충주중학교"]},
+"송천점":{d:"송천동",l:["전라고등학교"]},
+"서신점":{d:"서신동",l:["전주화산코오롱하늘채아파트"]},
+"전주혁신점":{d:"",l:["전북혁신5차호반 베르디움더센트럴1아파트"]},
+"상남점":{d:"상남동",l:["상남시장","대동아파트"]},
+"석동점":{d:"석동",l:["동부초, 석동중학교"]},
+"정평점":{d:"정평동",l:["정평역 1번출구"]},
+"사동점":{d:"사동",l:["경산사동6차 부영아파트"]},
+"옥계점":{d:"옥계동",l:["삼구트리니엔","옥계동부중학교"]},
+"두호점":{d:"두호동",l:["제일우성아파트"]},
+"양덕점":{d:"양덕동",l:["농협 하나로마트","양덕 하우스스토리 아파트"]},
+"거제수월점":{d:"수월동",l:["수월삼거리","거제신현두산위브"]},
+"강릉교동점":{d:"교동",l:["교동3차 주공아파트"]},
+"후평점":{d:"후평동",l:["춘천더샵아파트"]},
+"석사2호점":{d:"석사동",l:["석사현진에버빌","성원초등학교"]},
+"단구점":{d:"개운동",l:["강원도 원주의료원"]},
+"원주시청점":{d:"무실동",l:["원주시청, 만대초등학교"]},
+"혁신점":{d:"반곡동",l:["심평원사거리 앞","힐데스하임 5단지 인근 (원주혁신도시)"]},
+"노형점":{d:"노형동",l:["한라초등학교"]},
+"새롬점":{d:"새롬동",l:["새뜸중학교"]},
+"탕정점":{d:"",l:["탕정역"]},
+"용인백현점":{d:"동백동",l:["동백고등학교"]},
+"진천점":{d:"유천동",l:["대구한샘초, 대구한솔초"]},
+"별내중앙점":{d:"별내동",l:["한별중, 한별초, 화접중, 별내고"]},
+"목감점":{d:"조남동",l:["목감퍼스트리움, 네이처하임 아파트"]}
+};
+
 function buildCenterDetailPage(slug) {
  const ct = ACAD_DETAIL.find(function(c){return c.sl===slug;});
  if(!ct) return null;
@@ -3857,69 +4055,41 @@ function buildCenterDetailPage(slug) {
  <img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80%EC%9A%A9.png" alt="학원 안내" style="width:100%;display:block;">
  </div>
 
- <!-- 리얼 후기 -->
- <div style="background:white;border-radius:20px;padding:36px 28px;margin-bottom:28px;box-shadow:0 2px 12px #0000000f;">
- <div style="text-align:center;margin-bottom:28px;">
- <h2 style="font-size:clamp(20px,4vw,26px);font-weight:900;color:#1A2340;margin-bottom:8px;">이미 많은 학생들이 성적 상승을 경험했습니다!</h2>
- <div style="width:40px;height:3px;background:#C8A96E;margin:0 auto;"></div>
- </div>
- <div class="review-wrap" id="reviewWrap">
- <div class="review-track" id="reviewTrack">
- <div class="review-card">
- <div class="review-img"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%9B%84%EA%B8%B01.png" alt="후기1" style="width:100%;height:100%;object-fit:cover;"></div>
- <div class="review-body">
- <h4>전과목 평균 99점!</h4>
- <p>방학동안 와와에서의 맞춤 학습 관리로<br>전과목 고득점을 달성했습니다.<br>특히 취약했던 과학이 크게 올랐어요!</p>
- <div class="review-who">김O을 회원 ｜ 중2</div>
- </div>
- </div>
- <div class="review-card">
- <div class="review-img"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%9B%84%EA%B8%B02.png" alt="후기2" style="width:100%;height:100%;object-fit:cover;"></div>
- <div class="review-body">
- <h4>국어 1등급 달성!</h4>
- <p>최대 약점이었던 국어,<br>와와를 다니고 1등급을 유지하고 있어요!<br>비문학 독해력이 확실히 좋아졌습니다.</p>
- <div class="review-who">김O서 회원 ｜ 고2</div>
- </div>
- </div>
- <div class="review-card">
- <div class="review-img"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%9B%84%EA%B8%B03.jpg" alt="후기3" style="width:100%;height:100%;object-fit:cover;"></div>
- <div class="review-body">
- <h4>영어 80점 → 100점!</h4>
- <p>우리 학교 내신 맞춤 특강을 통해<br>고난이도 유형까지 완벽 마스터!<br>자신감이 생겨서 영어가 재미있어졌어요.</p>
- <div class="review-who">양O림 회원 ｜ 중1</div>
- </div>
- </div>
- <div class="review-card">
- <div class="review-img"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%9B%84%EA%B8%B04.jpg" alt="후기4" style="width:100%;height:100%;object-fit:cover;"></div>
- <div class="review-body">
- <h4>수학 40점 → 92점!</h4>
- <p>기초가 부족해서 수학을 포기할 뻔했는데<br>코치 선생님이 기초부터 차근차근 잡아주셨어요.<br>이제 수학이 제일 자신 있는 과목이 됐습니다!</p>
- <div class="review-who">박O준 회원 ｜ 중3</div>
- </div>
- </div>
- <div class="review-card">
- <div class="review-img"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%9B%84%EA%B8%B05.jpg" alt="후기5" style="width:100%;height:100%;object-fit:cover;"></div>
- <div class="review-body">
- <h4>전교 15등 → 3등!</h4>
- <p>플래너 관리 덕분에 공부 습관이 완전히 바뀌었어요.<br>스스로 계획 세우고 실천하는 게 몸에 배었습니다.<br>부모님도 정말 만족해하세요!</p>
- <div class="review-who">이O현 회원 ｜ 고1</div>
- </div>
- </div>
- <div class="review-card">
- <div class="review-img"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%9B%84%EA%B8%B06.jpg" alt="후기6" style="width:100%;height:100%;object-fit:cover;"></div>
- <div class="review-body">
- <h4>과학 60점 → 95점!</h4>
- <p>개념 정리를 마인드맵으로 하니까<br>이해가 훨씬 잘 되고 시험 때 기억이 잘 나요.<br>오답노트 습관도 생겨서 실수가 확 줄었습니다!</p>
- <div class="review-who">최O아 회원 ｜ 중2</div>
- </div>
- </div>
- </div>
- </div>
- <div class="review-nav">
- <button onclick="moveReview(-1)">◀</button>
- <button onclick="moveReview(1)">▶</button>
- </div>
- </div>
+ <!-- 지역별 맞춤 페이지 링크 -->
+ ${(function(){
+  const loc = LOC_DATA[ct.sl];
+  if(!loc || !loc.d) return '';
+  const grades = [];
+  if(ct.se) grades.push('초등');
+  if(ct.sm) grades.push('중등');
+  if(ct.sh) grades.push('고등');
+  if(grades.length===0) grades.push('초등','중등','고등');
+  const combos = [];
+  grades.forEach(function(g){
+   ct.subj.forEach(function(s){
+    combos.push({g:g,s:s});
+   });
+  });
+  if(combos.length===0) return '';
+  let html = '<div style="background:white;border-radius:20px;padding:36px 28px;margin-bottom:28px;box-shadow:0 2px 12px #0000000f;">';
+  html += '<div style="text-align:center;margin-bottom:24px;">';
+  html += '<h2 style="font-size:clamp(20px,4vw,26px);font-weight:900;color:#1A2340;margin-bottom:8px;">📍 '+loc.d+' 맞춤 학원 정보</h2>';
+  if(loc.l && loc.l.length) html += '<p style="font-size:13px;color:#888;margin-bottom:8px;">'+loc.l.join(' · ')+' 인근</p>';
+  html += '<div style="width:40px;height:3px;background:#C8A96E;margin:0 auto;"></div>';
+  html += '</div>';
+  html += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;">';
+  combos.forEach(function(c){
+   const url = '/academy/'+encodeURIComponent(ct.sl)+'/'+encodeURIComponent(c.g)+'/'+encodeURIComponent(c.s);
+   const gc = c.g==='초등'?'#3b82f6':(c.g==='중등'?'#10b981':'#f59e0b');
+   html += '<a href="'+url+'" class="subpage-link" style="display:block;background:#fafaf7;border:1px solid #f0ebe0;border-radius:12px;padding:14px 16px;text-decoration:none;transition:all .2s;">';
+   html += '<span style="display:inline-block;background:'+gc+'15;color:'+gc+';padding:2px 10px;border-radius:50px;font-size:11px;font-weight:800;margin-bottom:6px;">'+c.g+'</span>';
+   html += '<p style="font-size:13px;font-weight:800;color:#1A2340;margin:0;line-height:1.5;">'+loc.d+' '+c.s+' 학원</p>';
+   html += '<p style="font-size:11px;color:#C8A96E;font-weight:700;margin:4px 0 0;">자세히 보기 →</p>';
+   html += '</a>';
+  });
+  html += '</div></div>';
+  return html;
+ })()}
 
  <!-- CTA -->
  <div style="background:linear-gradient(135deg,#1A2340,#2d3a5c);border-radius:20px;padding:44px 28px;margin-bottom:40px;text-align:center;color:white;position:relative;overflow:hidden;">
@@ -3931,48 +4101,76 @@ function buildCenterDetailPage(slug) {
  </div>
  ${CONTACT}${FOOTER}${FLOATING}
  <style>
- .review-track{display:flex;gap:20px;transition:transform .5s ease;padding:10px 0;}
- .review-card{min-width:300px;max-width:300px;background:white;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.08);flex-shrink:0;border:1px solid #f0ebe0;}
- .review-img{height:200px;background:#f0f0f0;overflow:hidden;}
- .review-body{padding:18px 20px;}
- .review-body h4{font-size:16px;font-weight:900;color:#1A2340;margin:0 0 8px;line-height:1.4;}
- .review-body p{font-size:12px;color:#555;line-height:1.8;margin:0 0 10px;}
- .review-body .review-who{font-size:11px;color:#C8A96E;font-weight:700;}
- .review-wrap{overflow:hidden;position:relative;margin-bottom:16px;}
- .review-nav{display:flex;justify-content:center;gap:10px;}
- .review-nav button{width:38px;height:38px;border-radius:50%;border:2px solid #ddd;background:white;cursor:pointer;font-size:14px;color:#666;}
- .review-nav button:hover{border-color:#C8A96E;color:#C8A96E;}
  @media(max-width:768px){div[style*="grid-template-columns:1fr 1fr"],div[style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:1fr!important;}}
+ .subpage-link:hover{border-color:#C8A96E!important;background:white!important;}
  </style>
- <script>
- var rvPos=0;
- function moveReview(dir){
- var track=document.getElementById('reviewTrack');
- var cards=track.querySelectorAll('.review-card');
- var cardW=cards[0].offsetWidth+20;
- var wrapW=document.getElementById('reviewWrap').offsetWidth;
- var maxPos=Math.max(0,(cards.length*cardW)-wrapW);
- rvPos=Math.max(0,Math.min(maxPos,rvPos+(dir*cardW)));
- track.style.transform='translateX(-'+rvPos+'px)';
- }
- (function(){
- var track=document.getElementById('reviewTrack');
- if(!track)return;
- var startX=0,curX=0,dragging=false;
- track.addEventListener('touchstart',function(e){startX=e.touches[0].clientX;dragging=true;});
- track.addEventListener('touchmove',function(e){if(!dragging)return;curX=e.touches[0].clientX;});
- track.addEventListener('touchend',function(){if(!dragging)return;dragging=false;var diff=startX-curX;if(Math.abs(diff)>40)moveReview(diff>0?1:-1);});
- setInterval(function(){
- var cards=track.querySelectorAll('.review-card');
- var cardW=cards[0].offsetWidth+20;
- var wrapW=document.getElementById('reviewWrap').offsetWidth;
- var maxPos=Math.max(0,(cards.length*cardW)-wrapW);
- rvPos=rvPos+cardW;
- if(rvPos>maxPos)rvPos=0;
- track.style.transform='translateX(-'+rvPos+'px)';
- },3000);
- })();
- </script>
+ </body></html>`;
+}
+
+// ── 센터 하위 페이지: 동 + 학년 + 과목 ──
+function buildCenterSubPage(slug, grade, subject) {
+ const ct = ACAD_DETAIL.find(function(c){return c.sl===slug;});
+ if(!ct) return null;
+ const loc = LOC_DATA[slug];
+ if(!loc || !loc.d) return null;
+ const subjColors={"국어":"#3b82f6","영어":"#10b981","수학":"#f59e0b","과학":"#8b5cf6","사회":"#ef4444"};
+ const gradeColor = grade==='초등'?'#3b82f6':(grade==='중등'?'#10b981':'#f59e0b');
+ const subjColor = subjColors[subject]||'#1A2340';
+ const title = loc.d + ' ' + grade + ' ' + subject + ' 학원';
+ const landmarkTxt = loc.l && loc.l.length ? loc.l.join(', ') + ' 인근' : '';
+ const schoolField = grade==='초등'?ct.se:(grade==='중등'?ct.sm:ct.sh);
+
+ return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
+ <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
+ <meta name="viewport" content="width=device-width,initial-scale=1.0">
+ <title>${title} | ${ct.n} 와와학습코칭센터 | 은빛스터디</title>
+ <meta name="description" content="${title} - ${ct.n} ${ct.a}. ${landmarkTxt} 와와학습코칭센터 ${grade} ${subject} 1:1 맞춤 코칭 학원.">
+ ${COMMON_STYLE}
+ </head><body>${NAV}
+ <div style="max-width:900px;margin:40px auto;padding:0 16px;">
+ <div style="margin-bottom:16px;"><a href="/academy/${encodeURIComponent(slug)}" style="color:#888;text-decoration:none;font-size:13px;">← ${ct.n} 센터 페이지로</a></div>
+
+ <!-- Hero -->
+ <div style="background:linear-gradient(135deg,#1A2340 0%,#2d3a5c 50%,#C8A96E 100%);color:white;border-radius:24px;padding:clamp(36px,6vw,56px);margin-bottom:28px;text-align:center;position:relative;overflow:hidden;">
+ <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(200,169,110,0.15);border-radius:50%;"></div>
+ <div style="position:absolute;bottom:-60px;left:-30px;width:160px;height:160px;background:rgba(255,255,255,0.05);border-radius:50%;"></div>
+ <div style="display:flex;gap:8px;justify-content:center;margin-bottom:14px;position:relative;flex-wrap:wrap;">
+ <span style="background:rgba(255,255,255,.15);padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;">${loc.d}</span>
+ <span style="background:${gradeColor};color:white;padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;">${grade}</span>
+ <span style="background:${subjColor};color:white;padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;">${subject}</span>
+ </div>
+ <h1 style="font-size:clamp(24px,5vw,36px);font-weight:900;margin-bottom:12px;position:relative;">${title}</h1>
+ <p style="font-size:14px;opacity:.85;position:relative;">${ct.n} · ${ct.a}</p>
+ ${landmarkTxt?'<p style="font-size:13px;opacity:.75;margin-top:6px;position:relative;">📍 '+landmarkTxt+'</p>':''}
+ </div>
+
+ <!-- 소개 -->
+ <div style="background:white;border-radius:20px;padding:36px 28px;margin-bottom:28px;box-shadow:0 2px 12px #0000000f;">
+ <div style="text-align:center;margin-bottom:24px;">
+ <h2 style="font-size:clamp(20px,4vw,26px);font-weight:900;color:#1A2340;margin-bottom:8px;">${loc.d} ${grade} ${subject} 학원을 찾고 계신가요?</h2>
+ <div style="width:40px;height:3px;background:#C8A96E;margin:0 auto;"></div>
+ </div>
+ <p style="font-size:14px;color:#555;line-height:2;text-align:center;margin-bottom:20px;">
+ <b style="color:#1A2340;">${ct.n}</b>은 ${landmarkTxt?landmarkTxt+' ':''}${loc.d} 지역 ${grade} 학생을 위한 ${subject} 전문 학원입니다.<br>
+ 와와학습코칭센터의 1:1 맞춤 코칭 시스템으로 ${grade} ${subject} 과목을 체계적으로 관리합니다.
+ </p>
+ ${schoolField?'<div style="background:#fafaf7;border-radius:12px;padding:18px;border-left:3px solid '+gradeColor+';"><p style="font-size:13px;color:#555;margin:0;line-height:1.8;"><b style="color:'+gradeColor+';">📚 '+grade+' 타겟 학교</b><br>'+schoolField+'</p></div>':''}
+ </div>
+
+ <!-- 학원 이미지 -->
+ <div style="margin-bottom:28px;border-radius:20px;overflow:hidden;box-shadow:0 2px 12px #0000000f;">
+ <img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80%EC%9A%A9.png" alt="학원 안내" style="width:100%;display:block;">
+ </div>
+
+ <!-- CTA -->
+ <div style="background:linear-gradient(135deg,#1A2340,#2d3a5c);border-radius:20px;padding:44px 28px;margin-bottom:40px;text-align:center;color:white;position:relative;overflow:hidden;">
+ <div style="position:absolute;top:-30px;right:-30px;width:150px;height:150px;background:rgba(200,169,110,0.1);border-radius:50%;"></div>
+ <h3 style="font-size:clamp(18px,3.5vw,24px);font-weight:900;margin-bottom:14px;position:relative;">${title} 상담 받아보세요</h3>
+ <p style="font-size:14px;color:rgba(255,255,255,.7);line-height:1.8;margin-bottom:24px;position:relative;">${ct.n} · 첫 상담 및 진단검사 무료<br>${grade} ${subject} 맞춤 커리큘럼을 제안드립니다</p>
+ <a href="/#form" style="display:inline-block;background:linear-gradient(135deg,#C8A96E,#e0c080);color:#1A2340;font-size:15px;font-weight:900;padding:16px 40px;border-radius:50px;text-decoration:none;box-shadow:0 6px 24px rgba(200,169,110,0.4);position:relative;">📝 무료 상담 신청하기</a>
+ </div>
+ </div>
+ ${CONTACT}${FOOTER}${FLOATING}
  </body></html>`;
 }
 
@@ -4722,6 +4920,13 @@ ${urls.map(u => ` <url><loc>${u}</loc><changefreq>weekly</changefreq><priority>0
  if (parts.length===2 && parts[0]==="academy" && parts[1]!=="") {
  const slug = decodeURIComponent(parts[1]);
  const html = buildCenterDetailPage(slug);
+ if(html) return new Response(html,{headers:H});
+ }
+ if (parts.length===4 && parts[0]==="academy") {
+ const slug = decodeURIComponent(parts[1]);
+ const grade = decodeURIComponent(parts[2]);
+ const subject = decodeURIComponent(parts[3]);
+ const html = buildCenterSubPage(slug, grade, subject);
  if(html) return new Response(html,{headers:H});
  }
  if (p==="/directory") return new Response(buildDirectoryPage(),{headers:H});
