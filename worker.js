@@ -3854,7 +3854,7 @@ function buildCenterDetailPage(slug) {
 
  <!-- 학원 소개 이미지 -->
  <div style="margin-bottom:28px;border-radius:20px;overflow:hidden;box-shadow:0 2px 12px #0000000f;">
- <img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80.png" alt="학원 안내" style="width:100%;display:block;">
+ <img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80%EC%9A%A9.png" alt="학원 안내" style="width:100%;display:block;">
  </div>
 
  <!-- 리얼 후기 -->
