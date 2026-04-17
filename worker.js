@@ -2163,7 +2163,7 @@ const ACAD_FORM = function(src){
 <div style="background:white;border-radius:20px;padding:clamp(28px,5vw,48px);box-shadow:0 4px 32px rgba(0,0,0,0.1);">
 <div style="text-align:center;margin-bottom:32px;">
 <span style="display:inline-block;background:rgba(200,169,110,0.15);color:#C8A96E;padding:6px 18px;border-radius:50px;font-size:11px;font-weight:700;letter-spacing:2px;margin-bottom:14px;">🏫 학원수업 상담 신청</span>
-<h2 style="font-size:clamp(22px,4vw,32px);font-weight:900;color:#1A2340;margin-bottom:10px;">와와학습코칭센터 상담 문의</h2>
+<h2 style="font-size:clamp(22px,4vw,32px);font-weight:900;color:#1A2340;margin-bottom:10px;">학습코칭학원 상담 문의</h2>
 <p style="font-size:14px;color:#666;line-height:1.8;">아래 내용을 작성하시면 24시간 내로 연락드립니다.<br><b style="color:#C8A96E;">첫 상담 및 진단검사는 무료</b>입니다.</p>
 </div>
 <div style="background:#f8f9fc;border:1px solid #e0e5ec;border-radius:20px;padding:clamp(20px,4vw,40px);">
@@ -2226,7 +2226,7 @@ async function submitAcadForm(){
 }
 </script>`;
 };
-const ACAD_CONTACT = `<section style="background:#1A2340;color:white;text-align:center;padding:64px 20px;"><h2 style="font-size:clamp(22px,4vw,34px);margin-bottom:16px;font-weight:900;">와와학습코칭센터 상담 문의</h2><p style="font-size:16px;color:rgba(255,255,255,0.6);margin-bottom:28px;">1:1 맞춤 코칭으로 성적 향상을 경험하세요</p><div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;"><a href="#acadForm" onclick="var f=document.getElementById('acadForm');if(f)f.scrollIntoView({behavior:'smooth'});return false;" style="background:linear-gradient(135deg,#C8A96E,#E8D09A);color:#1A2340;text-decoration:none;padding:16px 38px;border-radius:50px;font-weight:700;font-size:17px;display:inline-block;">상담 신청하기</a><a href="tel:01023370458" style="background:rgba(255,255,255,0.1);border:2px solid rgba(255,255,255,0.3);color:#fff;text-decoration:none;padding:16px 38px;border-radius:50px;font-weight:700;font-size:17px;display:inline-block;">📞 전화 상담 010-2337-0458</a></div></section>`;
+const ACAD_CONTACT = `<section style="background:#1A2340;color:white;text-align:center;padding:64px 20px;"><h2 style="font-size:clamp(22px,4vw,34px);margin-bottom:16px;font-weight:900;">학습코칭학원 상담 문의</h2><p style="font-size:16px;color:rgba(255,255,255,0.6);margin-bottom:28px;">1:1 맞춤 코칭으로 성적 향상을 경험하세요</p><div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;"><a href="#acadForm" onclick="var f=document.getElementById('acadForm');if(f)f.scrollIntoView({behavior:'smooth'});return false;" style="background:linear-gradient(135deg,#C8A96E,#E8D09A);color:#1A2340;text-decoration:none;padding:16px 38px;border-radius:50px;font-weight:700;font-size:17px;display:inline-block;">상담 신청하기</a><a href="tel:01023370458" style="background:rgba(255,255,255,0.1);border:2px solid rgba(255,255,255,0.3);color:#fff;text-decoration:none;padding:16px 38px;border-radius:50px;font-weight:700;font-size:17px;display:inline-block;">📞 전화 상담 010-2337-0458</a></div></section>`;
 
 function buildDirectoryPage() {
  const sorted = Object.entries(locations).sort((a,b)=>a[1].region_name.localeCompare(b[1].region_name));
@@ -4334,6 +4334,9 @@ function buildCenterDetailPage(slug) {
  </div>
  </div>
 
+ <!-- 상담 신청 폼 -->
+ ${ACAD_FORM('학원 센터페이지 ('+ct.n+')')}
+
  <!-- 학원 소개 이미지 -->
  <div style="margin-bottom:28px;border-radius:20px;overflow:hidden;box-shadow:0 2px 12px #0000000f;">
  <img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80%EC%9A%A9.png" alt="학원 안내" style="width:100%;display:block;">
@@ -4404,16 +4407,7 @@ function buildCenterDetailPage(slug) {
   return html;
  })()}
 
- <!-- CTA -->
- <div style="background:linear-gradient(135deg,#1A2340,#2d3a5c);border-radius:20px;padding:44px 28px;margin-bottom:40px;text-align:center;color:white;position:relative;overflow:hidden;">
- <div style="position:absolute;top:-30px;right:-30px;width:150px;height:150px;background:rgba(200,169,110,0.1);border-radius:50%;"></div>
- <h3 style="font-size:clamp(18px,3.5vw,24px);font-weight:900;margin-bottom:14px;position:relative;">${ct.n}에서 시작하세요</h3>
- <p style="font-size:14px;color:rgba(255,255,255,.7);line-height:1.8;margin-bottom:24px;position:relative;">첫 상담 및 진단검사는 무료입니다<br>학생에게 맞는 수업 방식을 함께 찾아드립니다</p>
- <a href="#acadForm" onclick="var f=document.getElementById('acadForm');if(f)f.scrollIntoView({behavior:'smooth'});return false;" style="display:inline-block;background:linear-gradient(135deg,#C8A96E,#e0c080);color:#1A2340;font-size:15px;font-weight:900;padding:16px 40px;border-radius:50px;text-decoration:none;box-shadow:0 6px 24px rgba(200,169,110,0.4);position:relative;">📝 무료 상담 신청하기</a>
  </div>
- </div>
- ${ACAD_CONTACT}
- ${ACAD_FORM('학원 센터페이지 ('+ct.n+')')}
  ${FOOTER}${ACAD_FLOATING}
  <style>@media(max-width:768px){div[style*="grid-template-columns:1fr 1fr"],div[style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:1fr!important;}}
  .subpage-link:hover{border-color:#C8A96E!important;background:white!important;}</style>
@@ -4629,16 +4623,8 @@ function buildCenterSubPage(slug, grade, subject, school) {
  </div>
  </div>
 
- <!-- CTA -->
- <div style="background:linear-gradient(135deg,#1A2340,#2d3a5c);border-radius:20px;padding:44px 28px;margin-bottom:40px;text-align:center;color:white;position:relative;overflow:hidden;">
- <div style="position:absolute;top:-30px;right:-30px;width:150px;height:150px;background:rgba(200,169,110,0.1);border-radius:50%;"></div>
- <h3 style="font-size:clamp(18px,3.5vw,24px);font-weight:900;margin-bottom:14px;position:relative;">${title} 상담 받아보세요</h3>
- <p style="font-size:14px;color:rgba(255,255,255,.7);line-height:1.8;margin-bottom:24px;position:relative;">${ct.n} · 첫 상담 및 진단검사 무료<br>${grade} ${subject} 맞춤 커리큘럼을 제안드립니다</p>
- <a href="#acadForm" onclick="var f=document.getElementById('acadForm');if(f)f.scrollIntoView({behavior:'smooth'});return false;" style="display:inline-block;background:linear-gradient(135deg,#C8A96E,#e0c080);color:#1A2340;font-size:15px;font-weight:900;padding:16px 40px;border-radius:50px;text-decoration:none;box-shadow:0 6px 24px rgba(200,169,110,0.4);position:relative;">📝 무료 상담 신청하기</a>
  </div>
- </div>
- ${ACAD_CONTACT}
- ${ACAD_FORM('학원 서브페이지 ('+ct.n+' '+title+')')}
+  ${ACAD_FORM('학원 서브페이지 ('+ct.n+' '+title+')')}
  ${FOOTER}${ACAD_FLOATING}
  <style>@media(max-width:768px){div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}}</style>
  </body></html>`;
@@ -5046,16 +5032,6 @@ function buildAcademyPage() {
  </div>
  <p id="acadCount" style="text-align:center;font-size:13px;color:#888;margin-top:16px;"></p>
  </div>
-
- <!-- CTA -->
- <div style="text-align:center;margin-bottom:40px;">
- <a href="#acadForm" onclick="var f=document.getElementById('acadForm');if(f)f.scrollIntoView({behavior:'smooth'});return false;" style="display:inline-block;background:linear-gradient(135deg,#C8A96E,#e0c080);color:#1A2340;font-size:17px;font-weight:900;padding:20px 48px;border-radius:50px;text-decoration:none;box-shadow:0 6px 24px rgba(200,169,110,0.4);">
- 📝 가까운 센터 무료 상담 신청
- </a>
- <p style="font-size:13px;color:#999;margin-top:12px;">첫 상담 및 진단검사는 무료입니다</p>
- </div>
- </div>
- ${ACAD_CONTACT}
  ${ACAD_FORM('학원수업 메인 홈페이지 (/academy)')}
  ${FOOTER}${ACAD_FLOATING}
  <script>
