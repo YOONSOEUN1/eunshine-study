@@ -2150,6 +2150,60 @@ const FLOATING = `<div style="position:fixed;bottom:24px;right:18px;display:flex
 </div>`
 const CONTACT = `<section style="background:#1A2340;color:white;text-align:center;padding:64px 20px;"><h2 style="font-size:clamp(22px,4vw,34px);margin-bottom:16px;font-weight:900;">성적 향상의 골든타임, 지금 놓치지 마세요</h2><p style="font-size:16px;color:rgba(255,255,255,0.6);margin-bottom:28px;">은빛쌤과 함께라면 목표 대학이 달라집니다</p><div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;"><a href="https://eunshinestudy.com/#form" style="background:linear-gradient(135deg,#C8A96E,#E8D09A);color:#1A2340;text-decoration:none;padding:16px 38px;border-radius:50px;font-weight:700;font-size:17px;display:inline-block;">상담 신청하기</a><a href="tel:01023370458" style="background:rgba(255,255,255,0.1);border:2px solid rgba(255,255,255,0.3);color:#fff;text-decoration:none;padding:16px 38px;border-radius:50px;font-weight:700;font-size:17px;display:inline-block;">📞 전화 상담 010-2337-0458</a></div></section>`;
 const FOOTER = `<footer style="background:#07101e;color:rgba(255,255,255,0.38);text-align:center;padding:36px 20px;font-size:13px;line-height:2;"><span style="font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:#E8EDF5;display:block;margin-bottom:12px;">🌟 은빛스터디</span><p>© 2026 은빛스터디 All Rights Reserved.</p></footer>`;
+const ACAD_FLOATING = `<div style="position:fixed;bottom:24px;right:18px;display:flex;flex-direction:column;gap:8px;z-index:9998;">
+ <a href="tel:01023370458" style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:white;color:#1A2340;text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.18);white-space:nowrap;">📞 <span>전화 상담</span></a>
+ <a href="#acadForm" onclick="var f=document.getElementById('acadForm');if(f)f.scrollIntoView({behavior:'smooth'});return false;" style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:linear-gradient(135deg,#1A2340,#2a3d6b);color:#C8A96E;border:1px solid rgba(200,169,110,0.4);text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.2);white-space:nowrap;">✏️ <span>상담 신청</span></a>
+ <a href="https://naver.me/GieISRs0" target="_blank" style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:#03C75A;color:white;text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.15);white-space:nowrap;">📋 <span>네이버 폼 신청</span></a>
+ <a href="https://pf.kakao.com/_KRAjG/chat" target="_blank" style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:#FEE500;color:#3A1D1D;text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.15);white-space:nowrap;">💬 <span>카카오톡 상담</span></a>
+</div>`;
+const ACAD_FORM = function(src){return `
+<div id="acadForm" style="max-width:900px;margin:0 auto 40px;padding:0 16px;">
+<div style="background:white;border-radius:20px;padding:clamp(28px,5vw,48px);box-shadow:0 4px 32px rgba(0,0,0,0.1);">
+<div style="text-align:center;margin-bottom:32px;">
+<span style="display:inline-block;background:rgba(200,169,110,0.15);color:#C8A96E;padding:6px 18px;border-radius:50px;font-size:11px;font-weight:700;letter-spacing:2px;margin-bottom:14px;">🏫 학원수업 상담 신청</span>
+<h2 style="font-size:clamp(22px,4vw,32px);font-weight:900;color:#1A2340;margin-bottom:10px;">와와학습코칭센터 상담 문의</h2>
+<p style="font-size:14px;color:#666;line-height:1.8;">아래 내용을 작성하시면 24시간 내로 연락드립니다.<br><b style="color:#C8A96E;">첫 상담 및 진단검사는 무료</b>입니다.</p>
+</div>
+<div style="background:#f8f9fc;border:1px solid #e0e5ec;border-radius:20px;padding:clamp(20px,4vw,40px);">
+<div style="margin-bottom:18px;"><label style="display:block;font-size:13px;font-weight:600;color:#1A2340;margin-bottom:8px;">🎓 자녀 학년</label>
+<div id="gradeGroup" style="display:flex;flex-wrap:wrap;gap:8px;"><button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 18px;border-radius:50px;font-size:13px;cursor:pointer;">초등</button><button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 18px;border-radius:50px;font-size:13px;cursor:pointer;">중등</button><button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 18px;border-radius:50px;font-size:13px;cursor:pointer;">고등</button></div></div>
+<div style="margin-bottom:18px;"><label style="display:block;font-size:13px;font-weight:600;color:#1A2340;margin-bottom:8px;">📚 희망 과목</label>
+<div id="subjGroup" style="display:flex;flex-wrap:wrap;gap:8px;"><button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 18px;border-radius:50px;font-size:13px;cursor:pointer;">국어</button><button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 18px;border-radius:50px;font-size:13px;cursor:pointer;">영어</button><button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 18px;border-radius:50px;font-size:13px;cursor:pointer;">수학</button><button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 18px;border-radius:50px;font-size:13px;cursor:pointer;">과학</button><button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 18px;border-radius:50px;font-size:13px;cursor:pointer;">사회</button></div></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;">
+<div><label style="display:block;font-size:13px;font-weight:600;color:#1A2340;margin-bottom:8px;">🧑‍🎓 학생 이름</label><input type="text" id="aName" placeholder="학생 이름" style="width:100%;background:#fff;border:1px solid #d0d5dd;border-radius:12px;padding:14px 18px;font-size:15px;outline:none;box-sizing:border-box;"></div>
+<div><label style="display:block;font-size:13px;font-weight:600;color:#1A2340;margin-bottom:8px;">📱 연락처</label><input type="text" id="aContact" placeholder="전화번호" style="width:100%;background:#fff;border:1px solid #d0d5dd;border-radius:12px;padding:14px 18px;font-size:15px;outline:none;box-sizing:border-box;"></div>
+</div>
+<div style="margin-bottom:18px;"><label style="display:block;font-size:13px;font-weight:600;color:#1A2340;margin-bottom:8px;">🏫 학생 학교 (선택)</label><input type="text" id="aSchool" placeholder="예) 진관초, 은평중" style="width:100%;background:#fff;border:1px solid #d0d5dd;border-radius:12px;padding:14px 18px;font-size:15px;outline:none;box-sizing:border-box;"></div>
+<div style="margin-bottom:18px;"><label style="display:block;font-size:13px;font-weight:600;color:#1A2340;margin-bottom:8px;">💬 문의 사항 (선택)</label><textarea id="aMsg" rows="3" placeholder="추가 전달 사항" style="width:100%;background:#fff;border:1px solid #d0d5dd;border-radius:12px;padding:14px 18px;font-size:15px;outline:none;resize:vertical;box-sizing:border-box;"></textarea></div>
+<div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:22px;"><input type="checkbox" id="aAgree" style="width:17px;height:17px;accent-color:#C8A96E;cursor:pointer;margin-top:2px;flex-shrink:0;"><label for="aAgree" style="font-size:12px;color:#888;cursor:pointer;line-height:1.6;">본인은 만 14세 이상이며, 개인정보 수집 및 이용에 동의합니다. (필수)</label></div>
+<div style="display:flex;flex-direction:column;gap:12px;">
+<button type="button" id="aSubmitBtn" onclick="submitAcadForm()" style="display:block;text-align:center;background:linear-gradient(135deg,#C8A96E,#e0c080);color:#1A2340;padding:18px;border-radius:50px;font-size:17px;font-weight:700;border:none;cursor:pointer;box-shadow:0 6px 24px rgba(200,169,110,0.4);">📝 학원수업 상담 신청하기</button>
+<a href="https://pf.kakao.com/_KRAjG" target="_blank" style="display:block;text-align:center;background:#FEE500;color:#3C1E1E;padding:18px;border-radius:50px;font-size:17px;font-weight:700;text-decoration:none;box-shadow:0 6px 24px rgba(254,229,0,0.35);">💬 카카오톡으로 바로 문의하기</a>
+</div></div></div></div>
+<style>.abtn.sel{background:linear-gradient(135deg,#C8A96E,#e0c080)!important;border-color:transparent!important;color:#1A2340!important;font-weight:700!important;box-shadow:0 4px 12px rgba(200,169,110,0.35)!important;}@media(max-width:768px){div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}}</style>
+<script>
+async function submitAcadForm(){
+ var n=document.getElementById('aName').value.trim();
+ var c=document.getElementById('aContact').value.trim();
+ var s=document.getElementById('aSchool')?document.getElementById('aSchool').value.trim():'';
+ var m=document.getElementById('aMsg')?document.getElementById('aMsg').value.trim():'';
+ var ag=document.getElementById('aAgree');
+ if(!n){alert('학생 이름을 입력해 주세요.');return;}
+ if(!c){alert('연락처를 입력해 주세요.');return;}
+ if(!ag||!ag.checked){alert('개인정보 수집 및 이용에 동의해 주세요.');return;}
+ var grades=[...document.querySelectorAll('#gradeGroup .abtn.sel')].map(function(b){return b.textContent.trim();}).join(', ')||'미선택';
+ var subjects=[...document.querySelectorAll('#subjGroup .abtn.sel')].map(function(b){return b.textContent.trim();}).join(', ')||'미선택';
+ var btn=document.getElementById('aSubmitBtn');
+ if(btn){btn.disabled=true;btn.textContent='전송 중...';}
+ try{
+  var res=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({method:'학원수업(와와학습코칭센터)',grade:grades,subject:subjects,name:n,contact:c,school:s,message:m,source:'`+src+`'})});
+  var result=await res.json();
+  if(result.ok){alert('상담 신청이 완료되었습니다! 24시간 내로 연락드리겠습니다.');if(btn){btn.disabled=false;btn.textContent='📝 학원수업 상담 신청하기';}}
+  else{throw new Error(result.error||'전송 실패');}
+ }catch(e){alert('전송 중 오류가 발생했습니다. 카카오톡 또는 전화(010-2337-0458)로 문의해 주세요.');if(btn){btn.disabled=false;btn.textContent='📝 학원수업 상담 신청하기';}}
+}
+</script>`;};
+const ACAD_CONTACT = `<section style="background:#1A2340;color:white;text-align:center;padding:64px 20px;"><h2 style="font-size:clamp(22px,4vw,34px);margin-bottom:16px;font-weight:900;">와와학습코칭센터 상담 문의</h2><p style="font-size:16px;color:rgba(255,255,255,0.6);margin-bottom:28px;">1:1 맞춤 코칭으로 성적 향상을 경험하세요</p><div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;"><a href="#acadForm" onclick="var f=document.getElementById('acadForm');if(f)f.scrollIntoView({behavior:'smooth'});return false;" style="background:linear-gradient(135deg,#C8A96E,#E8D09A);color:#1A2340;text-decoration:none;padding:16px 38px;border-radius:50px;font-weight:700;font-size:17px;display:inline-block;">상담 신청하기</a><a href="tel:01023370458" style="background:rgba(255,255,255,0.1);border:2px solid rgba(255,255,255,0.3);color:#fff;text-decoration:none;padding:16px 38px;border-radius:50px;font-weight:700;font-size:17px;display:inline-block;">📞 전화 상담 010-2337-0458</a></div></section>`;
 
 function buildDirectoryPage() {
  const sorted = Object.entries(locations).sort((a,b)=>a[1].region_name.localeCompare(b[1].region_name));
@@ -4332,14 +4386,14 @@ function buildCenterDetailPage(slug) {
  <div style="position:absolute;top:-30px;right:-30px;width:150px;height:150px;background:rgba(200,169,110,0.1);border-radius:50%;"></div>
  <h3 style="font-size:clamp(18px,3.5vw,24px);font-weight:900;margin-bottom:14px;position:relative;">${ct.n}에서 시작하세요</h3>
  <p style="font-size:14px;color:rgba(255,255,255,.7);line-height:1.8;margin-bottom:24px;position:relative;">첫 상담 및 진단검사는 무료입니다<br>학생에게 맞는 수업 방식을 함께 찾아드립니다</p>
- <a href="/#form" style="display:inline-block;background:linear-gradient(135deg,#C8A96E,#e0c080);color:#1A2340;font-size:15px;font-weight:900;padding:16px 40px;border-radius:50px;text-decoration:none;box-shadow:0 6px 24px rgba(200,169,110,0.4);position:relative;">📝 무료 상담 신청하기</a>
+ <a href="#acadForm" onclick="var f=document.getElementById('acadForm');if(f)f.scrollIntoView({behavior:'smooth'});return false;" style="display:inline-block;background:linear-gradient(135deg,#C8A96E,#e0c080);color:#1A2340;font-size:15px;font-weight:900;padding:16px 40px;border-radius:50px;text-decoration:none;box-shadow:0 6px 24px rgba(200,169,110,0.4);position:relative;">📝 무료 상담 신청하기</a>
  </div>
  </div>
- ${CONTACT}${FOOTER}${FLOATING}
- <style>
- @media(max-width:768px){div[style*="grid-template-columns:1fr 1fr"],div[style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:1fr!important;}}
- .subpage-link:hover{border-color:#C8A96E!important;background:white!important;}
- </style>
+ ${ACAD_CONTACT}
+ ${ACAD_FORM('학원 센터페이지 ('+ct.n+')')}
+ ${FOOTER}${ACAD_FLOATING}
+ <style>@media(max-width:768px){div[style*="grid-template-columns:1fr 1fr"],div[style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:1fr!important;}}
+ .subpage-link:hover{border-color:#C8A96E!important;background:white!important;}</style>
  </body></html>`;
 }
 
@@ -4501,7 +4555,7 @@ function buildCenterSubPage(slug, grade, subject, school) {
  <span style="font-size:18px;">📱</span>
  <div style="text-align:left;"><div style="font-size:11px;color:#C8A96E;margin-bottom:2px;">전화 예약</div><div style="font-size:13px;">010-2337-0458</div></div>
  </a>
- <a href="/#form" style="display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#C8A96E,#e0c080);color:#1A2340;border:2px solid transparent;padding:16px;border-radius:12px;text-decoration:none;font-weight:900;font-size:14px;box-shadow:0 4px 16px rgba(200,169,110,0.35);transition:all .2s;">
+ <a href="#acadForm" onclick="var f=document.getElementById('acadForm');if(f)f.scrollIntoView({behavior:'smooth'});return false;" style="display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#C8A96E,#e0c080);color:#1A2340;border:2px solid transparent;padding:16px;border-radius:12px;text-decoration:none;font-weight:900;font-size:14px;box-shadow:0 4px 16px rgba(200,169,110,0.35);transition:all .2s;">
  <span style="font-size:18px;">📝</span>
  <span>상담 신청하기</span>
  </a>
@@ -4557,10 +4611,12 @@ function buildCenterSubPage(slug, grade, subject, school) {
  <div style="position:absolute;top:-30px;right:-30px;width:150px;height:150px;background:rgba(200,169,110,0.1);border-radius:50%;"></div>
  <h3 style="font-size:clamp(18px,3.5vw,24px);font-weight:900;margin-bottom:14px;position:relative;">${title} 상담 받아보세요</h3>
  <p style="font-size:14px;color:rgba(255,255,255,.7);line-height:1.8;margin-bottom:24px;position:relative;">${ct.n} · 첫 상담 및 진단검사 무료<br>${grade} ${subject} 맞춤 커리큘럼을 제안드립니다</p>
- <a href="/#form" style="display:inline-block;background:linear-gradient(135deg,#C8A96E,#e0c080);color:#1A2340;font-size:15px;font-weight:900;padding:16px 40px;border-radius:50px;text-decoration:none;box-shadow:0 6px 24px rgba(200,169,110,0.4);position:relative;">📝 무료 상담 신청하기</a>
+ <a href="#acadForm" onclick="var f=document.getElementById('acadForm');if(f)f.scrollIntoView({behavior:'smooth'});return false;" style="display:inline-block;background:linear-gradient(135deg,#C8A96E,#e0c080);color:#1A2340;font-size:15px;font-weight:900;padding:16px 40px;border-radius:50px;text-decoration:none;box-shadow:0 6px 24px rgba(200,169,110,0.4);position:relative;">📝 무료 상담 신청하기</a>
  </div>
  </div>
- ${CONTACT}${FOOTER}${FLOATING}
+ ${ACAD_CONTACT}
+ ${ACAD_FORM('학원 서브페이지 ('+ct.n+' '+title+')')}
+ ${FOOTER}${ACAD_FLOATING}
  <style>@media(max-width:768px){div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}}</style>
  </body></html>`;
 }
@@ -4678,7 +4734,7 @@ function buildAcademyPage() {
  </div>
  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:24px;">
  <a href="#acadGrid" style="background:white;color:#1A2340;text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:800;font-size:15px;display:inline-block;box-shadow:0 4px 16px rgba(0,0,0,0.15);transition:transform .2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">🔍 센터 찾기</a>
- <a href="/#form" style="background:linear-gradient(135deg,#C8A96E,#e0c080);color:#1A2340;text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:800;font-size:15px;display:inline-block;box-shadow:0 4px 16px rgba(200,169,110,0.4);transition:transform .2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">📝 무료 상담 신청</a>
+ <a href="#acadForm" onclick="var f=document.getElementById('acadForm');if(f)f.scrollIntoView({behavior:'smooth'});return false;" style="background:linear-gradient(135deg,#C8A96E,#e0c080);color:#1A2340;text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:800;font-size:15px;display:inline-block;box-shadow:0 4px 16px rgba(200,169,110,0.4);transition:transform .2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">📝 무료 상담 신청</a>
  </div>
  </div>
 
@@ -4970,13 +5026,15 @@ function buildAcademyPage() {
 
  <!-- CTA -->
  <div style="text-align:center;margin-bottom:40px;">
- <a href="/#form" style="display:inline-block;background:linear-gradient(135deg,#C8A96E,#e0c080);color:#1A2340;font-size:17px;font-weight:900;padding:20px 48px;border-radius:50px;text-decoration:none;box-shadow:0 6px 24px rgba(200,169,110,0.4);">
+ <a href="#acadForm" onclick="var f=document.getElementById('acadForm');if(f)f.scrollIntoView({behavior:'smooth'});return false;" style="display:inline-block;background:linear-gradient(135deg,#C8A96E,#e0c080);color:#1A2340;font-size:17px;font-weight:900;padding:20px 48px;border-radius:50px;text-decoration:none;box-shadow:0 6px 24px rgba(200,169,110,0.4);">
  📝 가까운 센터 무료 상담 신청
  </a>
  <p style="font-size:13px;color:#999;margin-top:12px;">첫 상담 및 진단검사는 무료입니다</p>
  </div>
  </div>
- ${CONTACT}${FOOTER}${FLOATING}
+ ${ACAD_CONTACT}
+ ${ACAD_FORM('학원수업 메인 홈페이지 (/academy)')}
+ ${FOOTER}${ACAD_FLOATING}
  <script>
  function filterAcad(region){
  var tabs=document.querySelectorAll('.acad-tab');
@@ -5039,71 +5097,6 @@ function buildAcademyPage() {
  track.style.transform='translateX(-'+rvPos+'px)';
  },3000);
  })();
- </script>
-
- <!-- 학원수업 상담 신청 -->
- <div id="acadForm" style="max-width:900px;margin:0 auto 40px;padding:0 16px;">
- <div style="background:white;border-radius:20px;padding:clamp(28px,5vw,48px);box-shadow:0 4px 32px rgba(0,0,0,0.1);">
- <div style="text-align:center;margin-bottom:32px;">
- <span style="display:inline-block;background:rgba(200,169,110,0.15);color:#C8A96E;padding:6px 18px;border-radius:50px;font-size:11px;font-weight:700;letter-spacing:2px;margin-bottom:14px;">🏫 학원수업 상담 신청</span>
- <h2 style="font-size:clamp(22px,4vw,32px);font-weight:900;color:#1A2340;margin-bottom:10px;">와와학습코칭센터 상담 문의</h2>
- <p style="font-size:14px;color:#666;line-height:1.8;">아래 내용을 작성하시면 24시간 내로 연락드립니다.<br><b style="color:#C8A96E;">첫 상담 및 진단검사는 무료</b>입니다.</p>
- </div>
- <div style="background:#f8f9fc;border:1px solid #e0e5ec;border-radius:20px;padding:clamp(20px,4vw,40px);">
- <div style="margin-bottom:18px;">
- <label style="display:block;font-size:13px;font-weight:600;color:#1A2340;margin-bottom:8px;">🎓 자녀 학년</label>
- <div style="display:flex;flex-wrap:wrap;gap:8px;">
- <button class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 18px;border-radius:50px;font-size:13px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;">초등</button>
- <button class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 18px;border-radius:50px;font-size:13px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;">중등</button>
- <button class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 18px;border-radius:50px;font-size:13px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;">고등</button>
- </div>
- </div>
- <div style="margin-bottom:18px;">
- <label style="display:block;font-size:13px;font-weight:600;color:#1A2340;margin-bottom:8px;">📚 희망 과목</label>
- <div style="display:flex;flex-wrap:wrap;gap:8px;">
- <button class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 18px;border-radius:50px;font-size:13px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;">국어</button>
- <button class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 18px;border-radius:50px;font-size:13px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;">영어</button>
- <button class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 18px;border-radius:50px;font-size:13px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;">수학</button>
- <button class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 18px;border-radius:50px;font-size:13px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;">과학</button>
- <button class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 18px;border-radius:50px;font-size:13px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;">사회</button>
- </div>
- </div>
- <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;">
- <div><label style="display:block;font-size:13px;font-weight:600;color:#1A2340;margin-bottom:8px;">🧑‍🎓 학생 이름</label><input type="text" id="aName" placeholder="학생 이름" style="width:100%;background:#fff;border:1px solid #d0d5dd;border-radius:12px;padding:14px 18px;font-size:15px;font-family:'Noto Sans KR',sans-serif;outline:none;"></div>
- <div><label style="display:block;font-size:13px;font-weight:600;color:#1A2340;margin-bottom:8px;">📱 연락처</label><input type="text" id="aContact" placeholder="전화번호" style="width:100%;background:#fff;border:1px solid #d0d5dd;border-radius:12px;padding:14px 18px;font-size:15px;font-family:'Noto Sans KR',sans-serif;outline:none;"></div>
- </div>
- <div style="margin-bottom:18px;"><label style="display:block;font-size:13px;font-weight:600;color:#1A2340;margin-bottom:8px;">🏫 학생 학교 (선택)</label><input type="text" id="aSchool" placeholder="예) 진관초, 은평중" style="width:100%;background:#fff;border:1px solid #d0d5dd;border-radius:12px;padding:14px 18px;font-size:15px;font-family:'Noto Sans KR',sans-serif;outline:none;"></div>
- <div style="margin-bottom:18px;"><label style="display:block;font-size:13px;font-weight:600;color:#1A2340;margin-bottom:8px;">💬 문의 사항 (선택)</label><textarea id="aMsg" rows="3" placeholder="추가 전달 사항" style="width:100%;background:#fff;border:1px solid #d0d5dd;border-radius:12px;padding:14px 18px;font-size:15px;font-family:'Noto Sans KR',sans-serif;outline:none;resize:vertical;"></textarea></div>
- <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:22px;"><input type="checkbox" id="aAgree" style="width:17px;height:17px;accent-color:#C8A96E;cursor:pointer;margin-top:2px;flex-shrink:0;"><label for="aAgree" style="font-size:12px;color:#888;cursor:pointer;line-height:1.6;">본인은 만 14세 이상이며, 개인정보 수집 및 이용에 동의합니다. (필수)</label></div>
- <div style="display:flex;flex-direction:column;gap:12px;">
- <button id="aSubmitBtn" onclick="submitAcadForm()" style="display:block;text-align:center;background:linear-gradient(135deg,#C8A96E,#e0c080);color:#1A2340;padding:18px;border-radius:50px;font-size:17px;font-weight:700;border:none;cursor:pointer;box-shadow:0 6px 24px rgba(200,169,110,0.4);font-family:'Noto Sans KR',sans-serif;">📝 학원수업 상담 신청하기</button>
- <a href="https://pf.kakao.com/_KRAjG" target="_blank" style="display:block;text-align:center;background:#FEE500;color:#3C1E1E;padding:18px;border-radius:50px;font-size:17px;font-weight:700;text-decoration:none;box-shadow:0 6px 24px rgba(254,229,0,0.35);">💬 카카오톡으로 바로 문의하기</a>
- </div>
- </div>
- </div>
- </div>
- <style>.abtn.sel{background:linear-gradient(135deg,#C8A96E,#e0c080)!important;border-color:transparent!important;color:#1A2340!important;font-weight:700!important;box-shadow:0 4px 12px rgba(200,169,110,0.35)!important;}@media(max-width:768px){div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}}</style>
- <script>
- async function submitAcadForm(){
-  var n=document.getElementById('aName').value.trim();
-  var c=document.getElementById('aContact').value.trim();
-  var s=document.getElementById('aSchool').value.trim();
-  var m=document.getElementById('aMsg').value.trim();
-  var ag=document.getElementById('aAgree');
-  if(!n){alert('학생 이름을 입력해 주세요.');return;}
-  if(!c){alert('연락처를 입력해 주세요.');return;}
-  if(!ag.checked){alert('개인정보 수집 및 이용에 동의해 주세요.');return;}
-  var grades=[...document.querySelectorAll('#acadForm .abtn.sel')].slice(0,3).map(function(b){return b.textContent.trim();}).join(', ')||'미선택';
-  var subjects=[...document.querySelectorAll('#acadForm .abtn.sel')].slice(3).map(function(b){return b.textContent.trim();}).join(', ')||'미선택';
-  var btn=document.getElementById('aSubmitBtn');
-  btn.disabled=true;btn.textContent='전송 중...';
-  try{
-   var res=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({method:'학원수업(와와학습코칭센터)',grade:grades,subject:subjects,name:n,contact:c,school:s,message:m,source:'학원수업 홈페이지 (/academy)'})});
-   var result=await res.json();
-   if(result.ok){alert('✅ 상담 신청이 완료되었습니다!\\n24시간 내로 연락드리겠습니다.');btn.disabled=false;btn.textContent='📝 학원수업 상담 신청하기';}
-   else{throw new Error(result.error);}
-  }catch(e){alert('❌ 전송 중 오류가 발생했습니다.\\n카카오톡 또는 전화로 문의해 주세요.');btn.disabled=false;btn.textContent='📝 학원수업 상담 신청하기';}
- }
  </script>
  </body></html>`;
 }
