@@ -4253,13 +4253,18 @@ function buildCenterDetailPage(slug) {
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
  <title>${ct.n} | 와와학습코칭센터 | 은빛스터디</title>
  <meta name="description" content="${ct.n} - ${ct.a}. 와와학습코칭센터 개별 맞춤 관리 시스템. 은빛스터디 1:1 맞춤 코칭.">
+ <meta property="og:type" content="website">
+ <meta property="og:title" content="${ct.n} | 와와학습코칭센터 | 은빛스터디">
+ <meta property="og:description" content="${ct.n} - ${ct.a}. 와와학습코칭센터 개별 맞춤 관리 시스템. 초중고 전과목 1:1 맞춤 코칭.">
+ <meta property="og:image" content="${bgImg('city',cH(ct.sl))}">
+ <meta property="og:url" content="https://eunshinestudy.com/academy/${encodeURIComponent(ct.sl)}">
  ${COMMON_STYLE}
  </head><body>${NAV}
  <div style="max-width:900px;margin:40px auto;padding:0 16px;">
  <div style="margin-bottom:16px;"><a href="/academy" style="color:#888;text-decoration:none;font-size:13px;">← 전체 센터 목록으로</a></div>
 
  <!-- Hero -->
- <div style="background:linear-gradient(135deg,#1A2340 0%,#2d3a5c 50%,#C8A96E 100%);color:white;border-radius:24px;padding:clamp(36px,6vw,56px);margin-bottom:28px;text-align:center;position:relative;overflow:hidden;">
+ <div style="background:linear-gradient(135deg,rgba(26,35,64,0.88),rgba(45,58,92,0.82)),url('${bgImg("city",cH(ct.sl))}') center/cover;color:white;border-radius:24px;padding:clamp(36px,6vw,56px);margin-bottom:28px;text-align:center;position:relative;overflow:hidden;">
  <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(200,169,110,0.15);border-radius:50%;"></div>
  <div style="position:absolute;bottom:-60px;left:-30px;width:160px;height:160px;background:rgba(255,255,255,0.05);border-radius:50%;"></div>
  <p style="font-size:13px;opacity:.7;margin-bottom:10px;font-weight:600;position:relative;">은빛스터디 × 와와학습코칭센터 · ${ct.r}</p>
@@ -4286,6 +4291,12 @@ function buildCenterDetailPage(slug) {
  <!-- 학원 소개 이미지 -->
  <div style="margin-bottom:28px;border-radius:20px;overflow:hidden;box-shadow:0 2px 12px #0000000f;">
  <img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80%EC%9A%A9.png" alt="학원 안내" style="width:100%;display:block;">
+ </div>
+ <!-- 학습 관리 시스템 이미지 -->
+ <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;">
+ <div style="border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%94%8C%EB%9E%9C.png" alt="플랜관리" style="width:100%;display:block;"></div>
+ <div style="border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%95%99%EC%8A%B5.png" alt="학습관리" style="width:100%;display:block;"></div>
+ <div style="border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%EC%83%9D%ED%99%9C.png" alt="생활관리" style="width:100%;display:block;"></div>
  </div>
 
  <!-- 지역별 맞춤 페이지 링크 -->
@@ -4507,13 +4518,17 @@ function buildCenterSubPage(slug, grade, subject, school) {
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
  <title>${title} | ${ct.n} 와와학습코칭센터 | 은빛스터디</title>
  <meta name="description" content="${title} - ${ct.n} ${ct.a}. ${landmarkTxt} 와와학습코칭센터 ${grade} ${subject} 1:1 맞춤 코칭 학원.">
+ <meta property="og:type" content="article">
+ <meta property="og:title" content="${title} | ${ct.n} 와와학습코칭센터 | 은빛스터디">
+ <meta property="og:description" content="${title} - ${ct.n} ${ct.a}. ${grade} ${subject} 맞춤 코칭 학원.">
+ <meta property="og:image" content="${bgImg(subject,cH(ct.sl+grade+subject))}">
  ${COMMON_STYLE}
  </head><body>${NAV}
  <div style="max-width:900px;margin:40px auto;padding:0 16px;">
  <div style="margin-bottom:16px;"><a href="/academy/${encodeURIComponent(slug)}" style="color:#888;text-decoration:none;font-size:13px;">← ${ct.n} 센터 페이지로</a></div>
 
  <!-- Hero -->
- <div style="background:linear-gradient(135deg,#1A2340 0%,#2d3a5c 50%,#C8A96E 100%);color:white;border-radius:24px;padding:clamp(36px,6vw,56px);margin-bottom:28px;text-align:center;position:relative;overflow:hidden;">
+ <div style="background:linear-gradient(135deg,rgba(26,35,64,0.88),rgba(45,58,92,0.8),rgba(200,169,110,0.75)),url('${bgImg(subject,cH(ct.sl+grade+subject))}') center/cover;color:white;border-radius:24px;padding:clamp(36px,6vw,56px);margin-bottom:28px;text-align:center;position:relative;overflow:hidden;">
  <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(200,169,110,0.15);border-radius:50%;"></div>
  <div style="display:flex;gap:8px;justify-content:center;margin-bottom:14px;position:relative;flex-wrap:wrap;">
  <span style="background:rgba(255,255,255,.15);padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;">${heroLabel}</span>
@@ -4523,6 +4538,12 @@ function buildCenterSubPage(slug, grade, subject, school) {
  <h1 style="font-size:clamp(24px,5vw,36px);font-weight:900;margin-bottom:12px;position:relative;">${title}</h1>
  <p style="font-size:14px;opacity:.85;position:relative;">${ct.n} · ${ct.a}</p>
  ${landmarkTxt?'<p style="font-size:13px;opacity:.75;margin-top:6px;position:relative;">📍 '+landmarkTxt+'</p>':''}
+ </div>
+
+
+ <!-- 학원 안내 이미지 -->
+ <div style="margin-bottom:24px;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+ <img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80%EC%9A%A9.png" alt="와와학습코칭센터 안내" style="width:100%;display:block;">
  </div>
 
  <!-- 학원 특징 -->
@@ -4653,6 +4674,11 @@ function buildAcademyPage() {
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
  <title>와와학습코칭 학원수업 | 개별 맞춤 관리 시스템 | 전국 205개 센터 | 은빛스터디</title>
  <meta name="description" content="와와학습코칭센터 전국 205개 센터 안내. 플랜관리·학습관리·생활관리 3대 개별 맞춤 관리 시스템. 4C 코칭, 둥지 학습, AI학습클래스. 초중고 전과목 학원수업.">
+ <meta property="og:type" content="website">
+ <meta property="og:title" content="학원수업 | 와와학습코칭센터 전국 205개 센터 | 은빛스터디">
+ <meta property="og:description" content="와와학습코칭센터 전국 205개 센터. 플랜관리·학습관리·생활관리 3대 개별 맞춤 관리 시스템으로 초중고 전과목 1:1 맞춤 코칭.">
+ <meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/banner1.png">
+ <meta property="og:url" content="https://eunshinestudy.com/academy">
  ${COMMON_STYLE}
  <style>
  .acad-tab{padding:8px 18px;border:1px solid #e0e0e0;border-radius:50px;background:white;cursor:pointer;font-size:13px;font-weight:600;color:#666;font-family:'Malgun Gothic',sans-serif;transition:all .2s;white-space:nowrap;}
@@ -4709,7 +4735,7 @@ function buildAcademyPage() {
  <div style="max-width:1100px;margin:40px auto;padding:0 16px;">
 
  <!-- Hero -->
- <div style="background:linear-gradient(135deg,#1A2340 0%,#2d3a5c 50%,#C8A96E 100%);color:white;border-radius:24px;padding:clamp(36px,6vw,64px);margin-bottom:40px;text-align:center;position:relative;overflow:hidden;">
+ <div style="background:linear-gradient(135deg,rgba(26,35,64,0.88),rgba(45,58,92,0.78),rgba(200,169,110,0.8)),url('${bgImg("school",42)}') center/cover;color:white;border-radius:24px;padding:clamp(36px,6vw,64px);margin-bottom:40px;text-align:center;position:relative;overflow:hidden;">
  <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(200,169,110,0.15);border-radius:50%;"></div>
  <div style="position:absolute;bottom:-60px;left:-30px;width:160px;height:160px;background:rgba(255,255,255,0.05);border-radius:50%;"></div>
  <p style="font-size:14px;opacity:.7;margin-bottom:10px;font-weight:600;">은빛스터디 × 와와학습코칭센터 · 전국 205개 센터</p>
