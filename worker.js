@@ -2156,7 +2156,9 @@ const ACAD_FLOATING = `<div style="position:fixed;bottom:24px;right:18px;display
  <a href="https://naver.me/GieISRs0" target="_blank" style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:#03C75A;color:white;text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.15);white-space:nowrap;">📋 <span>네이버 폼 신청</span></a>
  <a href="https://pf.kakao.com/_KRAjG/chat" target="_blank" style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:#FEE500;color:#3A1D1D;text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.15);white-space:nowrap;">💬 <span>카카오톡 상담</span></a>
 </div>`;
-const ACAD_FORM = function(src){return `
+const ACAD_FORM = function(src){
+ var safeSrc = (src||'').replace(/'/g, "\\'");
+ return `
 <div id="acadForm" style="max-width:900px;margin:0 auto 40px;padding:0 16px;">
 <div style="background:white;border-radius:20px;padding:clamp(28px,5vw,48px);box-shadow:0 4px 32px rgba(0,0,0,0.1);">
 <div style="text-align:center;margin-bottom:32px;">
@@ -2165,10 +2167,29 @@ const ACAD_FORM = function(src){return `
 <p style="font-size:14px;color:#666;line-height:1.8;">아래 내용을 작성하시면 24시간 내로 연락드립니다.<br><b style="color:#C8A96E;">첫 상담 및 진단검사는 무료</b>입니다.</p>
 </div>
 <div style="background:#f8f9fc;border:1px solid #e0e5ec;border-radius:20px;padding:clamp(20px,4vw,40px);">
-<div style="margin-bottom:18px;"><label style="display:block;font-size:13px;font-weight:600;color:#1A2340;margin-bottom:8px;">🎓 자녀 학년</label>
-<div id="gradeGroup" style="display:flex;flex-wrap:wrap;gap:8px;"><button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 18px;border-radius:50px;font-size:13px;cursor:pointer;">초등</button><button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 18px;border-radius:50px;font-size:13px;cursor:pointer;">중등</button><button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 18px;border-radius:50px;font-size:13px;cursor:pointer;">고등</button></div></div>
-<div style="margin-bottom:18px;"><label style="display:block;font-size:13px;font-weight:600;color:#1A2340;margin-bottom:8px;">📚 희망 과목</label>
-<div id="subjGroup" style="display:flex;flex-wrap:wrap;gap:8px;"><button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 18px;border-radius:50px;font-size:13px;cursor:pointer;">국어</button><button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 18px;border-radius:50px;font-size:13px;cursor:pointer;">영어</button><button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 18px;border-radius:50px;font-size:13px;cursor:pointer;">수학</button><button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 18px;border-radius:50px;font-size:13px;cursor:pointer;">과학</button><button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 18px;border-radius:50px;font-size:13px;cursor:pointer;">사회</button></div></div>
+<div style="margin-bottom:18px;"><label style="display:block;font-size:13px;font-weight:600;color:#1A2340;margin-bottom:8px;">🎓 자녀 학년 <small style="color:#aaa;font-weight:400;">(복수 선택 가능)</small></label>
+<div id="gradeGroup" style="display:flex;flex-wrap:wrap;gap:6px;">
+<button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 14px;border-radius:50px;font-size:13px;cursor:pointer;">초1</button>
+<button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 14px;border-radius:50px;font-size:13px;cursor:pointer;">초2</button>
+<button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 14px;border-radius:50px;font-size:13px;cursor:pointer;">초3</button>
+<button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 14px;border-radius:50px;font-size:13px;cursor:pointer;">초4</button>
+<button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 14px;border-radius:50px;font-size:13px;cursor:pointer;">초5</button>
+<button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 14px;border-radius:50px;font-size:13px;cursor:pointer;">초6</button>
+<button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 14px;border-radius:50px;font-size:13px;cursor:pointer;">중1</button>
+<button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 14px;border-radius:50px;font-size:13px;cursor:pointer;">중2</button>
+<button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 14px;border-radius:50px;font-size:13px;cursor:pointer;">중3</button>
+<button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 14px;border-radius:50px;font-size:13px;cursor:pointer;">고1</button>
+<button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 14px;border-radius:50px;font-size:13px;cursor:pointer;">고2</button>
+<button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 14px;border-radius:50px;font-size:13px;cursor:pointer;">고3</button>
+</div></div>
+<div style="margin-bottom:18px;"><label style="display:block;font-size:13px;font-weight:600;color:#1A2340;margin-bottom:8px;">📚 희망 과목 <small style="color:#aaa;font-weight:400;">(복수 선택 가능)</small></label>
+<div id="subjGroup" style="display:flex;flex-wrap:wrap;gap:6px;">
+<button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 14px;border-radius:50px;font-size:13px;cursor:pointer;">국어</button>
+<button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 14px;border-radius:50px;font-size:13px;cursor:pointer;">영어</button>
+<button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 14px;border-radius:50px;font-size:13px;cursor:pointer;">수학</button>
+<button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 14px;border-radius:50px;font-size:13px;cursor:pointer;">과학</button>
+<button type="button" class="abtn" onclick="this.classList.toggle('sel')" style="background:#fff;border:1.5px solid #d0d5dd;color:#444;padding:8px 14px;border-radius:50px;font-size:13px;cursor:pointer;">사회</button>
+</div></div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;">
 <div><label style="display:block;font-size:13px;font-weight:600;color:#1A2340;margin-bottom:8px;">🧑‍🎓 학생 이름</label><input type="text" id="aName" placeholder="학생 이름" style="width:100%;background:#fff;border:1px solid #d0d5dd;border-radius:12px;padding:14px 18px;font-size:15px;outline:none;box-sizing:border-box;"></div>
 <div><label style="display:block;font-size:13px;font-weight:600;color:#1A2340;margin-bottom:8px;">📱 연락처</label><input type="text" id="aContact" placeholder="전화번호" style="width:100%;background:#fff;border:1px solid #d0d5dd;border-radius:12px;padding:14px 18px;font-size:15px;outline:none;box-sizing:border-box;"></div>
@@ -2196,13 +2217,15 @@ async function submitAcadForm(){
  var btn=document.getElementById('aSubmitBtn');
  if(btn){btn.disabled=true;btn.textContent='전송 중...';}
  try{
-  var res=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({method:'학원수업(와와학습코칭센터)',grade:grades,subject:subjects,name:n,contact:c,school:s,message:m,source:'`+src+`'})});
+  var res=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({method:'학원수업(와와학습코칭센터)',grade:grades,subject:subjects,name:n,contact:c,school:s,message:m,source:'${safeSrc}'})  });
+  if(!res.ok){var et=await res.text();console.error('API:',res.status,et);throw new Error(res.status+' - 서버 오류');}
   var result=await res.json();
   if(result.ok){alert('상담 신청이 완료되었습니다! 24시간 내로 연락드리겠습니다.');if(btn){btn.disabled=false;btn.textContent='📝 학원수업 상담 신청하기';}}
-  else{throw new Error(result.error||'전송 실패');}
- }catch(e){alert('전송 중 오류가 발생했습니다. 카카오톡 또는 전화(010-2337-0458)로 문의해 주세요.');if(btn){btn.disabled=false;btn.textContent='📝 학원수업 상담 신청하기';}}
+  else{console.error('Err:',result.error);throw new Error(result.error||'전송 실패');}
+ }catch(e){console.error('Submit:',e);alert('전송 중 오류가 발생했습니다.\n카카오톡 또는 전화(010-2337-0458)로 문의해 주세요.\n('+e.message+')');if(btn){btn.disabled=false;btn.textContent='📝 학원수업 상담 신청하기';}}
 }
-</script>`;};
+</script>`;
+};
 const ACAD_CONTACT = `<section style="background:#1A2340;color:white;text-align:center;padding:64px 20px;"><h2 style="font-size:clamp(22px,4vw,34px);margin-bottom:16px;font-weight:900;">와와학습코칭센터 상담 문의</h2><p style="font-size:16px;color:rgba(255,255,255,0.6);margin-bottom:28px;">1:1 맞춤 코칭으로 성적 향상을 경험하세요</p><div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;"><a href="#acadForm" onclick="var f=document.getElementById('acadForm');if(f)f.scrollIntoView({behavior:'smooth'});return false;" style="background:linear-gradient(135deg,#C8A96E,#E8D09A);color:#1A2340;text-decoration:none;padding:16px 38px;border-radius:50px;font-weight:700;font-size:17px;display:inline-block;">상담 신청하기</a><a href="tel:01023370458" style="background:rgba(255,255,255,0.1);border:2px solid rgba(255,255,255,0.3);color:#fff;text-decoration:none;padding:16px 38px;border-radius:50px;font-weight:700;font-size:17px;display:inline-block;">📞 전화 상담 010-2337-0458</a></div></section>`;
 
 function buildDirectoryPage() {
@@ -5280,10 +5303,15 @@ async function handle(req) {
  </div>
  </div>`;
 
+ const apiKey = typeof RESEND_API_KEY !== "undefined" ? RESEND_API_KEY : "";
+ if (!apiKey) {
+ return new Response(JSON.stringify({ok:false, error:"RESEND_API_KEY 환경변수가 설정되지 않았습니다. Cloudflare Workers 설정에서 확인해주세요."}), {headers:J, status:500});
+ }
+
  const res = await fetch("https://api.resend.com/emails", {
  method: "POST",
  headers: {
- "Authorization": "Bearer " + (typeof RESEND_API_KEY !== "undefined" ? RESEND_API_KEY : ""),
+ "Authorization": "Bearer " + apiKey,
  "Content-Type": "application/json"
  },
  body: JSON.stringify({
@@ -5298,10 +5326,10 @@ async function handle(req) {
  return new Response(JSON.stringify({ok:true}), {headers:J, status:200});
  } else {
  const err = await res.text();
- return new Response(JSON.stringify({ok:false, error:err}), {headers:J, status:500});
+ return new Response(JSON.stringify({ok:false, error:"Resend API " + res.status + ": " + err}), {headers:J, status:500});
  }
  } catch(e) {
- return new Response(JSON.stringify({ok:false, error:e.message}), {headers:J, status:500});
+ return new Response(JSON.stringify({ok:false, error:"서버 오류: " + e.message}), {headers:J, status:500});
  }
  }
 
