@@ -2202,29 +2202,11 @@ const ACAD_FORM = function(src){
 <a href="https://pf.kakao.com/_KRAjG" target="_blank" style="display:block;text-align:center;background:#FEE500;color:#3C1E1E;padding:18px;border-radius:50px;font-size:17px;font-weight:700;text-decoration:none;box-shadow:0 6px 24px rgba(254,229,0,0.35);">💬 카카오톡으로 바로 문의하기</a>
 </div></div></div></div>
 <style>.abtn.sel{background:linear-gradient(135deg,#C8A96E,#e0c080)!important;border-color:transparent!important;color:#1A2340!important;font-weight:700!important;box-shadow:0 4px 12px rgba(200,169,110,0.35)!important;}@media(max-width:768px){div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}}</style>
-<script>
-async function submitAcadForm(){
- var n=document.getElementById('aName').value.trim();
- var c=document.getElementById('aContact').value.trim();
- var s=document.getElementById('aSchool')?document.getElementById('aSchool').value.trim():'';
- var m=document.getElementById('aMsg')?document.getElementById('aMsg').value.trim():'';
- var ag=document.getElementById('aAgree');
- if(!n){alert('학생 이름을 입력해 주세요.');return;}
- if(!c){alert('연락처를 입력해 주세요.');return;}
- if(!ag||!ag.checked){alert('개인정보 수집 및 이용에 동의해 주세요.');return;}
- var grades=[...document.querySelectorAll('#gradeGroup .abtn.sel')].map(function(b){return b.textContent.trim();}).join(', ')||'미선택';
- var subjects=[...document.querySelectorAll('#subjGroup .abtn.sel')].map(function(b){return b.textContent.trim();}).join(', ')||'미선택';
- var btn=document.getElementById('aSubmitBtn');
- if(btn){btn.disabled=true;btn.textContent='전송 중...';}
- try{
-  var res=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({method:'학원수업(와와학습코칭센터)',grade:grades,subject:subjects,name:n,contact:c,school:s,message:m,source:'${safeSrc}'})  });
-  if(!res.ok){var et=await res.text();console.error('API:',res.status,et);throw new Error(res.status+' - 서버 오류');}
-  var result=await res.json();
-  if(result.ok){alert('상담 신청이 완료되었습니다! 24시간 내로 연락드리겠습니다.');if(btn){btn.disabled=false;btn.textContent='📝 학원수업 상담 신청하기';}}
-  else{console.error('Err:',result.error);throw new Error(result.error||'전송 실패');}
- }catch(e){console.error('Submit:',e);alert('전송 중 오류가 발생했습니다.\n카카오톡 또는 전화(010-2337-0458)로 문의해 주세요.\n('+e.message+')');if(btn){btn.disabled=false;btn.textContent='📝 학원수업 상담 신청하기';}}
-}
-</script>`;
+`;
+};
+const ACAD_SCRIPT = function(src){
+ var safeSrc = (src||'').replace(/'/g, "\\'");
+ return '<script>async function submitAcadForm(){var n=document.getElementById("aName").value.trim();var c=document.getElementById("aContact").value.trim();var s=document.getElementById("aSchool")?document.getElementById("aSchool").value.trim():"";var m=document.getElementById("aMsg")?document.getElementById("aMsg").value.trim():"";var ag=document.getElementById("aAgree");if(!n){alert("학생 이름을 입력해 주세요.");return;}if(!c){alert("연락처를 입력해 주세요.");return;}if(!ag||!ag.checked){alert("개인정보 수집 및 이용에 동의해 주세요.");return;}var grades=[...document.querySelectorAll("#gradeGroup .abtn.sel")].map(function(b){return b.textContent.trim();}).join(", ")||"미선택";var subjects=[...document.querySelectorAll("#subjGroup .abtn.sel")].map(function(b){return b.textContent.trim();}).join(", ")||"미선택";var btn=document.getElementById("aSubmitBtn");if(btn){btn.disabled=true;btn.textContent="전송 중...";}try{var res=await fetch("/api/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({method:"학원수업(학습코칭학원)",grade:grades,subject:subjects,name:n,contact:c,school:s,message:m,source:"'+safeSrc+'"})});if(!res.ok){var et=await res.text();throw new Error(res.status+" - "+et);}var result=await res.json();if(result.ok){alert("상담 신청이 완료되었습니다! 24시간 내로 연락드리겠습니다.");if(btn){btn.disabled=false;btn.textContent="📝 학원수업 상담 신청하기";}}else{throw new Error(result.error||"전송 실패");}}catch(e){alert("전송 중 오류가 발생했습니다.\n카카오톡 또는 전화(010-2337-0458)로 문의해 주세요.\n("+e.message+")");if(btn){btn.disabled=false;btn.textContent="📝 학원수업 상담 신청하기";}}}' + '</' + 'script>';
 };
 const ACAD_CONTACT = `<section style="background:#1A2340;color:white;text-align:center;padding:64px 20px;"><h2 style="font-size:clamp(22px,4vw,34px);margin-bottom:16px;font-weight:900;">학습코칭학원 상담 문의</h2><p style="font-size:16px;color:rgba(255,255,255,0.6);margin-bottom:28px;">1:1 맞춤 코칭으로 성적 향상을 경험하세요</p><div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;"><a href="#acadForm" onclick="var f=document.getElementById('acadForm');if(f)f.scrollIntoView({behavior:'smooth'});return false;" style="background:linear-gradient(135deg,#C8A96E,#E8D09A);color:#1A2340;text-decoration:none;padding:16px 38px;border-radius:50px;font-weight:700;font-size:17px;display:inline-block;">상담 신청하기</a><a href="tel:01023370458" style="background:rgba(255,255,255,0.1);border:2px solid rgba(255,255,255,0.3);color:#fff;text-decoration:none;padding:16px 38px;border-radius:50px;font-weight:700;font-size:17px;display:inline-block;">📞 전화 상담 010-2337-0458</a></div></section>`;
 
@@ -4411,6 +4393,7 @@ function buildCenterDetailPage(slug) {
  ${FOOTER}${ACAD_FLOATING}
  <style>@media(max-width:768px){div[style*="grid-template-columns:1fr 1fr"],div[style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:1fr!important;}}
  .subpage-link:hover{border-color:#C8A96E!important;background:white!important;}</style>
+ ${ACAD_SCRIPT('학원 센터페이지 ('+ct.n+')')}
  </body></html>`;
 }
 
@@ -4627,6 +4610,7 @@ function buildCenterSubPage(slug, grade, subject, school) {
   ${ACAD_FORM('학원 서브페이지 ('+ct.n+' '+title+')')}
  ${FOOTER}${ACAD_FLOATING}
  <style>@media(max-width:768px){div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}}</style>
+ ${ACAD_SCRIPT('학원 서브페이지 ('+ct.n+' '+title+')')}
  </body></html>`;
 }
 
@@ -5097,6 +5081,7 @@ function buildAcademyPage() {
  },3000);
  })();
  </script>
+ ${ACAD_SCRIPT('학원수업 메인 홈페이지 (/academy)')}
  </body></html>`;
 }
 
