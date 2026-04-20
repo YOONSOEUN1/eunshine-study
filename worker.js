@@ -863,6 +863,7 @@ function hexToRgba(hex,alpha){
  return "rgba("+r+","+g+","+b+","+alpha+")";
 }
 
+const grades = ["초등","중등","고등"];
 function buildEduData() {
  const data = {};
  for (const [rs, ri] of Object.entries(locations)) {
