@@ -5367,30 +5367,51 @@ async function handle(req) {
  }
 
  // ── 네이버 IndexNow: 색인 요청 트리거 ──
+ // 사용법: /admin/indexnow-ping?token=...&page=1 (page 생략 시 전체 URL 목록만 표시)
  if (p === "/admin/indexnow-ping") {
  if (url.searchParams.get("token") !== INDEXNOW_ADMIN_TOKEN) {
  return new Response("Forbidden", {status: 403});
  }
+ try {
  const allUrls = buildAllSiteUrls();
- const CHUNK_SIZE = 1000;
- const results = [];
- for (let i = 0; i < allUrls.length; i += CHUNK_SIZE) {
- const chunk = allUrls.slice(i, i + CHUNK_SIZE);
- const r = await submitIndexNowChunk(chunk);
- results.push({chunk: (i/CHUNK_SIZE)+1, range: (i+1)+"-"+(i+chunk.length), ...r});
+ const PAGE_SIZE = 500;
+ const totalPages = Math.ceil(allUrls.length / PAGE_SIZE);
+ const pageParam = url.searchParams.get("page");
+
+ // page 없으면 전체 요약만 표시
+ if (!pageParam) {
+ return new Response(JSON.stringify({
+  info: "page 파라미터를 추가하세요. 예: ?token=...&page=1",
+  totalUrls: allUrls.length,
+  totalPages: totalPages,
+  pageSize: PAGE_SIZE,
+  howTo: Array.from({length: totalPages}, function(_,i){return "/admin/indexnow-ping?token=" + INDEXNOW_ADMIN_TOKEN + "&page=" + (i+1);})
+ }, null, 2), { headers: {"Content-Type": "application/json; charset=utf-8"} });
  }
- const summary = {
- ok: results.every(r => r.status === 200 || r.status === 202),
- site: SITE_HOST,
- keyLocation: "https://" + SITE_HOST + "/" + INDEXNOW_KEY + ".txt",
- totalUrls: allUrls.length,
- totalChunks: results.length,
- sampleUrls: allUrls.slice(0, 5),
- results: results
- };
- return new Response(JSON.stringify(summary, null, 2), {
- headers: {"Content-Type": "application/json; charset=utf-8"}
- });
+
+ const page = parseInt(pageParam) || 1;
+ const start = (page - 1) * PAGE_SIZE;
+ const chunk = allUrls.slice(start, start + PAGE_SIZE);
+
+ if (chunk.length === 0) {
+ return new Response(JSON.stringify({ok:false, error:"해당 페이지에 URL이 없습니다. 총 " + totalPages + "페이지"}), {headers:{"Content-Type":"application/json;charset=utf-8"}});
+ }
+
+ const r = await submitIndexNowChunk(chunk);
+ return new Response(JSON.stringify({
+  ok: r.status === 200 || r.status === 202,
+  page: page,
+  totalPages: totalPages,
+  urlsInPage: chunk.length,
+  totalUrls: allUrls.length,
+  range: (start+1) + "-" + (start+chunk.length),
+  naverStatus: r.status,
+  sampleUrls: chunk.slice(0, 5),
+  nextPage: page < totalPages ? "/admin/indexnow-ping?token=" + INDEXNOW_ADMIN_TOKEN + "&page=" + (page+1) : null
+ }, null, 2), { headers: {"Content-Type": "application/json; charset=utf-8"} });
+ } catch(e) {
+ return new Response(JSON.stringify({ok:false, error: e.message}), {headers:{"Content-Type":"application/json;charset=utf-8"}, status:500});
+ }
  }
 
  if (p==="/"||p==="") return new Response(getIndex(),{headers:H});
