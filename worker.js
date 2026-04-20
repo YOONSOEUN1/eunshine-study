@@ -3687,11 +3687,6 @@ function buildCenterSubPage(slug, grade, subject, school) {
  </div>
 
 
- <!-- 학원 안내 이미지 -->
- <div style="margin-bottom:24px;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
- <img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80%EC%9A%A9.png" alt="와와학습코칭센터 안내" style="width:100%;display:block;">
- </div>
-
  <!-- 학원 특징 -->
  <div style="background:white;border-radius:20px;padding:36px 28px;margin-bottom:28px;box-shadow:0 2px 12px #0000000f;">
  <div style="text-align:center;margin-bottom:28px;">
@@ -3765,6 +3760,12 @@ function buildCenterSubPage(slug, grade, subject, school) {
  </div>
 
  </div>
+
+ <!-- 학원 안내 이미지 -->
+ <div style="margin-bottom:24px;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+ <img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80%EC%9A%A9.png" alt="와와학습코칭센터 안내" style="width:100%;display:block;">
+ </div>
+
   ${ACAD_FORM('학원 서브페이지 ('+ct.n+' '+title+')')}
  ${FOOTER}${ACAD_FLOATING}
  <style>@media(max-width:768px){div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}}</style>
