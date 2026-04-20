@@ -3759,13 +3759,12 @@ function buildCenterSubPage(slug, grade, subject, school) {
  </div>
  </div>
 
- </div>
-
  <!-- 학원 안내 이미지 -->
- <div style="margin-bottom:24px;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+ <div style="border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);margin-top:28px;">
  <img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80%EC%9A%A9.png" alt="와와학습코칭센터 안내" style="width:100%;display:block;">
  </div>
 
+ </div>
   ${ACAD_FORM('학원 서브페이지 ('+ct.n+' '+title+')')}
  ${FOOTER}${ACAD_FLOATING}
  <style>@media(max-width:768px){div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}}</style>
