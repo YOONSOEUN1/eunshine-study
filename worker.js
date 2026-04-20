@@ -5129,6 +5129,27 @@ function buildAllSiteUrls() {
  }
  }
  }
+ // 학원 센터 URL 추가
+ var acGrades = ['초등','중등','고등'];
+ var acSubjs = ['국어','영어','수학','과학','사회'];
+ ACAD_DETAIL.forEach(function(ct) {
+ urls.push(base + "/academy/" + encodeURIComponent(ct.sl));
+ acGrades.forEach(function(g) {
+  acSubjs.forEach(function(s) {
+  urls.push(base + "/academy/" + encodeURIComponent(ct.sl) + "/" + encodeURIComponent(g) + "/" + encodeURIComponent(s));
+  });
+ });
+ // 학교별 서브페이지
+ var schools = [];
+ if(ct.se) ct.se.forEach(function(s){schools.push(s);});
+ if(ct.sm) ct.sm.forEach(function(s){schools.push(s);});
+ if(ct.sh) ct.sh.forEach(function(s){schools.push(s);});
+ schools.forEach(function(sch) {
+  acSubjs.forEach(function(s) {
+  urls.push(base + "/academy/" + encodeURIComponent(ct.sl) + "/" + encodeURIComponent(sch) + "/" + encodeURIComponent(s));
+  });
+ });
+ });
  return urls;
 }
 
@@ -5140,6 +5161,7 @@ async function submitIndexNowChunk(urlList) {
  urlList: urlList
  };
  try {
+ // Naver + Bing 동시 제출
  const resp = await fetch("https://searchadvisor.naver.com/indexnow", {
  method: "POST",
  headers: {"Content-Type": "application/json; charset=utf-8"},
@@ -5147,6 +5169,12 @@ async function submitIndexNowChunk(urlList) {
  });
  let respText = "";
  try { respText = await resp.text(); } catch(e) {}
+ // Bing에도 제출
+ try { await fetch("https://www.bing.com/indexnow", {
+ method: "POST",
+ headers: {"Content-Type": "application/json; charset=utf-8"},
+ body: JSON.stringify(body)
+ }); } catch(e) {}
  return {status: resp.status, count: urlList.length, body: respText.slice(0, 200)};
  } catch (e) {
  return {status: "ERROR", count: urlList.length, error: e.message};
@@ -5322,6 +5350,15 @@ async function handle(req) {
  return Response.redirect(BANNER2_URL, 301);
  }
 
+
+ // ── robots.txt ──
+ if (p === "/robots.txt") {
+ return new Response(
+  "User-agent: *\nAllow: /\n\nSitemap: https://eunshinestudy.com/sitemap.xml\n",
+  { headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "public, max-age=86400" } }
+ );
+ }
+
  // ── 네이버 IndexNow: 키 검증 파일 ──
  if (p === "/" + INDEXNOW_KEY + ".txt") {
  return new Response(INDEXNOW_KEY, {
@@ -5372,6 +5409,15 @@ async function handle(req) {
  urls.push("https://eunshinestudy.com/" + rs + "/" + cs);
  }
  }
+ // 학원 센터 URL
+ ACAD_DETAIL.forEach(function(ct) {
+ urls.push("https://eunshinestudy.com/academy/" + encodeURIComponent(ct.sl));
+ ['초등','중등','고등'].forEach(function(g){
+  ['국어','영어','수학','과학','사회'].forEach(function(s){
+  urls.push("https://eunshinestudy.com/academy/" + encodeURIComponent(ct.sl) + "/" + encodeURIComponent(g) + "/" + encodeURIComponent(s));
+  });
+ });
+ });
  const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map(u => ` <url><loc>${u}</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>`).join("\n")}
