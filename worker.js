@@ -905,105 +905,20 @@ function getIndex() {
  // 탭 스타일 주입
  const tabStyles = `.nav-panel-tabs{display:flex;border-bottom:1px solid rgba(255,255,255,0.1);}.nav-panel-tab{flex:1;padding:14px 16px;background:transparent;border:none;color:rgba(255,255,255,0.5);font-size:14px;font-weight:700;cursor:pointer;font-family:'Malgun Gothic',sans-serif;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px;}.nav-panel-tab:hover{color:rgba(255,255,255,0.8);}.nav-panel-tab.active{background:rgba(200,169,110,0.15);color:#C8A96E;}.nav-panel-content{display:none;padding:20px 24px;}.nav-panel-content.active{display:block;}.nav-grade-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}.nav-grade-grid a{display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,169,110,0.25);color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:12px 10px;border-radius:50px;white-space:nowrap;transition:background .15s,transform .15s;font-family:'Malgun Gothic',sans-serif;}.nav-grade-grid a:hover{background:rgba(200,169,110,0.18);transform:translateY(-1px);}.nav-school-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}.nav-school-grid a{display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,169,110,0.25);color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:11px 6px;border-radius:50px;white-space:nowrap;transition:background .15s,transform .15s;font-family:'Malgun Gothic',sans-serif;}.nav-school-grid a:hover{background:rgba(200,169,110,0.18);transform:translateY(-1px);}@media(max-width:900px){.nav-grade-grid{grid-template-columns:repeat(3,1fr);}.nav-school-grid{grid-template-columns:repeat(3,1fr);}.nav-panel-tab{padding:12px 8px;font-size:13px;}}`;
  html = html.replace('</style>', tabStyles + '</style>');
- // 기존 지역 전용 드롭다운을 3탭 버전으로 교체
- const oldPanel = `<div class="nav-region-panel" id="navRegionPanel">
- <div class="nav-region-grid">
- <a href="/seoul">📍 서울</a>
- <a href="/gyeonggi">🌳 경기</a>
- <a href="/incheon">🌊 인천</a>
- <a href="/busan">🐟 부산</a>
- <a href="/daegu">🍎 대구</a>
- <a href="/daejeon">🌲 대전</a>
- <a href="/gwangju">🌺 광주</a>
- <a href="/ulsan">⚙ 울산</a>
- <a href="/sejong">🏛 세종</a>
- <a href="/gangwon">🏔 강원</a>
- <a href="/chungbuk">🌾 충북</a>
- <a href="/chungnam">🌊 충남</a>
- <a href="/jeonbuk">🌿 전북</a>
- <a href="/jeonnam">🍃 전남</a>
- <a href="/gyeongbuk">🍎 경북</a>
- <a href="/gyeongnam">🌊 경남</a>
- <a href="/jeju">🌸 제주</a>
- </div>
- </div>`;
- const newPanel = `<div class="nav-region-panel" id="navRegionPanel">
- <div class="nav-panel-tabs">
- <button class="nav-panel-tab active" onclick="switchNavTab(0)">📍 지역별 과외</button>
- <button class="nav-panel-tab" onclick="switchNavTab(1)">🎓 학년별 과외</button>
- <button class="nav-panel-tab" onclick="switchNavTab(2)">🏫 학교별 과외</button>
- </div>
- <div class="nav-panel-content active" id="navTabContent0">
- <div class="nav-region-grid">
- <a href="/seoul">📍 서울</a>
- <a href="/gyeonggi">🌳 경기</a>
- <a href="/incheon">🌊 인천</a>
- <a href="/busan">🐟 부산</a>
- <a href="/daegu">🍎 대구</a>
- <a href="/daejeon">🌲 대전</a>
- <a href="/gwangju">🌺 광주</a>
- <a href="/ulsan">⚙ 울산</a>
- <a href="/sejong">🏛 세종</a>
- <a href="/gangwon">🏔 강원</a>
- <a href="/chungbuk">🌾 충북</a>
- <a href="/chungnam">🌊 충남</a>
- <a href="/jeonbuk">🌿 전북</a>
- <a href="/jeonnam">🍃 전남</a>
- <a href="/gyeongbuk">🍎 경북</a>
- <a href="/gyeongnam">🌊 경남</a>
- <a href="/jeju">🌸 제주</a>
- </div>
- </div>
- <div class="nav-panel-content" id="navTabContent1">
- <div style="padding-bottom:6px;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08);"><span style="color:#C8A96E;font-size:12px;font-weight:700;">🌱 초등학생</span></div>
- <div class="nav-grade-grid" style="margin-bottom:16px;">
- <a href="/grade/elem1">초1</a>
- <a href="/grade/elem2">초2</a>
- <a href="/grade/elem3">초3</a>
- <a href="/grade/elem4">초4</a>
- <a href="/grade/elem5">초5</a>
- <a href="/grade/elem6">초6</a>
- </div>
- <div style="padding-bottom:6px;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08);"><span style="color:#C8A96E;font-size:12px;font-weight:700;">📘 중학생</span></div>
- <div class="nav-grade-grid" style="margin-bottom:16px;">
- <a href="/grade/mid1">중1</a>
- <a href="/grade/mid2">중2</a>
- <a href="/grade/mid3">중3</a>
- </div>
- <div style="padding-bottom:6px;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08);"><span style="color:#C8A96E;font-size:12px;font-weight:700;">📕 고등학생</span></div>
- <div class="nav-grade-grid" style="margin-bottom:16px;">
- <a href="/grade/high1">고1</a>
- <a href="/grade/high2">고2</a>
- <a href="/grade/high3">고3</a>
- </div>
- <div class="nav-grade-grid">
- <a href="/grade/nsu" style="border-color:#e74c3c;color:#e74c3c;">🔥 재수생</a>
- </div>
- </div>
- <div class="nav-panel-content" id="navTabContent2">
- <div class="nav-school-grid">
- <a href="/schools/seoul">📍 서울</a>
- <a href="/schools/gyeonggi">🌳 경기</a>
- <a href="/schools/incheon">🌊 인천</a>
- <a href="/schools/busan">🐟 부산</a>
- <a href="/schools/daegu">🍎 대구</a>
- <a href="/schools/daejeon">🌲 대전</a>
- <a href="/schools/gwangju">🌺 광주</a>
- <a href="/schools/ulsan">⚙ 울산</a>
- <a href="/schools/sejong">🏛 세종</a>
- <a href="/schools/gangwon">🏔 강원</a>
- <a href="/schools/chungbuk">🌾 충북</a>
- <a href="/schools/chungnam">🌊 충남</a>
- <a href="/schools/jeonbuk">🌿 전북</a>
- <a href="/schools/jeonnam">🍃 전남</a>
- <a href="/schools/gyeongbuk">🍎 경북</a>
- <a href="/schools/gyeongnam">🌊 경남</a>
- <a href="/schools/jeju">🌸 제주</a>
- </div>
- </div>
- </div>`;
- html = html.replace(oldPanel, newPanel);
- // switchNavTab 함수 주입
+   // 기존 지역 전용 드롭다운을 3탭 버전으로 교체 (single-line match)
+  const oldPanelMarker = '<div class="nav-region-panel" id="navRegionPanel"><div class="nav-region-grid">';
+  const oldPanelEndMarker = '</div></div></div>';
+  const panelIdx = html.indexOf(oldPanelMarker);
+  if (panelIdx !== -1) {
+   // Find the closing of the old panel (3 closing divs: grid + panel + wrap)
+   let endIdx = html.indexOf('</div></div></div>', panelIdx + oldPanelMarker.length);
+   if (endIdx !== -1) {
+    endIdx += '</div></div></div>'.length;
+    const newPanel = `<div class="nav-region-panel" id="navRegionPanel"><div class="nav-panel-tabs"><button class="nav-panel-tab active" onclick="switchNavTab(0)">📍 지역별 과외</button><button class="nav-panel-tab" onclick="switchNavTab(1)">🎓 학년별 과외</button><button class="nav-panel-tab" onclick="switchNavTab(2)">🏫 학교별 과외</button></div><div class="nav-panel-content active" id="navTabContent0"><div class="nav-region-grid"><a href="/seoul">📍 서울</a><a href="/gyeonggi">🌳 경기</a><a href="/incheon">🌊 인천</a><a href="/busan">🐟 부산</a><a href="/daegu">🍎 대구</a><a href="/daejeon">🌲 대전</a><a href="/gwangju">🌺 광주</a><a href="/ulsan">⚙ 울산</a><a href="/sejong">🏛 세종</a><a href="/gangwon">🏔 강원</a><a href="/chungbuk">🌾 충북</a><a href="/chungnam">🌊 충남</a><a href="/jeonbuk">🌿 전북</a><a href="/jeonnam">🍃 전남</a><a href="/gyeongbuk">🍎 경북</a><a href="/gyeongnam">🌊 경남</a><a href="/jeju">🌸 제주</a></div></div><div class="nav-panel-content" id="navTabContent1"><div style="padding-bottom:6px;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08);"><span style="color:#C8A96E;font-size:12px;font-weight:700;">🌱 초등학생</span></div><div class="nav-grade-grid" style="margin-bottom:16px;"><a href="/grade/elem1">초1</a><a href="/grade/elem2">초2</a><a href="/grade/elem3">초3</a><a href="/grade/elem4">초4</a><a href="/grade/elem5">초5</a><a href="/grade/elem6">초6</a></div><div style="padding-bottom:6px;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08);"><span style="color:#C8A96E;font-size:12px;font-weight:700;">📘 중학생</span></div><div class="nav-grade-grid" style="margin-bottom:16px;"><a href="/grade/mid1">중1</a><a href="/grade/mid2">중2</a><a href="/grade/mid3">중3</a></div><div style="padding-bottom:6px;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08);"><span style="color:#C8A96E;font-size:12px;font-weight:700;">📕 고등학생</span></div><div class="nav-grade-grid" style="margin-bottom:16px;"><a href="/grade/high1">고1</a><a href="/grade/high2">고2</a><a href="/grade/high3">고3</a></div><div class="nav-grade-grid"><a href="/grade/nsu" style="border-color:#e74c3c;color:#e74c3c;">🔥 재수생</a></div></div><div class="nav-panel-content" id="navTabContent2"><div class="nav-school-grid"><a href="/schools/seoul">📍 서울</a><a href="/schools/gyeonggi">🌳 경기</a><a href="/schools/incheon">🌊 인천</a><a href="/schools/busan">🐟 부산</a><a href="/schools/daegu">🍎 대구</a><a href="/schools/daejeon">🌲 대전</a><a href="/schools/gwangju">🌺 광주</a><a href="/schools/ulsan">⚙ 울산</a><a href="/schools/sejong">🏛 세종</a><a href="/schools/gangwon">🏔 강원</a><a href="/schools/chungbuk">🌾 충북</a><a href="/schools/chungnam">🌊 충남</a><a href="/schools/jeonbuk">🌿 전북</a><a href="/schools/jeonnam">🍃 전남</a><a href="/schools/gyeongbuk">🍎 경북</a><a href="/schools/gyeongnam">🌊 경남</a><a href="/schools/jeju">🌸 제주</a></div></div></div></div>`;
+    html = html.substring(0, panelIdx) + newPanel + html.substring(endIdx);
+   }
+  }
+  // switchNavTab 함수 주입
  const tabScript = `<script>function switchNavTab(idx){var tabs=document.querySelectorAll('.nav-panel-tab');var contents=document.querySelectorAll('.nav-panel-content');tabs.forEach(function(t,i){t.classList.toggle('active',i===idx);});contents.forEach(function(c,i){c.classList.toggle('active',i===idx);});}</script>`;
  html = html.replace('</body>', tabScript + '</body>');
  return html;
