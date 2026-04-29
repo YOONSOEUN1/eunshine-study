@@ -717,7 +717,20 @@ function genContent(loc,city,dong,grade,subj,schools){
  if(grade==="초등")rvPool=RV_BODIES.filter(function(r){return r.indexOf("고등학교")<0&&r.indexOf("수능")<0&&r.indexOf("모의고사")<0&&r.indexOf("내신과 수능")<0;});
  else if(grade==="중등")rvPool=RV_BODIES.filter(function(r){return r.indexOf("수능")<0&&r.indexOf("모의고사")<0;});
  if(rvPool.length<4)rvPool=RV_BODIES;
- const reviews=pkU(rvPool,seed,4,7);
+ const CITY_EXTRA=[
+{t:"성적이 오르는 공부 패턴",b:"{rd} 과외에서 성적을 올리는 가장 확실한 방법은 자신의 약점을 정확히 아는 것입니다. 은빛과외는 첫 수업에서 학생의 현재 수준을 진단하고 단원별 이해도를 체크합니다. 부족한 단원은 개념부터 다시 잡고 충분히 이해한 뒤에 문제 풀이로 넘어갑니다. 전 학년 공부에서 가장 중요한 것은 개념 이해입니다. 단순 암기로는 응용 문제에서 무너집니다. 은빛쌤은 학생이 스스로 개념을 설명할 수 있을 때까지 반복 확인하며 확실한 이해를 도와드립니다. 이해 위에 유형별 문제 풀이를 더하면 고득점이 자연스럽게 따라옵니다. {rd} 지역 학교의 출제 패턴을 분석한 맞춤 수업으로 효율을 극대화합니다."},
+{t:"투명한 {rd} 과외 운영 시스템",b:"은빛쌤이 직접 담당하여 학습 전반을 관리합니다. 수업 이후에도 학습 방향 조언, 시험 대비 전략, 수행 평가 준비 등을 종합적으로 안내하며 정기적으로 학습 상담을 진행합니다. 과외 비용이 부담스러우실 수 있습니다. 은빛과외는 학생 상황에 맞는 합리적인 수업 방식을 추천해드리며 비용 대비 최대 효과를 낼 수 있도록 커리큘럼을 설계합니다. 숨겨진 추가 비용 없이 투명하게 안내되며, 정기적인 학습 리포트로 구체적인 성과를 확인하실 수 있습니다. 주간과 월간 학습 진도, 성적 변화, 개선 사항이 기록되어 학부모님과 공유됩니다."},
+{t:"{rd} 과외, 왜 1:1이어야 할까요?",b:"수업 횟수보다 더 중요한 것은 수업 중 학생이 실제로 소화하는 양입니다. {rd} 은빛과외는 주 2~3회 수업으로도 학원 주 5회 수업 이상의 효과를 냅니다. 모든 시간이 100% 우리 아이를 위한 시간이기 때문에 가능한 효율입니다. 1:1 맞춤 수업은 학생의 이해 속도에 100% 맞춰 진행됩니다. 학원처럼 다른 학생 때문에 기다리거나 이미 아는 내용을 반복 들을 필요가 없습니다. 모르는 부분을 바로 질문하고 이해할 때까지 반복 지도받을 수 있는 것, 이것이 {rd} 과외의 가장 큰 장점입니다."},
+{t:"전 학년 학습 전략의 핵심 원칙",b:"기초가 부족하다면 거슬러 올라가 보완하는 것이 정답입니다. 현재 학년 진도를 따라가면서 동시에 과거 단원의 빈틈을 메꿔야 합니다. 은빛쌤은 학생의 과거 학년부터 점검하여 숨겨진 구멍을 정밀 진단합니다. 학습 환경도 성적에 큰 영향을 미칩니다. 집중할 수 있는 공간과 적절한 학습 도구가 갖춰져야 효과적인 학습이 가능합니다. {rd} 은빛과외는 환경 조성 팁까지 학부모님께 안내합니다. 좋은 선생님과 좋은 학생의 만남이 성적을 만듭니다."},
+{t:"{rd} 과외 선생님 선택 기준",b:"명문대 출신 여부보다 학생과의 소통 능력과 학교별 출제 경향 이해도가 더 중요합니다. 은빛쌤은 자세한 상담을 통해 학생에게 잘 맞는 수업 방식을 설계하며, 무료 체험 수업으로 수업 스타일과 학습 방향을 직접 확인하신 후 결정하실 수 있습니다. {rd} 지역 학교의 특성을 잘 아는 것도 중요한 기준입니다. 내신 시험은 학교마다 출제 경향이 다르기 때문에, 해당 학교의 기출 패턴을 파악하고 있는 과외가 훨씬 효과적입니다. 은빛과외는 {rd} 내 주요 학교의 시험 자료를 축적하고 분석합니다."},
+{t:"내신과 수능 동시 준비 전략",b:"학기 중에는 내신에 80% 비중을 두고 수능 감각 유지를 위해 주 2~3회 모의고사 유형 문제를 풀어봅니다. 방학에는 수능 대비에 집중하며 기출 분석과 약점 보완에 집중합니다. 두 가지를 동시에 잡으려면 시간 관리가 핵심이므로 주간 학습 계획을 세우고 실천 여부를 매주 점검하는 습관이 중요합니다. {rd} 은빛과외는 내신과 수능을 모두 놓치지 않는 균형 잡힌 학습 전략을 제안합니다. 학생의 목표 대학과 전형 방식에 맞춰 최적의 비율을 설정하고 유연하게 조정합니다."},
+{t:"{rd} 학생들의 실제 성적 변화",b:"{rd} 지역에서 은빛과외와 함께한 학생들의 변화를 소개합니다. 수학 4등급에서 2등급으로 올라간 학생은 기초 개념 재정리와 오답 분석을 통해 3개월 만에 두 등급을 상승시켰습니다. 영어가 계속 60점대였던 학생은 독해 전략과 문법 체계 재정리를 통해 89점까지 향상되었습니다. 국어 서술형에서 계속 감점되던 학생은 답안 작성 구조 훈련을 통해 서술형 만점을 달성했습니다. 이 모든 변화의 공통점은 학생 개개인의 약점을 정확히 진단하고 맞춤으로 보강한 결과입니다."},
+{t:"중학교에서 고등학교 학습 전환 전략",b:"중학교에서 고등학교로 올라가면 학습 난이도와 양이 급격히 증가합니다. 가장 큰 차이는 수학과 영어의 깊이입니다. 중학교 때 기본기를 확실히 다지지 않으면 고등학교에서 따라가기 매우 어렵습니다. {rd} 은빛과외는 중3 겨울방학부터 고1 수학과 영어를 미리 접할 수 있는 선행 커리큘럼을 제공합니다. 고등학교는 자기주도학습 시간이 성적을 결정하므로 중학교 때부터 자기 공부 시간을 확보하는 습관을 길러야 합니다."},
+{t:"{rd} 방문 과외와 화상 과외 비교",b:"방문 과외는 선생님이 집으로 직접 와서 수업하므로 학생이 이동할 필요 없이 가장 편한 환경에서 수업할 수 있습니다. 학생의 교재와 학습 환경을 직접 확인하며 수업할 수 있어 더 세밀한 지도가 가능합니다. 화상 과외는 장소에 구애받지 않아 전국 어디서든 수업이 가능합니다. 화면 공유를 통해 교재 학습과 실시간 필기 피드백 등이 원활하며 수업 녹화 후 복습도 가능합니다. {rd} 은빛과외는 학생의 상황에 맞게 두 가지 방식을 선택하거나 병행할 수 있습니다."},
+{t:"시험 2주 전 집중 대비 전략",b:"시험 2주 전에는 새로운 내용을 공부하기보다 이미 배운 내용을 반복하는 것이 핵심입니다. 1주차에는 교과서와 노트를 정독하며 개념을 재정리하고 단원별 핵심 문제를 풀어봅니다. 2주차에는 오답 노트를 집중 복습하고 예상 문제를 풀며 실전 감각을 기릅니다. 시험 전날에는 정리 노트만 빠르게 훑으며 핵심만 확인합니다. {rd} 은빛과외는 시험 기간에 맞춘 집중 대비 플랜을 별도 운영합니다. 학교별 기출 분석을 바탕으로 출제 예상 포인트를 짚어주고 취약 유형을 반복 훈련합니다."}
+];
+
+const reviews=pkU(rvPool,seed,4,7);
  // 학교급별 후기 학년 풀
  var rvGradePool=RV_GRADES;
  if(grade==="초등")rvGradePool=["초3","초4","초5","초6"];
@@ -1489,6 +1502,15 @@ function buildCityPage(rs, cs) {
  subjectCards += `</div></div>`;
  }
 
+ // ── 추가 교육 칼럼 (2000자+) ──
+ const cSeed = cH(rs+cs);
+ const extraPicks = pkU(CITY_EXTRA, cSeed, 4, 17);
+ const cityExtraHtml = extraPicks.map(e => {
+  const title = e.t.replace(/\{rd\}/g, rd);
+  const body = e.b.replace(/\{rd\}/g, rd);
+  return '<div style="margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid #eee;"><h3 style="font-size:17px;font-weight:800;color:#1A2340;margin-bottom:12px;">'+title+'</h3><p style="font-size:14px;color:#555;line-height:2;">'+body+'</p></div>';
+ }).join('');
+
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -1634,7 +1656,14 @@ function buildCityPage(rs, cs) {
  </div>
  </div>
 
- <!-- 학교별 과외 링크 -->
+ 
+    <!-- 추가 교육 칼럼 -->
+    <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+     <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:20px;">📝 ${rd} 과외 학습 가이드</h2>
+     ${cityExtraHtml}
+    </div>
+
+    <!-- 학교별 과외 링크 -->
  <a href="/${rs}/${cs}/schools" style="text-decoration:none;">
  <div style="background:linear-gradient(135deg,${tc},${tc}cc);color:white;border-radius:20px;padding:clamp(22px,4vw,32px);margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;transition:transform .2s;box-shadow:0 4px 20px rgba(0,0,0,0.1);"
  onmouseover="this.style.transform='translateY(-3px)'"
