@@ -961,6 +961,9 @@ function getIndex() {
    }
   }
   html = html.replace('</body>', heroScript + '</body>');
+  // Fix: counters and search re-init
+  const fixScript = `<script>window.addEventListener("load",function(){document.querySelectorAll("[data-target]").forEach(function(el){if(el.textContent.charAt(0)==="0"){var t=parseInt(el.dataset.target);var s=el.dataset.suffix||"";var cur=0;var step=Math.max(1,Math.ceil(t/50));var timer=setInterval(function(){cur+=step;if(cur>=t){cur=t;clearInterval(timer);}el.textContent=cur+s;},30);}});var si=document.getElementById("searchInput");var sd=document.getElementById("searchDropdown");if(si&&sd){si.oninput=async function(){var q=this.value.trim();if(q.length<1){sd.style.display="none";return;}try{var res=await fetch("/api/suggest?q="+encodeURIComponent(q));var data=await res.json();if(data.length>0){sd.innerHTML="";data.forEach(function(item){var div=document.createElement("div");div.className="suggest-item";div.innerHTML="\\ud83d\\udd0d "+item.display;div.onclick=function(){window.location.href=item.url;};sd.appendChild(div);});sd.style.display="flex";}else{sd.style.display="none";}}catch(e){}};document.addEventListener("click",function(e){if(!si.contains(e.target)&&!sd.contains(e.target))sd.style.display="none";});}});<\/script>`;
+  html = html.replace('</body>', fixScript + '</body>');
 
 
   // switchNavTab 함수 주입
