@@ -951,7 +951,7 @@ function getIndex() {
   
   // ── 히어로 슬라이더 교체 ──
   const bannerStart = html.indexOf('<div class="banner-slider"');
-  const bannerEndMarker = '<div style="background:linear-gradient(140deg';
+  const bannerEndMarker = '<div style="background:#0D1526';
   const bannerEnd = html.indexOf(bannerEndMarker, bannerStart);
   if (bannerStart !== -1 && bannerEnd !== -1) {
    const heroSlider = '<div id="heroSlider" style="position:relative;overflow:hidden;background:#0D1526;"><div id="heroBg" style="position:absolute;inset:0;transition:background 1s;background:linear-gradient(160deg,#0D1526,#12233f 40%,#1a3358 80%,#0D1526);"></div><div style="position:relative;z-index:2;max-width:900px;margin:0 auto;padding:48px 24px 36px;text-align:center;" id="heroInner"><div id="heroText"></div></div><div style="position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10;" id="heroDots"></div><div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,.05);z-index:10;"><div id="heroProgBar" style="height:100%;width:0;background:#4A90D9;border-radius:2px;transition:width .05s linear;"></div></div></div>';
