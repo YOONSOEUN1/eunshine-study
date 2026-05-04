@@ -718,7 +718,7 @@ function genContent(loc,city,dong,grade,subj,schools){
  else if(grade==="중등")rvPool=RV_BODIES.filter(function(r){return r.indexOf("수능")<0&&r.indexOf("모의고사")<0;});
  if(rvPool.length<4)rvPool=RV_BODIES;
  
-const reviews=pkU(rvPool,seed,4,7);
+const reviews=pkU(rvPool,seed,6,7);
  // 학교급별 후기 학년 풀
  var rvGradePool=RV_GRADES;
  if(grade==="초등")rvGradePool=["초3","초4","초5","초6"];
@@ -788,15 +788,15 @@ function renderUniqueContent(ct,dong,grade,subj,tc,rd,schools){
  // ── 학부모 후기 + 성적 사례 통합 ──
  h+=`<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
  <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">💬 ${area} 학부모님 생생 후기</h2>
- <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:24px;">`;
+ <div class="rv-carousel" id="rvCity"><div class="rv-track" id="rvCityT">`;
  ct.reviews.forEach(function(rv){
- h+=`<div style="border:2px solid ${tc}22;border-radius:16px;padding:20px;background:white;">
+ h+=`<div class="rv-card" style="border:2px solid ${tc}22;border-radius:16px;padding:20px;background:white;">
  <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
  <div style="width:40px;height:40px;border-radius:50%;background:${tc};color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;">${rv.name.charAt(0)}</div>
  <div><div style="font-weight:700;color:#1A2340;font-size:14px;">${maskName(rv.name)} 학부모님</div>
  <div style="font-size:12px;color:#888;">${area} · ${rv.grade} ${rv.subj}</div></div></div>
  <p style="font-size:13px;color:#555;line-height:1.8;margin:0;">"${rv.body}"</p></div>`;});
- h+=`</div>
+ h+=`</div><div class="rv-dots" id="rvCityD"><button class="rv-dot on" onclick="rvGo('rvCity',0)"></button><button class="rv-dot" onclick="rvGo('rvCity',1)"></button><button class="rv-dot" onclick="rvGo('rvCity',2)"></button></div></div>
  <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">📈 실제 성적 향상 사례</h2>
  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;">`;
  ct.stories.forEach(function(st){
@@ -1140,7 +1140,7 @@ document.addEventListener('click',function(e){var sp=document.getElementById('su
 </script>
 <div style="height:70px;"></div>`;
 const FAVICON_TAGS = '<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><link rel="apple-touch-icon" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta property="og:site_name" content="은빛스터디"><meta property="og:type" content="website"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/banner1.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/banner1.png">';
-const COMMON_STYLE = `<style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Malgun Gothic',sans-serif;background:#f4f7f6;padding-top:70px;}</style>${FAVICON_TAGS}`;
+const COMMON_STYLE = `<style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Malgun Gothic',sans-serif;background:#f4f7f6;padding-top:70px;}</style>${FAVICON_TAGS}.rv-carousel{position:relative;overflow:hidden;}.rv-track{display:flex;transition:transform .5s ease;gap:16px;}.rv-track .rv-card{min-width:calc(50% - 8px);flex-shrink:0;box-sizing:border-box;}@media(max-width:768px){.rv-track .rv-card{min-width:100%;}}.rv-dots{display:flex;justify-content:center;gap:6px;margin-top:16px;}.rv-dot{width:28px;height:4px;border-radius:2px;background:rgba(26,35,64,.12);cursor:pointer;border:none;padding:0;transition:all .3s;}.rv-dot.on{width:40px;background:#C8A96E;}`;
 const FLOATING = `<div style="position:fixed;bottom:24px;right:18px;display:flex;flex-direction:column;gap:8px;z-index:9998;">
  <a href="tel:01023370458"
  style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:white;color:#1A2340;text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.18);white-space:nowrap;">
@@ -1463,7 +1463,7 @@ function buildRegionPage(rs) {
  <h2 style="font-size:20px;font-weight:900;color:#1A2340;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid #1A2340;">${rn} 시·구·군별 과외 (${cities.length}개)</h2>
  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px;">${cards}</div>
  </div>
- ${CONTACT}${FOOTER}${FLOATING}</body></html>`;
+ ${CONTACT}${FOOTER}${FLOATING}${CAROUSEL_SCRIPT}</body></html>`;
 }
 
 function buildCityPage(rs, cs) {
@@ -1708,7 +1708,7 @@ function buildCityPage(rs, cs) {
  ${subjectCards}
  </div>
 
- </div>${CONTACT}${FOOTER}${FLOATING}</body></html>`;
+ </div>${CONTACT}${FOOTER}${FLOATING}${CAROUSEL_SCRIPT}</body></html>`;
 }
 
 function buildDongPage(rs, cs, dong) {
@@ -1889,7 +1889,7 @@ function buildDongPage(rs, cs, dong) {
  ${tabContents}
  </div>
 
- </div>${CONTACT}${FOOTER}${FLOATING}${tabScript}</body></html>`;
+ </div>${CONTACT}${FOOTER}${FLOATING}${tabScript}${CAROUSEL_SCRIPT}</body></html>`;
 }
 
 function buildDongDetailPage(rs, cs, dong, grade, subject) {
@@ -2216,6 +2216,18 @@ function buildSchoolListPage(rs, cs) {
 // ─────────────────────────────────────────
 // 학교별 상세 페이지 빌더 (3000자 글밥 + 과목 카드)
 // ─────────────────────────────────────────
+
+
+const CAROUSEL_SCRIPT = '<script>var rvTimers={};function rvGo(id,pg){var t=document.getElementById(id+"T");var dots=document.getElementById(id+"D");if(!t)return;var cards=t.children;var perPage=window.innerWidth<=768?1:2;var gap=16;var cardW=cards[0]?cards[0].offsetWidth+gap:300;t.style.transform="translateX(-"+(pg*perPage*cardW)+"px)";var bs=dots?dots.querySelectorAll(".rv-dot"):[];for(var i=0;i<bs.length;i++)bs[i].className="rv-dot"+(i===pg?" on":"");t.dataset.pg=pg;}function rvAuto(id,total){clearInterval(rvTimers[id]);rvTimers[id]=setInterval(function(){var t=document.getElementById(id+"T");if(!t)return;var perPage=window.innerWidth<=768?1:2;var pages=Math.ceil(t.children.length/perPage);var cur=parseInt(t.dataset.pg||"0");rvGo(id,(cur+1)%pages);},4000);}document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".rv-carousel").forEach(function(el){var id=el.id;var t=el.querySelector(".rv-track");if(t){t.dataset.pg="0";var perPage=window.innerWidth<=768?1:2;rvAuto(id,Math.ceil(t.children.length/perPage));}});});<\/script>';
+
+function rvCarouselHtml(cards, id) {
+ const perPage = 2;
+ const totalPages = Math.ceil(cards.length / perPage);
+ let dots = '';
+ for (let i = 0; i < totalPages; i++) dots += '<button class="rv-dot'+(i===0?' on':'')+'" onclick="rvGo(\''+id+'\','+i+')"></button>';
+ return '<div class="rv-carousel" id="'+id+'"><div class="rv-track" id="'+id+'T">'+cards.join('')+'</div><div class="rv-dots" id="'+id+'D">'+dots+'</div></div>';
+}
+
 function buildSchoolPage(rs, cs, schoolShort) {
  const ci = (eduData[rs]||{})[cs];
  if (!ci) return null;
@@ -2294,10 +2306,10 @@ function buildSchoolPage(rs, cs, schoolShort) {
 
  let reviewSection = `<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
  <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${typeColor};padding-left:14px;margin-bottom:14px;">💬 ${schoolFull} 학부모님 생생 후기</h2>
- <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:24px;">`;
- ct.reviews.slice(0,4).forEach(function(rv,i){
+ <div class="rv-carousel" id="rvSchool"><div class="rv-track" id="rvSchoolT">`;
+ ct.reviews.slice(0,6).forEach(function(rv,i){
  const fixedGrade = validGrades[(cH(rv.name+i+schoolShort)>>>0)%validGrades.length];
- reviewSection += `<div style="border:2px solid ${typeColor}22;border-radius:16px;padding:20px;background:white;">
+ reviewSection += `<div class="rv-card" style="border:2px solid ${typeColor}22;border-radius:16px;padding:20px;background:white;">
  <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
  <div style="width:40px;height:40px;border-radius:50%;background:${typeColor};color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;">${rv.name.charAt(0)}</div>
  <div><div style="font-weight:700;color:#1A2340;font-size:14px;">${maskName(rv.name)} 학부모님</div>
@@ -2306,7 +2318,7 @@ function buildSchoolPage(rs, cs, schoolShort) {
  <p style="font-size:13px;color:#555;line-height:1.8;margin:0;">"${rv.body}"</p>
  </div>`;
  });
- reviewSection += `</div>
+ reviewSection += `</div><div class="rv-dots" id="rvSchoolD"><button class="rv-dot on" onclick="rvGo('rvSchool',0)"></button><button class="rv-dot" onclick="rvGo('rvSchool',1)"></button><button class="rv-dot" onclick="rvGo('rvSchool',2)"></button></div></div>
  <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${typeColor};padding-left:14px;margin-bottom:14px;">📈 실제 성적 향상 사례</h2>
  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;">`;
  // 학교 유형에 맞는 성적 사례만 필터링 (없으면 전체에서 사용 후 학년만 교체)
@@ -2414,7 +2426,7 @@ function buildSchoolPage(rs, cs, schoolShort) {
  <p style="font-size:13px;color:#999;margin-top:12px;">첫 상담 및 체험 수업은 완전 무료입니다</p>
  </div>
 
- </div>${CONTACT}${FOOTER}${FLOATING}</body></html>`;
+ </div>${CONTACT}${FOOTER}${FLOATING}${CAROUSEL_SCRIPT}</body></html>`;
 }
 
 // ── 네이버 IndexNow 설정 ───────────────────────────────
@@ -2469,23 +2481,23 @@ function buildGradePage(gradeCode) {
  if(level==="초등") rvPool = RV_BODIES.filter(function(r){return r.indexOf("고등학교")<0&&r.indexOf("수능")<0&&r.indexOf("모의고사")<0;});
  else if(level==="중등") rvPool = RV_BODIES.filter(function(r){return r.indexOf("수능")<0&&r.indexOf("모의고사")<0;});
  if(rvPool.length<4) rvPool = RV_BODIES;
- const reviews = pkU(rvPool, seed, 4, 7);
+ const reviews = pkU(rvPool, seed, 6, 7);
  const reviewMeta = reviews.map(function(r,i){
  const s2 = cH(gradeCode+i);
  return {name:pk(RV_NAMES,s2,i*3),grade:gd.short,subj:pk(RV_SUBJS,s2,i*7+2),body:r};
  });
  let reviewSection = `<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
  <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">💬 ${gd.name} 학부모님 생생 후기</h2>
- <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;">`;
+ <div class="rv-carousel" id="rvGrade"><div class="rv-track" id="rvGradeT">`;
  reviewMeta.forEach(function(rv){
- reviewSection += `<div style="border:2px solid ${tc}22;border-radius:16px;padding:20px;background:white;">
+ reviewSection += `<div class="rv-card" style="border:2px solid ${tc}22;border-radius:16px;padding:20px;background:white;">
  <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
  <div style="width:40px;height:40px;border-radius:50%;background:${tc};color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;">${rv.name.charAt(0)}</div>
  <div><div style="font-weight:700;color:#1A2340;font-size:14px;">${maskName(rv.name)} 학부모님</div>
  <div style="font-size:12px;color:#888;">${rv.grade} ${rv.subj}</div></div></div>
  <p style="font-size:13px;color:#555;line-height:1.8;margin:0;">"${rv.body}"</p></div>`;
  });
- reviewSection += `</div></div>`;
+ reviewSection += `</div><div class="rv-dots" id="rvGradeD"><button class="rv-dot on" onclick="rvGo('rvGrade',0)"></button><button class="rv-dot" onclick="rvGo('rvGrade',1)"></button><button class="rv-dot" onclick="rvGo('rvGrade',2)"></button></div></div></div>`;
  // FAQ
  const faqs = pkU(FAQ_POOL, seed, 4, 13);
  let faqSection = `<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
@@ -2542,7 +2554,7 @@ function buildGradePage(gradeCode) {
  </a>
  <p style="font-size:13px;color:#999;margin-top:12px;">첫 상담 및 체험 수업은 완전 무료입니다</p>
  </div>
- </div>${CONTACT}${FOOTER}${FLOATING}</body></html>`;
+ </div>${CONTACT}${FOOTER}${FLOATING}${CAROUSEL_SCRIPT}</body></html>`;
 }
 
 function buildGradeSubjectPage(gradeCode, subject) {
@@ -2586,7 +2598,7 @@ function buildGradeSubjectPage(gradeCode, subject) {
  if(level==="초등") rvPool = RV_BODIES.filter(function(r){return r.indexOf("고등학교")<0&&r.indexOf("수능")<0&&r.indexOf("모의고사")<0;});
  else if(level==="중등") rvPool = RV_BODIES.filter(function(r){return r.indexOf("수능")<0&&r.indexOf("모의고사")<0;});
  if(rvPool.length<4) rvPool = RV_BODIES;
- const reviews = pkU(rvPool, seed, 4, 7);
+ const reviews = pkU(rvPool, seed, 6, 7);
  const reviewMeta = reviews.map(function(r,i){
  const s2 = cH(gradeCode+subject+i);
  return {name:pk(RV_NAMES,s2,i*3),grade:gd.short,subj:subject,body:r};
