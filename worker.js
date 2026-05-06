@@ -3432,19 +3432,19 @@ function buildCenterDetailPage(slug) {
   <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid #C8A96E;padding-left:14px;margin-bottom:16px;">📍 학원 위치 & 주변 정보</h2>
   <div style="margin-bottom:16px;">
    <p style="font-size:15px;font-weight:700;color:#1A2340;margin-bottom:6px;">📌 정확한 위치</p>
-   <p style="font-size:14px;color:#555;line-height:1.8;">${d.a}</p>
+   <p style="font-size:14px;color:#555;line-height:1.8;">${ct.a}</p>
   </div>
   <div style="margin-bottom:16px;">
    <p style="font-size:15px;font-weight:700;color:#1A2340;margin-bottom:6px;">🏫 주변 초등학교</p>
-   <p style="font-size:14px;color:#555;line-height:1.8;">${d.se||'정보 없음'}</p>
+   <p style="font-size:14px;color:#555;line-height:1.8;">${ct.se||'정보 없음'}</p>
   </div>
   <div style="margin-bottom:16px;">
    <p style="font-size:15px;font-weight:700;color:#1A2340;margin-bottom:6px;">🏫 주변 중학교</p>
-   <p style="font-size:14px;color:#555;line-height:1.8;">${d.sm||'정보 없음'}</p>
+   <p style="font-size:14px;color:#555;line-height:1.8;">${ct.sm||'정보 없음'}</p>
   </div>
   <div>
    <p style="font-size:15px;font-weight:700;color:#1A2340;margin-bottom:6px;">🏫 주변 고등학교</p>
-   <p style="font-size:14px;color:#555;line-height:1.8;">${d.sh||'정보 없음'}</p>
+   <p style="font-size:14px;color:#555;line-height:1.8;">${ct.sh||'정보 없음'}</p>
   </div>
  </div>
 <div style="background:white;border-radius:20px;padding:28px;box-shadow:0 2px 12px #0000000f;border-top:4px solid #C8A96E;">
