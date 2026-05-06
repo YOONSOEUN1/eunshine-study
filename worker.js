@@ -886,18 +886,67 @@ const CITY_EXTRA=[
 
 
 const SUBJECTS={
-korean:{name:"국어",icon:"📖",slug:"korean",desc:"문학·비문학·문법·논술 등 국어 전 영역을 체계적으로 학습합니다. 내신 서술형 대비부터 수능 국어까지 학생 수준에 맞춘 맞춤 커리큘럼을 제공합니다.",content:"국어는 모든 과목의 기초가 되는 과목입니다. 독해력과 사고력이 뒷받침되어야 수학 문제도 정확히 이해하고 영어 지문도 논리적으로 분석할 수 있습니다. 은빛스터디 국어 수업은 단순 암기가 아닌 텍스트를 깊이 이해하고 분석하는 능력을 키웁니다. 문학 작품의 맥락 파악, 비문학 지문의 논리 구조 분석, 문법 규칙의 체계적 정리, 서술형 답안 작성 훈련까지 포괄적으로 다룹니다. 내신 시험에서는 학교별 출제 경향을 분석하여 맞춤 대비하고, 수능에서는 기출 유형 분석과 실전 연습을 병행합니다."},
-english:{name:"영어",icon:"🌍",slug:"english",desc:"독해·문법·회화·내신 등 영어 전 영역을 다룹니다. 수능 영어 절대평가 1등급 달성과 내신 고득점을 동시에 목표로 합니다.",content:"영어는 꾸준한 학습이 가장 중요한 과목입니다. 은빛스터디 영어 수업은 기초 문법부터 고급 독해까지 학생의 현재 수준에서 출발합니다. 중학교 때 기본 문법 체계를 완성하고, 고등학교에서는 수능 유형별 독해 전략을 집중 훈련합니다. 어휘력 확장을 위한 체계적인 단어 학습 프로그램을 운영하며, 구문 분석 능력을 키워 긴 지문도 빠르고 정확하게 파악하는 실력을 만듭니다. 내신 대비는 학교별 교과서와 부교재를 완벽 분석하여 시험 적중률을 높입니다."},
-math:{name:"수학",icon:"🔢",slug:"math",desc:"개념·심화·수능수학까지 단계별로 완성합니다. 취약 단원 집중 공략과 오답 분석으로 실수를 줄이고 고득점을 만듭니다.",content:"수학은 개념의 연결이 핵심입니다. 이전 단원을 이해하지 못하면 다음 단원으로 넘어갈 수 없는 과목이기 때문에, 은빛스터디는 먼저 학생의 개념 이해도를 단원별로 정밀 진단합니다. 부족한 부분은 과거 학년까지 거슬러 올라가 빈틈을 메우고, 탄탄한 기초 위에 심화 문제 풀이 능력을 쌓아갑니다. 오답 노트를 체계적으로 관리하며, 같은 유형의 실수를 반복하지 않도록 훈련합니다. 내신은 학교별 기출 분석, 수능은 킬러 문항 대비까지 체계적으로 준비합니다."},
-science:{name:"과학",icon:"🧪",slug:"science",desc:"물리·화학·생명과학·지구과학 전 과목을 다룹니다. 개념 이해부터 실험 문제 풀이까지 체계적으로 학습합니다.",content:"과학은 원리를 이해하면 문제가 풀리는 과목입니다. 은빛스터디 과학 수업은 교과서 개념을 실생활 예시와 연결하여 직관적으로 이해시킵니다. 물리는 운동과 에너지의 법칙을, 화학은 물질의 변화와 반응을, 생명과학은 생물의 구조와 기능을, 지구과학은 지구와 우주의 원리를 깊이 있게 다룹니다. 탐구 실험 보고서 작성법도 지도하며, 수능 과학탐구 선택 과목에 대한 전략적 조언도 제공합니다."},
-social:{name:"사회",icon:"🗺️",slug:"social",desc:"사회·경제·지리·윤리 등 사회 전 영역을 학습합니다. 개념 정리와 서술형 답안 작성 능력을 동시에 키웁니다.",content:"사회 과목은 넓은 범위의 개념을 체계적으로 정리하는 것이 핵심입니다. 은빛스터디 사회 수업은 핵심 개념을 마인드맵 형태로 구조화하여 전체적인 흐름을 파악하게 합니다. 단순 암기가 아닌 이해 중심의 학습으로 오래 기억에 남는 공부법을 알려드립니다. 내신 서술형 문제에 대비한 논리적 답안 작성 훈련도 병행합니다. 시사 이슈와 교과서 내용을 연결하여 깊이 있는 이해를 돕습니다."},
-coding:{name:"코딩",icon:"💻",slug:"coding",desc:"스크래치·파이썬·C언어 등 프로그래밍 기초부터 심화까지 배웁니다. 정보 교과 내신 대비와 코딩 사고력 향상을 목표로 합니다.",content:"코딩은 미래 필수 역량입니다. 은빛스터디 코딩 수업은 초등학생을 위한 블록 코딩(스크래치)부터 시작하여, 중고등학생을 위한 파이썬과 C언어까지 단계적으로 학습합니다. 단순히 코드를 따라 치는 것이 아니라, 문제를 분석하고 논리적으로 해결하는 컴퓨팅 사고력을 키웁니다. 정보 교과 내신 대비, 정보올림피아드 준비, 대학 입시 소프트웨어 특기자 전형 대비까지 학생의 목표에 맞는 커리큘럼을 설계합니다."},
-essay:{name:"논술",icon:"✏️",slug:"essay",desc:"대입 논술, 서술형 시험 대비를 위한 논리적 글쓰기 훈련을 진행합니다. 비판적 사고력과 표현력을 동시에 키웁니다.",content:"논술은 생각을 논리적으로 구조화하여 글로 표현하는 능력입니다. 은빛스터디 논술 수업은 주제 분석, 개요 작성, 본론 전개, 결론 도출의 체계적인 글쓰기 프로세스를 훈련합니다. 대입 수시 논술 전형을 준비하는 학생에게는 대학별 출제 경향 분석과 모의 논술 첨삭을 제공합니다. 내신 서술형 문제에서 감점되는 학생에게는 답안 구조 훈련과 핵심 키워드 활용법을 지도합니다."},
-ged:{name:"검정고시",icon:"📋",slug:"ged",desc:"초졸·중졸·고졸 검정고시 전 과목을 체계적으로 대비합니다. 최소 시간으로 합격할 수 있는 효율적인 학습 전략을 제공합니다.",content:"검정고시는 단기간 집중 학습이 핵심입니다. 은빛스터디는 검정고시 기출문제를 철저히 분석하여 출제 빈도가 높은 핵심 단원 위주로 커리큘럼을 설계합니다. 전 과목을 한 번에 준비하는 종합반과 취약 과목만 집중하는 단과 수업을 모두 운영합니다. 국어, 수학, 영어, 사회, 과학 등 필수 과목별 핵심 개념 정리와 기출 유형 풀이를 반복하여 합격을 위한 최적의 학습 효율을 만듭니다."},
-socialexam:{name:"사회탐구",icon:"📊",slug:"social-exam",desc:"생활과윤리·사회문화·한국지리·세계지리·경제·정치와법·윤리와사상·세계사·동아시아사 등 사탐 전 과목을 대비합니다.",content:"사회탐구 영역은 수능에서 선택 과목으로 전략적 접근이 중요합니다. 은빛스터디는 학생의 적성과 목표 대학에 맞는 최적의 과목 조합을 추천하고, 선택한 과목의 개념을 체계적으로 정리합니다. 생활과윤리는 윤리 사상의 핵심을 잡고, 사회문화는 통계 해석 능력을 키우며, 한국지리와 세계지리는 지도 분석 능력을 강화합니다. 기출 문제 반복 풀이와 EBS 연계 분석으로 실전 감각을 높입니다."},
-scienceexam:{name:"과학탐구",icon:"🔬",slug:"science-exam",desc:"물리학·화학·생명과학·지구과학 I/II 전 과목 수능 대비를 진행합니다. 개념 완성과 기출 분석으로 고득점을 목표로 합니다.",content:"과학탐구 영역은 깊이 있는 개념 이해와 문제 적용 능력이 모두 필요합니다. 은빛스터디는 I과목과 II과목의 난이도 차이를 고려하여 학생의 목표 점수와 학습 시간에 맞는 과목을 추천합니다. 물리학은 공식의 유도 과정까지 이해시키고, 화학은 반응식의 원리를 체계적으로 정리하며, 생명과학은 유전 문제 풀이 전략을 집중 훈련합니다. 지구과학은 천체와 대기 단원의 핵심을 빠르게 잡아드립니다."}
+korean:{name:"국어",icon:"📖",slug:"korean",desc:"문학·비문학·문법·논술 등 국어 전 영역을 체계적으로 학습합니다.",content:"국어는 모든 과목의 기초가 되는 과목입니다. 독해력과 사고력이 뒷받침되어야 수학 문제도 정확히 이해하고 영어 지문도 논리적으로 분석할 수 있습니다. 은빛스터디 국어 수업은 단순 암기가 아닌 텍스트를 깊이 이해하고 분석하는 능력을 키웁니다. 문학 작품의 맥락 파악, 비문학 지문의 논리 구조 분석, 문법 규칙의 체계적 정리, 서술형 답안 작성 훈련까지 포괄적으로 다룹니다.",curriculum:[{t:"문학 영역",d:"시, 소설, 수필, 희곡 등 문학 갈래별 감상법과 작품 분석 훈련. 작가의 의도, 서술 시점, 표현 기법을 체계적으로 파악합니다."},{t:"비문학 독해",d:"인문, 사회, 과학, 기술, 예술 지문을 논리적으로 읽는 훈련. 주제 파악, 구조 분석, 추론 능력을 반복 연습으로 강화합니다."},{t:"문법 체계화",d:"음운, 형태소, 단어, 문장, 담화까지 국어 문법의 전 범위를 도표와 예시로 정리합니다."},{t:"서술형 답안 작성",d:"조건에 맞는 답안 구조 설계, 핵심 키워드 배치, 논리적 전개 훈련을 진행합니다."}],tips:[{q:"국어 비문학이 너무 어려워요",a:"문단별 중심 문장을 찾고 문단 간 관계를 표시하면 전체 흐름이 보입니다. 매일 1지문씩 구조 분석 연습을 하면 2~3주 내에 효과를 체감할 수 있습니다."},{q:"서술형에서 계속 감점돼요",a:"문제의 요구 조건을 먼저 체크리스트로 만들고, 각 조건에 대응하는 답안을 작성한 뒤, 조건 충족 여부를 확인하는 습관을 기르세요."}],approach:[{grade:"초등",focus:"독서 습관과 글쓰기 기초를 다지는 시기입니다. 다양한 장르의 책을 읽고 독후감을 쓰며 맞춤법을 자연스럽게 익힙니다."},{grade:"중등",focus:"문학과 비문학을 구분하여 학습합니다. 교과서 수록 작품의 맥락을 깊이 이해하고 시험 빈출 문법 항목을 정리합니다."},{grade:"고등",focus:"수능 국어 출제 유형을 분석하고 실전 연습을 반복합니다. 화법과 작문, 언어와 매체 등 선택 과목 전략도 설계합니다."}]},
+english:{name:"영어",icon:"🌍",slug:"english",desc:"독해·문법·회화·내신 등 영어 전 영역을 다룹니다.",content:"영어는 꾸준한 학습이 가장 중요한 과목입니다. 은빛스터디 영어 수업은 기초 문법부터 고급 독해까지 학생의 현재 수준에서 출발합니다. 어휘력 확장을 위한 체계적인 단어 학습 프로그램을 운영하며, 구문 분석 능력을 키워 긴 지문도 빠르고 정확하게 파악하는 실력을 만듭니다.",curriculum:[{t:"독해 전략 훈련",d:"글의 유형에 따른 읽기 전략을 훈련합니다. 주제문 찾기, 글의 흐름 파악, 빈칸 추론 등 수능 핵심 유형을 집중 연습합니다."},{t:"문법 완성 프로그램",d:"5형식 문장 구조를 기반으로 시제, 가정법, 관계사 등 핵심 문법을 체계적으로 정리합니다."},{t:"어휘력 확장",d:"수능 필수 어휘를 어원 분석과 연상 기억법으로 효율적으로 암기합니다. 매주 단어 테스트를 진행합니다."},{t:"내신 맞춤 대비",d:"학교별 교과서와 부교재를 완벽 분석하여 시험 출제 포인트를 짚어줍니다."}],tips:[{q:"영어 단어를 외워도 자꾸 까먹어요",a:"어원 분석이 효과적입니다. 하루 30개씩 새 단어보다, 전날 단어 복습 후 10개씩 추가하는 누적 복습법이 장기 기억에 효과적입니다."},{q:"독해 시간이 부족해요",a:"첫 문장과 마지막 문장을 먼저 읽고 주제를 파악한 뒤, 선택지와 관련된 부분만 정밀하게 읽는 전략적 독해를 연습하세요."}],approach:[{grade:"초등",focus:"파닉스와 기초 회화부터 시작합니다. 영어 동화책 읽기와 간단한 일기 쓰기로 영어에 대한 흥미를 키웁니다."},{grade:"중등",focus:"문법 체계를 완성하는 가장 중요한 시기입니다. 5형식 문장 구조를 확실히 이해하고 내신 서술형에 대비합니다."},{grade:"고등",focus:"수능 영어 절대평가 1등급을 목표로 합니다. 고난이도 빈칸 추론과 순서 배열 문제를 집중 훈련합니다."}]},
+math:{name:"수학",icon:"🔢",slug:"math",desc:"개념·심화·수능수학까지 단계별로 완성합니다.",content:"수학은 개념의 연결이 핵심입니다. 은빛스터디는 먼저 학생의 개념 이해도를 단원별로 정밀 진단합니다. 부족한 부분은 과거 학년까지 거슬러 올라가 빈틈을 메우고, 탄탄한 기초 위에 심화 문제 풀이 능력을 쌓아갑니다. 오답 노트를 체계적으로 관리하며 같은 유형의 실수를 반복하지 않도록 훈련합니다.",curriculum:[{t:"개념 정밀 진단",d:"단원별 핵심 개념 이해도를 테스트하여 어디서 막히는지 정확히 찾아냅니다."},{t:"유형별 문제 풀이",d:"기본 유형부터 변형 유형까지 단계적으로 난이도를 올려 응용력을 키웁니다."},{t:"오답 분석 시스템",d:"왜 틀렸는지(개념 부족/계산 실수/문제 이해 오류)를 분류하여 원인별 대책을 세웁니다."},{t:"킬러 문항 공략",d:"수능 고난이도 문항의 풀이 전략을 체계적으로 훈련합니다."}],tips:[{q:"개념은 이해하는데 문제를 못 풀어요",a:"개념 이해와 문제 적용 사이에 유형 체화 단계가 필요합니다. 같은 개념이 적용된 다양한 유형의 문제를 최소 10문제씩 풀어보세요."},{q:"계산 실수가 너무 많아요",a:"풀이 과정을 한 줄씩 깔끔하게 쓰고, 중간 계산을 생략하지 않고, 다 풀고 대입하여 검산하는 습관을 기르면 실수를 절반 이하로 줄일 수 있습니다."}],approach:[{grade:"초등",focus:"수와 연산의 원리를 조작 활동으로 체험합니다. 문제 해결 과정을 논리적으로 설명하는 연습을 합니다."},{grade:"중등",focus:"방정식, 함수, 도형 증명 등 추상적 개념이 등장합니다. 공식 유도 과정을 이해하도록 훈련합니다."},{grade:"고등",focus:"수학I, 수학II, 미적분 등 선택 과목 전략을 설계합니다. 내신은 학교별 기출, 수능은 평가원 기출로 준비합니다."}]},
+science:{name:"과학",icon:"🧪",slug:"science",desc:"물리·화학·생명과학·지구과학 전 과목을 다룹니다.",content:"과학은 원리를 이해하면 문제가 풀리는 과목입니다. 은빛스터디 과학 수업은 교과서 개념을 실생활 예시와 연결하여 직관적으로 이해시킵니다. 탐구 실험 보고서 작성법도 지도하며 수능 과학탐구 선택 과목에 대한 전략적 조언도 제공합니다.",curriculum:[{t:"개념 시각화",d:"추상적인 과학 원리를 그림, 도표, 모형으로 시각화하여 직관적으로 파악합니다."},{t:"실험 탐구 훈련",d:"교과서 실험의 설계 원리, 변인 통제, 결과 해석 방법을 학습합니다."},{t:"통합과학 대비",d:"물리, 화학, 생명과학, 지구과학이 융합된 통합과학 시험에 대비합니다."},{t:"탐구 과목 선택 전략",d:"학생의 강점과 목표 대학에 맞는 탐구 과목 조합을 추천합니다."}],tips:[{q:"과학 공식이 너무 많아요",a:"공식이 유도되는 과정을 한 번 따라가 보면 의미를 이해할 수 있고 시험 중 잊어버릴 확률이 줄어듭니다."},{q:"물리와 화학 중 어떤 걸 선택해야 하나요",a:"수학에 자신 있다면 물리, 암기와 이해의 균형을 원한다면 화학을 추천합니다. 목표 대학의 지정 과목을 먼저 확인하세요."}],approach:[{grade:"초등",focus:"자연 현상에 대한 호기심을 키우는 시기입니다. 간단한 실험과 관찰 활동을 통해 과학적 사고방식의 기초를 다집니다."},{grade:"중등",focus:"물리, 화학, 생명과학, 지구과학의 기본 개념을 균형 있게 학습합니다."},{grade:"고등",focus:"선택 탐구 과목의 개념을 깊이 있게 완성하고 평가원 기출 분석으로 출제 패턴을 파악합니다."}]},
+social:{name:"사회",icon:"🗺️",slug:"social",desc:"사회·경제·지리·윤리 등 사회 전 영역을 학습합니다.",content:"사회 과목은 넓은 범위의 개념을 체계적으로 정리하는 것이 핵심입니다. 은빛스터디 사회 수업은 핵심 개념을 마인드맵 형태로 구조화하여 전체적인 흐름을 파악하게 합니다. 시사 이슈와 교과서 내용을 연결하여 깊이 있는 이해를 돕습니다.",curriculum:[{t:"개념 구조화",d:"방대한 내용을 핵심 키워드 중심으로 마인드맵과 요약 노트로 정리합니다."},{t:"자료 해석 훈련",d:"그래프, 통계표, 지도 등 다양한 자료를 정확하게 읽고 해석하는 능력을 키웁니다."},{t:"서술형 답안 완성",d:"용어를 정확히 사용하면서 인과 관계를 명확히 드러내는 답안 작성법을 훈련합니다."},{t:"시사 연계 학습",d:"뉴스와 교과서 내용을 연결하여 현실 적용 능력을 키웁니다."}],tips:[{q:"사회 범위가 너무 넓어서 어디부터 공부해야 할지 모르겠어요",a:"교과서 목차로 전체 구조를 파악하고, 핵심 개념 20개를 뽑아 각각 2~3줄로 설명할 수 있는지 테스트해 보세요."},{q:"사회는 암기 과목 아닌가요",a:"이해 과목입니다. 제도가 생긴 이유를 이해하면 암기량이 절반으로 줄어듭니다."}],approach:[{grade:"초등",focus:"우리 동네, 지역 사회의 역사와 지리를 흥미롭게 탐구합니다."},{grade:"중등",focus:"역사, 지리, 일반사회 영역을 균형 있게 학습합니다."},{grade:"고등",focus:"사회탐구 선택 과목의 개념을 완성하고 수능 출제 유형에 맞춘 문제 풀이를 훈련합니다."}]},
+coding:{name:"코딩",icon:"💻",slug:"coding",desc:"스크래치·파이썬·C언어 등 프로그래밍 기초부터 심화까지 배웁니다.",content:"코딩은 미래 필수 역량입니다. 은빛스터디 코딩 수업은 초등학생을 위한 블록 코딩부터 중고등학생을 위한 파이썬과 C언어까지 단계적으로 학습합니다. 문제를 분석하고 논리적으로 해결하는 컴퓨팅 사고력을 키웁니다.",curriculum:[{t:"블록 코딩 입문",d:"스크래치를 활용한 게임, 애니메이션 제작으로 프로그래밍의 기본 개념을 재미있게 익힙니다."},{t:"텍스트 코딩 전환",d:"파이썬을 통해 변수, 함수, 리스트 등 텍스트 기반 프로그래밍의 기초를 다집니다."},{t:"알고리즘 사고력",d:"정렬, 탐색, 재귀 등 기본 알고리즘을 학습하고 문제 해결 과정을 순서도로 설계합니다."},{t:"정보올림피아드 대비",d:"C/C++ 언어로 고급 알고리즘 문제를 풀이하며 대회를 대비합니다."}],tips:[{q:"코딩을 몇 학년부터 시작하면 좋을까요",a:"초등 3~4학년이 적기입니다. 블록 코딩으로 기초를 다지면 중학교에서 텍스트 코딩으로 자연스럽게 전환할 수 있습니다."},{q:"수학을 못하면 코딩도 어려운가요",a:"기초 코딩은 수학과 직접적 관계가 적습니다. 오히려 코딩으로 논리적 사고력이 향상되어 수학 성적도 함께 오르는 경우가 많습니다."}],approach:[{grade:"초등",focus:"스크래치로 재미있는 프로젝트를 만들며 프로그래밍의 기본 원리를 체험합니다."},{grade:"중등",focus:"파이썬으로 실용적인 프로그램을 만듭니다. 정보 교과 내신에 직접 대비합니다."},{grade:"고등",focus:"C언어와 고급 알고리즘을 학습합니다. 정보올림피아드나 소프트웨어 관련 진학을 목표로 합니다."}]},
+essay:{name:"논술",icon:"✏️",slug:"essay",desc:"대입 논술, 서술형 시험 대비를 위한 논리적 글쓰기 훈련을 진행합니다.",content:"논술은 생각을 논리적으로 구조화하여 글로 표현하는 능력입니다. 은빛스터디 논술 수업은 주제 분석, 개요 작성, 본론 전개, 결론 도출의 체계적인 글쓰기 프로세스를 훈련합니다.",curriculum:[{t:"논증 구조 설계",d:"주장-근거-반론-재반박의 논증 구조를 체계적으로 훈련합니다."},{t:"제시문 분석 기법",d:"대학별 논술 기출 제시문의 핵심 논점을 추출하고 비판적으로 읽는 능력을 훈련합니다."},{t:"실전 첨삭 피드백",d:"매주 모의 논술을 작성하고 은빛쌤의 상세한 첨삭을 받습니다."},{t:"대학별 맞춤 전략",d:"서울대, 연세대, 경희대 등 대학별 출제 특성을 분석하여 맞춤형 준비 전략을 수립합니다."}],tips:[{q:"논술 준비는 언제부터 시작해야 하나요",a:"고2 겨울방학부터 시작하면 적당합니다. 기본 글쓰기 훈련 3개월, 대학별 맞춤 준비 3개월이 필요합니다."},{q:"논술 글자 수를 못 채우겠어요",a:"하나의 주장에 최소 3가지 근거를 준비하고, 각 근거에 구체적 사례를 덧붙이는 연습을 하세요."}],approach:[{grade:"초등",focus:"일기, 독서 감상문 등 기초 글쓰기 훈련으로 생각을 조리 있게 표현하는 습관을 길러줍니다."},{grade:"중등",focus:"찬반 토론 형식의 글쓰기, 설명문과 논설문의 구조를 학습합니다."},{grade:"고등",focus:"대입 논술 전형에 맞춘 본격적인 논술 훈련을 진행합니다."}]},
+ged:{name:"검정고시",icon:"📋",slug:"ged",desc:"초졸·중졸·고졸 검정고시 전 과목을 체계적으로 대비합니다.",content:"검정고시는 단기간 집중 학습이 핵심입니다. 은빛스터디는 기출문제를 철저히 분석하여 출제 빈도가 높은 핵심 단원 위주로 커리큘럼을 설계합니다.",curriculum:[{t:"기출 분석 기반 학습",d:"최근 5년간 기출을 유형별로 분류하여 자주 출제되는 핵심 포인트를 집중 학습합니다."},{t:"과목별 핵심 요약",d:"국어, 수학, 영어, 사회, 과학 각 과목의 핵심 개념을 압축 정리합니다."},{t:"약점 과목 집중 보강",d:"합격에 필요한 과목을 선별하여 불합격 위험 과목에 시간을 집중합니다."},{t:"모의시험 실전 훈련",d:"실제 시험과 동일한 조건으로 모의시험을 치르며 시간 배분 감각을 기릅니다."}],tips:[{q:"검정고시 준비 기간이 얼마나 필요한가요",a:"고졸 기준 보통 2~4개월이면 합격 가능합니다. 매일 3~4시간 집중 학습하면 2개월도 가능합니다."},{q:"어떤 과목부터 공부해야 하나요",a:"가장 쉬운 과목(보통 사회, 국어)부터 시작하여 자신감을 붙이세요."}],approach:[{grade:"초졸",focus:"기본적인 읽기, 쓰기, 셈하기 능력을 확인하고 보강합니다."},{grade:"중졸",focus:"중학교 수준의 국영수사과 핵심 개념을 빠르게 정리하고 기출에 집중합니다."},{grade:"고졸",focus:"고등학교 수준의 필수 개념을 효율적으로 학습하고 실전 모의시험으로 합격을 확정합니다."}]},
+socialexam:{name:"사회탐구",icon:"📊",slug:"social-exam",desc:"생활과윤리·사회문화·한국지리·세계지리·경제·정치와법 등 사탐 전 과목을 대비합니다.",content:"사회탐구 영역은 수능에서 선택 과목으로 전략적 접근이 중요합니다. 은빛스터디는 학생의 적성과 목표 대학에 맞는 최적의 과목 조합을 추천합니다.",curriculum:[{t:"과목 선택 컨설팅",d:"9개 사탐 과목 중 학생의 강점과 목표 대학을 고려하여 최적의 2과목 조합을 추천합니다."},{t:"개념 완전 정복",d:"선택 과목의 전 범위를 빠짐없이 정리하고 자주 혼동하는 개념을 비교 정리합니다."},{t:"기출 패턴 분석",d:"평가원 기출 10개년을 유형별로 분류하여 출제 빈도와 난이도 변화를 분석합니다."},{t:"EBS 연계 전략",d:"EBS 교재의 핵심 내용을 정리하고 수능 연계 출제 포인트를 예측합니다."}],tips:[{q:"사탐 과목 조합은 어떻게 정하나요",a:"만점 목표라면 생윤+사문 조합이 안정적입니다. 표준점수를 높이려면 응시자가 적은 과목도 고려해 볼 수 있습니다."},{q:"사탐 공부 시간을 어떻게 배분하나요",a:"6개월 이상이면 국영수 70% 탐구 30%, 3개월 미만이면 탐구 비중을 50%까지 올리세요."}],approach:[{grade:"고등",focus:"고2 겨울방학에 과목을 확정하고 고3 여름까지 개념 완성, 이후 기출 반복과 실전 훈련에 집중합니다."}]},
+scienceexam:{name:"과학탐구",icon:"🔬",slug:"science-exam",desc:"물리학·화학·생명과학·지구과학 I/II 전 과목 수능 대비를 진행합니다.",content:"과학탐구 영역은 깊이 있는 개념 이해와 문제 적용 능력이 모두 필요합니다. 은빛스터디는 I과목과 II과목의 난이도 차이를 고려하여 학생의 목표에 맞는 과목을 추천합니다.",curriculum:[{t:"과목별 개념 완성",d:"물리학은 역학과 전자기, 화학은 반응 속도와 평형, 생명과학은 유전과 생태, 지구과학은 천체와 대기를 핵심 프레임으로 정리합니다."},{t:"실험 자료 해석",d:"과탐에서 자주 출제되는 실험 설계, 그래프 해석, 데이터 분석 문제를 집중 훈련합니다."},{t:"고난이도 문항 공략",d:"매년 반복되는 킬러 유형의 풀이 전략을 체계적으로 학습합니다."},{t:"I/II 과목 전환 전략",d:"I 과목에서 높은 점수가 어려운 경우 II 과목 전환의 장단점을 분석합니다."}],tips:[{q:"과탐은 I만 해도 되나요",a:"의대, 약대 등 상위권은 II 과목이 유리할 수 있습니다. 일반 공대 지원이라면 I 과목으로 충분합니다."},{q:"생명과학 유전 문제가 너무 어려워요",a:"가계도 분석 → 유전 형질 판별 → 확률 계산의 3단계를 반복 연습하면 대부분의 유형을 해결할 수 있습니다."}],approach:[{grade:"고등",focus:"고2 때 선택 과목을 확정하고 개념 1회독 완성. 고3 상반기에 심화, 하반기에 기출 반복으로 마무리합니다."}]}
 };
 const SUBJECT_LIST=Object.keys(SUBJECTS);
+const SUBJ_STUDY={
+korean:{
+ elem:{study:"초등 국어는 모든 학습의 기초인 읽기와 쓰기 능력을 키우는 시기입니다. 교과서 지문을 소리 내어 읽고 핵심 내용을 요약하는 훈련을 합니다. 맞춤법과 띄어쓰기를 자연스럽게 익히고, 일기와 독서록 쓰기를 통해 자기 생각을 글로 표현하는 습관을 만듭니다. 3~4학년부터는 문학과 비문학의 차이를 인식하고, 글의 종류에 따라 다르게 읽는 방법을 배웁니다. 5~6학년은 중학교 대비를 위해 긴 지문을 읽고 중심 내용을 파악하는 독해력을 집중적으로 훈련합니다.",exam:"초등 국어 시험은 교과서 지문의 이해가 핵심입니다. 지문을 3번 이상 정독한 뒤, 각 문단의 중심 문장에 밑줄을 긋고 핵심어를 메모하세요. 서술형 문제는 문제가 요구하는 조건(몇 가지, 무엇을 포함)을 먼저 파악하고 조건에 맞게 답안을 작성하는 연습이 필요합니다. 받아쓰기와 맞춤법 문제는 틀리기 쉬운 단어 목록을 만들어 반복 연습하면 효과적입니다."},
+ mid:{study:"중학교 국어는 문학 감상 능력과 비문학 독해력을 본격적으로 키우는 단계입니다. 시, 소설, 수필 등 문학 작품을 읽고 화자의 정서, 갈등 구조, 주제 의식을 분석하는 훈련을 합니다. 비문학에서는 설명문과 논설문의 구조를 파악하고, 글쓴이의 관점과 논거를 비판적으로 평가하는 능력을 기릅니다. 문법 영역에서는 품사, 문장 성분, 높임법, 피동·사동 표현 등을 체계적으로 정리합니다. 이 시기에 다져놓은 기초가 고등학교 수능 국어의 밑바탕이 됩니다.",exam:"중학교 국어 내신은 교과서 본문의 정확한 이해가 가장 중요합니다. 문학 작품은 작품의 배경, 인물 관계, 갈등 양상을 정리하고 기출에서 자주 출제되는 표현 기법을 확인하세요. 비문학은 문단별 핵심 내용을 한 줄로 요약하는 연습이 효과적입니다. 서술형 비중이 높으므로 답안에 핵심 용어를 정확히 사용하고 문장을 논리적으로 연결하는 훈련을 반복하세요. 문법은 개념을 외운 뒤 실제 문장에 적용하는 문제를 풀어야 합니다."},
+ high:{study:"고등학교 국어는 수능과 내신을 동시에 대비해야 합니다. 수능 국어는 화법과 작문, 언어와 매체, 독서, 문학 4개 영역으로 구성됩니다. 독서(비문학)는 인문, 사회, 과학, 기술, 예술 5개 분야의 지문을 빠르고 정확하게 읽는 능력이 핵심입니다. 문학은 현대시, 현대소설, 고전시가, 고전소설의 갈래별 특성을 이해하고 작품을 분석하는 틀을 체화해야 합니다. EBS 연계 교재의 주요 작품과 지문을 미리 학습하면 수능에서 시간을 절약할 수 있습니다.",exam:"수능 국어 대비는 기출 분석이 핵심입니다. 최근 5개년 평가원 기출을 유형별로 분류하여 자신의 약점 유형을 파악하세요. 비문학에서 시간이 오래 걸린다면 문단 구조 분석 훈련을, 문학에서 감점이 잦다면 작품 감상의 기본 틀(화자/서술자→상황→표현→주제)을 반복 적용하세요. 시간 관리가 중요하므로 80분 안에 45문항을 풀어내는 실전 연습을 매주 1회 이상 진행합니다. 오답 분석 시 틀린 이유를 3가지(개념 부족/지문 오독/선지 분석 실수)로 분류하여 대책을 세우세요."}
+},
+english:{
+ elem:{study:"초등 영어는 영어에 대한 흥미와 자신감을 키우는 것이 최우선입니다. 파닉스를 통해 영어 소리와 철자의 관계를 이해하고, 기본 단어 500개를 그림과 함께 자연스럽게 익힙니다. 짧은 영어 동화책을 읽으며 문장의 구조를 감으로 습득하고, 간단한 영어 일기를 쓰며 표현력을 키웁니다. 3~4학년은 기초 문법(be동사, 일반동사, 명사의 복수형)을, 5~6학년은 시제(현재, 과거, 미래)와 기본 문장 패턴을 학습합니다.",exam:"초등 영어 시험은 듣기와 읽기 중심입니다. 듣기는 매일 15분씩 영어 오디오를 듣는 습관이 가장 효과적입니다. 읽기는 교과서 본문을 소리 내어 5번 이상 읽고, 핵심 단어와 문장을 노트에 정리하세요. 시험에 자주 나오는 질문 패턴(What/Where/When/Who/How)을 익히고, 그에 맞는 답변 구조를 연습하면 좋습니다."},
+ mid:{study:"중학교 영어는 문법 체계를 완성하는 가장 중요한 시기입니다. 5형식 문장 구조를 확실히 이해하는 것이 모든 영어 학습의 기반이 됩니다. 중1에서는 기본 시제와 문장의 종류를, 중2에서는 관계대명사, 접속사, 비교 구문을, 중3에서는 분사구문, 가정법 등 고급 문법을 순차적으로 학습합니다. 교과서 본문은 구문 분석을 통해 문장 구조를 파악하며 해석하는 습관을 기르고, 어휘는 중학 필수 어휘 1500개를 어원별로 분류하여 체계적으로 암기합니다.",exam:"중학교 영어 내신은 교과서 본문의 완벽한 이해가 핵심입니다. 본문을 읽고 한국어로 해석한 뒤, 다시 한국어를 보고 영어로 복원하는 '영작 복원법'이 매우 효과적입니다. 서술형에서는 주어진 조건(시제, 인칭, 문장 구조)을 정확히 지키는 것이 중요합니다. 문법 문제는 개념 이해 후 유사 문제를 최소 20개 풀어야 체화됩니다. 듣기는 학교 시험 듣기 기출을 반복 청취하되, 받아쓰기까지 해보면 정확도가 크게 올라갑니다."},
+ high:{study:"고등학교 영어는 수능 절대평가 1등급(90점 이상)을 목표로 합니다. 수능 영어의 핵심은 독해 속도와 정확성입니다. 빈칸 추론, 순서 배열, 문장 삽입 등 고난이도 유형에 대한 풀이 전략을 체계적으로 학습합니다. 어휘는 수능 필수 어휘 3000개를 어원 분석법으로 효율적으로 암기하고, 구문 분석 능력을 키워 복잡한 문장도 빠르게 해석할 수 있도록 훈련합니다. 내신은 학교별 교과서(천재, 동아, 능률 등)의 본문을 완벽히 분석하고, 변형 문제까지 대비합니다.",exam:"수능 영어 대비의 핵심은 유형별 풀이 전략입니다. 주제/제목 문제는 첫 문장과 마지막 문장에서 키워드를 찾고, 빈칸 추론은 빈칸 전후의 논리 관계(대조/인과/예시)를 파악합니다. 순서 배열은 지시어와 연결어를 단서로 활용하고, 문장 삽입은 삽입 문장의 연결어가 가리키는 방향을 먼저 확인합니다. 하루에 지문 3개씩 구문 분석을 하면 독해 속도가 확실히 빨라집니다. 틀린 문제는 왜 오답을 골랐는지 분석하는 것이 단순 재풀이보다 효과적입니다."}
+},
+math:{
+ elem:{study:"초등 수학은 수와 연산의 원리를 확실히 이해하는 것이 최우선입니다. 단순 계산 속도보다 왜 그렇게 계산하는지 원리를 아는 것이 중요합니다. 분수와 소수의 개념을 실생활 예시로 이해하고, 도형의 성질을 직접 그리고 만들어보며 공간 감각을 키웁니다. 5~6학년의 비와 비율, 비례식은 중학교 방정식의 기초가 되므로 특히 꼼꼼히 다져야 합니다. 문제를 풀 때 풀이 과정을 빠짐없이 쓰는 습관은 중고등학교에서 큰 자산이 됩니다.",exam:"초등 수학 시험 대비는 교과서 유형을 완벽히 이해한 뒤 응용 문제로 확장하는 순서로 진행합니다. 서술형 문제는 풀이 과정을 빠짐없이 쓰고, 단위를 빼먹지 않도록 체크리스트를 활용하세요. 자주 실수하는 유형(받아올림, 받아내림, 단위 환산)은 오답 노트에 정리하여 시험 전 집중 복습합니다. 도형 문제는 직접 그림을 그려서 풀면 정확도가 올라갑니다."},
+ mid:{study:"중학교 수학은 대수(방정식, 부등식, 함수)와 기하(도형, 작도, 증명)의 두 축을 균형 있게 학습해야 합니다. 특히 일차방정식과 연립방정식은 고등학교 모든 수학의 기반이 되므로 확실하게 이해해야 합니다. 함수 단원에서는 그래프를 직접 그려보며 변화의 패턴을 시각적으로 이해하는 것이 중요합니다. 도형 증명은 주어진 조건에서 결론까지의 논리적 연결을 단계별로 정리하는 연습을 합니다. 중3의 이차함수와 피타고라스의 정리는 고1 수학의 핵심 선행 내용입니다.",exam:"중학교 수학 내신은 학교별 기출 분석이 가장 효과적입니다. 최소 3년치 기출을 풀어 출제 패턴을 파악하고, 자주 출제되는 유형을 정리하세요. 서술형은 풀이 과정의 논리적 완결성이 핵심이므로, 조건 → 풀이 → 답 순서를 빠짐없이 작성하는 습관을 기르세요. 계산 실수를 줄이려면 중간 과정을 생략하지 않고, 답을 구한 뒤 원래 식에 대입하여 검산하는 습관이 중요합니다."},
+ high:{study:"고등학교 수학은 수학I(지수·로그·삼각함수), 수학II(함수의 극한·미분·적분), 미적분(수열의 극한·미적분법), 확률과 통계(경우의 수·확률·통계) 등 선택 과목별 전략이 필요합니다. 자연계열은 미적분이 필수이며, 인문계열은 확률과 통계를 선택하는 것이 일반적입니다. 각 단원은 이전 단원의 개념 위에 쌓이므로, 하나라도 이해하지 못하면 다음 단원도 무너집니다. 개념 학습 시 공식을 외우기보다 유도 과정을 이해하는 것이 응용력으로 직결됩니다.",exam:"수능 수학 대비는 개념 완성 → 유형 체화 → 기출 반복 → 실전 모의 4단계로 진행합니다. 개념은 교과서와 기본서로 확실히 잡고, 유형별 문제집으로 다양한 출제 방식에 적응합니다. 평가원 기출은 최근 10개년을 최소 3회 반복 풀이하며, 특히 킬러 문항(21번, 22번, 30번)은 풀이 전략을 체계적으로 학습합니다. 시간 관리가 핵심이므로 100분 안에 30문항을 풀어내는 시뮬레이션을 매주 실시하세요."}
+},
+science:{
+ elem:{study:"초등 과학은 자연 현상에 대한 호기심과 탐구 능력을 키우는 시기입니다. 직접 관찰하고 실험하며 과학적 사고의 기초를 다집니다. 생물 영역에서는 동식물의 한살이, 인체의 구조를 관찰하고, 물리 영역에서는 힘과 운동, 전기회로를 실험합니다. 지구과학에서는 날씨, 계절 변화, 지층과 화석을 탐구하고, 화학에서는 물질의 성질과 혼합물 분리를 체험합니다.",exam:"초등 과학 시험은 교과서 실험과 탐구 활동의 이해가 핵심입니다. 실험의 목적, 준비물, 과정, 결과를 정리하고, 왜 그런 결과가 나왔는지 원리를 설명할 수 있어야 합니다."},
+ mid:{study:"중학교 과학은 물리, 화학, 생명과학, 지구과학 4개 분야를 골고루 학습합니다. 물리에서는 힘과 운동의 법칙, 전기와 자기, 빛과 파동을 배웁니다. 화학에서는 원소, 화합물, 화학 반응식을 학습하고, 생명과학에서는 세포, 광합성, 호흡, 유전을 다룹니다. 지구과학에서는 지구의 구조, 판 구조론, 천체의 운동을 배웁니다. 이 4개 분야의 기초가 고등학교 탐구 과목 선택과 학습의 기반이 됩니다.",exam:"중학교 과학 내신은 개념 이해와 실험 탐구 보고서가 핵심입니다. 교과서의 핵심 개념을 자신의 말로 설명할 수 있어야 하며, 실험 과정과 결과를 정확히 기술할 수 있어야 합니다. 서술형에서는 과학 용어를 정확히 사용하고, 원인과 결과를 명확히 구분하여 답안을 작성하세요."},
+ high:{study:"고등학교 과학은 통합과학(1학년)과 선택 탐구 과목(2~3학년)으로 나뉩니다. 통합과학은 4개 분야의 핵심 개념을 융합적으로 다루며, 선택 과목에서는 각 분야를 깊이 있게 학습합니다. 물리학I은 역학과 에너지를, 화학I은 화학 반응과 산화환원을, 생명과학I은 세포와 유전을, 지구과학I은 지구 시스템과 천체를 중심으로 학습합니다.",exam:"수능 과학탐구 대비는 개념 정리 → 기출 분류 → 약점 보강 → 실전 훈련 순서로 진행합니다. 개념은 교과서를 기반으로 빠짐없이 정리하고, 평가원 기출을 유형별로 분류하여 반복 풀이합니다. 고난이도 문항은 풀이 전략을 체계적으로 학습하고, 실전 모의시험으로 시간 배분 감각을 길러야 합니다."}
+},
+social:{
+ elem:{study:"초등 사회는 우리 동네에서 출발하여 우리나라, 세계로 시야를 넓혀가는 과목입니다. 지도 읽기, 지역의 특성 파악, 역사적 사건의 원인과 결과를 이해합니다. 우리나라의 민주주의 발전 과정과 경제생활의 기초 개념도 학습합니다.",exam:"초등 사회 시험은 교과서 내용을 정확히 이해하고, 지도와 연표 등 자료를 해석하는 능력이 핵심입니다. 핵심 사건의 시간 순서와 인과 관계를 정리하세요."},
+ mid:{study:"중학교 사회는 역사, 지리, 일반사회 3개 영역을 균형 있게 학습합니다. 역사에서는 한국사와 세계사의 주요 사건을 시대순으로 정리하고, 지리에서는 우리나라와 세계의 자연환경과 인문환경을 비교 분석합니다. 일반사회에서는 정치, 경제, 법, 사회·문화의 기초 개념을 학습합니다.",exam:"중학교 사회 내신은 방대한 범위를 효율적으로 정리하는 것이 핵심입니다. 단원별 핵심 개념 20개를 추려서 각각 2~3줄로 설명할 수 있는지 테스트해 보세요. 자료 해석 문제는 그래프와 표의 변화 추세를 읽는 연습을 하면 됩니다."},
+ high:{study:"고등학교 사회는 통합사회(1학년)와 선택 과목(2~3학년)으로 나뉩니다. 선택 과목으로는 생활과윤리, 사회문화, 한국지리, 세계지리, 정치와법, 경제, 윤리와사상, 세계사, 동아시아사가 있습니다. 수능 사회탐구에서는 보통 2과목을 선택하므로, 자신의 강점과 목표 대학의 반영 방식을 고려하여 전략적으로 선택해야 합니다.",exam:"수능 사회탐구 대비는 개념의 정확한 이해가 기본입니다. 기출 문제를 유형별로 분류하여 자주 출제되는 개념을 우선 학습하고, EBS 연계 교재의 핵심 내용을 정리하세요. 사회탐구는 암기보다 이해 중심으로 공부하면 고득점이 가능합니다."}
+},
+coding:{
+ elem:{study:"초등 코딩은 블록 코딩(스크래치, 엔트리)을 통해 프로그래밍의 기본 원리를 재미있게 체험하는 시기입니다. 순차, 반복, 조건이라는 프로그래밍의 3가지 기본 구조를 게임과 애니메이션 만들기를 통해 자연스럽게 익힙니다. 논리적 사고력과 문제 해결 능력을 키우는 데 초점을 맞추며, 이 과정에서 수학적 사고력도 함께 향상됩니다.",exam:"초등 정보 교과 평가는 알고리즘 설계와 블록 코딩 실습이 주를 이룹니다. 주어진 문제를 순서도로 표현하는 연습과, 스크래치로 간단한 프로그램을 만드는 실습을 병행하세요."},
+ mid:{study:"중학교 코딩은 텍스트 기반 프로그래밍(파이썬)으로 본격 전환하는 시기입니다. 변수, 자료형, 조건문, 반복문, 함수 등 프로그래밍의 기본 문법을 학습하고, 실생활 문제를 코드로 해결하는 프로젝트를 진행합니다. 정보 교과가 필수 과목으로 지정되면서 내신 시험에도 직접적으로 대비해야 합니다.",exam:"중학교 정보 내신은 이론(컴퓨터 구조, 네트워크, 정보윤리)과 실습(파이썬 코딩)이 함께 출제됩니다. 이론은 교과서 핵심 용어를 정확히 암기하고, 실습은 코드를 직접 작성해보며 문법을 체화하세요."},
+ high:{study:"고등학교 코딩은 정보 교과의 심화 학습과 진로 탐색을 병행합니다. C언어 또는 파이썬으로 고급 알고리즘(정렬, 탐색, 그래프, 동적 프로그래밍)을 학습하고, 정보올림피아드나 소프트웨어 관련 대학 진학을 준비합니다. AI와 데이터 과학의 기초도 함께 다룹니다.",exam:"정보올림피아드 대비는 알고리즘 문제 풀이 훈련이 핵심입니다. 백준 온라인 저지, 코드포스 등의 플랫폼에서 단계별로 문제를 풀어가며 실력을 쌓으세요. 정보 교과 내신은 이론과 실습을 균형 있게 준비합니다."}
+},
+essay:{
+ elem:{study:"초등 논술은 자기 생각을 글로 표현하는 기초 훈련 시기입니다. 읽은 책의 내용을 요약하고 자신의 의견을 덧붙이는 독서 감상문, 하나의 주제에 대해 찬성과 반대 입장을 정리하는 주장하는 글 쓰기를 연습합니다. 문장을 정확하게 쓰는 것에서 시작하여 단락을 구성하고 글 전체의 구조를 잡는 능력까지 단계적으로 키웁니다.",exam:"초등 논술 평가는 주로 수행평가 형태로 진행됩니다. 주어진 주제에 대해 서론(주장)-본론(근거 2~3개)-결론(요약) 구조로 글을 쓰는 연습을 하세요."},
+ mid:{study:"중학교 논술은 논리적 글쓰기의 기본 틀을 완성하는 시기입니다. 사회적 이슈에 대한 찬반 토론 글쓰기, 자료를 분석하여 논거를 도출하는 훈련, 상대방의 주장을 반박하는 논증 방법을 학습합니다. 자유학기제 수행평가에서 논술형 과제가 많이 출제되므로 실전 경험을 쌓는 것이 중요합니다.",exam:"중학교 서술형/논술형 시험은 핵심 용어의 정확한 사용과 논리적 전개가 채점 기준입니다. 주장→근거→예시→결론 순서로 답안을 구성하는 습관을 기르세요."},
+ high:{study:"고등학교 논술은 대학입시 수시전형의 논술고사를 직접 대비합니다. 인문계열 논술은 제시문 분석과 비판적 사고가 핵심이며, 자연계열 논술은 수학과 과학의 원리를 서술형으로 풀어내는 능력이 필요합니다. 대학별 기출 분석을 통해 출제 경향을 파악하고, 실전 모의 논술과 첨삭을 반복합니다.",exam:"대학별 논술 대비는 기출 분석이 가장 효과적입니다. 서울대, 연세대, 성균관대, 경희대 등 대학별 출제 스타일이 다르므로, 목표 대학의 최근 3년 기출을 반복 풀이하세요. 글자 수 관리, 시간 배분(60~90분), 제시문 간 관계 파악이 실전에서의 핵심 역량입니다."}
+},
+ged:{
+ elem:{study:"초졸 검정고시는 초등학교 전 학년의 기초 학력을 평가합니다. 국어(읽기, 쓰기, 문법), 수학(사칙연산, 분수, 소수), 사회(우리 지역, 우리나라), 과학(생물, 지구과학 기초)을 중심으로 학습합니다.",exam:"초졸 검정고시는 기출 반복이 가장 효율적입니다. 최근 5회 기출을 풀어보면 출제 패턴을 파악할 수 있으며, 60점 이상이면 합격입니다."},
+ mid:{study:"중졸 검정고시는 중학교 3년 과정의 핵심을 압축하여 학습합니다. 국어는 독해와 문법, 수학은 방정식과 함수, 영어는 기초 문법과 독해, 사회는 역사와 지리, 과학은 4개 분야 기초를 중점적으로 다룹니다.",exam:"중졸 검정고시 대비는 과목별 핵심 요약집을 만들어 반복 학습하는 것이 효과적입니다. 수학과 영어에 시간을 집중 투자하되, 나머지 과목은 기출 유형만 확인해도 합격 가능합니다."},
+ high:{study:"고졸 검정고시는 고등학교 수준의 국어, 수학, 영어, 사회, 과학, 한국사 등 필수 과목을 평가합니다. 범위가 넓지만 출제 수준은 기본 개념 위주이므로, 각 과목의 핵심 30%만 확실히 이해하면 합격할 수 있습니다.",exam:"고졸 검정고시는 기출 분석이 합격의 지름길입니다. 최근 기출에서 반복 출제되는 핵심 단원을 우선 학습하고, 모의시험으로 실전 감각을 키우세요. 매일 3~4시간 집중 학습하면 2~3개월 내에 합격이 가능합니다."}
+},
+socialexam:{
+ high:{study:"사회탐구 영역은 9개 과목 중 2과목을 선택하여 수능에 응시합니다. 생활과윤리는 응용윤리 사상가의 입장 비교가 핵심이고, 사회문화는 연구 방법론과 통계 자료 해석이 주요 출제 포인트입니다. 한국지리는 지형과 기후, 지역별 특성을 지도와 함께 학습하며, 세계지리는 기후 분류와 각 대륙의 특성을 비교합니다. 정치와법은 헌법과 정치 제도의 정확한 이해가, 경제는 수요·공급과 시장 균형 그래프 해석이 핵심입니다.",exam:"사탐 수능 대비는 개념 완성 후 기출 반복이 핵심입니다. 평가원 기출 10개년을 3회 이상 반복 풀이하고, 오답 원인을 개념 부족/자료 해석 실수/선지 판단 오류로 분류하여 보강하세요. EBS 연계율을 고려하여 EBS 교재의 핵심 개념과 자료를 정리해두면 시험장에서 시간을 절약할 수 있습니다."}
+},
+scienceexam:{
+ high:{study:"과학탐구 영역은 물리학, 화학, 생명과학, 지구과학의 I/II 과목 중 2과목을 선택합니다. 물리학I은 역학, 열, 파동, 전자기를, 화학I은 화학 반응, 산화환원, 산염기를, 생명과학I은 세포, 유전, 생태계를, 지구과학I은 지구 시스템, 천체, 대기를 다룹니다. II 과목은 각 분야를 더 깊이 있게 학습하며, 의대·약대 지원자에게 유리할 수 있습니다.",exam:"과탐 수능 대비는 개념의 정확한 이해가 기본입니다. 기출 문제를 유형별로 분류하여 자주 나오는 개념을 우선 학습하고, 킬러 문항(물리 역학 복합, 화학 양적관계, 생명과학 유전, 지구과학 천체)의 풀이 전략을 체계적으로 훈련하세요. 실전 모의시험을 통해 30분 안에 20문항을 풀어내는 시간 배분 감각을 길러야 합니다."}
+}
+};
+
 
 function buildEduData() {
  const data = {};
@@ -993,157 +1042,40 @@ function getIndex() {
 }
 
 const NAV = `<style>
-.global-nav{position:fixed;top:0;left:0;right:0;z-index:99999;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:70px;background:#fff;border-bottom:1px solid #e5e5e5;font-family:'Malgun Gothic',sans-serif;}
-.nav-logo-area{display:flex;align-items:center;gap:14px;flex-shrink:0;white-space:nowrap;}
-.nav-logo{font-size:22px;font-weight:800;color:#1A2340;text-decoration:none;display:flex;align-items:center;gap:8px;white-space:nowrap;}
-.nav-badge{background:#4A90D9;color:#fff;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:600;line-height:1.2;text-align:center;white-space:nowrap;}
-.nav-badge .nav-badge-num{font-size:16px;font-weight:800;display:block;}
-.nav-menu{display:flex;align-items:center;gap:28px;}
-.nav-menu a{color:#333;text-decoration:none;font-size:15px;font-weight:600;white-space:nowrap;}
-.nav-menu a.nav-cta{color:#C8A96E;font-weight:700;}
-.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px;font-size:26px;color:#1A2340;line-height:1;}
-.nav-region-wrap{position:relative;}
-.nav-region-toggle{display:flex;align-items:center;gap:4px;background:none;border:none;cursor:pointer;color:#333;font-size:15px;font-weight:600;font-family:'Malgun Gothic',sans-serif;padding:0;white-space:nowrap;}
-.nav-region-toggle.open{background:#1A2340;color:#C8A96E;border-radius:50px;padding:8px 18px;}
-.nav-region-toggle .arrow-down{font-size:11px;transition:transform .2s;}
-.nav-region-toggle.open .arrow-down{transform:rotate(180deg);}
-.nav-region-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);width:min(720px,calc(100vw - 40px));background:#1A2340;border:1px solid rgba(200,169,110,0.35);border-radius:18px;padding:0;box-shadow:0 18px 48px rgba(0,0,0,0.35);display:none;z-index:99998;overflow:hidden;}
-.nav-region-panel.open{display:block;}
-.nav-panel-tabs{display:flex;border-bottom:1px solid rgba(255,255,255,0.1);}
-.nav-panel-tab{flex:1;padding:14px 16px;background:transparent;border:none;color:rgba(255,255,255,0.5);font-size:14px;font-weight:700;cursor:pointer;font-family:'Malgun Gothic',sans-serif;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px;}
-.nav-panel-tab:hover{color:rgba(255,255,255,0.8);}
-.nav-panel-tab.active{background:rgba(200,169,110,0.15);color:#C8A96E;}
-.nav-panel-content{display:none;padding:20px 24px;}
-.nav-panel-content.active{display:block;}
-.nav-region-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}
-.nav-region-grid a{display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,169,110,0.25);color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:11px 6px;border-radius:50px;white-space:nowrap;transition:background .15s,transform .15s;font-family:'Malgun Gothic',sans-serif;}
-.nav-region-grid a:hover{background:rgba(200,169,110,0.18);transform:translateY(-1px);}
-.nav-grade-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
-.nav-grade-grid a{display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,169,110,0.25);color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:12px 10px;border-radius:50px;white-space:nowrap;transition:background .15s,transform .15s;font-family:'Malgun Gothic',sans-serif;}
-.nav-grade-grid a:hover{background:rgba(200,169,110,0.18);transform:translateY(-1px);}
-.nav-school-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}
-.nav-school-grid a{display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,169,110,0.25);color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:11px 6px;border-radius:50px;white-space:nowrap;transition:background .15s,transform .15s;font-family:'Malgun Gothic',sans-serif;}
-.nav-school-grid a:hover{background:rgba(200,169,110,0.18);transform:translateY(-1px);}
-@media (max-width: 900px){
- .global-nav{padding:0 16px;}
- .nav-badge{display:none;}
- .nav-toggle{display:flex;align-items:center;justify-content:center;}
- .nav-menu{display:none;position:fixed;top:70px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:#fff;border-bottom:1px solid #e5e5e5;box-shadow:0 8px 24px rgba(0,0,0,0.08);padding:8px 0;max-height:calc(100vh - 70px);overflow-y:auto;}
- .nav-menu.open{display:flex;}
- .nav-menu a{padding:16px 24px;font-size:16px;border-bottom:1px solid #f0f2f5;}
- .nav-menu a:last-child{border-bottom:none;}
- .nav-logo{font-size:18px;}
- .nav-region-toggle{padding:16px 24px;font-size:16px;border-bottom:1px solid #f0f2f5;width:100%;justify-content:space-between;}
- .nav-region-toggle.open{background:none;color:#333;border-radius:0;padding:16px 24px;}
- .nav-region-panel{position:static;transform:none;width:100%;border-radius:0;border-left:none;border-right:none;background:#0f1729;}
- .nav-region-grid{grid-template-columns:repeat(3,1fr);}
- .nav-grade-grid{grid-template-columns:repeat(3,1fr);}
- .nav-school-grid{grid-template-columns:repeat(3,1fr);}
- .nav-panel-tab{padding:12px 8px;font-size:13px;}
-}
-@media (max-width: 380px){
- .nav-logo{font-size:16px;}
- .nav-logo span:first-of-type{display:none;}
-}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--navy:#1A2340;--navy-soft:#2a3d6b;--gold:#C8A96E;--gold-light:#E8D09A;--white:#fff;--gray-50:#F8FAFC;--gray-100:#F1F5F9;--gray-200:#E2E8F0;--gray-400:#94A3B8;--gray-500:#64748B;--gray-700:#334155;}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans KR',sans-serif;color:#1A2340;background:#fff;line-height:1.6;overflow-x:hidden;padding-top:64px;}
+nav{position:fixed;top:0;left:0;right:0;z-index:99999;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #E2E8F0;padding:0 40px;height:64px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-size:1.15rem;font-weight:800;color:#1A2340;text-decoration:none;display:flex;align-items:center;gap:6px;white-space:nowrap;}
+.nav-logo .accent{color:#C8A96E;}
+.nav-links{display:flex;gap:24px;list-style:none;align-items:center;}
+.nav-links a{text-decoration:none;font-size:0.88rem;font-weight:600;color:#334155;transition:color .2s;white-space:nowrap;}
+.nav-links a:hover{color:#C8A96E;}
+.nav-cta{background:#C8A96E!important;color:#1A2340!important;padding:8px 20px;border-radius:8px;font-weight:700!important;}
+.nrw{position:relative;}
+.nrb{display:flex;align-items:center;gap:4px;cursor:pointer;}
+.nra{font-size:0.65rem;}
+.nrd{display:none;position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%);background:#fff;border:1px solid #E2E8F0;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.12);padding:14px;z-index:99998;}
+.nrd a{display:block;padding:7px 10px;font-size:0.82rem;color:#334155;text-decoration:none;border-radius:6px;text-align:center;}
+.nrd a:hover{background:rgba(200,169,110,0.1);color:#C8A96E;}
+#navToggle{display:none;background:none;border:none;cursor:pointer;font-size:24px;color:#1A2340;padding:4px;}
+@media(max-width:900px){nav{padding:0 16px;height:56px;}body{padding-top:56px;}#navToggle{display:flex!important;align-items:center;justify-content:center;}.nav-links{display:none!important;position:fixed;top:56px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0!important;background:#fff;border-bottom:1px solid #E2E8F0;box-shadow:0 8px 24px rgba(0,0,0,0.08);padding:8px 0;max-height:calc(100vh - 56px);overflow-y:auto;z-index:99998;}.nav-links.open{display:flex!important;}.nav-links>a,.nav-links>.nrw>.nrb{padding:14px 24px!important;font-size:0.95rem!important;border-bottom:1px solid #F1F5F9;}.nrd{position:static!important;transform:none!important;box-shadow:none!important;border:none!important;border-radius:0!important;padding:8px 24px!important;width:100%!important;}}
 </style>
-<nav class="global-nav" id="globalNav">
- <div class="nav-logo-area">
- <a href="/" class="nav-logo"><img src="${BRAND_URL}" alt="은빛스터디" style="width:36px;height:36px;object-fit:contain;"> <span style="color:#4A90D9;">은빛</span><span>스터디</span></a>
- <div class="nav-badge">누적 방문자<span class="nav-badge-num">50,000명+</span></div>
- </div>
- <button class="nav-toggle" id="navToggle" aria-label="메뉴" onclick="var m=document.getElementById('navMenu');m.classList.toggle('open');this.innerHTML=m.classList.contains('open')?'✕':'☰';">☰</button>
- <div class="nav-menu" id="navMenu">
- <div class="nav-region-wrap">
- <button type="button" class="nav-region-toggle" id="navRegionToggle" onclick="(function(e){e.stopPropagation();var b=document.getElementById('navRegionToggle');var p=document.getElementById('navRegionPanel');var o=p.classList.toggle('open');b.classList.toggle('open',o);})(event)">과외찾기 <span class="arrow-down">▾</span></button>
- <div class="nav-region-panel" id="navRegionPanel">
- <div class="nav-panel-tabs">
- <button class="nav-panel-tab active" onclick="switchNavTab(0)">📍 지역별 과외</button>
- <button class="nav-panel-tab" onclick="switchNavTab(1)">🎓 학년별 과외</button>
- <button class="nav-panel-tab" onclick="switchNavTab(2)">🏫 학교별 과외</button>
- </div>
- <div class="nav-panel-content active" id="navTabContent0">
- <div class="nav-region-grid">
- <a href="/seoul">📍 서울</a>
- <a href="/gyeonggi">🌳 경기</a>
- <a href="/incheon">🌊 인천</a>
- <a href="/busan">🐟 부산</a>
- <a href="/daegu">🍎 대구</a>
- <a href="/daejeon">🌲 대전</a>
- <a href="/gwangju">🌺 광주</a>
- <a href="/ulsan">⚙ 울산</a>
- <a href="/sejong">🏛 세종</a>
- <a href="/gangwon">🏔 강원</a>
- <a href="/chungbuk">🌾 충북</a>
- <a href="/chungnam">🌊 충남</a>
- <a href="/jeonbuk">🌿 전북</a>
- <a href="/jeonnam">🍃 전남</a>
- <a href="/gyeongbuk">🍎 경북</a>
- <a href="/gyeongnam">🌊 경남</a>
- <a href="/jeju">🌸 제주</a>
- </div>
- </div>
- <div class="nav-panel-content" id="navTabContent1">
- <div style="padding-bottom:6px;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08);"><span style="color:#C8A96E;font-size:12px;font-weight:700;">🌱 초등학생</span></div>
- <div class="nav-grade-grid" style="margin-bottom:16px;">
- <a href="/grade/elem1">초1</a>
- <a href="/grade/elem2">초2</a>
- <a href="/grade/elem3">초3</a>
- <a href="/grade/elem4">초4</a>
- <a href="/grade/elem5">초5</a>
- <a href="/grade/elem6">초6</a>
- </div>
- <div style="padding-bottom:6px;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08);"><span style="color:#C8A96E;font-size:12px;font-weight:700;">📘 중학생</span></div>
- <div class="nav-grade-grid" style="margin-bottom:16px;">
- <a href="/grade/mid1">중1</a>
- <a href="/grade/mid2">중2</a>
- <a href="/grade/mid3">중3</a>
- </div>
- <div style="padding-bottom:6px;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08);"><span style="color:#C8A96E;font-size:12px;font-weight:700;">📕 고등학생</span></div>
- <div class="nav-grade-grid" style="margin-bottom:16px;">
- <a href="/grade/high1">고1</a>
- <a href="/grade/high2">고2</a>
- <a href="/grade/high3">고3</a>
- </div>
- <div class="nav-grade-grid">
- <a href="/grade/nsu" style="border-color:#e74c3c;color:#e74c3c;">🔥 재수생</a>
- </div>
- </div>
- <div class="nav-panel-content" id="navTabContent2">
- <div class="nav-school-grid">
- <a href="/schools/seoul">📍 서울</a>
- <a href="/schools/gyeonggi">🌳 경기</a>
- <a href="/schools/incheon">🌊 인천</a>
- <a href="/schools/busan">🐟 부산</a>
- <a href="/schools/daegu">🍎 대구</a>
- <a href="/schools/daejeon">🌲 대전</a>
- <a href="/schools/gwangju">🌺 광주</a>
- <a href="/schools/ulsan">⚙ 울산</a>
- <a href="/schools/sejong">🏛 세종</a>
- <a href="/schools/gangwon">🏔 강원</a>
- <a href="/schools/chungbuk">🌾 충북</a>
- <a href="/schools/chungnam">🌊 충남</a>
- <a href="/schools/jeonbuk">🌿 전북</a>
- <a href="/schools/jeonnam">🍃 전남</a>
- <a href="/schools/gyeongbuk">🍎 경북</a>
- <a href="/schools/gyeongnam">🌊 경남</a>
- <a href="/schools/jeju">🌸 제주</a>
- </div>
- </div>
- </div>
- </div>
- <div class="nav-region-wrap"><button type="button" class="nav-region-toggle" onclick="(function(e){e.stopPropagation();var p=document.getElementById('subjectPanel');if(p){p.style.display=p.style.display==='block'?'none':'block';}})(event)" style="display:flex;align-items:center;gap:4px;background:none;border:none;cursor:pointer;color:#333;font-size:15px;font-weight:600;font-family:Malgun Gothic,sans-serif;padding:0;white-space:nowrap;">과목수업 <span class="arrow-down" style="font-size:11px;">▾</span></button><div id="subjectPanel" style="position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);width:360px;background:#1A2340;border:1px solid rgba(200,169,110,0.35);border-radius:14px;padding:14px;box-shadow:0 18px 48px rgba(0,0,0,0.35);display:none;z-index:99998;"><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;"><a href="/subject/korean" style="display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;text-decoration:none;color:#fff;font-size:13px;font-weight:600;transition:background .15s;" onmouseover="this.style.background='rgba(200,169,110,.15)'" onmouseout="this.style.background='transparent'">📖 국어</a><a href="/subject/english" style="display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;text-decoration:none;color:#fff;font-size:13px;font-weight:600;transition:background .15s;" onmouseover="this.style.background='rgba(200,169,110,.15)'" onmouseout="this.style.background='transparent'">🌍 영어</a><a href="/subject/math" style="display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;text-decoration:none;color:#fff;font-size:13px;font-weight:600;transition:background .15s;" onmouseover="this.style.background='rgba(200,169,110,.15)'" onmouseout="this.style.background='transparent'">🔢 수학</a><a href="/subject/science" style="display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;text-decoration:none;color:#fff;font-size:13px;font-weight:600;transition:background .15s;" onmouseover="this.style.background='rgba(200,169,110,.15)'" onmouseout="this.style.background='transparent'">🧪 과학</a><a href="/subject/social" style="display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;text-decoration:none;color:#fff;font-size:13px;font-weight:600;transition:background .15s;" onmouseover="this.style.background='rgba(200,169,110,.15)'" onmouseout="this.style.background='transparent'">🗺️ 사회</a><a href="/subject/coding" style="display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;text-decoration:none;color:#fff;font-size:13px;font-weight:600;transition:background .15s;" onmouseover="this.style.background='rgba(200,169,110,.15)'" onmouseout="this.style.background='transparent'">💻 코딩</a><a href="/subject/essay" style="display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;text-decoration:none;color:#fff;font-size:13px;font-weight:600;transition:background .15s;" onmouseover="this.style.background='rgba(200,169,110,.15)'" onmouseout="this.style.background='transparent'">✏️ 논술</a><a href="/subject/ged" style="display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;text-decoration:none;color:#fff;font-size:13px;font-weight:600;transition:background .15s;" onmouseover="this.style.background='rgba(200,169,110,.15)'" onmouseout="this.style.background='transparent'">📋 검정고시</a><a href="/subject/social-exam" style="display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;text-decoration:none;color:#fff;font-size:13px;font-weight:600;transition:background .15s;" onmouseover="this.style.background='rgba(200,169,110,.15)'" onmouseout="this.style.background='transparent'">📊 사회탐구</a><a href="/subject/science-exam" style="display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;text-decoration:none;color:#fff;font-size:13px;font-weight:600;transition:background .15s;" onmouseover="this.style.background='rgba(200,169,110,.15)'" onmouseout="this.style.background='transparent'">🔬 과학탐구</a></div></div></div>
- <a href="/academy">학원수업</a>
- <div class="nav-region-wrap"><button type="button" class="nav-region-toggle" onclick="toggleLangPanel(event)" style="display:flex;align-items:center;gap:4px;background:none;border:none;cursor:pointer;color:#333;font-size:15px;font-weight:600;font-family:Malgun Gothic,sans-serif;padding:0;white-space:nowrap;">제2외국어 <span class="arrow-down" style="font-size:11px;">▾</span></button><div id="langPanel" style="position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);width:280px;background:#1A2340;border:1px solid rgba(200,169,110,0.35);border-radius:14px;padding:14px;box-shadow:0 18px 48px rgba(0,0,0,0.35);display:none;z-index:99998;"><a href="/language/english" style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px;text-decoration:none;color:#fff;font-size:14px;font-weight:600;">🇺🇸 영어 회화</a><a href="/language/japanese" style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px;text-decoration:none;color:#fff;font-size:14px;font-weight:600;">🇯🇵 일본어 회화</a><a href="/language/chinese" style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px;text-decoration:none;color:#fff;font-size:14px;font-weight:600;">🇨🇳 중국어 회화</a></div></div>
- <a href="/etc">기타교육</a>
- <a href="https://eunshinestudy.com/#form" target="_blank" class="nav-cta">문의하기</a>
- </div>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<nav>
+<a href="/" class="nav-logo">🌟 <span class="accent">은빛</span>스터디</a>
+<button id="navToggle" onclick="var m=document.getElementById('navMenu');m.classList.toggle('open');this.innerHTML=m.classList.contains('open')?'✕':'☰';">☰</button>
+<div class="nav-links" id="navMenu">
+<div class="nrw"><a href="#" class="nrb" onclick="event.preventDefault();var p=document.getElementById('ddF');p.style.display=p.style.display==='block'?'none':'block';">과외찾기 <span class="nra">▾</span></a><div class="nrd" id="ddF" style="width:420px;"><div style="display:flex;gap:8px;margin-bottom:12px;"><button class="ddt" onclick="switchDD(0)" style="flex:1;padding:8px;border-radius:8px;border:1.5px solid #E2E8F0;background:#1A2340;color:#fff;font-size:0.8rem;font-weight:700;cursor:pointer;font-family:inherit;">📍 지역별</button><button class="ddt" onclick="switchDD(1)" style="flex:1;padding:8px;border-radius:8px;border:1.5px solid #E2E8F0;background:#fff;color:#334155;font-size:0.8rem;font-weight:700;cursor:pointer;font-family:inherit;">🎓 학년별</button><button class="ddt" onclick="switchDD(2)" style="flex:1;padding:8px;border-radius:8px;border:1.5px solid #E2E8F0;background:#fff;color:#334155;font-size:0.8rem;font-weight:700;cursor:pointer;font-family:inherit;">🏫 학교별</button></div><div id="ddC0" style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;"><a href="/seoul">📍 서울</a><a href="/gyeonggi">🌳 경기</a><a href="/incheon">🌊 인천</a><a href="/busan">🐟 부산</a><a href="/daegu">🍎 대구</a><a href="/daejeon">🌲 대전</a><a href="/gwangju">🌺 광주</a><a href="/ulsan">⚙ 울산</a><a href="/sejong">🏛 세종</a><a href="/gangwon">🏔 강원</a><a href="/chungbuk">🌾 충북</a><a href="/chungnam">🌊 충남</a><a href="/jeonbuk">🌿 전북</a><a href="/jeonnam">🍃 전남</a><a href="/gyeongbuk">🍎 경북</a><a href="/gyeongnam">🌊 경남</a><a href="/jeju">🌸 제주</a></div><div id="ddC1" style="display:none;"><div style="font-size:0.72rem;font-weight:700;color:#C8A96E;margin-bottom:6px;">🌱 초등학생</div><div style="display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-bottom:10px;"><a href="/grade/elem1">초1</a><a href="/grade/elem2">초2</a><a href="/grade/elem3">초3</a><a href="/grade/elem4">초4</a><a href="/grade/elem5">초5</a><a href="/grade/elem6">초6</a></div><div style="font-size:0.72rem;font-weight:700;color:#C8A96E;margin-bottom:6px;">📘 중학생</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:10px;"><a href="/grade/mid1">중1</a><a href="/grade/mid2">중2</a><a href="/grade/mid3">중3</a></div><div style="font-size:0.72rem;font-weight:700;color:#C8A96E;margin-bottom:6px;">📕 고등학생</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:8px;"><a href="/grade/high1">고1</a><a href="/grade/high2">고2</a><a href="/grade/high3">고3</a></div><div><a href="/grade/nsu" style="border-color:#e74c3c;color:#e74c3c;">🔥 재수생</a></div></div><div id="ddC2" style="display:none;grid-template-columns:repeat(4,1fr);gap:4px;"><a href="/schools/seoul">📍 서울</a><a href="/schools/gyeonggi">🌳 경기</a><a href="/schools/incheon">🌊 인천</a><a href="/schools/busan">🐟 부산</a><a href="/schools/daegu">🍎 대구</a><a href="/schools/daejeon">🌲 대전</a><a href="/schools/gwangju">🌺 광주</a><a href="/schools/ulsan">⚙ 울산</a><a href="/schools/sejong">🏛 세종</a><a href="/schools/gangwon">🏔 강원</a><a href="/schools/chungbuk">🌾 충북</a><a href="/schools/chungnam">🌊 충남</a><a href="/schools/jeonbuk">🌿 전북</a><a href="/schools/jeonnam">🍃 전남</a><a href="/schools/gyeongbuk">🍎 경북</a><a href="/schools/gyeongnam">🌊 경남</a><a href="/schools/jeju">🌸 제주</a></div></div></div>
+<div class="nrw"><a href="#" class="nrb" onclick="event.preventDefault();var p=document.getElementById('ddS');p.style.display=p.style.display==='block'?'none':'block';">과목수업 <span class="nra">▾</span></a><div class="nrd" id="ddS" style="width:320px;"><div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;"><a href="/subject/korean">📖 국어</a><a href="/subject/english">🌍 영어</a><a href="/subject/math">🔢 수학</a><a href="/subject/science">🧪 과학</a><a href="/subject/social">🗺️ 사회</a><a href="/subject/coding">💻 코딩</a><a href="/subject/essay">✏️ 논술</a><a href="/subject/ged">📋 검정고시</a><a href="/subject/social-exam">📊 사회탐구</a><a href="/subject/science-exam">🔬 과학탐구</a></div></div></div>
+<a href="/academy">학원수업</a>
+<div class="nrw"><a href="#" class="nrb" onclick="event.preventDefault();var p=document.getElementById('ddL');p.style.display=p.style.display==='block'?'none':'block';">제2외국어 <span class="nra">▾</span></a><div class="nrd" id="ddL" style="width:240px;"><a href="/language/english">🇺🇸 영어 회화</a><a href="/language/japanese">🇯🇵 일본어 회화</a><a href="/language/chinese">🇨🇳 중국어 회화</a></div></div>
+<a href="/etc">기타교육</a>
+<a href="https://eunshinestudy.com/#form" class="nav-cta">문의하기</a>
+</div>
 </nav>
-<script>
-function toggleLangPanel(e){if(e)e.stopPropagation();var p=document.getElementById('langPanel');if(!p)return;p.style.display=p.style.display==='block'?'none':'block';}document.addEventListener('click',function(e){var p=document.getElementById('langPanel');if(p&&!p.parentElement.contains(e.target))p.style.display='none';});
-function switchNavTab(idx){var tabs=document.querySelectorAll('.nav-panel-tab');var contents=document.querySelectorAll('.nav-panel-content');tabs.forEach(function(t,i){t.classList.toggle('active',i===idx);});contents.forEach(function(c,i){c.classList.toggle('active',i===idx);});}
-document.addEventListener('click',function(e){var sp=document.getElementById('subjectPanel');if(sp&&!sp.parentElement.contains(e.target))sp.style.display='none';});document.addEventListener('click',function(e){var w=document.querySelector('.nav-region-wrap');var p=document.getElementById('navRegionPanel');var b=document.getElementById('navRegionToggle');if(!w||!p||!b)return;if(!w.contains(e.target)){p.classList.remove('open');b.classList.remove('open');}});
-</script>
-<div style="height:70px;"></div>`;
+<script>function switchDD(i){for(var j=0;j<3;j++){document.getElementById('ddC'+j).style.display=j===i?(j===1?'block':'grid'):'none';var t=document.querySelectorAll('.ddt');t[j].style.background=j===i?'#1A2340':'#fff';t[j].style.color=j===i?'#fff':'#334155';}}document.addEventListener('click',function(e){['ddF','ddS','ddL'].forEach(function(id){var d=document.getElementById(id);if(d&&!d.parentElement.contains(e.target))d.style.display='none';});});</script>`;
 const FAVICON_TAGS = '<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><link rel="apple-touch-icon" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta property="og:site_name" content="은빛스터디"><meta property="og:type" content="website"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/banner1.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/banner1.png">';
 const COMMON_STYLE = `<style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Malgun Gothic',sans-serif;background:#f4f7f6;padding-top:70px;}.rv-carousel{position:relative;overflow:hidden;}.rv-track{display:flex;transition:transform .5s ease;gap:16px;}.rv-track .rv-card{min-width:calc(50% - 8px);flex-shrink:0;box-sizing:border-box;}@media(max-width:768px){.rv-track .rv-card{min-width:100%;}}.rv-dots{display:flex;justify-content:center;gap:6px;margin-top:16px;}.rv-dot{width:28px;height:4px;border-radius:2px;background:rgba(26,35,64,.12);cursor:pointer;border:none;padding:0;transition:all .3s;}.rv-dot.on{width:40px;background:#C8A96E;}</style>${FAVICON_TAGS}`;
 const FLOATING = `<div style="position:fixed;bottom:24px;right:18px;display:flex;flex-direction:column;gap:8px;z-index:9998;">
@@ -1165,7 +1097,21 @@ const FLOATING = `<div style="position:fixed;bottom:24px;right:18px;display:flex
  </a>
 </div>`
 const CONTACT = `<section style="background:#1A2340;color:white;text-align:center;padding:64px 20px;"><h2 style="font-size:clamp(22px,4vw,34px);margin-bottom:16px;font-weight:900;">성적 향상의 골든타임, 지금 놓치지 마세요</h2><p style="font-size:16px;color:rgba(255,255,255,0.6);margin-bottom:28px;">은빛쌤과 함께라면 목표 대학이 달라집니다</p><div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;"><a href="https://eunshinestudy.com/#form" style="background:linear-gradient(135deg,#C8A96E,#E8D09A);color:#1A2340;text-decoration:none;padding:16px 38px;border-radius:50px;font-weight:700;font-size:17px;display:inline-block;">상담 신청하기</a><a href="tel:01023370458" style="background:rgba(255,255,255,0.1);border:2px solid rgba(255,255,255,0.3);color:#fff;text-decoration:none;padding:16px 38px;border-radius:50px;font-weight:700;font-size:17px;display:inline-block;">📞 전화 상담 010-2337-0458</a></div></section>`;
-const FOOTER = `<footer style="background:#07101e;color:rgba(255,255,255,0.38);text-align:center;padding:36px 20px;font-size:13px;line-height:2;"><span style="font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:#E8EDF5;display:block;margin-bottom:12px;">🌟 은빛스터디</span><p>© 2026 은빛스터디 All Rights Reserved.</p></footer>`;
+const FOOTER = `
+<section style="background:linear-gradient(135deg,#1A2340,#2a3d6b);padding:64px 40px;text-align:center;">
+ <h2 style="font-size:clamp(1.4rem,3vw,2rem);font-weight:900;color:#fff;margin-bottom:12px;">성적 향상의 골든타임, 지금 놓치지 마세요</h2>
+ <p style="font-size:0.95rem;color:rgba(255,255,255,0.55);margin-bottom:28px;">은빛쌤과 함께라면 목표 대학이 달라집니다</p>
+ <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+  <a href="https://eunshinestudy.com/#form" style="background:linear-gradient(135deg,#C8A96E,#E8D09A);color:#1A2340;padding:14px 32px;border-radius:10px;font-size:0.95rem;font-weight:800;text-decoration:none;box-shadow:0 4px 16px rgba(200,169,110,0.35);">📝 상담 신청하기</a>
+  <a href="tel:01023370458" style="border:1.5px solid rgba(255,255,255,0.3);color:#fff;padding:14px 32px;border-radius:10px;font-size:0.95rem;font-weight:600;text-decoration:none;">📞 전화 상담 010-2337-0458</a>
+ </div>
+</section>
+<footer style="background:#07101e;color:rgba(255,255,255,0.4);text-align:center;padding:36px 20px;font-size:0.82rem;line-height:2;">
+ <div style="font-size:1.1rem;font-weight:800;color:rgba(255,255,255,0.8);margin-bottom:8px;">🌟 은빛스터디</div>
+ <div style="margin-bottom:8px;"><a href="tel:01023370458" style="color:#E8D09A;text-decoration:none;font-weight:600;">📞 010-2337-0458</a> &nbsp;·&nbsp; <a href="https://pf.kakao.com/_KRAjG/chat" style="color:#E8D09A;text-decoration:none;font-weight:600;">💬 카카오톡 문의</a></div>
+ <p>상담 가능 시간 · 평일&주말 상관없이 24시간 상담 가능합니다.</p>
+ <p>© 2026 은빛스터디 All Rights Reserved.</p>
+</footer>`;
 const ACAD_FLOATING = `<div style="position:fixed;bottom:24px;right:18px;display:flex;flex-direction:column;gap:8px;z-index:9998;">
  <a href="tel:01023370458" style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:white;color:#1A2340;text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.18);white-space:nowrap;">📞 <span>전화 상담</span></a>
  <a href="#acadForm" onclick="var f=document.getElementById('acadForm');if(f)f.scrollIntoView({behavior:'smooth'});return false;" style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:linear-gradient(135deg,#C8A96E,#E8D09A);color:#1A2340;border:1px solid rgba(200,169,110,0.6);text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.2);white-space:nowrap;">✏️ <span>상담 신청</span></a>
@@ -4715,48 +4661,75 @@ function buildSubjectPage(subSlug){
  const sKey=SUBJECT_LIST.find(k=>SUBJECTS[k].slug===subSlug);
  if(!sKey)return null;
  const s=SUBJECTS[sKey];
- const regionLinks=Object.keys(locations).map(rs=>{const rd=locations[rs].name;return '<a href="/'+rs+'" style="display:inline-flex;align-items:center;gap:6px;padding:10px 18px;background:rgba(255,255,255,.05);border:1px solid rgba(200,169,110,.25);color:#fff;text-decoration:none;border-radius:50px;font-size:13px;font-weight:700;transition:background .15s;" onmouseover="this.style.background=\'rgba(200,169,110,.18)\'" onmouseout="this.style.background=\'rgba(255,255,255,.05)\'">'+rd+'</a>';}).join('');
- const otherSubjects=SUBJECT_LIST.filter(k=>k!==sKey).map(k=>{const o=SUBJECTS[k];return '<a href="/subject/'+o.slug+'" style="display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:#fff;border:1px solid rgba(192,200,216,.4);color:#1A2340;text-decoration:none;border-radius:50px;font-size:13px;font-weight:700;transition:all .2s;" onmouseover="this.style.background=\'#1A2340\';this.style.color=\'#fff\'" onmouseout="this.style.background=\'#fff\';this.style.color=\'#1A2340\'">'+o.icon+' '+o.name+'</a>';}).join('');
+ const st=SUBJ_STUDY[sKey]||{};
+ const grades=[];
+ if(st.elem)grades.push({id:'elem',label:'🌱 초등학생',color:'#2e7d52',data:st.elem});
+ if(st.mid)grades.push({id:'mid',label:'📘 중학생',color:'#1a5fa8',data:st.mid});
+ if(st.high)grades.push({id:'high',label:'🔥 고등학생',color:'#7b1fa2',data:st.high});
+ const tabs=grades.map((g,i)=>'<button class="gt'+(i===0?' gta':'')+'" onclick="switchGrade('+i+')" style="flex:1;padding:12px 16px;border-radius:10px;border:2px solid '+(i===0?g.color:'#E2E8F0')+';background:'+(i===0?g.color:'#fff')+';color:'+(i===0?'#fff':'#334155')+';font-size:0.9rem;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s;">'+g.label+'</button>').join('');
+ const panels=grades.map((g,i)=>'<div class="gp" id="gp'+i+'" style="display:'+(i===0?'block':'none')+';"><div style="background:'+g.color+';color:#fff;padding:20px 24px;border-radius:14px;margin-bottom:20px;"><h3 style="font-size:1.1rem;font-weight:800;margin-bottom:8px;">'+g.label.split(' ')[1]+' '+s.name+' 학습법</h3><p style="font-size:0.85rem;opacity:0.85;line-height:1.7;">'+s.name+' 과목을 효과적으로 학습하는 방법을 안내합니다.</p></div><div style="margin-bottom:24px;"><h4 style="font-size:1rem;font-weight:800;color:#1A2340;margin-bottom:12px;display:flex;align-items:center;gap:8px;">📚 공부 방법</h4><p style="font-size:0.88rem;color:#334155;line-height:2;">'+g.data.study+'</p></div><div><h4 style="font-size:1rem;font-weight:800;color:#1A2340;margin-bottom:12px;display:flex;align-items:center;gap:8px;">📝 시험 대비 전략</h4><p style="font-size:0.88rem;color:#334155;line-height:2;">'+g.data.exam+'</p></div></div>').join('');
+ const curCards=s.curriculum?s.curriculum.map((c,i)=>'<div style="background:#fff;border:1.5px solid #E2E8F0;border-radius:14px;padding:24px 20px;"><div style="font-size:0.7rem;font-weight:700;color:#C8A96E;letter-spacing:1px;margin-bottom:8px;">STEP '+(i+1)+'</div><div style="font-size:0.95rem;font-weight:800;color:#1A2340;margin-bottom:8px;">'+c.t+'</div><div style="font-size:0.85rem;color:#64748B;line-height:1.7;">'+c.d+'</div></div>').join(''):'';
+ const tipCards=s.tips?s.tips.map(t=>'<div style="border:1px solid #E2E8F0;border-radius:12px;padding:20px;margin-bottom:12px;"><p style="font-weight:700;color:#1A2340;font-size:0.92rem;margin-bottom:8px;">Q. '+t.q+'</p><p style="font-size:0.85rem;color:#64748B;line-height:1.8;">'+t.a+'</p></div>').join(''):'';
+ const otherSubjects=SUBJECT_LIST.filter(k=>k!==sKey).map(k=>{const o=SUBJECTS[k];return '<a href="/subject/'+o.slug+'" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:#fff;border:1.5px solid #E2E8F0;color:#1A2340;text-decoration:none;border-radius:50px;font-size:0.82rem;font-weight:600;">'+o.icon+' '+o.name+'</a>';}).join('');
+ const gradeColors=grades.map(g=>g.color);
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
  <title>${s.name} 과외 | 은빛스터디</title>
  <meta name="description" content="${s.name} 1:1 맞춤 과외. ${s.desc}">
- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
  ${COMMON_STYLE}
+ <style>.gt{transition:all .2s;}.gt:hover{transform:translateY(-2px);}@media(max-width:768px){.grade-tabs{flex-direction:column!important;}}</style>
  </head><body>
  ${NAV}
- <div style="background:linear-gradient(140deg,#0D1526,#1e2d50 55%,#2a3d6b);padding:60px 20px 40px;text-align:center;">
-  <div style="font-size:52px;margin-bottom:14px;">${s.icon}</div>
-  <h1 style="font-size:clamp(28px,5vw,42px);font-weight:900;color:#fff;margin-bottom:12px;">${s.name} 과외</h1>
-  <p style="font-size:15px;color:rgba(255,255,255,.6);line-height:1.8;max-width:600px;margin:0 auto;">${s.desc}</p>
-  <div style="margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-   <a href="#form" style="padding:14px 32px;background:linear-gradient(135deg,#C8A96E,#E8D09A);color:#1A2340;border-radius:50px;font-size:15px;font-weight:700;text-decoration:none;">무료 상담 신청</a>
-   <a href="tel:01023370458" style="padding:14px 32px;border:1.5px solid rgba(255,255,255,.3);color:#fff;border-radius:50px;font-size:15px;font-weight:700;text-decoration:none;">📞 전화 상담</a>
+ <div style="background:linear-gradient(135deg,#F8FAFC,#EEF2FF 50%,#F8FAFC);padding:60px 20px 40px;text-align:center;">
+  <div style="font-size:3rem;margin-bottom:14px;">${s.icon}</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;color:#1A2340;margin-bottom:10px;">${s.name} 과외</h1>
+  <p style="font-size:0.95rem;color:#64748B;line-height:1.8;max-width:550px;margin:0 auto 24px;">${s.desc}</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+   <a href="https://eunshinestudy.com/#form" style="padding:12px 28px;background:#1A2340;color:#fff;border-radius:10px;font-size:0.95rem;font-weight:700;text-decoration:none;">무료 상담 신청</a>
+   <a href="tel:01023370458" style="padding:12px 28px;border:1.5px solid #E2E8F0;color:#1A2340;border-radius:10px;font-size:0.95rem;font-weight:600;text-decoration:none;">📞 전화 상담</a>
   </div>
  </div>
- <div style="background:#1A2340;padding:30px 20px;">
-  <div style="max-width:900px;margin:0 auto;">
-   <div style="background:#fff;border-radius:20px;padding:clamp(24px,4vw,44px);box-shadow:0 4px 32px rgba(0,0,0,.2);margin-bottom:24px;">
-    <h2 style="font-size:22px;font-weight:900;color:#1A2340;margin-bottom:16px;border-left:5px solid #C8A96E;padding-left:14px;">${s.name} 수업 안내</h2>
-    <p style="font-size:15px;color:#4A5568;line-height:2;">${s.content}</p>
-   </div>
-   <div style="background:#fff;border-radius:20px;padding:clamp(24px,4vw,44px);box-shadow:0 4px 32px rgba(0,0,0,.2);margin-bottom:24px;">
-    <h2 style="font-size:19px;font-weight:900;color:#1A2340;margin-bottom:18px;">📍 지역별 ${s.name} 과외 찾기</h2>
-    <div style="display:flex;flex-wrap:wrap;gap:10px;">
-     ${regionLinks}
-    </div>
-   </div>
-   <div style="background:#fff;border-radius:20px;padding:clamp(24px,4vw,44px);box-shadow:0 4px 32px rgba(0,0,0,.2);margin-bottom:24px;">
-    <h2 style="font-size:19px;font-weight:900;color:#1A2340;margin-bottom:18px;">📚 다른 과목 수업</h2>
-    <div style="display:flex;flex-wrap:wrap;gap:10px;">
-     ${otherSubjects}
-    </div>
-   </div>
+ <div style="max-width:900px;margin:0 auto;padding:40px 20px;">
+  <div style="background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:clamp(24px,4vw,40px);margin-bottom:24px;box-shadow:0 4px 24px rgba(26,35,64,0.06);">
+   <h2 style="font-size:1.2rem;font-weight:900;color:#1A2340;margin-bottom:14px;border-left:4px solid #C8A96E;padding-left:14px;">${s.name} 수업 안내</h2>
+   <p style="font-size:0.92rem;color:#334155;line-height:2;">${s.content}</p>
+  </div>
+  <div style="background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:clamp(24px,4vw,40px);margin-bottom:24px;box-shadow:0 4px 24px rgba(26,35,64,0.06);">
+   <h2 style="font-size:1.2rem;font-weight:900;color:#1A2340;margin-bottom:20px;border-left:4px solid #C8A96E;padding-left:14px;">📋 커리큘럼</h2>
+   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;">${curCards}</div>
+  </div>
+  <div style="background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:clamp(24px,4vw,40px);margin-bottom:24px;box-shadow:0 4px 24px rgba(26,35,64,0.06);">
+   <h2 style="font-size:1.2rem;font-weight:900;color:#1A2340;margin-bottom:20px;border-left:4px solid #C8A96E;padding-left:14px;">🎓 학년별 공부법 & 시험 대비</h2>
+   <div class="grade-tabs" style="display:flex;gap:10px;margin-bottom:24px;">${tabs}</div>
+   <div id="gradePanels">${panels}</div>
+  </div>
+  <div style="background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:clamp(24px,4vw,40px);margin-bottom:24px;box-shadow:0 4px 24px rgba(26,35,64,0.06);">
+   <h2 style="font-size:1.2rem;font-weight:900;color:#1A2340;margin-bottom:20px;border-left:4px solid #C8A96E;padding-left:14px;">💡 자주 묻는 질문</h2>
+   ${tipCards}
+  </div>
+  <div style="background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:clamp(24px,4vw,40px);margin-bottom:24px;box-shadow:0 4px 24px rgba(26,35,64,0.06);">
+   <h2 style="font-size:1.2rem;font-weight:900;color:#1A2340;margin-bottom:16px;">📚 다른 과목 수업</h2>
+   <div style="display:flex;flex-wrap:wrap;gap:8px;">${otherSubjects}</div>
   </div>
  </div>
  ${FOOTER}
+ <script>
+ var gradeColors=${JSON.stringify(gradeColors)};
+ function switchGrade(idx){
+  var tabs=document.querySelectorAll('.gt');
+  var panels=document.querySelectorAll('.gp');
+  tabs.forEach(function(t,i){
+   t.style.background=i===idx?gradeColors[i]:'#fff';
+   t.style.color=i===idx?'#fff':'#334155';
+   t.style.borderColor=i===idx?gradeColors[i]:'#E2E8F0';
+  });
+  panels.forEach(function(p,i){p.style.display=i===idx?'block':'none';});
+ }
+ </script>
  </body></html>`;
 }
+
+
 
 
  // ── favicon ──
