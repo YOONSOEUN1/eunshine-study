@@ -3484,17 +3484,32 @@ function buildCenterDetailPage(slug) {
   if(loc.l && loc.l.length) html += '<p style="font-size:13px;color:#888;margin-bottom:8px;">'+loc.l.join(' · ')+' 인근</p>';
   html += '<div style="width:40px;height:3px;background:#C8A96E;margin:0 auto;"></div>';
   html += '</div>';
-  html += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;">';
-  combos.forEach(function(c){
-   const url = '/academy/'+encodeURIComponent(ct.sl)+'/'+encodeURIComponent(c.g)+'/'+encodeURIComponent(c.s);
-   const gc = c.g==='초등'?'#3b82f6':(c.g==='중등'?'#10b981':'#f59e0b');
-   html += '<a href="'+url+'" class="subpage-link" style="display:block;background:#fafaf7;border:1px solid #f0ebe0;border-radius:12px;padding:14px 16px;text-decoration:none;transition:all .2s;">';
-   html += '<span style="display:inline-block;background:'+gc+'15;color:'+gc+';padding:2px 10px;border-radius:50px;font-size:11px;font-weight:800;margin-bottom:6px;">'+c.g+'</span>';
-   html += '<p style="font-size:13px;font-weight:800;color:#1A2340;margin:0;line-height:1.5;">'+loc.d+' '+c.s+' 학원</p>';
-   html += '<p style="font-size:11px;color:#C8A96E;font-weight:700;margin:4px 0 0;">자세히 보기 →</p>';
-   html += '</a>';
+  html += '<div style="display:flex;gap:8px;justify-content:center;margin-bottom:20px;">';
+  var tabGrades=['초등','중등','고등'];
+  var tabColors=['#2e7d52','#1a5fa8','#7b1fa2'];
+  tabGrades.forEach(function(tg,ti){
+   html+='<button class="gtb" onclick="document.querySelectorAll(\'.gtp\').forEach(function(p,i){p.style.display=i==='+ti+'?\'block\':\'none\'});document.querySelectorAll(\'.gtb\').forEach(function(t,i){t.style.background=i==='+ti+'?\''+tabColors[ti]+'\':\'#fff\';t.style.color=i==='+ti+'?\'#fff\':\'#334155\';t.style.borderColor=i==='+ti+'?\''+tabColors[ti]+'\':\'#E2E8F0\';})" style="flex:1;max-width:140px;padding:10px;border-radius:10px;border:2px solid '+(ti===0?tabColors[0]:'#E2E8F0')+';background:'+(ti===0?tabColors[0]:'#fff')+';color:'+(ti===0?'#fff':'#334155')+';font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">'+['🌱 초등','📘 중등','🔥 고등'][ti]+'</button>';
   });
-  html += '</div></div>';
+  html+='</div>';
+  tabGrades.forEach(function(tg,ti){
+   var gc=tabColors[ti];
+   var filtered=combos.filter(function(cc){return cc.g===tg;});
+   html+='<div class="gtp" style="display:'+(ti===0?'block':'none')+'">';
+   if(filtered.length>0){
+    html+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;">';
+    filtered.forEach(function(c){
+     var url='/academy/'+encodeURIComponent(ct.sl)+'/'+encodeURIComponent(c.g)+'/'+encodeURIComponent(c.s);
+     html+='<a href="'+url+'" style="display:block;background:#fafaf7;border:1px solid #f0ebe0;border-radius:12px;padding:16px;text-decoration:none;transition:all .2s;" onmouseover="this.style.boxShadow=\'0 4px 16px rgba(0,0,0,0.08)\'" onmouseout="this.style.boxShadow=\'none\'">';
+     html+='<span style="display:inline-block;background:'+gc+';color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;margin-bottom:6px;">'+c.g+'</span>';
+     html+='<p style="font-size:13px;font-weight:800;color:#1A2340;margin:0;line-height:1.5;">'+loc.d+' '+c.s+' 학원</p>';
+     html+='<p style="font-size:11px;color:#C8A96E;font-weight:700;margin:4px 0 0;">자세히 보기 →</p>';
+     html+='</a>';
+    });
+    html+='</div>';
+   }else{html+='<p style="color:#888;text-align:center;padding:20px;">해당 학년 수업이 없습니다.</p>';}
+   html+='</div>';
+  });
+  html+='</div>';
   return html;
  })()}
 
@@ -3521,7 +3536,7 @@ function buildCenterDetailPage(slug) {
     tb.s.forEach(function(school){
      html+='<div style="border:1.5px solid #E2E8F0;border-radius:12px;padding:14px;">';
      html+='<span style="display:inline-block;background:'+tb.c+';color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px;margin-bottom:8px;">'+tb.l.split(' ')[1]+'</span>';
-     html+='<p style="font-size:14px;font-weight:700;color:#1A2340;margin-bottom:6px;">'+school+'</p>';
+     html+='<a href="/search?q='+encodeURIComponent(school)+'" style="font-size:14px;font-weight:700;color:#1A2340;margin-bottom:6px;display:block;text-decoration:none;" onmouseover="this.style.color=\'#C8A96E\'" onmouseout="this.style.color=\'#1A2340\'">'+school+' →</a>';
      html+='<div style="display:flex;flex-wrap:wrap;gap:4px;">';
      subjs.forEach(function(sj){html+='<span style="font-size:11px;color:#888;border:1px solid #E2E8F0;padding:3px 8px;border-radius:6px;">'+sj+'</span>';});
      html+='</div></div>';
