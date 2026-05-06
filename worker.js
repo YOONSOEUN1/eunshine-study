@@ -704,6 +704,16 @@ const SUCCESS_POOL=[
 {name:"권○○",grade:"초3",subj:"수학",from:"60점대",to:"95점대",period:"4개월",story:"초등 저학년 수학 기초가 부족해 구구단과 받아올림 연산에서 자주 실수했습니다. 매일 연산 10문제를 정확하게 풀고 검산하는 훈련을 4개월간 반복한 결과, 연산 정확도가 크게 올라 95점대를 안정적으로 유지하게 됐습니다."}
 ]
 
+const EDU_ARTICLES=[
+"학습 효과를 극대화하려면 학생의 현재 수준을 정확히 파악하는 것이 첫 번째 단계입니다. 많은 학생이 자신이 어디서 막히는지 모른 채 무작정 문제만 풀다가 시간을 낭비합니다. {KW1}에서는 수업 시작 전 과목별 진단 테스트를 실시하여 학생의 강점과 약점을 명확히 분류합니다. 이를 바탕으로 약점 단원에 집중하는 맞춤형 커리큘럼을 설계하고, 매주 학습 진도를 점검하여 계획을 유연하게 조정합니다. 특히 내신 시험 3주 전부터는 학교별 기출문제 분석을 통해 출제 경향을 파악하고, 예상 문제 풀이와 오답 분석을 집중적으로 진행합니다. {KW2}를 통해 성적 향상을 경험한 학생들은 공통적으로 개념의 빈틈을 메우는 것이 가장 효과적이었다고 말합니다. 단순히 상위권 문제만 풀기보다, 기초 개념부터 차근차근 쌓아올리는 것이 결국 가장 빠른 길입니다.",
+"올바른 학습 습관은 성적 향상의 가장 확실한 기반입니다. {KW1}에서는 단순히 지식을 전달하는 것을 넘어, 학생이 스스로 공부하는 방법을 익히도록 지도합니다. 매일 일정한 시간에 공부하는 루틴 만들기, 오답 노트를 활용한 약점 관리, 시험 전 복습 스케줄 설계 등 자기주도 학습의 핵심 요소를 체계적으로 훈련합니다. {KW2}를 선택한 학부모님들이 가장 만족하는 부분도 바로 이 점입니다. 수업이 끝난 후에도 학생이 혼자서 학습 계획을 세우고 실행할 수 있는 능력을 기르는 것이 {KW3}의 궁극적인 목표입니다. 주간 학습 리포트를 통해 학부모님께 수업 내용, 과제 이행률, 취약점 분석 결과를 투명하게 공유하며, 가정에서의 학습 환경 조성에 대한 조언도 함께 제공합니다.",
+"시험 성적이 정체되어 있다면 공부 방법을 점검해 볼 필요가 있습니다. 같은 시간을 투자해도 방법에 따라 결과는 크게 달라집니다. {KW1}에서는 효율적인 학습 전략을 학생 개인의 학습 스타일에 맞게 설계합니다. 시각형 학습자에게는 마인드맵과 도표 중심의 정리법을, 청각형 학습자에게는 설명하기와 토론 중심의 학습법을 적용합니다. {KW2}를 통해 자신에게 맞는 공부법을 찾은 학생들은 평균 2~3개월 내에 성적 변화를 체감합니다. 특히 내신 시험에서는 학교별 출제 패턴 분석이 핵심입니다. {KW3}에서는 해당 지역 학교의 시험 경향을 축적하여, 어떤 유형의 문제가 자주 출제되는지, 서술형 비중은 어느 정도인지 등을 사전에 파악하고 맞춤 대비합니다.",
+"학생의 잠재력을 끌어내는 것은 단순한 지식 전달이 아닌 동기 부여에서 시작됩니다. {KW1}에서는 학생이 왜 공부해야 하는지를 스스로 깨달을 수 있도록 진로 탐색과 목표 설정을 수업의 일부로 포함합니다. 구체적인 목표가 생긴 학생은 공부에 대한 태도가 달라집니다. {KW2}는 학생 한 명 한 명의 성격, 학습 속도, 관심 분야를 고려하여 수업을 진행하기 때문에 대형 학원에서는 불가능한 세밀한 케어가 가능합니다. 수업 중 학생의 표정과 반응을 관찰하며 이해도를 실시간으로 확인하고, 이해가 부족한 부분은 다른 접근법으로 다시 설명합니다. {KW3}의 이러한 밀착형 수업 방식은 특히 학습에 자신감을 잃은 학생, 공부 방법을 모르는 학생에게 큰 효과를 발휘합니다.",
+"내신과 수능을 동시에 대비하는 것은 고등학생에게 가장 큰 과제입니다. {KW1}에서는 두 마리 토끼를 잡기 위한 전략적 학습 설계를 제공합니다. 학기 중에는 내신에 집중하되 수능 기출 유형을 매주 일정량씩 풀어 실전 감각을 유지하고, 방학에는 수능 대비에 비중을 높여 취약 영역을 집중 보강합니다. {KW2}에서는 학생의 목표 대학과 전형(수시/정시)에 따라 내신과 수능의 비중을 달리 설정하여 가장 효율적인 학습 전략을 세웁니다. {KW3}의 입시 전략 상담은 단순히 성적만 보는 것이 아니라, 학생의 강점 과목, 생활기록부 활동, 자기소개서 소재까지 종합적으로 분석하여 합격 가능성을 높이는 방향을 제시합니다.",
+"초등학교 시기는 공부 습관의 씨앗을 심는 가장 중요한 때입니다. {KW1}에서는 초등학생에게 억지로 공부를 시키기보다, 학습이 즐거운 경험이 될 수 있도록 수업을 설계합니다. 게임형 학습, 실생활 연계 문제, 체험 활동 등을 활용하여 학생의 호기심을 자극하고, 작은 성취감을 반복 경험하게 하여 자신감을 키웁니다. {KW2}를 통해 초등학교 때 형성된 긍정적인 학습 태도는 중학교, 고등학교까지 이어지는 강력한 원동력이 됩니다. {KW3}에서는 기초 연산, 독해, 영어 파닉스 등 각 학년에서 반드시 완성해야 할 핵심 역량을 점검하고, 다음 학년으로의 전환이 매끄럽게 이루어지도록 돕습니다.",
+"중학교는 학습 난이도가 급격히 올라가는 전환점입니다. {KW1}에서는 초등학교와 달라진 시험 체계와 학습량에 적응할 수 있도록 체계적인 학습 관리를 제공합니다. 특히 중학교 수학은 방정식, 함수, 도형 증명 등 추상적 개념이 본격적으로 등장하기 때문에 개념의 빈틈 없는 이해가 필수적입니다. {KW2}에서는 교과서 개념을 완벽히 소화한 뒤 다양한 유형의 문제를 풀어보며 응용력을 키웁니다. 중학교 내신 성적은 고등학교 진학과 직결되므로, {KW3}에서는 시험 범위의 핵심 개념 정리, 기출 유형 분석, 서술형 답안 작성 훈련을 체계적으로 진행합니다. 자유학기제 수행평가에 대비한 탐구 보고서 작성과 발표 능력도 함께 지도합니다."
+];
+
 function genContent(loc,city,dong,grade,subj,schools){
  const seed=cH(loc+"|"+city+"|"+(dong||"")+"|"+(grade||"")+"|"+(subj||""));
  // 학교급별 팁 풀 선택
@@ -738,6 +748,21 @@ const reviews=pkU(rvPool,seed,6,7);
  if(storyPool.length<4)storyPool=SUCCESS_POOL;
  const stories=pkU(storyPool,seed,4,17);
  const columns=pkU(COLUMN_POOL,seed,2,23);
+ // SEO 키워드 생성
+ const regionName=locations[loc]?locations[loc].region_name:'';
+ const cityName=city;
+ const subjs=['국어','영어','수학','과학','사회'];
+ const grades_kw=['초등','중등','고등','초등학생','중학생','고등학생'];
+ const kw1=regionName+cityName+'과외';
+ const kw2=regionName+cityName+pk(subjs,seed,0)+'과외';
+ const kw3=regionName+pk(subjs,seed,1)+'과외';
+ const kwArr=[regionName+cityName+'과외',regionName+cityName+pk(subjs,seed,0)+'과외',regionName+pk(subjs,seed,1)+'과외',cityName+pk(grades_kw,seed,2)+'과외',regionName+'방문과외',cityName+'화상과외',regionName+cityName+'1대1과외',cityName+'내신과외'];
+ // 교육 정보 글 선택 (3개)
+ const eduPicks=pkU(EDU_ARTICLES,seed,3,31);
+ const eduHtml=eduPicks.map(function(a){return a.replace(/\{KW1\}/g,kw1).replace(/\{KW2\}/g,kw2).replace(/\{KW3\}/g,kw3);}).join('\n\n');
+ // SEO 키워드 태그
+ const kwTags=kwArr.map(function(k){return '<span style="display:inline-block;background:#F8FAFC;border:1px solid #E2E8F0;color:#334155;padding:6px 14px;border-radius:50px;font-size:0.78rem;font-weight:600;margin:3px;">'+k+'</span>';}).join('');
+
  // 학교별 맞춤 콘텐츠: 학교 3개 × 서로 다른 템플릿 3개 선택
  let schoolContents=[];
  if(schools&&schools.length>0){
@@ -783,7 +808,16 @@ function renderUniqueContent(ct,dong,grade,subj,tc,rd,schools){
  h+=`<div style="background:#f8faff;border-radius:14px;padding:20px 22px;margin-bottom:14px;border-left:4px solid ${tc};">
  <h3 style="font-size:16px;font-weight:800;color:${tc};margin:0 0 10px 0;">${sc.school} 재학생 맞춤 학습 가이드</h3>
  <p style="font-size:14px;color:#333;line-height:2;margin:0;">${sc.body}</p></div>`;});
- h+=`</div>`;
+ 
+ h+=`<div style="background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:clamp(24px,4vw,40px);margin-bottom:24px;box-shadow:0 4px 24px rgba(26,35,64,0.06);">
+  <h2 style="font-size:1.15rem;font-weight:900;color:#1A2340;margin-bottom:16px;border-left:4px solid #C8A96E;padding-left:14px;">📚 ${cityName} 교육 정보</h2>
+  <p style="font-size:0.88rem;color:#334155;line-height:2.1;white-space:pre-line;">${eduHtml}</p>
+ </div>
+ <div style="background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:24px;margin-bottom:24px;box-shadow:0 4px 24px rgba(26,35,64,0.06);">
+  <h2 style="font-size:1rem;font-weight:800;color:#1A2340;margin-bottom:14px;">🔍 관련 키워드</h2>
+  <div style="display:flex;flex-wrap:wrap;gap:4px;">${kwTags}</div>
+ </div>`;
+h+=`</div>`;
  }
  // ── 학부모 후기 + 성적 사례 통합 ──
  h+=`<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
@@ -1984,7 +2018,7 @@ function buildDongDetailPage(rs, cs, dong, grade, subject) {
  </div>
  <div style="background:#f8faff;border-radius:12px;padding:16px;text-align:center;">
  <div style="font-size:24px;margin-bottom:8px;">🏠</div>
- <div style="font-size:13px;font-weight:700;color:#1A2340;">${dong}에서 방문 수업을 원하는 학생</div>
+ <div style="font-size:13px;font-weight:700;color:#1A2340;">${dong}에서 방문, 화상 수업을 원하는 학생</div>
  </div>
  <div style="background:#f8faff;border-radius:12px;padding:16px;text-align:center;">
  <div style="font-size:24px;margin-bottom:8px;">🎯</div>
@@ -2076,7 +2110,7 @@ function buildDetailPage(rs, cs, grade, subject) {
  </div>
  <div style="background:#f8faff;border-radius:12px;padding:16px;text-align:center;">
  <div style="font-size:24px;margin-bottom:8px;">🏠</div>
- <div style="font-size:13px;font-weight:700;color:#1A2340;">${rd} ${dongStr} 방문 수업을 원하는 학생</div>
+ <div style="font-size:13px;font-weight:700;color:#1A2340;">${rd} ${dongStr} 방문, 화상 수업을 원하는 학생</div>
  </div>
  <div style="background:#f8faff;border-radius:12px;padding:16px;text-align:center;">
  <div style="font-size:24px;margin-bottom:8px;">🎯</div>
