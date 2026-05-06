@@ -3428,13 +3428,10 @@ function buildCenterDetailPage(slug) {
  ${wkBadge}
  </div>
  
- <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+ <div style="background:white;border-radius:20px;border:1.5px dashed #E2E8F0;padding:clamp(22px,4vw,40px);margin-bottom:24px;">
   <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid #C8A96E;padding-left:14px;margin-bottom:16px;">📍 학원 위치 & 주변 정보</h2>
-  <div style="margin-bottom:16px;">
-   <p style="font-size:15px;font-weight:700;color:#1A2340;margin-bottom:6px;">📌 정확한 위치</p>
-   <p style="font-size:14px;color:#555;line-height:1.8;">${ct.a}</p>
-  </div>
-  ${ct.w?'<div style="margin-bottom:16px;"><p style="font-size:15px;font-weight:700;color:#1A2340;margin-bottom:6px;">📍 인근 안내</p><p style="font-size:14px;color:#555;line-height:1.8;">'+ct.w+'</p></div>':''}
+  
+  
   <div style="margin-bottom:16px;">
    <p style="font-size:15px;font-weight:700;color:#C8A96E;margin-bottom:8px;">🏫 타겟 초등학교</p>
    <p style="font-size:14px;color:#555;line-height:1.8;">${ct.se||'정보 없음'}</p>
@@ -3448,10 +3445,7 @@ function buildCenterDetailPage(slug) {
    <p style="font-size:14px;color:#555;line-height:1.8;">${ct.sh||'정보 없음'}</p>
   </div>
  </div>
-<div style="background:white;border-radius:20px;padding:28px;box-shadow:0 2px 12px #0000000f;border-top:4px solid #C8A96E;">
- <h3 style="font-size:16px;font-weight:900;color:#1A2340;margin-bottom:12px;">🏫 타겟 학교</h3>
- <div>${schoolList||'<p style="color:#999;font-size:13px;padding:10px 0;">정보 준비중</p>'}</div>
- </div>
+
  </div>
 
  <!-- 상담 신청 폼 -->
