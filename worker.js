@@ -3536,7 +3536,7 @@ function buildCenterDetailPage(slug) {
     tb.s.forEach(function(school){
      html+='<div style="border:1.5px solid #E2E8F0;border-radius:12px;padding:14px;">';
      html+='<span style="display:inline-block;background:'+tb.c+';color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px;margin-bottom:8px;">'+tb.l.split(' ')[1]+'</span>';
-     html+='<a href="/search?q='+encodeURIComponent(school)+'" style="font-size:14px;font-weight:700;color:#1A2340;margin-bottom:6px;display:block;text-decoration:none;" onmouseover="this.style.color=\'#C8A96E\'" onmouseout="this.style.color=\'#1A2340\'">'+school+' →</a>';
+     html+='<a href="/academy/'+encodeURIComponent(ct.sl)+'/'+encodeURIComponent(tb.l.split(' ')[1])+'/'+(ct.subj&&ct.subj[0]?encodeURIComponent(ct.subj[0]):'국어')+'" style="font-size:14px;font-weight:700;color:#1A2340;margin-bottom:6px;display:block;text-decoration:none;" onmouseover="this.style.color=\'#C8A96E\'" onmouseout="this.style.color=\'#1A2340\'">'+school+' →</a>';
      html+='<div style="display:flex;flex-wrap:wrap;gap:4px;">';
      subjs.forEach(function(sj){html+='<span style="font-size:11px;color:#888;border:1px solid #E2E8F0;padding:3px 8px;border-radius:6px;">'+sj+'</span>';});
      html+='</div></div>';
