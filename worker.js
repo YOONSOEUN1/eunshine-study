@@ -797,7 +797,14 @@ function renderUniqueContent(ct,dong,grade,subj,tc,rd,schools){
  <div><div style="font-weight:700;color:#1A2340;font-size:14px;">${maskName(rv.name)} 학부모님</div>
  <div style="font-size:12px;color:#888;">${area} · ${rv.grade} ${rv.subj}</div></div></div>
  <p style="font-size:13px;color:#555;line-height:1.8;margin:0;">"${rv.body}"</p></div>`;});
- h+=`</div><div class="rv-dots" id="rvCityD"><button class="rv-dot on" onclick="rvGo('rvCity',0)"></button><button class="rv-dot" onclick="rvGo('rvCity',1)"></button><button class="rv-dot" onclick="rvGo('rvCity',2)"></button></div></div>
+ ct.reviews.slice(0,3).forEach(function(rv){
+ h+=`<div class="rv-card" style="border:2px solid ${tc}22;border-radius:16px;padding:20px;background:white;">
+ <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+ <div style="width:40px;height:40px;border-radius:50%;background:${tc};color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;">${rv.name.charAt(0)}</div>
+ <div><div style="font-weight:700;color:#1A2340;font-size:14px;">${maskName(rv.name)} 학부모님</div>
+ <div style="font-size:12px;color:#888;">${area} · ${rv.grade} ${rv.subj}</div></div></div>
+ <p style="font-size:13px;color:#555;line-height:1.8;margin:0;">"${rv.body}"</p></div>`;});
+ h+=`</div></div>
  <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">📈 실제 성적 향상 사례</h2>
  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;">`;
  ct.stories.forEach(function(st){
@@ -826,6 +833,23 @@ function renderUniqueContent(ct,dong,grade,subj,tc,rd,schools){
  <p style="font-weight:700;color:#2563eb;font-size:15px;margin-bottom:8px;">Q. ${area}${subj?" "+subj:""} ${q}</p>
  <p style="font-size:14px;color:#444;line-height:1.8;margin:0;">${a}</p></div>`;});
  h+=`</div></div>`;}
+
+ // 교육 정보 + SEO 키워드
+ var rn=locations[loc]?locations[loc].region_name:'';
+ var cn=city;
+ var sj=['국어','영어','수학','과학','사회'];
+ var kw1=rn+cn+'과외';
+ var kw2=rn+cn+pk(sj,seed,0)+'과외';
+ var kw3=rn+pk(sj,seed,1)+'과외';
+ var kwArr=[rn+cn+'과외',rn+cn+pk(sj,seed,0)+'과외',rn+pk(sj,seed,1)+'과외',cn+pk(['초등학생','중학생','고등학생'],seed,2)+'과외',rn+'방문과외',cn+'화상과외',rn+cn+'1대1과외',cn+'내신과외'];
+ var eduPool=["학습 효과를 높이려면 학생의 현재 수준을 정확히 파악하는 것이 첫 번째 단계입니다. "+kw1+"에서는 과목별 진단 테스트를 실시하여 학생의 강점과 약점을 분류합니다. 약점 단원에 집중하는 맞춤형 커리큘럼을 설계하고 매주 학습 진도를 점검하여 계획을 유연하게 조정합니다. 내신 시험 3주 전부터는 학교별 기출문제 분석을 통해 출제 경향을 파악하고 예상 문제 풀이와 오답 분석을 집중 진행합니다. "+kw2+"를 통해 성적 향상을 경험한 학생들은 개념의 빈틈을 메우는 것이 가장 효과적이었다고 말합니다.","올바른 학습 습관은 성적 향상의 가장 확실한 기반입니다. "+kw1+"에서는 학생이 스스로 공부하는 방법을 익히도록 지도합니다. 매일 일정한 시간에 공부하는 루틴 만들기, 오답 노트를 활용한 약점 관리, 시험 전 복습 스케줄 설계 등 자기주도 학습의 핵심 요소를 체계적으로 훈련합니다. "+kw2+"를 선택한 학부모님들이 가장 만족하는 부분도 자기주도 학습 능력 향상입니다. 주간 학습 리포트를 통해 학부모님께 수업 내용과 취약점 분석 결과를 투명하게 공유합니다.","시험 성적이 정체되어 있다면 공부 방법을 점검해 볼 필요가 있습니다. "+kw1+"에서는 효율적인 학습 전략을 학생 개인의 학습 스타일에 맞게 설계합니다. 시각형 학습자에게는 마인드맵과 도표 중심의 정리법을, 청각형 학습자에게는 설명하기와 토론 중심의 학습법을 적용합니다. "+kw3+"를 통해 자신에게 맞는 공부법을 찾은 학생들은 평균 2~3개월 내에 성적 변화를 체감합니다. 내신 시험에서는 학교별 출제 패턴 분석이 핵심입니다.","학생의 잠재력을 끌어내는 것은 동기 부여에서 시작됩니다. "+kw1+"에서는 학생이 왜 공부해야 하는지를 스스로 깨달을 수 있도록 진로 탐색과 목표 설정을 수업에 포함합니다. "+kw2+"는 학생 한 명 한 명의 성격과 학습 속도를 고려하여 수업을 진행하기 때문에 대형 학원에서는 불가능한 세밀한 케어가 가능합니다. "+kw3+"의 밀착형 수업 방식은 학습에 자신감을 잃은 학생에게 특히 큰 효과를 발휘합니다."];
+ var eduPicked=pkU(eduPool,seed,3,31);
+ h+='<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">';
+ h+='<h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid '+tc+';padding-left:14px;margin-bottom:16px;">📚 '+cn+' 교육 정보</h2>';
+ eduPicked.forEach(function(txt){h+='<p style="font-size:14px;color:#444;line-height:2.1;margin-bottom:16px;">'+txt+'</p>';});
+ h+='<div style="margin-top:20px;"><h3 style="font-size:15px;font-weight:800;color:#1A2340;margin-bottom:10px;">🔍 관련 키워드</h3><div style="display:flex;flex-wrap:wrap;gap:6px;">';
+ kwArr.forEach(function(k){h+='<span style="display:inline-block;background:#F8FAFC;border:1px solid #E2E8F0;color:#334155;padding:6px 14px;border-radius:50px;font-size:12px;font-weight:600;">'+k+'</span>';});
+ h+='</div></div></div>';
  return h;
 }
 
@@ -1128,7 +1152,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:99999;background:rgba(255,255,25
 </nav>
 <script>function switchDD(i){for(var j=0;j<3;j++){document.getElementById('ddC'+j).style.display=j===i?(j===1?'block':'grid'):'none';var t=document.querySelectorAll('.ddt');t[j].style.background=j===i?'#1A2340':'#fff';t[j].style.color=j===i?'#fff':'#334155';}}document.addEventListener('click',function(e){['ddF','ddS','ddL'].forEach(function(id){var d=document.getElementById(id);if(d&&!d.parentElement.contains(e.target))d.style.display='none';});});</script>`;
 const FAVICON_TAGS = '<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><link rel="apple-touch-icon" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta property="og:site_name" content="은빛스터디"><meta property="og:type" content="website"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/banner1.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/banner1.png">';
-const COMMON_STYLE = `<style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Malgun Gothic',sans-serif;background:#f4f7f6;padding-top:70px;}.rv-carousel{position:relative;overflow:hidden;}.rv-track{display:flex;transition:transform .5s ease;gap:16px;}.rv-track .rv-card{min-width:calc(50% - 8px);flex-shrink:0;box-sizing:border-box;}@media(max-width:768px){.rv-track .rv-card{min-width:100%;}}.rv-dots{display:flex;justify-content:center;gap:6px;margin-top:16px;}.rv-dot{width:28px;height:4px;border-radius:2px;background:rgba(26,35,64,.12);cursor:pointer;border:none;padding:0;transition:all .3s;}.rv-dot.on{width:40px;background:#C8A96E;}</style>${FAVICON_TAGS}`;
+const COMMON_STYLE = `<style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Malgun Gothic',sans-serif;background:#f4f7f6;padding-top:70px;}.rv-carousel{position:relative;overflow:hidden;}.rv-track{display:flex;gap:16px;animation:rvScroll 30s linear infinite;width:max-content;}.rv-carousel:hover .rv-track{animation-play-state:paused;}@keyframes rvScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}.rv-track .rv-card{min-width:300px;max-width:300px;flex-shrink:0;box-sizing:border-box;}@media(max-width:768px){.rv-track .rv-card{min-width:280px;max-width:280px;}}.rv-dots{display:flex;justify-content:center;gap:6px;margin-top:16px;}.rv-dot{width:28px;height:4px;border-radius:2px;background:rgba(26,35,64,.12);cursor:pointer;border:none;padding:0;transition:all .3s;}.rv-dot.on{width:40px;background:#C8A96E;}</style>${FAVICON_TAGS}`;
 const FLOATING = `<div style="position:fixed;bottom:24px;right:18px;display:flex;flex-direction:column;gap:8px;z-index:9998;">
  <a href="tel:01023370458"
  style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:white;color:#1A2340;text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.18);white-space:nowrap;">
