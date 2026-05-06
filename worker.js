@@ -3422,7 +3422,13 @@ function buildCenterDetailPage(slug) {
 
  <!-- 수업 과목 + 타겟 학교 -->
  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;">
- <div style="background:white;border-radius:20px;border:1.5px dashed #E2E8F0;padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+ <div style="background:white;border-radius:20px;padding:28px;box-shadow:0 2px 12px #0000000f;border-top:4px solid #1A2340;">
+ <h3 style="font-size:16px;font-weight:900;color:#1A2340;margin-bottom:16px;">📚 수업 과목 &amp; 가능 학년</h3>
+ <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">${subjBadges}</div>
+ ${wkBadge}
+ </div>
+ 
+ <div style="background:white;border-radius:20px;padding:28px;box-shadow:0 2px 12px #0000000f;border-top:4px solid #1A2340;">
   <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid #C8A96E;padding-left:14px;margin-bottom:16px;">📍 학원 위치 & 주변 정보</h2>
   
   
@@ -3438,12 +3444,6 @@ function buildCenterDetailPage(slug) {
    <p style="font-size:15px;font-weight:700;color:#1A2340;margin-bottom:6px;">타겟 고등학교</p>
    <p style="font-size:14px;color:#555;line-height:1.8;">${ct.sh||'정보 없음'}</p>
   </div>
- </div>
- 
- <div style="background:white;border-radius:20px;padding:28px;box-shadow:0 2px 12px #0000000f;border-top:4px solid #1A2340;">
- <h3 style="font-size:16px;font-weight:900;color:#1A2340;margin-bottom:16px;">📚 수업 과목 &amp; 가능 학년</h3>
- <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">${subjBadges}</div>
- ${wkBadge}
  </div>
 
  </div>
