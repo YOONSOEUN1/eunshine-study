@@ -805,10 +805,10 @@ function renderUniqueContent(ct,dong,grade,subj,tc,rd,schools){
  <div style="font-size:12px;color:#888;">${area} · ${rv.grade} ${rv.subj}</div></div></div>
  <p style="font-size:13px;color:#555;line-height:1.8;margin:0;">"${rv.body}"</p></div>`;});
  h+=`</div></div>
- <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">📈 실제 성적 향상 사례</h2>
- <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;">`;
+ <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;margin-top:36px;">📈 실제 성적 향상 사례</h2>
+ <div class="rv-carousel"><div class="rv-track">`;
  ct.stories.forEach(function(st){
- h+=`<div style="border:2px solid ${tc}22;border-radius:16px;padding:20px;background:white;">
+ h+=`<div class="rv-card" style="border:2px solid ${tc}22;border-radius:16px;padding:20px;background:white;">
  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
  <span style="font-weight:800;color:#1A2340;font-size:15px;">${st.name} 학생</span>
  <span style="background:${tc}15;color:${tc};padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;">${st.grade} ${st.subj}</span></div>
@@ -818,7 +818,7 @@ function renderUniqueContent(ct,dong,grade,subj,tc,rd,schools){
  <span style="background:#e8f8f5;color:#27ae60;padding:6px 14px;border-radius:8px;font-weight:800;font-size:15px;">${st.to}</span>
  <span style="font-size:12px;color:#888;">(${st.period})</span></div>
  <p style="font-size:13px;color:#555;line-height:1.8;margin:0;">${st.story}</p></div>`;});
- h+=`</div></div>`;
+ h+=`</div></div></div></div>`;
  // ── 자주 묻는 질문 (펼쳐진 형태, 지역명 포함) ──
  if(ct.faqs.length>0){
  h+=`<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
@@ -1072,7 +1072,7 @@ function getIndex() {
   html = html.replace('</style>', heroCss + '</style>');
 
   // 히어로 슬라이더 스크립트 주입 (기존 배너 스크립트 교체)
-  const heroScript = `<script>var hSlides=[{title:'성적 올리는 확실한 방법,<br>은빛 일대일 맞춤 과외',desc:'초·중·고 전 과목 1:1 맞춤 수업 | 방문·화상 선택 가능',btn1:'과외 시작하기',b1h:'/directory',btn2:'무료 상담',b2h:'#form',bg:'linear-gradient(160deg,#0D1526,#12233f 40%,#1a3358 80%,#0D1526)',pc:'#4A90D9'},{title:'전국 205개 센터,<br>학습코칭 학원',desc:'체계적인 4C 시스템으로 학습 습관부터 내신까지 관리',btn1:'센터 찾기',b1h:'/academy',btn2:'상담 신청',b2h:'#form',bg:'linear-gradient(160deg,#0D1526,#1a1235 40%,#2d1b4e 80%,#0D1526)',pc:'#a855f7'},{title:'영어·일본어·중국어<br>1:1 화상·전화 수업',desc:'원어민급 강사와 맞춤 회화 수업 | 무료 테스트 수업',btn1:'외국어 수업',b1h:'/language',btn2:'무료 체험',b2h:'#form',bg:'linear-gradient(160deg,#0D1526,#0f2222 40%,#163535 80%,#0D1526)',pc:'#22c55e'}];var hCur=0,hTotal=3,hAuto,hProg,hDur=5000;function renderH(i){var s=hSlides[i];document.getElementById('heroBg').style.background=s.bg;document.getElementById('heroProgBar').style.background=s.pc;document.getElementById('heroText').innerHTML='<h1 style="font-family:Noto Serif KR,serif;font-size:clamp(26px,4.5vw,42px);font-weight:900;line-height:1.35;color:#fff;margin-bottom:14px;">'+s.title+'</h1><p style="font-size:15px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:28px;">'+s.desc+'</p><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;"><a href="'+s.b1h+'" class="hb-pri" style="background:linear-gradient(135deg,'+s.pc+','+s.pc+'cc);">'+s.btn1+' →</a><a href="'+s.b2h+'" class="hb-gho">'+s.btn2+' →</a></div>';var dots='';for(var j=0;j<hTotal;j++)dots+='<button style="width:'+(j===i?'40':'28')+'px;height:4px;border-radius:2px;background:'+(j===i?'#C8A96E':'rgba(255,255,255,.15)')+';cursor:pointer;border:none;padding:0;transition:all .3s;" onclick="goH('+j+')"></button>';document.getElementById('heroDots').innerHTML=dots;}function goH(n){hCur=n;renderH(n);resetHA();}function nextH(){goH((hCur+1)%hTotal);}function prevH(){goH((hCur-1+hTotal)%hTotal);}function resetHA(){clearInterval(hAuto);clearInterval(hProg);var el=0;var bar=document.getElementById('heroProgBar');bar.style.width='0%';hProg=setInterval(function(){el+=50;bar.style.width=(el/hDur*100)+'%';},50);hAuto=setInterval(nextH,hDur);}renderH(0);resetHA();(function(){var he=document.getElementById('heroSlider');if(!he)return;var tx=0,td=0;he.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;});he.addEventListener('touchmove',function(e){td=e.touches[0].clientX-tx;});he.addEventListener('touchend',function(){if(Math.abs(td)>50){td<0?nextH():prevH();}td=0;});})();</script>`;
+  const heroScript = `<script>var hSlides=[{title:'성적 올리는 확실한 방법,<br>은빛 일대일 맞춤 과외',desc:'초·중·고 전 과목 1:1 맞춤 수업 | 방문·화상 선택 가능',btn1:'과외 시작하기',b1h:'/directory',btn2:'무료 상담',b2h:'#form',bg:'linear-gradient(160deg,#0D1526,#12233f 40%,#1a3358 80%,#0D1526)',pc:'#4A90D9'},{title:'전국 205개 센터,<br>학습코칭 학원',desc:'체계적인 4C 시스템으로 학습 습관부터 내신까지 관리',btn1:'학원 찾기',b1h:'/academy',btn2:'상담 신청',b2h:'#form',bg:'linear-gradient(160deg,#0D1526,#1a1235 40%,#2d1b4e 80%,#0D1526)',pc:'#a855f7'},{title:'영어·일본어·중국어<br>1:1 화상·전화 수업',desc:'원어민급 강사와 맞춤 회화 수업 | 무료 테스트 수업',btn1:'외국어 수업',b1h:'/language',btn2:'무료 체험',b2h:'#form',bg:'linear-gradient(160deg,#0D1526,#0f2222 40%,#163535 80%,#0D1526)',pc:'#22c55e'}];var hCur=0,hTotal=3,hAuto,hProg,hDur=5000;function renderH(i){var s=hSlides[i];document.getElementById('heroBg').style.background=s.bg;document.getElementById('heroProgBar').style.background=s.pc;document.getElementById('heroText').innerHTML='<h1 style="font-family:Noto Serif KR,serif;font-size:clamp(26px,4.5vw,42px);font-weight:900;line-height:1.35;color:#fff;margin-bottom:14px;">'+s.title+'</h1><p style="font-size:15px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:28px;">'+s.desc+'</p><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;"><a href="'+s.b1h+'" class="hb-pri" style="background:linear-gradient(135deg,'+s.pc+','+s.pc+'cc);">'+s.btn1+' →</a><a href="'+s.b2h+'" class="hb-gho">'+s.btn2+' →</a></div>';var dots='';for(var j=0;j<hTotal;j++)dots+='<button style="width:'+(j===i?'40':'28')+'px;height:4px;border-radius:2px;background:'+(j===i?'#C8A96E':'rgba(255,255,255,.15)')+';cursor:pointer;border:none;padding:0;transition:all .3s;" onclick="goH('+j+')"></button>';document.getElementById('heroDots').innerHTML=dots;}function goH(n){hCur=n;renderH(n);resetHA();}function nextH(){goH((hCur+1)%hTotal);}function prevH(){goH((hCur-1+hTotal)%hTotal);}function resetHA(){clearInterval(hAuto);clearInterval(hProg);var el=0;var bar=document.getElementById('heroProgBar');bar.style.width='0%';hProg=setInterval(function(){el+=50;bar.style.width=(el/hDur*100)+'%';},50);hAuto=setInterval(nextH,hDur);}renderH(0);resetHA();(function(){var he=document.getElementById('heroSlider');if(!he)return;var tx=0,td=0;he.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;});he.addEventListener('touchmove',function(e){td=e.touches[0].clientX-tx;});he.addEventListener('touchend',function(){if(Math.abs(td)>50){td<0?nextH():prevH();}td=0;});})();</script>`;
 
   // 기존 배너 스크립트 제거 & 새 히어로 스크립트 주입
   const oldBannerScriptStart = 'let currentSlide = 0;';
@@ -1218,6 +1218,22 @@ async function sfSubmit(){
  }catch(e){alert('❌ 전송 오류\\n카카오톡 또는 전화로 문의해 주세요.');if(btn){btn.disabled=false;btn.textContent='📝 상담 신청하기';}}
 }
 </script>`;
+
+const ACAD_FOOTER = `
+<section style="background:linear-gradient(135deg,#1A2340,#2a3d6b);padding:64px 40px;text-align:center;">
+ <h2 style="font-size:clamp(1.4rem,3vw,2rem);font-weight:900;color:#fff;margin-bottom:12px;">학습코칭의 시작, 지금 바로 상담하세요</h2>
+ <p style="font-size:0.95rem;color:rgba(255,255,255,0.55);margin-bottom:28px;">가까운 학습코칭학원에서 무료 상담을 받아보세요</p>
+ <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+  <a href="tel:01023370458" style="background:linear-gradient(135deg,#C8A96E,#E8D09A);color:#1A2340;padding:14px 32px;border-radius:10px;font-size:0.95rem;font-weight:800;text-decoration:none;">📞 전화 상담 010-2337-0458</a>
+  <a href="https://pf.kakao.com/_KRAjG/chat" style="border:1.5px solid rgba(255,255,255,0.3);color:#fff;padding:14px 32px;border-radius:10px;font-size:0.95rem;font-weight:600;text-decoration:none;">💬 카카오톡 상담</a>
+ </div>
+</section>
+<footer style="background:#07101e;color:rgba(255,255,255,0.4);text-align:center;padding:36px 20px;font-size:0.82rem;line-height:2;">
+ <div style="font-size:1.1rem;font-weight:800;color:rgba(255,255,255,0.8);margin-bottom:8px;">🌟 은빛스터디</div>
+ <div style="margin-bottom:8px;"><a href="tel:01023370458" style="color:#E8D09A;text-decoration:none;font-weight:600;">📞 010-2337-0458</a> &nbsp;·&nbsp; <a href="https://pf.kakao.com/_KRAjG/chat" style="color:#E8D09A;text-decoration:none;font-weight:600;">💬 카카오톡 문의</a></div>
+ <p>상담 가능 시간 · 평일&주말 상관없이 24시간 상담 가능합니다.</p>
+ <p>© 2026 은빛스터디 All Rights Reserved.</p>
+</footer>`;
 const ACAD_FLOATING = `<div style="position:fixed;bottom:24px;right:18px;display:flex;flex-direction:column;gap:8px;z-index:9998;">
  <a href="tel:01023370458" style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:white;color:#1A2340;text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.18);white-space:nowrap;">📞 <span>전화 상담</span></a>
  <a href="#acadForm" onclick="var f=document.getElementById('acadForm');if(f)f.scrollIntoView({behavior:'smooth'});return false;" style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:linear-gradient(135deg,#C8A96E,#E8D09A);color:#1A2340;border:1px solid rgba(200,169,110,0.6);text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.2);white-space:nowrap;">✏️ <span>상담 신청</span></a>
@@ -2679,7 +2695,7 @@ function buildGradeSubjectPage(gradeCode, subject) {
  reviewSection += `<h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">📈 ${gd.name} ${subject} 실제 성적 향상 사례</h2>
  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;">`;
  stories.forEach(function(st){
- reviewSection += `<div style="border:2px solid ${tc}22;border-radius:16px;padding:20px;background:white;">
+ reviewSection += `<div class="rv-card" style="border:2px solid ${tc}22;border-radius:16px;padding:20px;background:white;">
  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
  <span style="font-weight:800;color:#1A2340;font-size:15px;">${st.name} 학생</span>
  <span style="background:${tc}15;color:${tc};padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;">${gd.short} ${st.subj}</span></div>
@@ -3383,11 +3399,11 @@ function buildCenterDetailPage(slug) {
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
- <title>${ct.n} | 와와학습코칭센터 | 은빛스터디</title>
- <meta name="description" content="${ct.n} - ${ct.a}. 와와학습코칭센터 개별 맞춤 관리 시스템. 은빛스터디 1:1 맞춤 코칭.">
+ <title>${ct.n} | 학습코칭학원 | 은빛스터디</title>
+ <meta name="description" content="${ct.n} - ${ct.a}. 학습코칭학원 개별 맞춤 관리 시스템. 은빛스터디 1:1 맞춤 코칭.">
  <meta property="og:type" content="website">
- <meta property="og:title" content="${ct.n} | 와와학습코칭센터 | 은빛스터디">
- <meta property="og:description" content="${ct.n} - ${ct.a}. 와와학습코칭센터 개별 맞춤 관리 시스템. 초중고 전과목 1:1 맞춤 코칭.">
+ <meta property="og:title" content="${ct.n} | 학습코칭학원 | 은빛스터디">
+ <meta property="og:description" content="${ct.n} - ${ct.a}. 학습코칭학원 개별 맞춤 관리 시스템. 초중고 전과목 1:1 맞춤 코칭.">
  <meta property="og:image" content="${bgImg('city',cH(ct.sl))}">
  <meta property="og:url" content="https://eunshinestudy.com/academy/${encodeURIComponent(ct.sl)}">
  ${COMMON_STYLE}
@@ -3399,7 +3415,7 @@ function buildCenterDetailPage(slug) {
  <div style="background:linear-gradient(135deg,rgba(26,35,64,0.88),rgba(45,58,92,0.82)),url('${bgImg("city",cH(ct.sl))}') center/cover;color:white;border-radius:24px;padding:clamp(36px,6vw,56px);margin-bottom:28px;text-align:center;position:relative;overflow:hidden;">
  <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(200,169,110,0.15);border-radius:50%;"></div>
  <div style="position:absolute;bottom:-60px;left:-30px;width:160px;height:160px;background:rgba(255,255,255,0.05);border-radius:50%;"></div>
- <p style="font-size:13px;opacity:.7;margin-bottom:10px;font-weight:600;position:relative;">은빛스터디 × 와와학습코칭센터 · ${ct.r}</p>
+ <p style="font-size:13px;opacity:.7;margin-bottom:10px;font-weight:600;position:relative;">은빛스터디 × 학습코칭학원 · ${ct.r}</p>
  <h1 style="font-size:clamp(26px,5vw,40px);font-weight:900;margin-bottom:14px;position:relative;">${ct.n}</h1>
  <p style="font-size:14px;opacity:.85;position:relative;">📍 ${ct.a}</p>
  </div>
@@ -3411,7 +3427,27 @@ function buildCenterDetailPage(slug) {
  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">${subjBadges}</div>
  ${wkBadge}
  </div>
- <div style="background:white;border-radius:20px;padding:28px;box-shadow:0 2px 12px #0000000f;border-top:4px solid #C8A96E;">
+ 
+ <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+  <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid #C8A96E;padding-left:14px;margin-bottom:16px;">📍 학원 위치 & 주변 정보</h2>
+  <div style="margin-bottom:16px;">
+   <p style="font-size:15px;font-weight:700;color:#1A2340;margin-bottom:6px;">📌 정확한 위치</p>
+   <p style="font-size:14px;color:#555;line-height:1.8;">${d.a}</p>
+  </div>
+  <div style="margin-bottom:16px;">
+   <p style="font-size:15px;font-weight:700;color:#1A2340;margin-bottom:6px;">🏫 주변 초등학교</p>
+   <p style="font-size:14px;color:#555;line-height:1.8;">${d.se||'정보 없음'}</p>
+  </div>
+  <div style="margin-bottom:16px;">
+   <p style="font-size:15px;font-weight:700;color:#1A2340;margin-bottom:6px;">🏫 주변 중학교</p>
+   <p style="font-size:14px;color:#555;line-height:1.8;">${d.sm||'정보 없음'}</p>
+  </div>
+  <div>
+   <p style="font-size:15px;font-weight:700;color:#1A2340;margin-bottom:6px;">🏫 주변 고등학교</p>
+   <p style="font-size:14px;color:#555;line-height:1.8;">${d.sh||'정보 없음'}</p>
+  </div>
+ </div>
+<div style="background:white;border-radius:20px;padding:28px;box-shadow:0 2px 12px #0000000f;border-top:4px solid #C8A96E;">
  <h3 style="font-size:16px;font-weight:900;color:#1A2340;margin-bottom:12px;">🏫 타겟 학교</h3>
  <div>${schoolList||'<p style="color:#999;font-size:13px;padding:10px 0;">정보 준비중</p>'}</div>
  </div>
@@ -3497,7 +3533,7 @@ function buildCenterDetailPage(slug) {
  })()}
 
  </div>
- ${FOOTER}${ACAD_FLOATING}
+ ${ACAD_FOOTER}${ACAD_FLOATING}
  <style>@media(max-width:768px){div[style*="grid-template-columns:1fr 1fr"],div[style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:1fr!important;}}
  .subpage-link:hover{border-color:#C8A96E!important;background:white!important;}</style>
  ${ACAD_SCRIPT('학원 센터페이지 ('+ct.n+')')}
@@ -3727,10 +3763,10 @@ function buildCenterSubPage(slug, grade, subject, school) {
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
- <title>${title} | ${ct.n} 와와학습코칭센터 | 은빛스터디</title>
- <meta name="description" content="${title} - ${ct.n} ${ct.a}. ${landmarkTxt} 와와학습코칭센터 ${grade} ${subject} 1:1 맞춤 코칭 학원.">
+ <title>${title} | ${ct.n} 학습코칭학원 | 은빛스터디</title>
+ <meta name="description" content="${title} - ${ct.n} ${ct.a}. ${landmarkTxt} 학습코칭학원 ${grade} ${subject} 1:1 맞춤 코칭 학원.">
  <meta property="og:type" content="article">
- <meta property="og:title" content="${title} | ${ct.n} 와와학습코칭센터 | 은빛스터디">
+ <meta property="og:title" content="${title} | ${ct.n} 학습코칭학원 | 은빛스터디">
  <meta property="og:description" content="${title} - ${ct.n} ${ct.a}. ${grade} ${subject} 맞춤 코칭 학원.">
  <meta property="og:image" content="${bgImg(subject,cH(ct.sl+grade+subject))}">
  ${COMMON_STYLE}
@@ -3800,10 +3836,10 @@ function buildCenterSubPage(slug, grade, subject, school) {
 
  ${extra ? '<div style="background:white;border-radius:20px;padding:36px 28px;margin-bottom:28px;box-shadow:0 2px 12px #0000000f;"><div style="text-align:center;margin-bottom:28px;"><h2 style="font-size:clamp(20px,4vw,26px);font-weight:900;color:#1A2340;margin-bottom:8px;">'+extra.title+'</h2><p style="font-size:13px;color:#888;">'+ct.n+' · '+loc.d+' '+grade+' '+subject+' 학생 맞춤 가이드</p><div style="width:40px;height:3px;background:'+subjColor+';margin:12px auto 0;"></div></div><div style="display:flex;flex-direction:column;gap:22px;">'+extra.points.map(function(pt){return '<div style="padding:24px;background:#f8f9fc;border-radius:16px;border-left:4px solid '+subjColor+';"><h3 style="font-size:16px;font-weight:900;color:#1A2340;margin:0 0 12px;display:flex;align-items:center;gap:10px;"><span style="width:28px;height:28px;border-radius:50%;background:'+subjColor+';color:white;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0;">✓</span>'+pt.h+'</h3><p style="font-size:14px;color:#444;line-height:1.95;margin:0;padding-left:38px;">'+pt.p+'</p></div>';}).join('')+'</div></div>' : ''}
 
- <!-- 센터 정보 -->
+ <!-- 학원 정보 -->
  <div style="background:white;border-radius:20px;padding:36px 28px;margin-bottom:28px;box-shadow:0 2px 12px #0000000f;">
  <div style="text-align:center;margin-bottom:24px;">
- <h2 style="font-size:clamp(20px,4vw,26px);font-weight:900;color:#1A2340;margin-bottom:8px;">센터 정보</h2>
+ <h2 style="font-size:clamp(20px,4vw,26px);font-weight:900;color:#1A2340;margin-bottom:8px;">학원 정보</h2>
  <div style="width:40px;height:3px;background:#C8A96E;margin:12px auto 0;"></div>
  </div>
  <div style="display:grid;grid-template-columns:1fr;gap:10px;max-width:600px;margin:0 auto;">
@@ -3826,7 +3862,7 @@ function buildCenterSubPage(slug, grade, subject, school) {
 
  <!-- 학원 안내 이미지 -->
  <div style="border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);margin-top:28px;">
- <img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80%EC%9A%A9.png" alt="와와학습코칭센터 안내" style="width:100%;display:block;">
+ <img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80%EC%9A%A9.png" alt="학습코칭학원 안내" style="width:100%;display:block;">
  </div>
 
  </div>
@@ -3837,7 +3873,7 @@ function buildCenterSubPage(slug, grade, subject, school) {
  </body></html>`;
 }
 
-// ── 학원수업(와와학습코칭센터) 페이지 ──
+// ── 학원수업(학습코칭학원) 페이지 ──
 
 function buildAcademyPage() {
  const regionOrder = ["서울","경기","인천","대구","부산","대전","광주","울산","세종","강원","충북","충남","전북","경북","경남","제주"];
@@ -3881,10 +3917,10 @@ function buildAcademyPage() {
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
  <title>와와학습코칭 학원수업 | 개별 맞춤 관리 시스템 | 전국 205개 센터 | 은빛스터디</title>
- <meta name="description" content="와와학습코칭센터 전국 205개 센터 안내. 플랜관리·학습관리·생활관리 3대 개별 맞춤 관리 시스템. 4C 코칭, 둥지 학습, AI학습클래스. 초중고 전과목 학원수업.">
+ <meta name="description" content="학습코칭학원 전국 205개 센터 안내. 플랜관리·학습관리·생활관리 3대 개별 맞춤 관리 시스템. 4C 코칭, 둥지 학습, AI학습클래스. 초중고 전과목 학원수업.">
  <meta property="og:type" content="website">
- <meta property="og:title" content="학원수업 | 와와학습코칭센터 전국 205개 센터 | 은빛스터디">
- <meta property="og:description" content="와와학습코칭센터 전국 205개 센터. 플랜관리·학습관리·생활관리 3대 개별 맞춤 관리 시스템으로 초중고 전과목 1:1 맞춤 코칭.">
+ <meta property="og:title" content="학원수업 | 학습코칭학원 전국 205개 센터 | 은빛스터디">
+ <meta property="og:description" content="학습코칭학원 전국 205개 센터. 플랜관리·학습관리·생활관리 3대 개별 맞춤 관리 시스템으로 초중고 전과목 1:1 맞춤 코칭.">
  <meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/banner1.png">
  <meta property="og:url" content="https://eunshinestudy.com/academy">
  ${COMMON_STYLE}
@@ -3946,7 +3982,7 @@ function buildAcademyPage() {
  <div style="background:linear-gradient(135deg,rgba(26,35,64,0.88),rgba(45,58,92,0.78),rgba(200,169,110,0.8)),url('${bgImg("school",42)}') center/cover;color:white;border-radius:24px;padding:clamp(36px,6vw,64px);margin-bottom:40px;text-align:center;position:relative;overflow:hidden;">
  <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(200,169,110,0.15);border-radius:50%;"></div>
  <div style="position:absolute;bottom:-60px;left:-30px;width:160px;height:160px;background:rgba(255,255,255,0.05);border-radius:50%;"></div>
- <p style="font-size:14px;opacity:.7;margin-bottom:10px;font-weight:600;">은빛스터디 × 와와학습코칭센터 · 전국 205개 센터</p>
+ <p style="font-size:14px;opacity:.7;margin-bottom:10px;font-weight:600;">은빛스터디 × 학습코칭학원 · 전국 205개 센터</p>
  <h1 style="font-size:clamp(24px,4.5vw,38px);font-weight:900;margin-bottom:24px;line-height:1.4;">둥지 × 플랜 × 학습 × 생활<br>4가지가 하나로 연결될 때, 성적이 바뀝니다</h1>
  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;">
  <span style="background:rgba(59,130,246,.2);color:#93c5fd;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:700;">🏫 전국 205개 센터</span>
@@ -3954,7 +3990,7 @@ function buildAcademyPage() {
  <span style="background:rgba(245,158,11,.2);color:#fcd34d;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:700;">🎯 1:1 맞춤 코칭</span>
  </div>
  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:24px;">
- <a href="#acadGrid" style="background:white;color:#1A2340;text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:800;font-size:15px;display:inline-block;box-shadow:0 4px 16px rgba(0,0,0,0.15);transition:transform .2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">🔍 센터 찾기</a>
+ <a href="#acadGrid" style="background:white;color:#1A2340;text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:800;font-size:15px;display:inline-block;box-shadow:0 4px 16px rgba(0,0,0,0.15);transition:transform .2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">🔍 학원 찾기</a>
  <a href="#acadForm" onclick="var f=document.getElementById('acadForm');if(f)f.scrollIntoView({behavior:'smooth'});return false;" style="background:linear-gradient(135deg,#C8A96E,#e0c080);color:#1A2340;text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:800;font-size:15px;display:inline-block;box-shadow:0 4px 16px rgba(200,169,110,0.4);transition:transform .2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">📝 무료 상담 신청</a>
  </div>
  </div>
@@ -4234,8 +4270,9 @@ function buildAcademyPage() {
 
  <!-- 전국 센터 검색 -->
  <div style="margin-bottom:40px;">
- <h2 style="font-size:clamp(22px,4vw,32px);font-weight:900;color:#1A2340;text-align:center;margin-bottom:8px;">🏫 전국 와와학습코칭센터</h2>
- <p style="font-size:14px;color:#888;text-align:center;margin-bottom:20px;">지역별로 가까운 센터를 찾아보세요</p>
+ <h2 style="font-size:clamp(22px,4vw,32px);font-weight:900;color:#1A2340;text-align:center;margin-bottom:8px;">🏫 전국 학습코칭학원</h2>
+ <p style="font-size:14px;color:#888;text-align:center;margin-bottom:20px;">지역별로 가까운 학원을 찾아보세요</p>
+ <div style="max-width:500px;margin:0 auto 20px;"><input type="text" id="acadSearchInput" placeholder="학원명 또는 지역 검색 (예: 강남, 수원, 하남)" style="width:100%;padding:14px 20px;border:2px solid #E2E8F0;border-radius:50px;font-size:15px;outline:none;font-family:inherit;box-sizing:border-box;" onfocus="this.style.borderColor='#C8A96E'" onblur="this.style.borderColor='#E2E8F0'"></div>
  <div id="acadTabs" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:20px;">
  ${regionTabs}
  </div>
@@ -4245,7 +4282,7 @@ function buildAcademyPage() {
  <p id="acadCount" style="text-align:center;font-size:13px;color:#888;margin-top:16px;"></p>
  </div>
  ${ACAD_FORM('학원수업 메인 홈페이지 (/academy)')}
- ${FOOTER}${ACAD_FLOATING}
+ ${ACAD_FOOTER}${ACAD_FLOATING}
  <script>
  function filterAcad(region){
  var tabs=document.querySelectorAll('.acad-tab');
@@ -4310,7 +4347,17 @@ function buildAcademyPage() {
  })();
  </script>
  ${ACAD_SCRIPT('학원수업 메인 홈페이지 (/academy)')}
- </body></html>`;
+ <script>
+var acadInput=document.getElementById('acadSearchInput');
+if(acadInput){acadInput.addEventListener('input',function(){
+var q=this.value.trim().toLowerCase();
+var cards=document.querySelectorAll('#acadGrid > a, #acadGrid > div');
+cards.forEach(function(card){
+var text=(card.textContent||'').toLowerCase();
+card.style.display=(!q||text.indexOf(q)>=0)?'':'none';
+});
+});}
+</script></body></html>`;
 }
 
 function buildAllSiteUrls() {
