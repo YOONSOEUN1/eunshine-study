@@ -3422,28 +3422,28 @@ function buildCenterDetailPage(slug) {
 
  <!-- 수업 과목 + 타겟 학교 -->
  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;">
- <div style="background:white;border-radius:20px;padding:28px;box-shadow:0 2px 12px #0000000f;border-top:4px solid #1A2340;">
- <h3 style="font-size:16px;font-weight:900;color:#1A2340;margin-bottom:16px;">📚 수업 과목 &amp; 가능 학년</h3>
- <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">${subjBadges}</div>
- ${wkBadge}
- </div>
- 
  <div style="background:white;border-radius:20px;border:1.5px dashed #E2E8F0;padding:clamp(22px,4vw,40px);margin-bottom:24px;">
   <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid #C8A96E;padding-left:14px;margin-bottom:16px;">📍 학원 위치 & 주변 정보</h2>
   
   
   <div style="margin-bottom:16px;">
-   <p style="font-size:15px;font-weight:700;color:#C8A96E;margin-bottom:8px;">🏫 타겟 초등학교</p>
+   <p style="font-size:15px;font-weight:700;color:#1A2340;margin-bottom:6px;">타겟 초등학교</p>
    <p style="font-size:14px;color:#555;line-height:1.8;">${ct.se||'정보 없음'}</p>
   </div>
   <div style="margin-bottom:16px;">
-   <p style="font-size:15px;font-weight:700;color:#C8A96E;margin-bottom:8px;">🏫 타겟 중학교</p>
+   <p style="font-size:15px;font-weight:700;color:#1A2340;margin-bottom:6px;">타겟 중학교</p>
    <p style="font-size:14px;color:#555;line-height:1.8;">${ct.sm||'정보 없음'}</p>
   </div>
   <div>
-   <p style="font-size:15px;font-weight:700;color:#C8A96E;margin-bottom:8px;">🏫 타겟 고등학교</p>
+   <p style="font-size:15px;font-weight:700;color:#1A2340;margin-bottom:6px;">타겟 고등학교</p>
    <p style="font-size:14px;color:#555;line-height:1.8;">${ct.sh||'정보 없음'}</p>
   </div>
+ </div>
+ 
+ <div style="background:white;border-radius:20px;padding:28px;box-shadow:0 2px 12px #0000000f;border-top:4px solid #1A2340;">
+ <h3 style="font-size:16px;font-weight:900;color:#1A2340;margin-bottom:16px;">📚 수업 과목 &amp; 가능 학년</h3>
+ <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">${subjBadges}</div>
+ ${wkBadge}
  </div>
 
  </div>
@@ -3498,34 +3498,41 @@ function buildCenterDetailPage(slug) {
   return html;
  })()}
 
- <!-- 타겟 학교별 맞춤 페이지 -->
+ <!-- 타겟 학교별 맞춤 (탭) -->
  ${(function(){
-  const loc = LOC_DATA[ct.sl];
-  const allSchools = [];
-  if(ct.se) ct.se.split(',').forEach(function(s){s=s.trim();if(s)allSchools.push({name:s,grade:'초등'});});
-  if(ct.sm) ct.sm.split(',').forEach(function(s){s=s.trim();if(s)allSchools.push({name:s,grade:'중등'});});
-  if(ct.sh) ct.sh.split(',').forEach(function(s){s=s.trim();if(s)allSchools.push({name:s,grade:'고등'});});
-  if(allSchools.length===0) return '';
-  let html = '<div style="background:white;border-radius:20px;padding:36px 28px;margin-bottom:28px;box-shadow:0 2px 12px #0000000f;">';
-  html += '<div style="text-align:center;margin-bottom:24px;">';
-  html += '<h2 style="font-size:clamp(20px,4vw,26px);font-weight:900;color:#1A2340;margin-bottom:8px;">🏫 타겟 학교별 맞춤 정보</h2>';
-  html += '<p style="font-size:13px;color:#888;">'+ct.n+'이 관리하는 학교별 과목 안내</p>';
-  html += '<div style="width:40px;height:3px;background:#C8A96E;margin:12px auto 0;"></div>';
-  html += '</div>';
-  allSchools.forEach(function(sch){
-   const gc = sch.grade==='초등'?'#3b82f6':(sch.grade==='중등'?'#10b981':'#f59e0b');
-   html += '<div style="margin-bottom:16px;">';
-   html += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;"><span style="background:'+gc+'15;color:'+gc+';padding:3px 12px;border-radius:50px;font-size:11px;font-weight:800;">'+sch.grade+'</span><span style="font-size:14px;font-weight:800;color:#1A2340;">'+sch.name+'</span></div>';
-   html += '<div style="display:flex;flex-wrap:wrap;gap:8px;">';
-   ct.subj.forEach(function(s){
-    const url = '/academy/'+encodeURIComponent(ct.sl)+'/'+encodeURIComponent(sch.name)+'/'+encodeURIComponent(s);
-    html += '<a href="'+url+'" class="subpage-link" style="display:inline-block;background:#fafaf7;border:1px solid #f0ebe0;border-radius:8px;padding:8px 14px;text-decoration:none;font-size:12px;font-weight:700;color:#1A2340;">'+s+' →</a>';
-   });
-   html += '</div></div>';
+  var se=(ct.se||'').split(',').map(function(s){return s.trim();}).filter(function(s){return s;});
+  var sm=(ct.sm||'').split(',').map(function(s){return s.trim();}).filter(function(s){return s;});
+  var sh=(ct.sh||'').split(',').map(function(s){return s.trim();}).filter(function(s){return s;});
+  if(se.length+sm.length+sh.length===0)return '';
+  var subjs=ct.subj||['국어','영어','수학'];
+  var html='<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">';
+  html+='<h2 style="font-size:19px;font-weight:900;color:#1A2340;text-align:center;margin-bottom:8px;">🏫 타겟 학교별 맞춤 정보</h2>';
+  html+='<p style="font-size:13px;color:#888;text-align:center;margin-bottom:20px;">'+ct.n+' 학원이 관리하는 학교별 과목 안내</p>';
+  html+='<div style="display:flex;gap:8px;justify-content:center;margin-bottom:20px;">';
+  var tabs=[{l:'🌱 초등',c:'#2e7d52',s:se},{l:'📘 중등',c:'#1a5fa8',s:sm},{l:'🔥 고등',c:'#7b1fa2',s:sh}];
+  tabs.forEach(function(tb,idx){
+   html+='<button class="stb" onclick="document.querySelectorAll(\'.stp\').forEach(function(p,i){p.style.display=i==='+idx+'?\'block\':\'none\'});document.querySelectorAll(\'.stb\').forEach(function(t,i){t.style.background=i==='+idx+'?\''+tb.c+'\':\'#fff\';t.style.color=i==='+idx+'?\'#fff\':\'#334155\';t.style.borderColor=i==='+idx+'?\''+tb.c+'\':\'#E2E8F0\';})" style="flex:1;max-width:140px;padding:10px;border-radius:10px;border:2px solid '+(idx===0?tb.c:'#E2E8F0')+';background:'+(idx===0?tb.c:'#fff')+';color:'+(idx===0?'#fff':'#334155')+';font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">'+tb.l+'</button>';
   });
-  html += '</div>';
+  html+='</div>';
+  tabs.forEach(function(tb,idx){
+   html+='<div class="stp" style="display:'+(idx===0?'block':'none')+'">';
+   if(tb.s.length>0){
+    html+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;">';
+    tb.s.forEach(function(school){
+     html+='<div style="border:1.5px solid #E2E8F0;border-radius:12px;padding:14px;">';
+     html+='<span style="display:inline-block;background:'+tb.c+';color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px;margin-bottom:8px;">'+tb.l.split(' ')[1]+'</span>';
+     html+='<p style="font-size:14px;font-weight:700;color:#1A2340;margin-bottom:6px;">'+school+'</p>';
+     html+='<div style="display:flex;flex-wrap:wrap;gap:4px;">';
+     subjs.forEach(function(sj){html+='<span style="font-size:11px;color:#888;border:1px solid #E2E8F0;padding:3px 8px;border-radius:6px;">'+sj+'</span>';});
+     html+='</div></div>';
+    });
+    html+='</div>';
+   }else{html+='<p style="color:#888;text-align:center;padding:20px;">등록된 학교가 없습니다.</p>';}
+   html+='</div>';
+  });
+  html+='</div>';
   return html;
- })()}
+ })()}}
 
  </div>
  ${ACAD_FOOTER}${ACAD_FLOATING}
