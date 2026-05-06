@@ -3573,9 +3573,6 @@ function buildCenterSubPage(slug, grade, subject, school) {
  const gradeColor = grade==='초등'?'#3b82f6':(grade==='중등'?'#10b981':'#f59e0b');
  const subjColor = subjColors[subject]||'#1A2340';
  const title = school ? school+' '+subject+' 학원' : loc.d+' '+grade+' '+subject+' 학원';
- // SEO 키워드 삽입
- var _kwTitle = title;
-
  const heroLabel = school || loc.d;
  const landmarkTxt = loc.l && loc.l.length ? loc.l.join(', ') + ' 인근' : '';
  const schoolField = grade==='초등'?ct.se:(grade==='중등'?ct.sm:ct.sh);
@@ -3814,32 +3811,7 @@ function buildCenterSubPage(slug, grade, subject, school) {
 
 
  <!-- 학원 특징 -->
- 
- const subjColors2={"국어":"#e74c3c","영어":"#27ae60","수학":"#f39c12","과학":"#3498db","사회":"#9b59b6"};
- const subjBadges2=Object.keys(ct.g||{}).map(function(subj){var clr=subjColors2[subj]||'#888';return '<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-radius:10px;border:1.5px solid '+clr+'33;"><span style="font-weight:700;color:'+clr+';font-size:14px;">'+subj+'</span><span style="font-size:12px;color:#888;font-weight:600;">'+(ct.g[subj])+'</span></div>';}).join('');
-
- <!-- 수업과목 + 타겟학교 그리드 -->
- <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;max-width:900px;margin-left:auto;margin-right:auto;padding:0 20px;">
-  <div style="background:white;border-radius:20px;padding:28px;box-shadow:0 2px 12px #0000000f;border-top:4px solid #1A2340;">
-   <h3 style="font-size:16px;font-weight:900;color:#1A2340;margin-bottom:16px;">📚 수업 과목 & 가능 학년</h3>
-   <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">${subjBadges2}</div>
-   <div style="margin-top:18px;padding-top:16px;border-top:1px solid #E2E8F0;">
-    <h4 style="font-size:15px;font-weight:800;color:#1A2340;margin-bottom:12px;">📍 위치 정보</h4>
-    <div style="margin-bottom:10px;">
-     <p style="font-size:13px;font-weight:700;color:#1A2340;margin-bottom:3px;">정확한 위치</p>
-     <p style="font-size:13px;color:#333;line-height:1.6;">${ct.a}</p>
-    </div>
-    ${ct.w?'<div><p style="font-size:13px;font-weight:700;color:#1A2340;margin-bottom:3px;">인근 안내</p><p style="font-size:13px;color:#333;line-height:1.6;">'+ct.w+'</p></div>':''}
-   </div>
-  </div>
-  <div style="background:white;border-radius:20px;padding:28px;box-shadow:0 2px 12px #0000000f;border-top:4px solid #1A2340;">
-   <h3 style="font-size:16px;font-weight:900;color:#1A2340;margin-bottom:16px;">🏫 타겟 학교</h3>
-   <div style="margin-bottom:12px;"><p style="font-size:14px;font-weight:700;color:#1A2340;margin-bottom:6px;">타겟 초등학교</p><p style="font-size:13px;color:#333;">${ct.se||'-'}</p></div>
-   <div style="margin-bottom:12px;"><p style="font-size:14px;font-weight:700;color:#1A2340;margin-bottom:6px;">타겟 중학교</p><p style="font-size:13px;color:#333;">${ct.sm||'-'}</p></div>
-   <div><p style="font-size:14px;font-weight:700;color:#1A2340;margin-bottom:6px;">타겟 고등학교</p><p style="font-size:13px;color:#333;">${ct.sh||'-'}</p></div>
-  </div>
- </div>
-<div style="background:white;border-radius:20px;padding:36px 28px;margin-bottom:28px;box-shadow:0 2px 12px #0000000f;">
+ <div style="background:white;border-radius:20px;padding:36px 28px;margin-bottom:28px;box-shadow:0 2px 12px #0000000f;">
  <div style="text-align:center;margin-bottom:28px;">
  <h2 style="font-size:clamp(20px,4vw,26px);font-weight:900;color:#1A2340;margin-bottom:8px;">${ct.n}의 특징</h2>
  <p style="font-size:13px;color:#888;">${loc.d} ${grade} ${subject} 학생을 위한 차별화된 학습 시스템</p>
