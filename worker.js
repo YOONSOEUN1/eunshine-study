@@ -3573,6 +3573,53 @@ function buildCenterSubPage(slug, grade, subject, school) {
  const gradeColor = grade==='초등'?'#3b82f6':(grade==='중등'?'#10b981':'#f59e0b');
  const subjColor = subjColors[subject]||'#1A2340';
  const title = school ? school+' '+subject+' 학원' : loc.d+' '+grade+' '+subject+' 학원';
+// PATCH: Add info grid + keywords to buildCenterSubPage
+// Insert AFTER: const title = ... line
+// Variables available: ct, loc, grade, subject, school, title, subjColors
+
+// Info grid variables
+const subjColors2={"국어":"#e74c3c","영어":"#27ae60","수학":"#f39c12","과학":"#3498db","사회":"#9b59b6"};
+var _subjBadges2='';
+Object.keys(ct.g||{}).forEach(function(subj){
+ var clr=subjColors2[subj]||'#888';
+ _subjBadges2+='<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-radius:10px;border:1.5px solid '+clr+'33;"><span style="font-weight:700;color:'+clr+';font-size:14px;">'+subj+'</span><span style="font-size:12px;color:#888;font-weight:600;">'+(ct.g[subj])+'</span></div>';
+});
+
+var _locInfo='<div style="margin-bottom:10px;"><p style="font-size:13px;font-weight:700;color:#1A2340;margin-bottom:3px;">정확한 위치</p><p style="font-size:13px;color:#333;line-height:1.6;">'+ct.a+'</p></div>';
+if(ct.w) _locInfo+='<div><p style="font-size:13px;font-weight:700;color:#1A2340;margin-bottom:3px;">인근 안내</p><p style="font-size:13px;color:#333;line-height:1.6;">'+ct.w+'</p></div>';
+
+var _infoGrid='<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;max-width:900px;margin-left:auto;margin-right:auto;padding:0 20px;">';
+_infoGrid+='<div style="background:white;border-radius:20px;padding:28px;box-shadow:0 2px 12px #0000000f;border-top:4px solid #1A2340;">';
+_infoGrid+='<h3 style="font-size:16px;font-weight:900;color:#1A2340;margin-bottom:16px;">📚 수업 과목 & 가능 학년</h3>';
+_infoGrid+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">'+_subjBadges2+'</div>';
+_infoGrid+='<div style="margin-top:18px;padding-top:16px;border-top:1px solid #E2E8F0;"><h4 style="font-size:15px;font-weight:800;color:#1A2340;margin-bottom:12px;">📍 위치 정보</h4>'+_locInfo+'</div>';
+_infoGrid+='</div>';
+_infoGrid+='<div style="background:white;border-radius:20px;padding:28px;box-shadow:0 2px 12px #0000000f;border-top:4px solid #1A2340;">';
+_infoGrid+='<h3 style="font-size:16px;font-weight:900;color:#1A2340;margin-bottom:16px;">🏫 타겟 학교</h3>';
+_infoGrid+='<div style="margin-bottom:12px;"><p style="font-size:14px;font-weight:700;color:#1A2340;margin-bottom:6px;">타겟 초등학교</p><p style="font-size:13px;color:#333;">'+(ct.se||'-')+'</p></div>';
+_infoGrid+='<div style="margin-bottom:12px;"><p style="font-size:14px;font-weight:700;color:#1A2340;margin-bottom:6px;">타겟 중학교</p><p style="font-size:13px;color:#333;">'+(ct.sm||'-')+'</p></div>';
+_infoGrid+='<div><p style="font-size:14px;font-weight:700;color:#1A2340;margin-bottom:6px;">타겟 고등학교</p><p style="font-size:13px;color:#333;">'+(ct.sh||'-')+'</p></div>';
+_infoGrid+='</div></div>';
+
+// Keyword section
+var _kwTitle=title;
+var _kwBottom='<div style="max-width:900px;margin:0 auto 24px;padding:0 20px;"><div style="background:#F8FAFC;border-radius:16px;padding:20px 24px;">';
+_kwBottom+='<p style="font-size:13px;color:#64748B;line-height:1.8;">';
+_kwBottom+=_kwTitle+'은 학생 맞춤형 학습 코칭으로 실질적인 성적 향상을 이끌어냅니다. ';
+_kwBottom+=_kwTitle+'에 관심이 있으시다면 무료 상담을 통해 자세한 수업 안내를 받아보세요. ';
+_kwBottom+=_kwTitle+'의 체계적인 커리큘럼과 전담 코치 시스템을 직접 경험해 보실 수 있습니다. ';
+_kwBottom+=_kwTitle+'에서는 학생의 수준에 맞는 개별 커리큘럼을 설계하고, ';
+_kwBottom+=_kwTitle+'만의 플래너 기반 자기주도학습 시스템으로 꾸준한 성장을 돕습니다. ';
+_kwBottom+='지금 '+_kwTitle+' 무료 상담을 신청하세요. ';
+_kwBottom+=_kwTitle+'이 여러분의 목표 달성을 함께 하겠습니다.</p>';
+_kwBottom+='<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;">';
+_kwBottom+='<span style="background:white;border:1px solid #E2E8F0;padding:5px 12px;border-radius:50px;font-size:11px;color:#334155;font-weight:600;">'+_kwTitle+'</span>';
+_kwBottom+='<span style="background:white;border:1px solid #E2E8F0;padding:5px 12px;border-radius:50px;font-size:11px;color:#334155;font-weight:600;">'+ct.n+' '+subject+'</span>';
+_kwBottom+='<span style="background:white;border:1px solid #E2E8F0;padding:5px 12px;border-radius:50px;font-size:11px;color:#334155;font-weight:600;">'+loc.d+' '+grade+' 학원</span>';
+_kwBottom+='<span style="background:white;border:1px solid #E2E8F0;padding:5px 12px;border-radius:50px;font-size:11px;color:#334155;font-weight:600;">'+ct.n+' 학습코칭</span>';
+_kwBottom+='</div></div></div>';
+
+
  const heroLabel = school || loc.d;
  const landmarkTxt = loc.l && loc.l.length ? loc.l.join(', ') + ' 인근' : '';
  const schoolField = grade==='초등'?ct.se:(grade==='중등'?ct.sm:ct.sh);
@@ -3811,6 +3858,7 @@ function buildCenterSubPage(slug, grade, subject, school) {
 
 
  <!-- 학원 특징 -->
+ ${_infoGrid}
  <div style="background:white;border-radius:20px;padding:36px 28px;margin-bottom:28px;box-shadow:0 2px 12px #0000000f;">
  <div style="text-align:center;margin-bottom:28px;">
  <h2 style="font-size:clamp(20px,4vw,26px);font-weight:900;color:#1A2340;margin-bottom:8px;">${ct.n}의 특징</h2>
@@ -3892,7 +3940,9 @@ function buildCenterSubPage(slug, grade, subject, school) {
  ${FOOTER}${ACAD_FLOATING}
  <style>@media(max-width:768px){div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}}</style>
  ${ACAD_SCRIPT('학원 서브페이지 ('+ct.n+' '+title+')')}
- </body></html>`;
+ 
+${_kwBottom}
+</body></html>`;
 }
 
 // ── 학원수업(학습코칭학원) 페이지 ──
