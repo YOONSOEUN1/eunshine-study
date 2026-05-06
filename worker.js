@@ -3425,15 +3425,18 @@ function buildCenterDetailPage(slug) {
  <div style="background:white;border-radius:20px;padding:28px;box-shadow:0 2px 12px #0000000f;border-top:4px solid #1A2340;">
  <h3 style="font-size:16px;font-weight:900;color:#1A2340;margin-bottom:16px;">📚 수업 과목 &amp; 가능 학년</h3>
  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">${subjBadges}</div>
+ <div style="margin-top:18px;padding-top:16px;border-top:1px solid #E2E8F0;">
+  <h4 style="font-size:15px;font-weight:800;color:#1A2340;margin-bottom:12px;">📍 위치 정보</h4>
+  <div style="margin-bottom:10px;">
+   <p style="font-size:13px;font-weight:700;color:#1A2340;margin-bottom:3px;">정확한 위치</p>
+   <p style="font-size:13px;color:#333;line-height:1.6;">${ct.a}</p>
+  </div>
+  ${ct.w?'<div><p style="font-size:13px;font-weight:700;color:#1A2340;margin-bottom:3px;">인근 안내</p><p style="font-size:13px;color:#333;line-height:1.6;">'+ct.w+'</p></div>':''}
+ </div>
  </div>
  
  <div style="background:white;border-radius:20px;padding:28px;box-shadow:0 2px 12px #0000000f;border-top:4px solid #1A2340;">
-  <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid #C8A96E;padding-left:14px;margin-bottom:16px;">📍 주변 정보</h2>
-  <div style="margin-bottom:14px;">
-   <p style="font-size:14px;font-weight:700;color:#1A2340;margin-bottom:4px;">📍 정확한 위치</p>
-   <p style="font-size:13px;color:#333;line-height:1.7;">${ct.a}</p>
-  </div>
-  ${ct.w?'<div style="margin-bottom:14px;"><p style="font-size:14px;font-weight:700;color:#1A2340;margin-bottom:4px;">📍 인근 안내</p><p style="font-size:13px;color:#333;line-height:1.7;">'+ct.w+'</p></div>':''}
+  <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid #C8A96E;padding-left:14px;margin-bottom:16px;">🏫 타겟 학교</h2>
   <div style="margin-bottom:16px;">
    <p style="font-size:14px;font-weight:700;color:#1A2340;margin-bottom:6px;">타겟 초등학교</p>
    <p style="font-size:14px;color:#555;line-height:1.8;">${ct.se||'정보 없음'}</p>
