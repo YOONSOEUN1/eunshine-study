@@ -750,7 +750,7 @@ const reviews=pkU(rvPool,seed,6,7);
  const columns=pkU(COLUMN_POOL,seed,2,23);
  // SEO 키워드 생성
  const regionName=locations[loc]?locations[loc].region_name:'';
- const cityName=city;
+ const cityObj=locations[loc]&&locations[loc].cities&&locations[loc].cities[city];const cityName=cityObj?cityObj.name:city;
  const subjs=['국어','영어','수학','과학','사회'];
  const grades_kw=['초등','중등','고등','초등학생','중학생','고등학생'];
  const kw1=regionName+cityName+'과외';
@@ -809,14 +809,7 @@ function renderUniqueContent(ct,dong,grade,subj,tc,rd,schools){
  <h3 style="font-size:16px;font-weight:800;color:${tc};margin:0 0 10px 0;">${sc.school} 재학생 맞춤 학습 가이드</h3>
  <p style="font-size:14px;color:#333;line-height:2;margin:0;">${sc.body}</p></div>`;});
  
- h+=`<div style="background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:clamp(24px,4vw,40px);margin-bottom:24px;box-shadow:0 4px 24px rgba(26,35,64,0.06);">
-  <h2 style="font-size:1.15rem;font-weight:900;color:#1A2340;margin-bottom:16px;border-left:4px solid #C8A96E;padding-left:14px;">📚 ${cityName} 교육 정보</h2>
-  <p style="font-size:0.88rem;color:#334155;line-height:2.1;white-space:pre-line;">${eduHtml}</p>
- </div>
- <div style="background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:24px;margin-bottom:24px;box-shadow:0 4px 24px rgba(26,35,64,0.06);">
-  <h2 style="font-size:1rem;font-weight:800;color:#1A2340;margin-bottom:14px;">🔍 관련 키워드</h2>
-  <div style="display:flex;flex-wrap:wrap;gap:4px;">${kwTags}</div>
- </div>`;
+ h+='<div style="background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:clamp(24px,4vw,40px);margin-bottom:24px;box-shadow:0 4px 24px rgba(26,35,64,0.06);"><h2 style="font-size:1.15rem;font-weight:900;color:#1A2340;margin-bottom:16px;border-left:4px solid #C8A96E;padding-left:14px;">📚 '+cityName+' 교육 정보</h2><p style="font-size:0.88rem;color:#334155;line-height:2.1;white-space:pre-line;">'+eduHtml+'</p></div><div style="background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:24px;margin-bottom:24px;box-shadow:0 4px 24px rgba(26,35,64,0.06);"><h2 style="font-size:1rem;font-weight:800;color:#1A2340;margin-bottom:14px;">🔍 관련 키워드</h2><div style="display:flex;flex-wrap:wrap;gap:4px;">'+kwTags+'</div></div>';
 h+=`</div>`;
  }
  // ── 학부모 후기 + 성적 사례 통합 ──
