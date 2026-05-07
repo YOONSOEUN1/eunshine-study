@@ -5027,35 +5027,91 @@ function buildSubjectPage(subSlug){
 
  if (p==="/"||p==="") return new Response(getIndex(),{headers:H});
  if (p === "/sitemap.xml") {
- const urls = ["https://eunshinestudy.com/", "https://eunshinestudy.com/directory", "https://eunshinestudy.com/schools", "https://eunshinestudy.com/academy"];
- // 학년별 과외 URL
- for (const gc of Object.keys(GRADE_DATA)) {
- urls.push("https://eunshinestudy.com/grade/" + gc);
- for (const s of subjects) {
- urls.push("https://eunshinestudy.com/grade/" + gc + "/" + encodeURIComponent(s));
+ // Sitemap Index - points to category sitemaps
+ const sitemaps = ["main","regions","subjects","academy","grades"];
+ const idx = sitemaps.map(s => ` <sitemap><loc>https://eunshinestudy.com/sitemap-${s}.xml</loc></sitemap>`).join("\n");
+ return new Response(`<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${idx}\n</sitemapindex>`, {headers:{"Content-Type":"application/xml;charset=utf-8",H}});
+}
+
+if (p.startsWith("/sitemap-") && p.endsWith(".xml")) {
+ const cat = p.replace("/sitemap-","").replace(".xml","");
+ let urls = [];
+ const base = "https://eunshinestudy.com";
+ 
+ if (cat === "main") {
+  urls.push(base+"/", base+"/directory", base+"/schools", base+"/academy", base+"/subject", base+"/language");
+  for (const gc of Object.keys(GRADE_DATA)) {
+   urls.push(base+"/grade/"+gc);
+  }
+  SUBJECT_LIST.forEach(function(k){urls.push(base+"/subject/"+SUBJECTS[k].slug);});
+  ["english","japanese","chinese"].forEach(function(l){urls.push(base+"/language/"+l);});
  }
+ 
+ else if (cat === "regions") {
+  // 시도 + 시구군 + 동 페이지
+  for (const rs of Object.keys(locations)) {
+   urls.push(base+"/"+rs);
+   const region = locations[rs];
+   for (const cs of Object.keys(region.cities||{})) {
+    urls.push(base+"/"+rs+"/"+cs);
+    const city = region.cities[cs];
+    (city.dongs||[]).forEach(function(d){
+     urls.push(base+"/"+rs+"/"+cs+"/"+encodeURIComponent(d));
+    });
+    // 학교 페이지
+    (city.schools||[]).forEach(function(s){
+     urls.push(base+"/"+rs+"/"+cs+"/school/"+encodeURIComponent(s.n||s));
+    });
+   }
+  }
  }
- for (const [rs, ri] of Object.entries(locations)) {
- urls.push("https://eunshinestudy.com/schools/" + rs);
- for (const cs of Object.keys(ri.cities)) {
- urls.push("https://eunshinestudy.com/" + rs + "/" + cs);
- }
- }
- // 학원 센터 URL
- ACAD_DETAIL.forEach(function(ct) {
- urls.push("https://eunshinestudy.com/academy/" + encodeURIComponent(ct.sl));
- ['초등','중등','고등'].forEach(function(g){
-  ['국어','영어','수학','과학','사회'].forEach(function(s){
-  urls.push("https://eunshinestudy.com/academy/" + encodeURIComponent(ct.sl) + "/" + encodeURIComponent(g) + "/" + encodeURIComponent(s));
+ 
+ else if (cat === "subjects") {
+  SUBJECT_LIST.forEach(function(k){
+   const s = SUBJECTS[k];
+   urls.push(base+"/subject/"+s.slug);
   });
- });
- });
- const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map(u => ` <url><loc>${u}</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>`).join("\n")}
-</urlset>`;
- return new Response(xml, { headers: { "Content-Type": "application/xml;charset=UTF-8" } });
+  // 지역별 과목 조합 (주요 지역만)
+  const mainRegions = Object.keys(locations).slice(0,10);
+  mainRegions.forEach(function(rs){
+   for (const cs of Object.keys(locations[rs].cities||{}).slice(0,5)) {
+    ["초등","중등","고등"].forEach(function(g){
+     ["국어","영어","수학","과학","사회"].forEach(function(sj){
+      urls.push(base+"/"+rs+"/"+cs+"/"+encodeURIComponent(g)+"/"+encodeURIComponent(sj));
+     });
+    });
+   }
+  });
  }
+ 
+ else if (cat === "academy") {
+  urls.push(base+"/academy");
+  ACAD_DETAIL.forEach(function(ct){
+   urls.push(base+"/academy/"+encodeURIComponent(ct.sl));
+   // 학원 서브페이지
+   (ct.subj||[]).forEach(function(sj){
+    ["초등","중등","고등"].forEach(function(g){
+     urls.push(base+"/academy/"+encodeURIComponent(ct.sl)+"/"+encodeURIComponent(g)+"/"+encodeURIComponent(sj));
+    });
+   });
+  });
+ }
+ 
+ else if (cat === "grades") {
+  for (const gc of Object.keys(GRADE_DATA)) {
+   urls.push(base+"/grade/"+gc);
+   ["국어","영어","수학","과학","사회"].forEach(function(sj){
+    urls.push(base+"/grade/"+gc+"/"+encodeURIComponent(sj));
+   });
+  }
+ }
+ 
+ // Limit to 50000 per sitemap
+ if (urls.length > 50000) urls = urls.slice(0, 50000);
+ 
+ const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(u => ` <url><loc>${u}</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>`).join("\n")}\n</urlset>`;
+ return new Response(xml, {headers:{"Content-Type":"application/xml;charset=utf-8",H}});
+}
  if (p==="/academy") return new Response(buildAcademyPage(),{headers:H});
  if (p==="/language") return new Response(buildLangMainPage(),{headers:H});
  if (parts.length===2 && parts[0]==="language") {
