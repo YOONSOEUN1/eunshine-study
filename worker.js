@@ -3832,6 +3832,33 @@ _kwBottom+='</div></div></div>';
   {q:'수업료는 어떻게 되나요?',a:'<div style="margin-bottom:14px;"><p style="font-weight:700;margin-bottom:6px;">A - 서울/위례/미금/영통/동탄호수/동탄목동</p><table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:4px;"><tr style="background:#f5f5f0;"><th style="padding:8px;border:1px solid #e0e0e0;"></th><th style="padding:8px;border:1px solid #e0e0e0;">초등</th><th style="padding:8px;border:1px solid #e0e0e0;">중등</th><th style="padding:8px;border:1px solid #e0e0e0;">고등</th></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 3회</td><td style="padding:8px;border:1px solid #e0e0e0;">230,000</td><td style="padding:8px;border:1px solid #e0e0e0;">247,000</td><td style="padding:8px;border:1px solid #e0e0e0;">280,000</td></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 4회</td><td style="padding:8px;border:1px solid #e0e0e0;">300,000</td><td style="padding:8px;border:1px solid #e0e0e0;">322,000</td><td style="padding:8px;border:1px solid #e0e0e0;">365,000</td></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 5회</td><td style="padding:8px;border:1px solid #e0e0e0;">370,000</td><td style="padding:8px;border:1px solid #e0e0e0;">397,000</td><td style="padding:8px;border:1px solid #e0e0e0;">450,000</td></tr></table></div><div style="margin-bottom:14px;"><p style="font-weight:700;margin-bottom:6px;">B - 서울 외 지점</p><table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:4px;"><tr style="background:#f5f5f0;"><th style="padding:8px;border:1px solid #e0e0e0;"></th><th style="padding:8px;border:1px solid #e0e0e0;">초등</th><th style="padding:8px;border:1px solid #e0e0e0;">중등</th><th style="padding:8px;border:1px solid #e0e0e0;">고등</th></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 3회</td><td style="padding:8px;border:1px solid #e0e0e0;">200,000</td><td style="padding:8px;border:1px solid #e0e0e0;">217,000</td><td style="padding:8px;border:1px solid #e0e0e0;">250,000</td></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 4회</td><td style="padding:8px;border:1px solid #e0e0e0;">260,000</td><td style="padding:8px;border:1px solid #e0e0e0;">282,000</td><td style="padding:8px;border:1px solid #e0e0e0;">325,000</td></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 5회</td><td style="padding:8px;border:1px solid #e0e0e0;">320,000</td><td style="padding:8px;border:1px solid #e0e0e0;">347,000</td><td style="padding:8px;border:1px solid #e0e0e0;">400,000</td></tr></table></div><div style="margin-bottom:14px;"><p style="font-weight:700;margin-bottom:6px;">송도/병점/삼산/청라</p><table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:4px;"><tr style="background:#f5f5f0;"><th style="padding:8px;border:1px solid #e0e0e0;"></th><th style="padding:8px;border:1px solid #e0e0e0;">초등</th><th style="padding:8px;border:1px solid #e0e0e0;">중등</th><th style="padding:8px;border:1px solid #e0e0e0;">고등</th></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 1회</td><td style="padding:8px;border:1px solid #e0e0e0;">140,000</td><td style="padding:8px;border:1px solid #e0e0e0;">152,000</td><td style="padding:8px;border:1px solid #e0e0e0;">175,000</td></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 2회</td><td style="padding:8px;border:1px solid #e0e0e0;">260,000</td><td style="padding:8px;border:1px solid #e0e0e0;">282,000</td><td style="padding:8px;border:1px solid #e0e0e0;">325,000</td></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 3회</td><td style="padding:8px;border:1px solid #e0e0e0;">380,000</td><td style="padding:8px;border:1px solid #e0e0e0;">412,000</td><td style="padding:8px;border:1px solid #e0e0e0;">475,000</td></tr></table></div><p style="font-size:11px;color:#888;">*수업료는 지역·횟수에 따라 차이가 있습니다.</p>'}
  ];
 
+ 
+// 과목별 학습 가이드
+var _studyGuides = {
+'국어':'국어 학습의 핵심은 독해력과 논리적 사고력입니다. 문학 작품은 화자의 정서와 갈등 구조를 분석하는 틀을 체화해야 하며, 비문학은 문단별 중심 문장을 찾아 전체 구조를 파악하는 연습이 필요합니다. 매일 1지문씩 구조 분석을 꾸준히 하면 2~3주 내에 눈에 띄는 변화를 체감할 수 있습니다. 서술형에서 감점되는 가장 큰 이유는 문제의 요구 조건을 놓치는 것이므로, 반드시 조건을 체크리스트로 만든 뒤 답안을 작성하세요. 문법은 개념을 외운 뒤 실제 문장에서 적용하는 연습이 필수적입니다.',
+'영어':'영어 실력 향상의 핵심은 어휘력과 구문 분석 능력입니다. 매일 단어 20개를 어원 분석법으로 암기하고 전날 단어를 복습하는 누적 학습법을 실천해 보세요. 긴 문장을 주어-동사-목적어로 분해하는 연습을 매일 3문장씩 하면 한 달 안에 독해 속도가 눈에 띄게 빨라집니다. 내신 영어는 교과서 본문을 한국어로 해석한 뒤 다시 영어로 복원하는 영작 복원법이 매우 효과적입니다. 수능 영어 1등급을 위해서는 유형별 풀이 전략을 체화해야 합니다.',
+'수학':'수학 성적이 오르지 않는 가장 큰 이유는 개념의 빈틈입니다. 현재 단원이 안 풀리면 이전 단원의 개념이 불완전하기 때문이므로, 어디서 막히는지 찾아 그 단원부터 다시 시작하는 것이 가장 빠른 길입니다. 오답 노트를 작성할 때는 개념 부족, 계산 실수, 문제 이해 오류 세 가지로 분류해야 합니다. 계산 실수를 줄이려면 풀이 과정을 한 줄씩 깔끔하게 쓰고 절대 중간 과정을 생략하지 마세요. 답을 구한 뒤 원래 식에 대입하여 검산하면 실수가 절반 이하로 줄어듭니다.',
+'과학':'과학은 원리를 이해하면 문제가 풀리는 과목입니다. 공식을 단순히 외우기보다 유도 과정을 따라가면 의미를 자연스럽게 이해할 수 있습니다. 물리는 문제 상황을 그림으로 시각화하고, 화학은 반응식의 양적 관계를 정확히 파악하세요. 생명과학은 과정을 순서대로 정리하는 것이 핵심이고 지구과학은 도표와 지도를 활용한 공간적 이해가 중요합니다. 실험 보고서는 목적에서 결론까지 논리적 흐름을 지키며 작성하세요.',
+'사회':'사회는 이해 과목입니다. 제도가 왜 만들어졌는지, 어떤 문제를 해결하려는 것인지를 이해하면 암기량이 절반으로 줄어듭니다. 교과서 목차를 먼저 파악하고 핵심 개념 20개를 뽑아 각각 2줄로 설명할 수 있는지 테스트해 보세요. 그래프와 통계표를 정확히 읽는 연습도 매우 중요하며, 시사 이슈와 교과서 내용을 연결하면 깊이 있는 이해가 가능합니다.'
+};
+var _guideText = _studyGuides[subject] || '학습 코칭에서 가장 중요한 것은 학생 개개인에 맞는 전략을 설계하는 것입니다. 같은 과목이라도 학생의 수준과 스타일에 따라 접근이 달라야 합니다. 내신 시험에서는 학교별 출제 경향을 분석하는 것이 핵심이며, 최소 3년치 기출을 풀어 유형을 파악하세요.';
+var _guideHtml = '<div style="max-width:900px;margin:0 auto 24px;padding:0 20px;"><div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;"><h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid #C8A96E;padding-left:14px;margin-bottom:16px;">📚 '+subject+' 학습 가이드</h2><p style="font-size:14px;color:#444;line-height:2.1;">'+_guideText+'</p></div>';
+
+// 후기 6개
+var _rvData = [
+{nm:'김○○',gr:'초등',body:'아이가 공부에 흥미를 잃었었는데 코치 선생님 덕분에 다시 공부가 재미있다고 해요. 맞춤형 수업이라 아이 수준에 딱 맞게 진행해주셔서 정말 감사합니다.'},
+{nm:'이○○',gr:'초등',body:'처음에는 반신반의했는데 한 달 만에 시험 성적이 15점이나 올랐어요. 매주 보내주시는 학습 리포트도 정말 유용합니다.'},
+{nm:'박○○',gr:'중등',body:'학원을 여러 곳 다녀봤는데 여기처럼 세밀하게 관리해주는 곳은 처음입니다. 아이의 약점을 정확히 파악하고 집중적으로 보강해주세요.'},
+{nm:'최○○',gr:'중등',body:'성적이 정체되어 있었는데 코칭 수업을 시작한 후 꾸준히 오르고 있습니다. 특히 오답 분석 시스템이 정말 효과적이에요.'},
+{nm:'정○○',gr:'고등',body:'자기주도학습 습관이 잡히니까 다른 과목 성적도 같이 올랐어요. 플래너 관리가 정말 체계적입니다.'},
+{nm:'윤○○',gr:'고등',body:'수능 대비와 내신을 동시에 잡아주셔서 시간을 효율적으로 쓸 수 있었어요. 입시 전략 상담도 큰 도움이 되었습니다.'}
+];
+var _rvHtml = '<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;"><h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid #C8A96E;padding-left:14px;margin-bottom:16px;">💬 학부모 후기</h2><div style="overflow:hidden;"><div style="display:flex;gap:16px;animation:rvScroll 30s linear infinite;width:max-content;">';
+for(var _ri=0;_ri<9;_ri++){var _rv=_rvData[_ri%6];_rvHtml+='<div style="min-width:280px;max-width:280px;flex-shrink:0;border:1.5px solid #E2E8F0;border-radius:14px;padding:18px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div style="width:36px;height:36px;border-radius:50%;background:#C8A96E;color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;">'+_rv.nm.charAt(0)+'</div><div><div style="font-weight:700;color:#1A2340;font-size:13px;">'+_rv.nm+' 학부모님</div><div style="font-size:11px;color:#888;">'+_rv.gr+' · '+subject+'</div></div></div><p style="font-size:12px;color:#555;line-height:1.75;margin:0;">"'+_rv.body+'"</p></div>';}
+_rvHtml+='</div></div></div></div>';
+var _studyReviewHtml = _guideHtml + _rvHtml;
+
+
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -3955,7 +3982,8 @@ _kwBottom+='</div></div></div>';
 
 
 
-${_kwBottom}
+${_studyReviewHtml}
+ ${_kwBottom}
 </body></html>`;
 }
 
