@@ -1512,6 +1512,7 @@ function buildRegionPage(rs) {
  </p>
  <div style="display:inline-block;background:${tc};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:14px;">📍 ${rn}</div>
  <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${rn} 과외 | 지역별 맞춤 1:1 과외 안내</h1>
+  <p style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${rn} 전 지역 초·중·고 전 과목 1:1 맞춤 과외. 방문/화상 모두 가능하며, 첫 상담과 체험 수업은 완전 무료입니다.</p>
  </div>
 
@@ -1616,6 +1617,7 @@ function buildCityPage(rs, cs) {
  <div style="background:linear-gradient(135deg,${hexToRgba(tc,0.92)},${hexToRgba(tc,0.78)}),url('${bgImg("city",cH(rs+cs))}') center/cover;color:white;border-radius:20px;padding:clamp(32px,5vw,56px);margin-bottom:24px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
  <p style="font-size:13px;opacity:.8;margin-bottom:8px;">📍 은빛쌤 1:1 맞춤 과외</p>
  <h1 style="font-size:clamp(28px,5vw,44px);font-weight:900;margin-bottom:12px;">${rd} 과외</h1>
+  <p style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:15px;opacity:.9;margin-bottom:20px;">초·중·고 전 과목 | 무료 상담 후 방문·화상 수업 방식 결정</p>
  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;">
  <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:7px 18px;font-size:13px;font-weight:600;">✅ 첫 상담 무료</span>
@@ -1851,6 +1853,7 @@ function buildDongPage(rs, cs, dong) {
  <div style="background:linear-gradient(135deg,${hexToRgba(tc,0.92)},${hexToRgba(tc,0.78)}),url('${bgImg("city",cH(rs+cs+dong))}') center/cover;color:white;border-radius:20px;padding:clamp(30px,5vw,52px);margin-bottom:24px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
  <p style="font-size:13px;opacity:.8;margin-bottom:6px;">📍 <a href="/${rs}/${cs}" style="color:white;text-decoration:underline;">${rd}</a> &gt; ${dong}</p>
  <h1 style="font-size:clamp(26px,5vw,42px);font-weight:900;margin-bottom:10px;">${dong} 과외</h1>
+  <p style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:14px;opacity:.9;margin-bottom:18px;">초·중·고 전 과목 | 상담 후 방문·화상 수업 방식 결정</p>
  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;">
  <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ 첫 상담·체험 무료</span>
@@ -2090,6 +2093,7 @@ function buildDetailPage(rs, cs, grade, subject) {
  <a href="/${rs}/${cs}" style="color:white;text-decoration:underline;">${rd}</a> &gt; ${grade} ${subject}
  </p>
  <h1 style="font-size:clamp(24px,5vw,40px);font-weight:900;margin-bottom:12px;">${c.title}</h1>
+  <p style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:14px;opacity:.9;line-height:1.8;">${c.desc}</p>
  </div>
 
@@ -2477,6 +2481,7 @@ function buildSchoolPage(rs, cs, schoolShort) {
  <div style="background:linear-gradient(135deg,${hexToRgba(typeColor,0.92)},${hexToRgba(typeColor,0.78)}),url('${bgImg("school",seed)}') center/cover;color:white;border-radius:20px;padding:clamp(30px,5vw,52px);margin-bottom:24px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
  <p style="font-size:13px;opacity:.8;margin-bottom:6px;">📍 ${rd} ${kn} · ${schoolType}</p>
  <h1 style="font-size:clamp(26px,5vw,42px);font-weight:900;margin-bottom:10px;">${schoolFull} 과외</h1>
+  <p style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:14px;opacity:.9;margin-bottom:18px;">은빛쌤 1:1 맞춤 과외 | 상담 후 방문·화상 수업 결정</p>
  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;">
  <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ 35년 교육 노하우</span>
@@ -2618,6 +2623,7 @@ function buildGradePage(gradeCode) {
  <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
  <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:16px;">⭐ ${gd.name} 과외 개요</h2>
  <p style="font-size:14px;color:#444;line-height:2;margin:0;">${gd.desc}</p>
+  <p style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  </div>
  <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
  <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:18px;">📚 ${gd.name} 과목별 과외</h2>
@@ -3429,6 +3435,7 @@ function buildCenterDetailPage(slug) {
  <p style="font-size:13px;opacity:.7;margin-bottom:10px;font-weight:600;position:relative;">은빛스터디 × 학습코칭학원 · ${ct.r}</p>
  <h1 style="font-size:clamp(26px,5vw,40px);font-weight:900;margin-bottom:14px;position:relative;">${ct.n}</h1>
  <p style="font-size:14px;opacity:.85;position:relative;">📍 ${ct.a}</p>
+ <p style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  </div>
 
  <!-- 수업 과목 + 타겟 학교 -->
@@ -4974,6 +4981,7 @@ function buildSubjectPage(subSlug){
   <div style="font-size:3rem;margin-bottom:14px;">${s.icon}</div>
   <h1 style="font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;color:#fff;margin-bottom:10px;text-shadow:0 2px 8px rgba(0,0,0,0.3);">${s.name} 과외</h1>
   <p style="font-size:0.95rem;color:rgba(255,255,255,0.85);line-height:1.8;max-width:550px;margin:0 auto 24px;">${s.desc}</p>
+  <p style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
   <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
    <a href="#form" onclick="document.getElementById(\x27form\x27).scrollIntoView({behavior:\x27smooth\x27});return false;" style="padding:12px 28px;background:#fff;color:#1A2340;border-radius:10px;font-size:0.95rem;font-weight:700;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,0.15);">무료 상담 신청</a>
    <a href="tel:01023370458" style="padding:12px 28px;border:1.5px solid rgba(255,255,255,0.5);color:#fff;border-radius:10px;font-size:0.95rem;font-weight:600;text-decoration:none;">📞 전화 상담</a>
