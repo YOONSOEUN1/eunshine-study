@@ -5200,7 +5200,7 @@ if (p.startsWith("/sitemap-") && p.endsWith(".xml")) {
  const html = buildCenterDetailPage(slug);
  if(html) return new Response(html,{headers:H});
  }
- if (parts.length===4 && parts[0]==="academy") {
+ if ((parts.length===4 || parts.length===5) && parts[0]==="academy") {
  const slug = decodeURIComponent(parts[1]);
  const p2 = decodeURIComponent(parts[2]);
  const subject = decodeURIComponent(parts[3]);
