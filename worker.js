@@ -5203,8 +5203,9 @@ if (p.startsWith("/sitemap-") && p.endsWith(".xml")) {
  const slug = decodeURIComponent(parts[1]);
  const p2 = decodeURIComponent(parts[2]);
  const subject = decodeURIComponent(parts[3]);
+ const schoolName = parts[4] ? decodeURIComponent(parts[4]) : null;
  if(p2==='초등'||p2==='중등'||p2==='고등'){
-  const html = buildCenterSubPage(slug, p2, subject);
+  const html = buildCenterSubPage(slug, p2, subject, schoolName);
   if(html) return new Response(html,{headers:H});
  } else {
   const sn = p2;
