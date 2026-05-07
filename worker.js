@@ -3848,7 +3848,8 @@ _kwBottom+='</div></div></div>';
   {q:loc.d+'에서 '+ct.n+'까지 어떻게 가나요?',a:ct.a+' 위치이며, '+(landmarkTxt||loc.d+' 인근')+'에 자리하고 있습니다. 상담 신청 시 상세 위치를 안내드립니다.'},
   {q:grade+' '+subject+' 수업은 주 몇 회 진행되나요?',a:'학생의 수준과 목표에 따라 주 2~4회 탄력적으로 운영됩니다. 첫 상담 시 최적의 시간표를 제안드립니다.'},
   {q:'학원 내방 전 꼭 예약해야 하나요?',a:'네, 모든 상담은 예약제로 진행됩니다. 전화 또는 상담 신청 버튼을 통해 먼저 예약해 주신 뒤 방문 부탁드립니다.'},
-  {q:'첫 상담 시 무엇을 하나요?',a:'학생의 현재 학습 수준을 진단하고, 목표에 맞는 커리큘럼과 수업 방식을 제안드립니다. 진단검사는 무료로 진행됩니다.'}
+  {q:'첫 상담 시 무엇을 하나요?',a:'학생의 현재 학습 수준을 진단하고, 목표에 맞는 커리큘럼과 수업 방식을 제안드립니다. 진단검사는 무료로 진행됩니다.'},
+  {q:'수업료는 어떻게 되나요?',a:'<div style="margin-bottom:14px;"><p style="font-weight:700;margin-bottom:6px;">A - 서울/위례/미금/영통/동탄호수/동탄목동</p><table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:4px;"><tr style="background:#f5f5f0;"><th style="padding:8px;border:1px solid #e0e0e0;"></th><th style="padding:8px;border:1px solid #e0e0e0;">초등</th><th style="padding:8px;border:1px solid #e0e0e0;">중등</th><th style="padding:8px;border:1px solid #e0e0e0;">고등</th></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 3회</td><td style="padding:8px;border:1px solid #e0e0e0;">230,000</td><td style="padding:8px;border:1px solid #e0e0e0;">247,000</td><td style="padding:8px;border:1px solid #e0e0e0;">280,000</td></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 4회</td><td style="padding:8px;border:1px solid #e0e0e0;">300,000</td><td style="padding:8px;border:1px solid #e0e0e0;">322,000</td><td style="padding:8px;border:1px solid #e0e0e0;">365,000</td></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 5회</td><td style="padding:8px;border:1px solid #e0e0e0;">370,000</td><td style="padding:8px;border:1px solid #e0e0e0;">397,000</td><td style="padding:8px;border:1px solid #e0e0e0;">450,000</td></tr></table></div><div style="margin-bottom:14px;"><p style="font-weight:700;margin-bottom:6px;">B - 서울 외 지점</p><table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:4px;"><tr style="background:#f5f5f0;"><th style="padding:8px;border:1px solid #e0e0e0;"></th><th style="padding:8px;border:1px solid #e0e0e0;">초등</th><th style="padding:8px;border:1px solid #e0e0e0;">중등</th><th style="padding:8px;border:1px solid #e0e0e0;">고등</th></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 3회</td><td style="padding:8px;border:1px solid #e0e0e0;">200,000</td><td style="padding:8px;border:1px solid #e0e0e0;">217,000</td><td style="padding:8px;border:1px solid #e0e0e0;">250,000</td></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 4회</td><td style="padding:8px;border:1px solid #e0e0e0;">260,000</td><td style="padding:8px;border:1px solid #e0e0e0;">282,000</td><td style="padding:8px;border:1px solid #e0e0e0;">325,000</td></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 5회</td><td style="padding:8px;border:1px solid #e0e0e0;">320,000</td><td style="padding:8px;border:1px solid #e0e0e0;">347,000</td><td style="padding:8px;border:1px solid #e0e0e0;">400,000</td></tr></table></div><div style="margin-bottom:14px;"><p style="font-weight:700;margin-bottom:6px;">송도/병점/삼산/청라</p><table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:4px;"><tr style="background:#f5f5f0;"><th style="padding:8px;border:1px solid #e0e0e0;"></th><th style="padding:8px;border:1px solid #e0e0e0;">초등</th><th style="padding:8px;border:1px solid #e0e0e0;">중등</th><th style="padding:8px;border:1px solid #e0e0e0;">고등</th></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 1회</td><td style="padding:8px;border:1px solid #e0e0e0;">140,000</td><td style="padding:8px;border:1px solid #e0e0e0;">152,000</td><td style="padding:8px;border:1px solid #e0e0e0;">175,000</td></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 2회</td><td style="padding:8px;border:1px solid #e0e0e0;">260,000</td><td style="padding:8px;border:1px solid #e0e0e0;">282,000</td><td style="padding:8px;border:1px solid #e0e0e0;">325,000</td></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 3회</td><td style="padding:8px;border:1px solid #e0e0e0;">380,000</td><td style="padding:8px;border:1px solid #e0e0e0;">412,000</td><td style="padding:8px;border:1px solid #e0e0e0;">475,000</td></tr></table></div><p style="font-size:11px;color:#888;">*수업료는 지역·횟수에 따라 차이가 있습니다.</p>'}
  ];
 
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
@@ -3861,12 +3862,13 @@ _kwBottom+='</div></div></div>';
  <meta property="og:description" content="${title} - ${ct.n} ${ct.a}. ${grade} ${subject} 맞춤 코칭 학원.">
  <meta property="og:image" content="${bgImg(subject,cH(ct.sl+grade+subject))}">
  ${COMMON_STYLE}
- </head><body>${NAV}
+ </head><body><style>@keyframes rvScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}</style>
+ ${NAV}
  <div style="max-width:900px;margin:40px auto;padding:0 16px;">
  <div style="margin-bottom:16px;"><a href="/academy/${encodeURIComponent(slug)}" style="color:#888;text-decoration:none;font-size:13px;">← ${ct.n} 센터 페이지로</a></div>
 
  <!-- Hero -->
- <div style="background:linear-gradient(135deg,rgba(26,35,64,0.88),rgba(45,58,92,0.8),rgba(20,30,50,0.92)),url('${bgImg(subject,cH(ct.sl+grade))}') center/cover;padding:48px 20px 36px;text-align:center;border-radius:20px;margin:0 auto 24px;max-width:900px">
+ <div style="background:linear-gradient(135deg,rgba(26,35,64,0.92),rgba(45,58,92,0.88),rgba(20,30,50,0.95)),url('${bgImg(subject,cH(ct.sl+grade))}') center/cover;padding:48px 20px 36px;text-align:center;border-radius:20px;margin:0 auto 24px;max-width:900px">
  <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(200,169,110,0.15);border-radius:50%;"></div>
  <div style="display:flex;gap:8px;justify-content:center;margin-bottom:14px;position:relative;flex-wrap:wrap;">
  <span style="background:rgba(255,255,255,.15);padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;">${heroLabel}</span>
@@ -3966,6 +3968,41 @@ _kwBottom+='</div></div></div>';
  ${ACAD_SCRIPT('학원 서브페이지 ('+ct.n+' '+title+')')}
  
 ${_eduExtra}
+
+// 과목별 학습 가이드 + 후기
+var _studyContent = {
+'국어':'국어 학습의 핵심은 독해력과 논리적 사고력입니다. 문학 작품은 화자의 정서와 갈등 구조를 분석하는 틀을 체화하고, 비문학은 문단별 중심 문장을 찾아 전체 구조를 파악하는 연습이 필요합니다. 매일 1지문씩 구조 분석을 하면 2주 내에 체감할 수 있습니다. 서술형에서 감점되는 가장 큰 이유는 조건을 놓치는 것이므로 반드시 조건을 체크리스트로 만든 뒤 답안을 작성하세요.',
+'영어':'영어 실력 향상의 핵심은 어휘력과 구문 분석입니다. 매일 단어 20개를 어원 분석법으로 암기하고 전날 단어를 복습하세요. 긴 문장을 주어-동사-목적어로 분해하는 연습을 매일 3문장씩 하면 한 달 안에 독해 속도가 빨라집니다. 내신은 교과서 본문을 한국어로 해석 후 다시 영어로 복원하는 영작 복원법이 효과적입니다.',
+'수학':'수학 성적이 안 오르는 가장 큰 이유는 개념의 빈틈입니다. 현재 단원이 안 풀리면 이전 단원부터 다시 정리하는 것이 가장 빠른 길입니다. 오답 노트는 개념 부족과 계산 실수와 문제 이해 오류로 분류해야 합니다. 계산 실수를 줄이려면 풀이 과정을 한 줄씩 깔끔하게 쓰고 중간 과정을 절대 생략하지 마세요. 답을 구한 뒤 원래 식에 대입하여 검산하면 실수가 절반 이하로 줄어듭니다.',
+'과학':'과학은 원리를 이해하면 문제가 풀리는 과목입니다. 공식을 외우기보다 유도 과정을 따라가면 의미를 자연스럽게 이해할 수 있습니다. 물리는 문제 상황을 그림으로 그려 시각화하고, 화학은 반응식의 양적 관계를 정확히 파악하세요. 생명과학은 과정을 순서대로 정리하는 것이 핵심이고 지구과학은 도표와 지도를 활용한 공간적 이해가 중요합니다.',
+'사회':'사회는 이해 과목입니다. 제도가 왜 만들어졌는지 어떤 문제를 해결하려는 것인지를 이해하면 암기량이 절반으로 줄어듭니다. 교과서 목차를 먼저 파악하고 핵심 개념 20개를 뽑아 각각 2줄로 설명할 수 있는지 테스트해 보세요. 그래프와 통계표를 정확히 읽는 연습도 매우 중요합니다.'
+};
+var _studyText = _studyContent[subject] || '학습 코칭에서 가장 중요한 것은 학생 개개인에 맞는 전략을 설계하는 것입니다. 시각형 학습자는 마인드맵 중심으로, 청각형 학습자는 토론 중심으로 학습하면 효과가 극대화됩니다. 내신 시험 대비에서는 학교별 출제 경향 분석이 핵심이며 최소 3년치 기출을 풀어 유형을 파악하세요.';
+
+var _reviewNames = ['김○○','이○○','박○○','최○○','정○○','윤○○'];
+var _reviewGrades = ['초등','초등','중등','중등','고등','고등'];
+var _reviewBodies = [
+'아이가 공부에 흥미를 잃었었는데 코치 선생님 덕분에 다시 공부가 재미있다고 해요. 맞춤형 수업이라 아이 수준에 딱 맞게 진행해주셔서 정말 감사합니다.',
+'처음에는 반신반의했는데 한 달 만에 시험 성적이 15점이나 올랐어요. 매주 보내주시는 학습 리포트도 정말 유용합니다.',
+'학원을 여러 곳 다녀봤는데 여기처럼 세밀하게 관리해주는 곳은 처음입니다. 아이의 약점을 정확히 파악하고 집중적으로 보강해주세요.',
+'성적이 정체되어 있었는데 코칭 수업을 시작한 후 꾸준히 오르고 있습니다. 특히 오답 분석 시스템이 정말 효과적이에요.',
+'자기주도학습 습관이 잡히니까 다른 과목 성적도 같이 올랐어요. 플래너 관리가 정말 체계적입니다.',
+'수능 대비와 내신을 동시에 잡아주셔서 시간을 효율적으로 쓸 수 있었어요. 입시 전략 상담도 큰 도움이 되었습니다.'
+];
+
+
+ <div style="max-width:900px;margin:0 auto 24px;padding:0 20px;">
+  <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+   <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid #C8A96E;padding-left:14px;margin-bottom:16px;">📚 ${subject} 학습 가이드</h2>
+   <p style="font-size:14px;color:#444;line-height:2.1;">${_studyText}</p>
+  </div>
+  <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+   <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid #C8A96E;padding-left:14px;margin-bottom:16px;">💬 학부모 후기</h2>
+   <div style="overflow:hidden;"><div style="display:flex;gap:16px;animation:rvScroll 30s linear infinite;width:max-content;" onmouseenter="this.style.animationPlayState='paused'" onmouseleave="this.style.animationPlayState='running'">
+   ${(function(){var h='';for(var i=0;i<9;i++){var idx=i%6;h+='<div style="min-width:280px;max-width:280px;flex-shrink:0;border:1.5px solid #E2E8F0;border-radius:14px;padding:18px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div style="width:36px;height:36px;border-radius:50%;background:#C8A96E;color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;">'+_reviewNames[idx].charAt(0)+'</div><div><div style="font-weight:700;color:#1A2340;font-size:13px;">'+_reviewNames[idx]+' 학부모님</div><div style="font-size:11px;color:#888;">'+_reviewGrades[idx]+' · '+subject+'</div></div></div><p style="font-size:12px;color:#555;line-height:1.75;margin:0;">"'+_reviewBodies[idx]+'"</p></div>';} return h;})()}
+   </div></div>
+  </div>
+ </div>
 ${_kwBottom}
 </body></html>`;
 }
