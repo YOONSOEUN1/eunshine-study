@@ -3602,9 +3602,31 @@ _infoGrid+='<div><p style="font-size:14px;font-weight:700;color:#1A2340;margin-b
 _infoGrid+='</div></div>';
 
 // Keyword section
+
+// 추가 교육 정보
+var _eduExtra = '';
+var _subjName = subject || '학습';
+var _gradeName = grade || '';
+
+var _eduTexts = {
+'국어': '국어 학습에서 가장 중요한 것은 독해력입니다. 독해력은 단순히 글을 읽는 능력이 아니라 글의 구조를 파악하고 핵심 논지를 정확히 이해하는 능력입니다. 매일 30분씩 다양한 분야의 글을 읽고 핵심 내용을 3줄로 요약하는 연습을 하면 독해력이 빠르게 향상됩니다. 문학 작품은 시대적 배경과 작가의 의도를 함께 파악하며 읽어야 하고 비문학은 문단별 중심 문장을 찾아 밑줄을 긋는 습관이 필요합니다. 서술형 답안에서 감점되는 가장 큰 이유는 문제의 요구 조건을 놓치는 것입니다. 반드시 조건을 먼저 체크하고 답안을 작성하세요. 문법 공부는 개념을 외운 뒤 실제 문장에서 적용하는 연습이 필수입니다.',
+'영어': '영어 실력 향상의 핵심은 어휘력과 구문 분석 능력입니다. 매일 단어 20개를 어원 분석법으로 암기하고 전날 단어를 복습하는 누적 학습법을 실천하세요. 구문 분석은 긴 문장을 주어-동사-목적어로 분해하는 연습을 매일 3문장씩 하면 한 달 안에 독해 속도가 눈에 띄게 빨라집니다. 내신 영어는 교과서 본문 암기보다 본문의 구조를 이해하는 것이 중요합니다. 한국어로 해석한 뒤 다시 영어로 복원하는 영작 복원법이 매우 효과적입니다. 수능 영어 1등급을 위해서는 유형별 풀이 전략을 체화해야 합니다. 주제 찾기는 첫 문장과 마지막 문장에 집중하고 빈칸 추론은 빈칸 전후의 논리 관계를 파악하세요.',
+'수학': '수학 성적이 오르지 않는 가장 큰 이유는 개념의 빈틈입니다. 현재 단원의 문제가 풀리지 않을 때 대부분의 원인은 이전 단원의 개념이 불완전하기 때문입니다. 어디서 막히는지 정확히 찾아 그 단원부터 다시 시작하는 것이 가장 빠른 길입니다. 오답 노트를 작성할 때는 단순히 정답을 적는 것이 아니라 왜 틀렸는지를 개념 부족과 계산 실수와 문제 이해 오류 세 가지로 분류해야 합니다. 원인별로 다른 대책을 세워야 같은 실수를 반복하지 않습니다. 계산 실수를 줄이려면 풀이 과정을 한 줄씩 깔끔하게 쓰고 절대 중간 과정을 생략하지 마세요.',
+'과학': '과학 공부의 핵심은 원리를 이해하는 것입니다. 공식을 단순히 외우기보다 왜 그런 공식이 만들어졌는지 유도 과정을 한 번 따라가 보면 공식의 의미를 자연스럽게 이해할 수 있습니다. 물리는 그림을 그려서 문제 상황을 시각화하는 것이 중요하고 화학은 반응식의 양적 관계를 정확히 파악하는 연습이 필요합니다. 생명과학은 과정과 구조를 순서대로 정리하는 것이 핵심이며 지구과학은 지도와 도표를 활용한 공간적 이해가 중요합니다. 실험 보고서는 목적부터 결론까지 논리적 흐름을 지키며 작성해야 합니다.',
+'사회': '사회 과목은 방대한 범위를 효율적으로 정리하는 것이 핵심입니다. 교과서 전체를 처음부터 읽기보다 목차를 먼저 파악하고 핵심 개념 20개를 뽑아 각각 2줄로 설명할 수 있는지 테스트해 보세요. 사회는 암기 과목이 아니라 이해 과목입니다. 제도가 왜 만들어졌는지 어떤 문제를 해결하기 위한 것인지를 이해하면 암기량이 절반으로 줄어들고 서술형에서도 논리적 답안을 쓸 수 있습니다. 그래프와 통계 자료를 정확히 읽는 연습도 매우 중요합니다. 변화 추세와 비교 항목을 정확히 파악하는 습관을 기르세요.'
+};
+
+var _eduText = _eduTexts[_subjName] || '학습 코칭에서 가장 중요한 것은 학생 개개인에 맞는 학습 전략을 설계하는 것입니다. 같은 과목이라도 학생의 수준과 학습 스타일에 따라 접근 방법이 달라야 합니다. 시각형 학습자는 마인드맵과 도표 중심으로 청각형 학습자는 설명하기와 토론 중심으로 학습하면 효과가 극대화됩니다. 내신 시험 대비에서는 학교별 출제 경향을 분석하는 것이 핵심입니다. 최소 3년치 기출을 풀어 자주 나오는 유형을 파악하고 서술형 비중과 난이도를 미리 확인하세요. 오답 노트를 활용한 약점 관리와 주간 학습 계획 수립이 성적 향상의 가장 확실한 기반입니다.';
+
+_eduExtra += '<div style="max-width:900px;margin:0 auto 24px;padding:0 20px;">';
+_eduExtra += '<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);">';
+_eduExtra += '<h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid #C8A96E;padding-left:14px;margin-bottom:16px;">📚 '+_subjName+' 학습 가이드</h2>';
+_eduExtra += '<p style="font-size:14px;color:#444;line-height:2.1;">'+_eduText+'</p>';
+_eduExtra += '</div></div>';
+
 var _kwTitle=title;
 var _kwBottom='<div style="max-width:900px;margin:0 auto 24px;padding:0 20px;"><div style="background:#F8FAFC;border-radius:16px;padding:20px 24px;">';
-_kwBottom+='<p style="font-size:13px;color:#64748B;line-height:1.8;">';
+_kwBottom+='<p style="font-size:13px;color:rgba(255,255,255,0.8);line-height:1.8;">';
 _kwBottom+=_kwTitle+'은 학생 맞춤형 학습 코칭으로 실질적인 성적 향상을 이끌어냅니다. ';
 _kwBottom+=_kwTitle+'에 관심이 있으시다면 무료 상담을 통해 자세한 수업 안내를 받아보세요. ';
 _kwBottom+=_kwTitle+'의 체계적인 커리큘럼과 전담 코치 시스템을 직접 경험해 보실 수 있습니다. ';
@@ -3844,7 +3866,7 @@ _kwBottom+='</div></div></div>';
  <div style="margin-bottom:16px;"><a href="/academy/${encodeURIComponent(slug)}" style="color:#888;text-decoration:none;font-size:13px;">← ${ct.n} 센터 페이지로</a></div>
 
  <!-- Hero -->
- <div style="background:linear-gradient(135deg,#F8FAFC,#EEF2FF);padding:48px 20px 36px;text-align:center;border-radius:20px;margin:0 auto 24px;max-width:900px">
+ <div style="background:linear-gradient(135deg,rgba(26,35,64,0.88),rgba(45,58,92,0.8),rgba(20,30,50,0.92)),url('${bgImg(subject,cH(ct.sl+grade))}') center/cover;padding:48px 20px 36px;text-align:center;border-radius:20px;margin:0 auto 24px;max-width:900px">
  <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(200,169,110,0.15);border-radius:50%;"></div>
  <div style="display:flex;gap:8px;justify-content:center;margin-bottom:14px;position:relative;flex-wrap:wrap;">
  <span style="background:rgba(255,255,255,.15);padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;">${heroLabel}</span>
@@ -3935,9 +3957,7 @@ _kwBottom+='</div></div></div>';
  </div>
 
  <!-- 학원 안내 이미지 -->
- <div style="border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);margin-top:28px;">
- <img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80%EC%9A%A9.png" alt="학습코칭학원 안내" style="width:100%;display:block;">
- </div>
+ 
 
  </div>
   ${ACAD_FORM('학원 서브페이지 ('+ct.n+' '+title+')')}
@@ -3945,6 +3965,7 @@ _kwBottom+='</div></div></div>';
  <style>@media(max-width:768px){div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}}</style>
  ${ACAD_SCRIPT('학원 서브페이지 ('+ct.n+' '+title+')')}
  
+${_eduExtra}
 ${_kwBottom}
 </body></html>`;
 }
