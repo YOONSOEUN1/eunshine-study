@@ -3574,7 +3574,7 @@ function buildCenterSubPage(slug, grade, subject, school) {
  const subjColors={"국어":"#3b82f6","영어":"#10b981","수학":"#f59e0b","과학":"#8b5cf6","사회":"#ef4444"};
  const gradeColor = grade==='초등'?'#3b82f6':(grade==='중등'?'#10b981':'#f59e0b');
  const subjColor = subjColors[subject]||'#1A2340';
- const title = school ? school+' '+subject+' 학원' : loc.d+' '+grade+' '+subject+' 학원';
+ const title = school ? school+' '+subject+'학원' : loc.d+' '+grade+' '+subject+'학원';
 // PATCH: Add info grid + keywords to buildCenterSubPage
 // Insert AFTER: const title = ... line
 // Variables available: ct, loc, grade, subject, school, title, subjColors
@@ -3877,7 +3877,7 @@ var _studyReviewHtml = _guideHtml + _rvHtml;
  <div style="margin-bottom:16px;"><a href="/academy/${encodeURIComponent(slug)}" style="color:#888;text-decoration:none;font-size:13px;">← ${ct.n} 센터 페이지로</a></div>
 
  <!-- Hero -->
- <div style="background:linear-gradient(135deg,rgba(15,22,40,0.88),rgba(20,30,50,0.85),rgba(15,22,40,0.9)),url('${bgImg(subject,cH(ct.sl+grade))}') center/cover;padding:48px 20px 36px;text-align:center;border-radius:20px;margin:0 auto 24px;max-width:900px">
+ <div style="background:linear-gradient(135deg,rgba(15,22,40,0.7),rgba(20,30,50,0.65),rgba(15,22,40,0.75)),url('${bgImg(subject,cH(ct.sl+grade))}') center/cover;padding:48px 20px 36px;text-align:center;border-radius:20px;margin:0 auto 24px;max-width:900px">
  <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(200,169,110,0.15);border-radius:50%;"></div>
  <div style="display:flex;gap:8px;justify-content:center;margin-bottom:14px;position:relative;flex-wrap:wrap;">
  <span style="background:rgba(255,255,255,.2);padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;color:#fff;">${heroLabel}</span>
@@ -3906,7 +3906,7 @@ var _studyReviewHtml = _guideHtml + _rvHtml;
  ${_infoGrid}
  <div style="background:white;border-radius:20px;padding:36px 28px;margin-bottom:28px;box-shadow:0 2px 12px #0000000f;">
  <div style="text-align:center;margin-bottom:28px;">
- <h2 style="font-size:clamp(20px,4vw,26px);font-weight:900;color:#1A2340;margin-bottom:8px;">${ct.n}의 특징</h2>
+ <h2 style="font-size:clamp(20px,4vw,26px);font-weight:900;color:#1A2340;margin-bottom:8px;">${title}의 특징</h2>
  <p style="font-size:13px;color:#888;">${loc.d} ${grade} ${subject} 학생을 위한 차별화된 학습 시스템</p>
  <div style="width:40px;height:3px;background:#C8A96E;margin:12px auto 0;"></div>
  </div>
