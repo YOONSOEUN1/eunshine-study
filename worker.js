@@ -3460,33 +3460,6 @@ function buildCenterDetailPage(slug) {
 
  <!-- 상담 신청 폼 -->
  ${ACAD_FORM('학원 센터페이지 ('+ct.n+')')}
-
- <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">';
-  html+='<h2 style="font-size:19px;font-weight:900;color:#1A2340;text-align:center;margin-bottom:8px;">🏫 타겟 학교별 맞춤 정보</h2>';
-  html+='<p style="font-size:13px;color:#888;text-align:center;margin-bottom:20px;">'+ct.n+' 학원이 관리하는 학교별 과목 안내</p>';
-  html+='<div style="display:flex;gap:8px;justify-content:center;margin-bottom:20px;">';
-  var tabs=[{l:'🌱 초등',c:'#2e7d52',s:se},{l:'📘 중등',c:'#1a5fa8',s:sm},{l:'🔥 고등',c:'#7b1fa2',s:sh}];
-  tabs.forEach(function(tb,idx){
-   html+='<button class="stb" onclick="document.querySelectorAll(\'.stp\').forEach(function(p,i){p.style.display=i==='+idx+'?\'block\':\'none\'});document.querySelectorAll(\'.stb\').forEach(function(t,i){t.style.background=i==='+idx+'?\''+tb.c+'\':\'#fff\';t.style.color=i==='+idx+'?\'#fff\':\'#334155\';t.style.borderColor=i==='+idx+'?\''+tb.c+'\':\'#E2E8F0\';})" style="flex:1;max-width:140px;padding:10px;border-radius:10px;border:2px solid '+(idx===0?tb.c:'#E2E8F0')+';background:'+(idx===0?tb.c:'#fff')+';color:'+(idx===0?'#fff':'#334155')+';font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">'+tb.l+'</button>';
-  });
-  html+='</div>';
-  tabs.forEach(function(tb,idx){
-   html+='<div class="stp" style="display:'+(idx===0?'block':'none')+'">';
-   if(tb.s.length>0){
-    html+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;">';
-    tb.s.forEach(function(school){
-     html+='<div style="border:1.5px solid #E2E8F0;border-radius:12px;padding:14px;">';
-     html+='<span style="display:inline-block;background:'+tb.c+';color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px;margin-bottom:8px;">'+tb.l.split(' ')[1]+'</span>';
-     html+='<p style="font-size:14px;font-weight:700;color:#1A2340;margin-bottom:6px;">'+school+'</p>';
-     html+='<div style="display:flex;flex-wrap:wrap;gap:4px;">';
-     subjs.forEach(function(sj){html+='<a href="/academy/'+encodeURIComponent(ct.sl)+'/'+encodeURIComponent(tb.l.split(' ')[1])+'/'+encodeURIComponent(sj)+'/'+encodeURIComponent(school)+'" style="font-size:11px;color:#1A2340;border:1px solid #E2E8F0;padding:4px 10px;border-radius:6px;text-decoration:none;font-weight:600;transition:all .15s;display:inline-block;" onmouseover="this.style.background=\'#1A2340\';this.style.color=\'#fff\';this.style.borderColor=\'#1A2340\'" onmouseout="this.style.background=\'\';this.style.color=\'#1A2340\';this.style.borderColor=\'#E2E8F0\'">'+sj+' →</a>';});
-     html+='</div></div>';
-    });
-    html+='</div>';
-   }else{html+='<p style="color:#888;text-align:center;padding:20px;">등록된 학교가 없습니다.</p>';}
-   html+='</div>';
-  });
-  html+='</div>
  <!-- 학습 관리 시스템 이미지 -->
  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;">
  <div style="border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%94%8C%EB%9E%9C.png" alt="플랜관리" style="width:100%;display:block;"></div>
@@ -3552,7 +3525,32 @@ function buildCenterDetailPage(slug) {
   var sh=(ct.sh||'').split(',').map(function(s){return s.trim();}).filter(function(s){return s;});
   if(se.length+sm.length+sh.length===0)return '';
   var subjs=ct.subj||['국어','영어','수학'];
-  var html='';
+  var html='<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">';
+  html+='<h2 style="font-size:19px;font-weight:900;color:#1A2340;text-align:center;margin-bottom:8px;">🏫 타겟 학교별 맞춤 정보</h2>';
+  html+='<p style="font-size:13px;color:#888;text-align:center;margin-bottom:20px;">'+ct.n+' 학원이 관리하는 학교별 과목 안내</p>';
+  html+='<div style="display:flex;gap:8px;justify-content:center;margin-bottom:20px;">';
+  var tabs=[{l:'🌱 초등',c:'#2e7d52',s:se},{l:'📘 중등',c:'#1a5fa8',s:sm},{l:'🔥 고등',c:'#7b1fa2',s:sh}];
+  tabs.forEach(function(tb,idx){
+   html+='<button class="stb" onclick="document.querySelectorAll(\'.stp\').forEach(function(p,i){p.style.display=i==='+idx+'?\'block\':\'none\'});document.querySelectorAll(\'.stb\').forEach(function(t,i){t.style.background=i==='+idx+'?\''+tb.c+'\':\'#fff\';t.style.color=i==='+idx+'?\'#fff\':\'#334155\';t.style.borderColor=i==='+idx+'?\''+tb.c+'\':\'#E2E8F0\';})" style="flex:1;max-width:140px;padding:10px;border-radius:10px;border:2px solid '+(idx===0?tb.c:'#E2E8F0')+';background:'+(idx===0?tb.c:'#fff')+';color:'+(idx===0?'#fff':'#334155')+';font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">'+tb.l+'</button>';
+  });
+  html+='</div>';
+  tabs.forEach(function(tb,idx){
+   html+='<div class="stp" style="display:'+(idx===0?'block':'none')+'">';
+   if(tb.s.length>0){
+    html+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;">';
+    tb.s.forEach(function(school){
+     html+='<div style="border:1.5px solid #E2E8F0;border-radius:12px;padding:14px;">';
+     html+='<span style="display:inline-block;background:'+tb.c+';color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px;margin-bottom:8px;">'+tb.l.split(' ')[1]+'</span>';
+     html+='<p style="font-size:14px;font-weight:700;color:#1A2340;margin-bottom:6px;">'+school+'</p>';
+     html+='<div style="display:flex;flex-wrap:wrap;gap:4px;">';
+     subjs.forEach(function(sj){html+='<a href="/academy/'+encodeURIComponent(ct.sl)+'/'+encodeURIComponent(tb.l.split(' ')[1])+'/'+encodeURIComponent(sj)+'" style="font-size:11px;color:#1A2340;border:1px solid #E2E8F0;padding:4px 10px;border-radius:6px;text-decoration:none;font-weight:600;transition:all .15s;display:inline-block;" onmouseover="this.style.background=\'#1A2340\';this.style.color=\'#fff\';this.style.borderColor=\'#1A2340\'" onmouseout="this.style.background=\'\';this.style.color=\'#1A2340\';this.style.borderColor=\'#E2E8F0\'">'+sj+' →</a>';});
+     html+='</div></div>';
+    });
+    html+='</div>';
+   }else{html+='<p style="color:#888;text-align:center;padding:20px;">등록된 학교가 없습니다.</p>';}
+   html+='</div>';
+  });
+  html+='</div>';
   return html;
  })()}}
 
@@ -3605,6 +3603,26 @@ _infoGrid+='</div></div>';
 
 // Keyword section
 
+// 추가 교육 정보
+var _eduExtra = '';
+var _subjName = subject || '학습';
+var _gradeName = grade || '';
+
+var _eduTexts = {
+'국어': '국어 학습에서 가장 중요한 것은 독해력입니다. 독해력은 단순히 글을 읽는 능력이 아니라 글의 구조를 파악하고 핵심 논지를 정확히 이해하는 능력입니다. 매일 30분씩 다양한 분야의 글을 읽고 핵심 내용을 3줄로 요약하는 연습을 하면 독해력이 빠르게 향상됩니다. 문학 작품은 시대적 배경과 작가의 의도를 함께 파악하며 읽어야 하고 비문학은 문단별 중심 문장을 찾아 밑줄을 긋는 습관이 필요합니다. 서술형 답안에서 감점되는 가장 큰 이유는 문제의 요구 조건을 놓치는 것입니다. 반드시 조건을 먼저 체크하고 답안을 작성하세요. 문법 공부는 개념을 외운 뒤 실제 문장에서 적용하는 연습이 필수입니다.',
+'영어': '영어 실력 향상의 핵심은 어휘력과 구문 분석 능력입니다. 매일 단어 20개를 어원 분석법으로 암기하고 전날 단어를 복습하는 누적 학습법을 실천하세요. 구문 분석은 긴 문장을 주어-동사-목적어로 분해하는 연습을 매일 3문장씩 하면 한 달 안에 독해 속도가 눈에 띄게 빨라집니다. 내신 영어는 교과서 본문 암기보다 본문의 구조를 이해하는 것이 중요합니다. 한국어로 해석한 뒤 다시 영어로 복원하는 영작 복원법이 매우 효과적입니다. 수능 영어 1등급을 위해서는 유형별 풀이 전략을 체화해야 합니다. 주제 찾기는 첫 문장과 마지막 문장에 집중하고 빈칸 추론은 빈칸 전후의 논리 관계를 파악하세요.',
+'수학': '수학 성적이 오르지 않는 가장 큰 이유는 개념의 빈틈입니다. 현재 단원의 문제가 풀리지 않을 때 대부분의 원인은 이전 단원의 개념이 불완전하기 때문입니다. 어디서 막히는지 정확히 찾아 그 단원부터 다시 시작하는 것이 가장 빠른 길입니다. 오답 노트를 작성할 때는 단순히 정답을 적는 것이 아니라 왜 틀렸는지를 개념 부족과 계산 실수와 문제 이해 오류 세 가지로 분류해야 합니다. 원인별로 다른 대책을 세워야 같은 실수를 반복하지 않습니다. 계산 실수를 줄이려면 풀이 과정을 한 줄씩 깔끔하게 쓰고 절대 중간 과정을 생략하지 마세요.',
+'과학': '과학 공부의 핵심은 원리를 이해하는 것입니다. 공식을 단순히 외우기보다 왜 그런 공식이 만들어졌는지 유도 과정을 한 번 따라가 보면 공식의 의미를 자연스럽게 이해할 수 있습니다. 물리는 그림을 그려서 문제 상황을 시각화하는 것이 중요하고 화학은 반응식의 양적 관계를 정확히 파악하는 연습이 필요합니다. 생명과학은 과정과 구조를 순서대로 정리하는 것이 핵심이며 지구과학은 지도와 도표를 활용한 공간적 이해가 중요합니다. 실험 보고서는 목적부터 결론까지 논리적 흐름을 지키며 작성해야 합니다.',
+'사회': '사회 과목은 방대한 범위를 효율적으로 정리하는 것이 핵심입니다. 교과서 전체를 처음부터 읽기보다 목차를 먼저 파악하고 핵심 개념 20개를 뽑아 각각 2줄로 설명할 수 있는지 테스트해 보세요. 사회는 암기 과목이 아니라 이해 과목입니다. 제도가 왜 만들어졌는지 어떤 문제를 해결하기 위한 것인지를 이해하면 암기량이 절반으로 줄어들고 서술형에서도 논리적 답안을 쓸 수 있습니다. 그래프와 통계 자료를 정확히 읽는 연습도 매우 중요합니다. 변화 추세와 비교 항목을 정확히 파악하는 습관을 기르세요.'
+};
+
+var _eduText = _eduTexts[_subjName] || '학습 코칭에서 가장 중요한 것은 학생 개개인에 맞는 학습 전략을 설계하는 것입니다. 같은 과목이라도 학생의 수준과 학습 스타일에 따라 접근 방법이 달라야 합니다. 시각형 학습자는 마인드맵과 도표 중심으로 청각형 학습자는 설명하기와 토론 중심으로 학습하면 효과가 극대화됩니다. 내신 시험 대비에서는 학교별 출제 경향을 분석하는 것이 핵심입니다. 최소 3년치 기출을 풀어 자주 나오는 유형을 파악하고 서술형 비중과 난이도를 미리 확인하세요. 오답 노트를 활용한 약점 관리와 주간 학습 계획 수립이 성적 향상의 가장 확실한 기반입니다.';
+
+_eduExtra += '<div style="max-width:900px;margin:0 auto 24px;padding:0 20px;">';
+_eduExtra += '<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);">';
+_eduExtra += '<h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid #C8A96E;padding-left:14px;margin-bottom:16px;">📚 '+_subjName+' 학습 가이드</h2>';
+_eduExtra += '<p style="font-size:14px;color:#444;line-height:2.1;">'+_eduText+'</p>';
+_eduExtra += '</div></div>';
 
 var _kwTitle=title;
 var _kwBottom='<div style="max-width:900px;margin:0 auto 24px;padding:0 20px;"><div style="background:#F8FAFC;border-radius:16px;padding:20px 24px;">';
@@ -3830,23 +3848,19 @@ _kwBottom+='</div></div></div>';
   {q:loc.d+'에서 '+ct.n+'까지 어떻게 가나요?',a:ct.a+' 위치이며, '+(landmarkTxt||loc.d+' 인근')+'에 자리하고 있습니다. 상담 신청 시 상세 위치를 안내드립니다.'},
   {q:grade+' '+subject+' 수업은 주 몇 회 진행되나요?',a:'학생의 수준과 목표에 따라 주 2~4회 탄력적으로 운영됩니다. 첫 상담 시 최적의 시간표를 제안드립니다.'},
   {q:'학원 내방 전 꼭 예약해야 하나요?',a:'네, 모든 상담은 예약제로 진행됩니다. 전화 또는 상담 신청 버튼을 통해 먼저 예약해 주신 뒤 방문 부탁드립니다.'},
-  {q:'첫 상담 시 무엇을 하나요?',a:'학생의 현재 학습 수준을 진단하고, 목표에 맞는 커리큘럼과 수업 방식을 제안드립니다. 진단검사는 무료로 진행됩니다.'},
-  {q:'수업료는 어떻게 되나요?',a:'<div style="margin-bottom:14px;"><p style="font-weight:700;margin-bottom:6px;">A - 서울/위례/미금/영통/동탄호수/동탄목동</p><table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:4px;"><tr style="background:#f5f5f0;"><th style="padding:8px;border:1px solid #e0e0e0;"></th><th style="padding:8px;border:1px solid #e0e0e0;">초등</th><th style="padding:8px;border:1px solid #e0e0e0;">중등</th><th style="padding:8px;border:1px solid #e0e0e0;">고등</th></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 3회</td><td style="padding:8px;border:1px solid #e0e0e0;">230,000</td><td style="padding:8px;border:1px solid #e0e0e0;">247,000</td><td style="padding:8px;border:1px solid #e0e0e0;">280,000</td></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 4회</td><td style="padding:8px;border:1px solid #e0e0e0;">300,000</td><td style="padding:8px;border:1px solid #e0e0e0;">322,000</td><td style="padding:8px;border:1px solid #e0e0e0;">365,000</td></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 5회</td><td style="padding:8px;border:1px solid #e0e0e0;">370,000</td><td style="padding:8px;border:1px solid #e0e0e0;">397,000</td><td style="padding:8px;border:1px solid #e0e0e0;">450,000</td></tr></table></div><div style="margin-bottom:14px;"><p style="font-weight:700;margin-bottom:6px;">B - 서울 외 지점</p><table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:4px;"><tr style="background:#f5f5f0;"><th style="padding:8px;border:1px solid #e0e0e0;"></th><th style="padding:8px;border:1px solid #e0e0e0;">초등</th><th style="padding:8px;border:1px solid #e0e0e0;">중등</th><th style="padding:8px;border:1px solid #e0e0e0;">고등</th></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 3회</td><td style="padding:8px;border:1px solid #e0e0e0;">200,000</td><td style="padding:8px;border:1px solid #e0e0e0;">217,000</td><td style="padding:8px;border:1px solid #e0e0e0;">250,000</td></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 4회</td><td style="padding:8px;border:1px solid #e0e0e0;">260,000</td><td style="padding:8px;border:1px solid #e0e0e0;">282,000</td><td style="padding:8px;border:1px solid #e0e0e0;">325,000</td></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 5회</td><td style="padding:8px;border:1px solid #e0e0e0;">320,000</td><td style="padding:8px;border:1px solid #e0e0e0;">347,000</td><td style="padding:8px;border:1px solid #e0e0e0;">400,000</td></tr></table></div><div style="margin-bottom:14px;"><p style="font-weight:700;margin-bottom:6px;">송도/병점/삼산/청라</p><table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:4px;"><tr style="background:#f5f5f0;"><th style="padding:8px;border:1px solid #e0e0e0;"></th><th style="padding:8px;border:1px solid #e0e0e0;">초등</th><th style="padding:8px;border:1px solid #e0e0e0;">중등</th><th style="padding:8px;border:1px solid #e0e0e0;">고등</th></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 1회</td><td style="padding:8px;border:1px solid #e0e0e0;">140,000</td><td style="padding:8px;border:1px solid #e0e0e0;">152,000</td><td style="padding:8px;border:1px solid #e0e0e0;">175,000</td></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 2회</td><td style="padding:8px;border:1px solid #e0e0e0;">260,000</td><td style="padding:8px;border:1px solid #e0e0e0;">282,000</td><td style="padding:8px;border:1px solid #e0e0e0;">325,000</td></tr><tr><td style="padding:8px;border:1px solid #e0e0e0;font-weight:600;">주 3회</td><td style="padding:8px;border:1px solid #e0e0e0;">380,000</td><td style="padding:8px;border:1px solid #e0e0e0;">412,000</td><td style="padding:8px;border:1px solid #e0e0e0;">475,000</td></tr></table></div><p style="font-size:11px;color:#888;">*수업료는 지역·횟수에 따라 차이가 있습니다.</p>'}
+  {q:'첫 상담 시 무엇을 하나요?',a:'학생의 현재 학습 수준을 진단하고, 목표에 맞는 커리큘럼과 수업 방식을 제안드립니다. 진단검사는 무료로 진행됩니다.'}
  ];
 
  
-// 과목별 학습 가이드
 var _studyGuides = {
-'국어':'국어 학습의 핵심은 독해력과 논리적 사고력입니다. 문학 작품은 화자의 정서와 갈등 구조를 분석하는 틀을 체화해야 하며, 비문학은 문단별 중심 문장을 찾아 전체 구조를 파악하는 연습이 필요합니다. 매일 1지문씩 구조 분석을 꾸준히 하면 2~3주 내에 눈에 띄는 변화를 체감할 수 있습니다. 서술형에서 감점되는 가장 큰 이유는 문제의 요구 조건을 놓치는 것이므로, 반드시 조건을 체크리스트로 만든 뒤 답안을 작성하세요. 문법은 개념을 외운 뒤 실제 문장에서 적용하는 연습이 필수적입니다.',
-'영어':'영어 실력 향상의 핵심은 어휘력과 구문 분석 능력입니다. 매일 단어 20개를 어원 분석법으로 암기하고 전날 단어를 복습하는 누적 학습법을 실천해 보세요. 긴 문장을 주어-동사-목적어로 분해하는 연습을 매일 3문장씩 하면 한 달 안에 독해 속도가 눈에 띄게 빨라집니다. 내신 영어는 교과서 본문을 한국어로 해석한 뒤 다시 영어로 복원하는 영작 복원법이 매우 효과적입니다. 수능 영어 1등급을 위해서는 유형별 풀이 전략을 체화해야 합니다.',
-'수학':'수학 성적이 오르지 않는 가장 큰 이유는 개념의 빈틈입니다. 현재 단원이 안 풀리면 이전 단원의 개념이 불완전하기 때문이므로, 어디서 막히는지 찾아 그 단원부터 다시 시작하는 것이 가장 빠른 길입니다. 오답 노트를 작성할 때는 개념 부족, 계산 실수, 문제 이해 오류 세 가지로 분류해야 합니다. 계산 실수를 줄이려면 풀이 과정을 한 줄씩 깔끔하게 쓰고 절대 중간 과정을 생략하지 마세요. 답을 구한 뒤 원래 식에 대입하여 검산하면 실수가 절반 이하로 줄어듭니다.',
-'과학':'과학은 원리를 이해하면 문제가 풀리는 과목입니다. 공식을 단순히 외우기보다 유도 과정을 따라가면 의미를 자연스럽게 이해할 수 있습니다. 물리는 문제 상황을 그림으로 시각화하고, 화학은 반응식의 양적 관계를 정확히 파악하세요. 생명과학은 과정을 순서대로 정리하는 것이 핵심이고 지구과학은 도표와 지도를 활용한 공간적 이해가 중요합니다. 실험 보고서는 목적에서 결론까지 논리적 흐름을 지키며 작성하세요.',
-'사회':'사회는 이해 과목입니다. 제도가 왜 만들어졌는지, 어떤 문제를 해결하려는 것인지를 이해하면 암기량이 절반으로 줄어듭니다. 교과서 목차를 먼저 파악하고 핵심 개념 20개를 뽑아 각각 2줄로 설명할 수 있는지 테스트해 보세요. 그래프와 통계표를 정확히 읽는 연습도 매우 중요하며, 시사 이슈와 교과서 내용을 연결하면 깊이 있는 이해가 가능합니다.'
+'국어':'국어 학습의 핵심은 독해력과 논리적 사고력입니다. 문학 작품은 화자의 정서와 갈등 구조를 분석하는 틀을 체화해야 하며, 비문학은 문단별 중심 문장을 찾아 전체 구조를 파악하는 연습이 필요합니다. 매일 1지문씩 구조 분석을 꾸준히 하면 2~3주 내에 눈에 띄는 변화를 체감할 수 있습니다. 서술형에서 감점되는 가장 큰 이유는 문제의 요구 조건을 놓치는 것이므로, 반드시 조건을 체크리스트로 만든 뒤 답안을 작성하세요.',
+'영어':'영어 실력 향상의 핵심은 어휘력과 구문 분석 능력입니다. 매일 단어 20개를 어원 분석법으로 암기하고 전날 단어를 복습하는 누적 학습법을 실천해 보세요. 긴 문장을 주어-동사-목적어로 분해하는 연습을 매일 3문장씩 하면 한 달 안에 독해 속도가 눈에 띄게 빨라집니다. 내신 영어는 교과서 본문을 한국어로 해석한 뒤 다시 영어로 복원하는 영작 복원법이 매우 효과적입니다.',
+'수학':'수학 성적이 오르지 않는 가장 큰 이유는 개념의 빈틈입니다. 현재 단원이 안 풀리면 이전 단원의 개념이 불완전하기 때문이므로, 어디서 막히는지 찾아 그 단원부터 다시 시작하는 것이 가장 빠른 길입니다. 오답 노트를 작성할 때는 개념 부족, 계산 실수, 문제 이해 오류 세 가지로 분류해야 합니다. 계산 실수를 줄이려면 풀이 과정을 한 줄씩 깔끔하게 쓰고 절대 중간 과정을 생략하지 마세요.',
+'과학':'과학은 원리를 이해하면 문제가 풀리는 과목입니다. 공식을 단순히 외우기보다 유도 과정을 따라가면 의미를 자연스럽게 이해할 수 있습니다. 물리는 문제 상황을 그림으로 시각화하고, 화학은 반응식의 양적 관계를 정확히 파악하세요. 생명과학은 과정을 순서대로 정리하는 것이 핵심이고 지구과학은 도표와 지도를 활용한 공간적 이해가 중요합니다.',
+'사회':'사회는 이해 과목입니다. 제도가 왜 만들어졌는지, 어떤 문제를 해결하려는 것인지를 이해하면 암기량이 절반으로 줄어듭니다. 교과서 목차를 먼저 파악하고 핵심 개념 20개를 뽑아 각각 2줄로 설명할 수 있는지 테스트해 보세요. 그래프와 통계표를 정확히 읽는 연습도 매우 중요합니다.'
 };
-var _guideText = _studyGuides[subject] || '학습 코칭에서 가장 중요한 것은 학생 개개인에 맞는 전략을 설계하는 것입니다. 같은 과목이라도 학생의 수준과 스타일에 따라 접근이 달라야 합니다. 내신 시험에서는 학교별 출제 경향을 분석하는 것이 핵심이며, 최소 3년치 기출을 풀어 유형을 파악하세요.';
+var _guideText = _studyGuides[subject] || '학습 코칭에서 가장 중요한 것은 학생 개개인에 맞는 전략을 설계하는 것입니다. 내신 시험에서는 학교별 출제 경향을 분석하는 것이 핵심이며, 최소 3년치 기출을 풀어 유형을 파악하세요.';
 var _guideHtml = '<div style="max-width:900px;margin:0 auto 24px;padding:0 20px;"><div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;"><h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid #C8A96E;padding-left:14px;margin-bottom:16px;">📚 '+subject+' 학습 가이드</h2><p style="font-size:14px;color:#444;line-height:2.1;">'+_guideText+'</p></div>';
-
-// 후기 6개
 var _rvData = [
 {nm:'김○○',gr:'초등',body:'아이가 공부에 흥미를 잃었었는데 코치 선생님 덕분에 다시 공부가 재미있다고 해요. 맞춤형 수업이라 아이 수준에 딱 맞게 진행해주셔서 정말 감사합니다.'},
 {nm:'이○○',gr:'초등',body:'처음에는 반신반의했는데 한 달 만에 시험 성적이 15점이나 올랐어요. 매주 보내주시는 학습 리포트도 정말 유용합니다.'},
@@ -3858,6 +3872,8 @@ var _rvData = [
 var _rvHtml = '<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;"><h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid #C8A96E;padding-left:14px;margin-bottom:16px;">💬 학부모 후기</h2><div style="overflow:hidden;"><div style="display:flex;gap:16px;animation:rvScroll 30s linear infinite;width:max-content;">';
 for(var _ri=0;_ri<9;_ri++){var _rv=_rvData[_ri%6];_rvHtml+='<div style="min-width:280px;max-width:280px;flex-shrink:0;border:1.5px solid #E2E8F0;border-radius:14px;padding:18px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div style="width:36px;height:36px;border-radius:50%;background:#C8A96E;color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;">'+_rv.nm.charAt(0)+'</div><div><div style="font-weight:700;color:#1A2340;font-size:13px;">'+_rv.nm+' 학부모님</div><div style="font-size:11px;color:#888;">'+_rv.gr+' · '+subject+'</div></div></div><p style="font-size:12px;color:#555;line-height:1.75;margin:0;">"'+_rv.body+'"</p></div>';}
 _rvHtml+='</div></div></div></div>';
+var _kwTitle=title;
+var _kwBottom='<div style="max-width:900px;margin:0 auto 24px;padding:0 20px;"><div style="background:#F8FAFC;border-radius:16px;padding:20px 24px;"><p style="font-size:13px;color:#64748B;line-height:1.8;">'+_kwTitle+'은 학생 맞춤형 학습 코칭으로 실질적인 성적 향상을 이끌어냅니다. '+_kwTitle+'에 관심이 있으시다면 무료 상담을 통해 자세한 수업 안내를 받아보세요. '+_kwTitle+'의 체계적인 커리큘럼과 전담 코치 시스템을 직접 경험해 보실 수 있습니다. '+_kwTitle+'에서는 학생의 수준에 맞는 개별 커리큘럼을 설계하고, '+_kwTitle+'만의 플래너 기반 자기주도학습 시스템으로 꾸준한 성장을 돕습니다. 지금 '+_kwTitle+' 무료 상담을 신청하세요. '+_kwTitle+'이 여러분의 목표 달성을 함께 하겠습니다.</p><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;"><span style="background:white;border:1px solid #E2E8F0;padding:5px 12px;border-radius:50px;font-size:11px;color:#334155;font-weight:600;">'+_kwTitle+'</span><span style="background:white;border:1px solid #E2E8F0;padding:5px 12px;border-radius:50px;font-size:11px;color:#334155;font-weight:600;">'+ct.n+' '+subject+'</span><span style="background:white;border:1px solid #E2E8F0;padding:5px 12px;border-radius:50px;font-size:11px;color:#334155;font-weight:600;">'+loc.d+' '+grade+' 학원</span><span style="background:white;border:1px solid #E2E8F0;padding:5px 12px;border-radius:50px;font-size:11px;color:#334155;font-weight:600;">'+ct.n+' 학습코칭</span></div></div></div>';
 var _studyReviewHtml = _guideHtml + _rvHtml;
 
 
@@ -3871,8 +3887,7 @@ var _studyReviewHtml = _guideHtml + _rvHtml;
  <meta property="og:description" content="${title} - ${ct.n} ${ct.a}. ${grade} ${subject} 맞춤 코칭 학원.">
  <meta property="og:image" content="${bgImg(subject,cH(ct.sl+grade+subject))}">
  ${COMMON_STYLE}
- </head><body>
- ${NAV}
+ </head><body>${NAV}
  <div style="max-width:900px;margin:40px auto;padding:0 16px;">
  <div style="margin-bottom:16px;"><a href="/academy/${encodeURIComponent(slug)}" style="color:#888;text-decoration:none;font-size:13px;">← ${ct.n} 센터 페이지로</a></div>
 
@@ -3976,14 +3991,9 @@ var _studyReviewHtml = _guideHtml + _rvHtml;
  <style>@media(max-width:768px){div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}}</style>
  ${ACAD_SCRIPT('학원 서브페이지 ('+ct.n+' '+title+')')}
  
-
-
-
-
-
-
-
- ${_kwBottom}
+${_eduExtra}
+${_kwBottom}
+${_kwBottom}
 </body></html>`;
 }
 
@@ -5012,17 +5022,13 @@ function buildSubjectPage(subSlug){
  );
  }
 
- // IndexNow 간편 제출
  if (p === "/api/indexnow-submit") {
   try {
    const base = "https://eunshinestudy.com";
    const urls = [base+"/",base+"/directory",base+"/schools",base+"/academy",base+"/subject",base+"/language"];
    SUBJECT_LIST.forEach(function(k){urls.push(base+"/subject/"+SUBJECTS[k].slug);});
    Object.keys(GRADE_DATA).forEach(function(g){urls.push(base+"/grade/"+g);});
-   Object.keys(locations).forEach(function(rs){
-    urls.push(base+"/"+rs);
-    Object.keys(locations[rs].cities||{}).forEach(function(cs){urls.push(base+"/"+rs+"/"+cs);});
-   });
+   Object.keys(locations).forEach(function(rs){urls.push(base+"/"+rs);Object.keys(locations[rs].cities||{}).forEach(function(cs){urls.push(base+"/"+rs+"/"+cs);});});
    ACAD_DETAIL.forEach(function(ct){urls.push(base+"/academy/"+encodeURIComponent(ct.sl));});
    const batch = urls.slice(0,500);
    const body = JSON.stringify({host:"eunshinestudy.com",key:INDEXNOW_KEY,keyLocation:base+"/"+INDEXNOW_KEY+".txt",urlList:batch});
