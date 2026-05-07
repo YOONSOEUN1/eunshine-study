@@ -2509,6 +2509,17 @@ const INDEXNOW_KEY = "8a3f2c6e9b1d7405f8e2a4c6b9d1e3f5";
 const INDEXNOW_ADMIN_TOKEN = "eunshine_naver_ping_2026_silver";
 const SITE_HOST = "eunshinestudy.com";
 
+function getUpdateDate(){
+ var now=new Date();
+ var y=now.getFullYear();
+ var m=now.getMonth()+1;
+ var d=now.getDate();
+ var day=d<=15?1:16;
+ var mm=m<10?'0'+m:''+m;
+ var dd=day<10?'0'+day:''+day;
+ return y+'년 '+mm+'월 '+dd+'일';
+}
+
 // ── 학년별 과외 페이지 데이터 ──
 const GRADE_DATA = {
  "elem1":{name:"초등학생 1학년",short:"초1",level:"초등",color:"#3498db",emoji:"🌱",desc:"초등학생 1학년은 학교생활의 첫걸음입니다. 올바른 학습 습관과 기본기를 다지는 것이 가장 중요한 시기입니다. 은빛쌤은 35년 교육 노하우로 놀이와 학습을 연결하여 공부에 흥미를 갖도록 도와드립니다."},
@@ -3901,6 +3912,7 @@ var _studyReviewHtml = _guideHtml + _rvHtml;
  <span style="background:${subjColor};color:white;padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;">${subject}</span>
  </div>
  <h1 style="font-size:clamp(26px,5vw,40px);font-weight:900;margin-bottom:12px;position:relative;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,0.5);">${title}</h1>
+ <p style="font-size:12px;color:rgba(255,255,255,0.7);margin-top:8px;position:relative;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:14px;position:relative;color:rgba(255,255,255,0.9);text-shadow:0 1px 6px rgba(0,0,0,0.4);">${ct.n} · ${ct.a}</p>
  ${landmarkTxt?'<p style="font-size:13px;margin-top:6px;position:relative;color:rgba(255,255,255,0.85);text-shadow:0 1px 4px rgba(0,0,0,0.4);">📍 '+landmarkTxt+'</p>':''}
  </div>
