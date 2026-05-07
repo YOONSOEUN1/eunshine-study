@@ -3453,13 +3453,40 @@ function buildCenterDetailPage(slug) {
 
  </div>
 
- <!-- 상담 신청 폼 -->
- ${ACAD_FORM('학원 센터페이지 ('+ct.n+')')}
-
  <!-- 학원 소개 이미지 -->
  <div style="margin-bottom:28px;border-radius:20px;overflow:hidden;box-shadow:0 2px 12px #0000000f;">
  <img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80%EC%9A%A9.png" alt="학원 안내" style="width:100%;display:block;">
  </div>
+
+ <!-- 상담 신청 폼 -->
+ ${ACAD_FORM('학원 센터페이지 ('+ct.n+')')}
+
+ <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">';
+  html+='<h2 style="font-size:19px;font-weight:900;color:#1A2340;text-align:center;margin-bottom:8px;">🏫 타겟 학교별 맞춤 정보</h2>';
+  html+='<p style="font-size:13px;color:#888;text-align:center;margin-bottom:20px;">'+ct.n+' 학원이 관리하는 학교별 과목 안내</p>';
+  html+='<div style="display:flex;gap:8px;justify-content:center;margin-bottom:20px;">';
+  var tabs=[{l:'🌱 초등',c:'#2e7d52',s:se},{l:'📘 중등',c:'#1a5fa8',s:sm},{l:'🔥 고등',c:'#7b1fa2',s:sh}];
+  tabs.forEach(function(tb,idx){
+   html+='<button class="stb" onclick="document.querySelectorAll(\'.stp\').forEach(function(p,i){p.style.display=i==='+idx+'?\'block\':\'none\'});document.querySelectorAll(\'.stb\').forEach(function(t,i){t.style.background=i==='+idx+'?\''+tb.c+'\':\'#fff\';t.style.color=i==='+idx+'?\'#fff\':\'#334155\';t.style.borderColor=i==='+idx+'?\''+tb.c+'\':\'#E2E8F0\';})" style="flex:1;max-width:140px;padding:10px;border-radius:10px;border:2px solid '+(idx===0?tb.c:'#E2E8F0')+';background:'+(idx===0?tb.c:'#fff')+';color:'+(idx===0?'#fff':'#334155')+';font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">'+tb.l+'</button>';
+  });
+  html+='</div>';
+  tabs.forEach(function(tb,idx){
+   html+='<div class="stp" style="display:'+(idx===0?'block':'none')+'">';
+   if(tb.s.length>0){
+    html+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;">';
+    tb.s.forEach(function(school){
+     html+='<div style="border:1.5px solid #E2E8F0;border-radius:12px;padding:14px;">';
+     html+='<span style="display:inline-block;background:'+tb.c+';color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px;margin-bottom:8px;">'+tb.l.split(' ')[1]+'</span>';
+     html+='<p style="font-size:14px;font-weight:700;color:#1A2340;margin-bottom:6px;">'+school+'</p>';
+     html+='<div style="display:flex;flex-wrap:wrap;gap:4px;">';
+     subjs.forEach(function(sj){html+='<a href="/academy/'+encodeURIComponent(ct.sl)+'/'+encodeURIComponent(tb.l.split(' ')[1])+'/'+encodeURIComponent(sj)+'" style="font-size:11px;color:#1A2340;border:1px solid #E2E8F0;padding:4px 10px;border-radius:6px;text-decoration:none;font-weight:600;transition:all .15s;display:inline-block;" onmouseover="this.style.background=\'#1A2340\';this.style.color=\'#fff\';this.style.borderColor=\'#1A2340\'" onmouseout="this.style.background=\'\';this.style.color=\'#1A2340\';this.style.borderColor=\'#E2E8F0\'">'+sj+' →</a>';});
+     html+='</div></div>';
+    });
+    html+='</div>';
+   }else{html+='<p style="color:#888;text-align:center;padding:20px;">등록된 학교가 없습니다.</p>';}
+   html+='</div>';
+  });
+  html+='</div>
  <!-- 학습 관리 시스템 이미지 -->
  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;">
  <div style="border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/%ED%94%8C%EB%9E%9C.png" alt="플랜관리" style="width:100%;display:block;"></div>
@@ -3525,32 +3552,7 @@ function buildCenterDetailPage(slug) {
   var sh=(ct.sh||'').split(',').map(function(s){return s.trim();}).filter(function(s){return s;});
   if(se.length+sm.length+sh.length===0)return '';
   var subjs=ct.subj||['국어','영어','수학'];
-  var html='<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">';
-  html+='<h2 style="font-size:19px;font-weight:900;color:#1A2340;text-align:center;margin-bottom:8px;">🏫 타겟 학교별 맞춤 정보</h2>';
-  html+='<p style="font-size:13px;color:#888;text-align:center;margin-bottom:20px;">'+ct.n+' 학원이 관리하는 학교별 과목 안내</p>';
-  html+='<div style="display:flex;gap:8px;justify-content:center;margin-bottom:20px;">';
-  var tabs=[{l:'🌱 초등',c:'#2e7d52',s:se},{l:'📘 중등',c:'#1a5fa8',s:sm},{l:'🔥 고등',c:'#7b1fa2',s:sh}];
-  tabs.forEach(function(tb,idx){
-   html+='<button class="stb" onclick="document.querySelectorAll(\'.stp\').forEach(function(p,i){p.style.display=i==='+idx+'?\'block\':\'none\'});document.querySelectorAll(\'.stb\').forEach(function(t,i){t.style.background=i==='+idx+'?\''+tb.c+'\':\'#fff\';t.style.color=i==='+idx+'?\'#fff\':\'#334155\';t.style.borderColor=i==='+idx+'?\''+tb.c+'\':\'#E2E8F0\';})" style="flex:1;max-width:140px;padding:10px;border-radius:10px;border:2px solid '+(idx===0?tb.c:'#E2E8F0')+';background:'+(idx===0?tb.c:'#fff')+';color:'+(idx===0?'#fff':'#334155')+';font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">'+tb.l+'</button>';
-  });
-  html+='</div>';
-  tabs.forEach(function(tb,idx){
-   html+='<div class="stp" style="display:'+(idx===0?'block':'none')+'">';
-   if(tb.s.length>0){
-    html+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;">';
-    tb.s.forEach(function(school){
-     html+='<div style="border:1.5px solid #E2E8F0;border-radius:12px;padding:14px;">';
-     html+='<span style="display:inline-block;background:'+tb.c+';color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px;margin-bottom:8px;">'+tb.l.split(' ')[1]+'</span>';
-     html+='<p style="font-size:14px;font-weight:700;color:#1A2340;margin-bottom:6px;">'+school+'</p>';
-     html+='<div style="display:flex;flex-wrap:wrap;gap:4px;">';
-     subjs.forEach(function(sj){html+='<a href="/academy/'+encodeURIComponent(ct.sl)+'/'+encodeURIComponent(tb.l.split(' ')[1])+'/'+encodeURIComponent(sj)+'" style="font-size:11px;color:#1A2340;border:1px solid #E2E8F0;padding:4px 10px;border-radius:6px;text-decoration:none;font-weight:600;transition:all .15s;display:inline-block;" onmouseover="this.style.background=\'#1A2340\';this.style.color=\'#fff\';this.style.borderColor=\'#1A2340\'" onmouseout="this.style.background=\'\';this.style.color=\'#1A2340\';this.style.borderColor=\'#E2E8F0\'">'+sj+' →</a>';});
-     html+='</div></div>';
-    });
-    html+='</div>';
-   }else{html+='<p style="color:#888;text-align:center;padding:20px;">등록된 학교가 없습니다.</p>';}
-   html+='</div>';
-  });
-  html+='</div>';
+  var html='';
   return html;
  })()}}
 
@@ -4510,9 +4512,9 @@ function buildAllSiteUrls() {
  });
  // 학교별 서브페이지
  var schools = [];
- if(ct.se) ct.se.forEach(function(s){schools.push(s);});
- if(ct.sm) ct.sm.forEach(function(s){schools.push(s);});
- if(ct.sh) ct.sh.forEach(function(s){schools.push(s);});
+ if(ct.se) ct.se.split(',').forEach(function(s){if(s.trim())schools.push(s.trim());});
+ if(ct.sm) ct.sm.split(',').forEach(function(s){if(s.trim())schools.push(s.trim());});
+ if(ct.sh) ct.sh.split(',').forEach(function(s){if(s.trim())schools.push(s.trim());});
  schools.forEach(function(sch) {
   acSubjs.forEach(function(s) {
   urls.push(base + "/academy/" + encodeURIComponent(ct.sl) + "/" + encodeURIComponent(sch) + "/" + encodeURIComponent(s));
