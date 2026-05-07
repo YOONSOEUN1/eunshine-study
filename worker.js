@@ -3844,7 +3844,7 @@ _kwBottom+='</div></div></div>';
  <div style="margin-bottom:16px;"><a href="/academy/${encodeURIComponent(slug)}" style="color:#888;text-decoration:none;font-size:13px;">← ${ct.n} 센터 페이지로</a></div>
 
  <!-- Hero -->
- <div style="background:linear-gradient(135deg,rgba(26,35,64,0.88),rgba(45,58,92,0.8),rgba(200,169,110,0.75)),url('${bgImg(subject,cH(ct.sl+grade+subject))}') center/cover;color:white;border-radius:24px;padding:clamp(36px,6vw,56px);margin-bottom:28px;text-align:center;position:relative;overflow:hidden;">
+ <div style="background:linear-gradient(135deg,#F8FAFC,#EEF2FF);padding:48px 20px 36px;text-align:center;border-radius:20px;margin:0 auto 24px;max-width:900px">
  <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(200,169,110,0.15);border-radius:50%;"></div>
  <div style="display:flex;gap:8px;justify-content:center;margin-bottom:14px;position:relative;flex-wrap:wrap;">
  <span style="background:rgba(255,255,255,.15);padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;">${heroLabel}</span>
@@ -3857,6 +3857,18 @@ _kwBottom+='</div></div></div>';
  </div>
 
 
+ <div style="background:white;border-radius:20px;padding:36px 28px;margin-bottom:28px;box-shadow:0 2px 12px #0000000f;">
+ <div style="text-align:center;margin-bottom:24px;">
+ <h2 style="font-size:clamp(20px,4vw,26px);font-weight:900;color:#1A2340;margin-bottom:8px;">학원 정보</h2>
+ <div style="width:40px;height:3px;background:#C8A96E;margin:12px auto 0;"></div>
+ </div>
+ <div style="display:grid;grid-template-columns:1fr;gap:10px;max-width:600px;margin:0 auto;">
+ <div style="display:flex;padding:12px 18px;background:#fafaf7;border-radius:10px;"><span style="font-size:12px;color:#888;width:110px;flex-shrink:0;font-weight:700;">지점명</span><span style="font-size:13px;color:#1A2340;font-weight:700;">${ct.n}</span></div>
+ <div style="display:flex;padding:12px 18px;background:#fafaf7;border-radius:10px;"><span style="font-size:12px;color:#888;width:110px;flex-shrink:0;font-weight:700;">주소</span><span style="font-size:13px;color:#444;">${ct.a}</span></div>
+ ${info.r?'<div style="display:flex;padding:12px 18px;background:#fafaf7;border-radius:10px;"><span style="font-size:12px;color:#888;width:110px;flex-shrink:0;font-weight:700;">교육지원청</span><span style="font-size:13px;color:#444;">'+info.r+'</span></div>':''}
+ </div>
+ </div>
+
  <!-- 학원 특징 -->
  ${_infoGrid}
  <div style="background:white;border-radius:20px;padding:36px 28px;margin-bottom:28px;box-shadow:0 2px 12px #0000000f;">
@@ -3867,7 +3879,9 @@ _kwBottom+='</div></div></div>';
  </div>
  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
  ${features.map(function(f){return '<div style="padding:20px;background:#fafaf7;border-radius:16px;border-left:3px solid '+subjColor+';"><div style="font-size:28px;margin-bottom:8px;">'+f.icon+'</div><h3 style="font-size:15px;font-weight:800;color:#1A2340;margin:0 0 6px;">'+f.t+'</h3><p style="font-size:12px;color:#555;line-height:1.8;margin:0;">'+f.d+'</p></div>';}).join('')}
- </div>
+ 
+ 
+</div>
  </div>
 
  <!-- 예약제 안내 배너 -->
@@ -3907,17 +3921,7 @@ _kwBottom+='</div></div></div>';
  ${extra ? '<div style="background:white;border-radius:20px;padding:36px 28px;margin-bottom:28px;box-shadow:0 2px 12px #0000000f;"><div style="text-align:center;margin-bottom:28px;"><h2 style="font-size:clamp(20px,4vw,26px);font-weight:900;color:#1A2340;margin-bottom:8px;">'+extra.title+'</h2><p style="font-size:13px;color:#888;">'+ct.n+' · '+loc.d+' '+grade+' '+subject+' 학생 맞춤 가이드</p><div style="width:40px;height:3px;background:'+subjColor+';margin:12px auto 0;"></div></div><div style="display:flex;flex-direction:column;gap:22px;">'+extra.points.map(function(pt){return '<div style="padding:24px;background:#f8f9fc;border-radius:16px;border-left:4px solid '+subjColor+';"><h3 style="font-size:16px;font-weight:900;color:#1A2340;margin:0 0 12px;display:flex;align-items:center;gap:10px;"><span style="width:28px;height:28px;border-radius:50%;background:'+subjColor+';color:white;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0;">✓</span>'+pt.h+'</h3><p style="font-size:14px;color:#444;line-height:1.95;margin:0;padding-left:38px;">'+pt.p+'</p></div>';}).join('')+'</div></div>' : ''}
 
  <!-- 학원 정보 -->
- <div style="background:white;border-radius:20px;padding:36px 28px;margin-bottom:28px;box-shadow:0 2px 12px #0000000f;">
- <div style="text-align:center;margin-bottom:24px;">
- <h2 style="font-size:clamp(20px,4vw,26px);font-weight:900;color:#1A2340;margin-bottom:8px;">학원 정보</h2>
- <div style="width:40px;height:3px;background:#C8A96E;margin:12px auto 0;"></div>
- </div>
- <div style="display:grid;grid-template-columns:1fr;gap:10px;max-width:600px;margin:0 auto;">
- <div style="display:flex;padding:12px 18px;background:#fafaf7;border-radius:10px;"><span style="font-size:12px;color:#888;width:110px;flex-shrink:0;font-weight:700;">지점명</span><span style="font-size:13px;color:#1A2340;font-weight:700;">${ct.n}</span></div>
- <div style="display:flex;padding:12px 18px;background:#fafaf7;border-radius:10px;"><span style="font-size:12px;color:#888;width:110px;flex-shrink:0;font-weight:700;">주소</span><span style="font-size:13px;color:#444;">${ct.a}</span></div>
- ${info.r?'<div style="display:flex;padding:12px 18px;background:#fafaf7;border-radius:10px;"><span style="font-size:12px;color:#888;width:110px;flex-shrink:0;font-weight:700;">교육지원청</span><span style="font-size:13px;color:#444;">'+info.r+'</span></div>':''}
- </div>
- </div>
+ 
 
  <!-- 자주 묻는 질문 (펼침 상태) -->
  <div style="background:white;border-radius:20px;padding:36px 28px;margin-bottom:28px;box-shadow:0 2px 12px #0000000f;">
@@ -3937,7 +3941,7 @@ _kwBottom+='</div></div></div>';
 
  </div>
   ${ACAD_FORM('학원 서브페이지 ('+ct.n+' '+title+')')}
- ${FOOTER}${ACAD_FLOATING}
+ ${ACAD_FOOTER}${ACAD_FLOATING}
  <style>@media(max-width:768px){div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}}</style>
  ${ACAD_SCRIPT('학원 서브페이지 ('+ct.n+' '+title+')')}
  
