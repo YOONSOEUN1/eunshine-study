@@ -3877,16 +3877,16 @@ var _studyReviewHtml = _guideHtml + _rvHtml;
  <div style="margin-bottom:16px;"><a href="/academy/${encodeURIComponent(slug)}" style="color:#888;text-decoration:none;font-size:13px;">← ${ct.n} 센터 페이지로</a></div>
 
  <!-- Hero -->
- <div style="background:linear-gradient(135deg,rgba(20,30,50,0.93),rgba(26,35,64,0.9),rgba(15,22,40,0.95)),url('${bgImg(subject,cH(ct.sl+grade))}') center/cover;padding:48px 20px 36px;text-align:center;border-radius:20px;margin:0 auto 24px;max-width:900px">
+ <div style="background:linear-gradient(135deg,rgba(15,22,40,0.88),rgba(20,30,50,0.85),rgba(15,22,40,0.9)),url('${bgImg(subject,cH(ct.sl+grade))}') center/cover;padding:48px 20px 36px;text-align:center;border-radius:20px;margin:0 auto 24px;max-width:900px">
  <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(200,169,110,0.15);border-radius:50%;"></div>
  <div style="display:flex;gap:8px;justify-content:center;margin-bottom:14px;position:relative;flex-wrap:wrap;">
- <span style="background:rgba(255,255,255,.15);padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;">${heroLabel}</span>
+ <span style="background:rgba(255,255,255,.2);padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;color:#fff;">${heroLabel}</span>
  <span style="background:${gradeColor};color:white;padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;">${grade}</span>
  <span style="background:${subjColor};color:white;padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;">${subject}</span>
  </div>
- <h1 style="font-size:clamp(24px,5vw,36px);font-weight:900;margin-bottom:12px;position:relative;">${title}</h1>
- <p style="font-size:14px;opacity:.85;position:relative;">${ct.n} · ${ct.a}</p>
- ${landmarkTxt?'<p style="font-size:13px;opacity:.75;margin-top:6px;position:relative;">📍 '+landmarkTxt+'</p>':''}
+ <h1 style="font-size:clamp(26px,5vw,40px);font-weight:900;margin-bottom:12px;position:relative;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,0.5);">${title}</h1>
+ <p style="font-size:14px;position:relative;color:rgba(255,255,255,0.9);text-shadow:0 1px 6px rgba(0,0,0,0.4);">${ct.n} · ${ct.a}</p>
+ ${landmarkTxt?'<p style="font-size:13px;margin-top:6px;position:relative;color:rgba(255,255,255,0.85);text-shadow:0 1px 4px rgba(0,0,0,0.4);">📍 '+landmarkTxt+'</p>':''}
  </div>
 
 
