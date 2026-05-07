@@ -3479,7 +3479,7 @@ function buildCenterDetailPage(slug) {
      html+='<span style="display:inline-block;background:'+tb.c+';color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px;margin-bottom:8px;">'+tb.l.split(' ')[1]+'</span>';
      html+='<p style="font-size:14px;font-weight:700;color:#1A2340;margin-bottom:6px;">'+school+'</p>';
      html+='<div style="display:flex;flex-wrap:wrap;gap:4px;">';
-     subjs.forEach(function(sj){html+='<a href="/academy/'+encodeURIComponent(ct.sl)+'/'+encodeURIComponent(tb.l.split(' ')[1])+'/'+encodeURIComponent(sj)+'" style="font-size:11px;color:#1A2340;border:1px solid #E2E8F0;padding:4px 10px;border-radius:6px;text-decoration:none;font-weight:600;transition:all .15s;display:inline-block;" onmouseover="this.style.background=\'#1A2340\';this.style.color=\'#fff\';this.style.borderColor=\'#1A2340\'" onmouseout="this.style.background=\'\';this.style.color=\'#1A2340\';this.style.borderColor=\'#E2E8F0\'">'+sj+' →</a>';});
+     subjs.forEach(function(sj){html+='<a href="/academy/'+encodeURIComponent(ct.sl)+'/'+encodeURIComponent(tb.l.split(' ')[1])+'/'+encodeURIComponent(sj)+'/'+encodeURIComponent(school)+'" style="font-size:11px;color:#1A2340;border:1px solid #E2E8F0;padding:4px 10px;border-radius:6px;text-decoration:none;font-weight:600;transition:all .15s;display:inline-block;" onmouseover="this.style.background=\'#1A2340\';this.style.color=\'#fff\';this.style.borderColor=\'#1A2340\'" onmouseout="this.style.background=\'\';this.style.color=\'#1A2340\';this.style.borderColor=\'#E2E8F0\'">'+sj+' →</a>';});
      html+='</div></div>';
     });
     html+='</div>';
@@ -3877,7 +3877,7 @@ var _studyReviewHtml = _guideHtml + _rvHtml;
  <div style="margin-bottom:16px;"><a href="/academy/${encodeURIComponent(slug)}" style="color:#888;text-decoration:none;font-size:13px;">← ${ct.n} 센터 페이지로</a></div>
 
  <!-- Hero -->
- <div style="background:linear-gradient(135deg,rgba(26,35,64,0.92),rgba(45,58,92,0.88),rgba(20,30,50,0.95)),url('${bgImg(subject,cH(ct.sl+grade))}') center/cover;padding:48px 20px 36px;text-align:center;border-radius:20px;margin:0 auto 24px;max-width:900px">
+ <div style="background:linear-gradient(135deg,rgba(20,30,50,0.93),rgba(26,35,64,0.9),rgba(15,22,40,0.95)),url('${bgImg(subject,cH(ct.sl+grade))}') center/cover;padding:48px 20px 36px;text-align:center;border-radius:20px;margin:0 auto 24px;max-width:900px">
  <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(200,169,110,0.15);border-radius:50%;"></div>
  <div style="display:flex;gap:8px;justify-content:center;margin-bottom:14px;position:relative;flex-wrap:wrap;">
  <span style="background:rgba(255,255,255,.15);padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;">${heroLabel}</span>
@@ -3977,14 +3977,12 @@ var _studyReviewHtml = _guideHtml + _rvHtml;
  ${ACAD_SCRIPT('학원 서브페이지 ('+ct.n+' '+title+')')}
  
 
-// 과목별 학습 가이드 + 후기
 
 
 
 
 
 
-${_studyReviewHtml}
  ${_kwBottom}
 </body></html>`;
 }
