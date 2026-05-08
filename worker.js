@@ -1547,6 +1547,7 @@ function buildCityPage(rs, cs) {
  const ri = locations[rs]||{};
  const tc = ri.color||"#3498db";
  const rd = ci.region_display;
+ const fullRd = fullCityName(rs, rd);
  const kn = ci.name;
  const dongStr = ci.dongs.slice(0,5).join("·")+(ci.dongs.length>5?` 등 ${ci.dongs.length}개 지역`:"");
  const schoolStr = ci.schools.slice(0,4).join("·")+(ci.schools.length>4?` 외`:"");
@@ -1609,7 +1610,7 @@ function buildCityPage(rs, cs) {
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
- <title>${rd} 과외 | 초중고 1:1 맞춤 방문·화상 과외 | 은빛쌤</title>
+ <title>${fullRd} 과외 | 초중고 1:1 맞춤 방문·화상 과외 | 은빛쌤</title>
  <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${rd} 과외 전문 은빛쌤. ${dongStr} 상담 후 방문·화상 결정. ${schoolStr} 내신 완벽 대비. 첫 상담·체험 무료.">
  ${COMMON_STYLE}</head><body>${NAV}
@@ -1618,7 +1619,7 @@ function buildCityPage(rs, cs) {
  <!-- 히어로 배너 -->
  <div style="background:linear-gradient(135deg,${hexToRgba(tc,0.92)},${hexToRgba(tc,0.78)}),url('${bgImg("city",cH(rs+cs))}') center/cover;color:white;border-radius:20px;padding:clamp(32px,5vw,56px);margin-bottom:24px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
  <p style="font-size:13px;opacity:.8;margin-bottom:8px;">📍 은빛쌤 1:1 맞춤 과외</p>
- <h1 style="font-size:clamp(28px,5vw,44px);font-weight:900;margin-bottom:12px;">${rd} 과외</h1>
+ <h1 style="font-size:clamp(28px,5vw,44px);font-weight:900;margin-bottom:12px;">${fullRd} 과외</h1>
   <p style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:15px;opacity:.9;margin-bottom:20px;">초·중·고 전 과목 | 무료 상담 후 방문·화상 수업 방식 결정</p>
  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;">
@@ -1794,6 +1795,7 @@ function buildDongPage(rs, cs, dong) {
  const ri = locations[rs]||{};
  const tc = ri.color||"#3498db";
  const rd = ci.region_display;
+ const fullRd = fullCityName(rs, rd);
  const schools = ci.schools||[];
  const schoolStr = schools.slice(0,3).join("·")+(schools.length>3?" 외":"");
  const gc = {"초등":"#3498db","중등":"#2ecc71","고등":"#e74c3c"};
@@ -1977,6 +1979,7 @@ function buildDongDetailPage(rs, cs, dong, grade, subject) {
  const ri = locations[rs]||{};
  const tc = ri.color||"#3498db";
  const rd = ci.region_display;
+ const fullRd = fullCityName(rs, rd);
  const schoolStr = ci.schools.slice(0,3).join("·")+(ci.schools.length>3?" 외":"");
  const rawDesc = ((descriptions[grade]||{})[subject]||"").replace(/\{region\}/g, dong);
  const title = dong + " " + grade + " " + subject + "과외";
@@ -2069,6 +2072,7 @@ function buildDetailPage(rs, cs, grade, subject) {
  const ri = locations[rs]||{};
  const tc = ri.color||"#3498db";
  const rd = ci.region_display;
+ const fullRd = fullCityName(rs, rd);
  const schoolStr = ci.schools.slice(0,3).join("·")+(ci.schools.length>3?" 외":"");
  const dongStr = ci.dongs.slice(0,4).join("·")+(ci.dongs.length>4?` 등`:"");
  const c = ci.classes.find(x=>x.grade===grade&&x.subject===subject);
@@ -2191,6 +2195,7 @@ function buildSchoolListPage(rs, cs) {
  const ri = locations[rs]||{};
  const tc = ri.color||"#3498db";
  const rd = ci.region_display;
+ const fullRd = fullCityName(rs, rd);
  const kn = ci.name;
  const schools = ci.schools||[];
 
@@ -2315,6 +2320,7 @@ function buildSchoolPage(rs, cs, schoolShort) {
  const ri = locations[rs]||{};
  const tc = ri.color||"#3498db";
  const rd = ci.region_display;
+ const fullRd = fullCityName(rs, rd);
  const kn = ci.name;
  const schools = ci.schools||[];
  if (!schools.includes(schoolShort)) return null;
@@ -2528,6 +2534,15 @@ function getUpdateDate(){
  var mm=m<10?'0'+m:''+m;
  var dd=day<10?'0'+day:''+day;
  return y+'년 '+mm+'월 '+dd+'일';
+}
+
+const DUPE_CITIES=['강서구','고성군','군위군','남구','동구','북구','서구','중구'];
+function fullCityName(regionSlug, cityName){
+ if(DUPE_CITIES.indexOf(cityName)>=0){
+  var rn=locations[regionSlug]?locations[regionSlug].region_name:'';
+  return rn+' '+cityName;
+ }
+ return cityName;
 }
 
 // ── 학년별 과외 페이지 데이터 ──
