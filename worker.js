@@ -1612,7 +1612,7 @@ function buildCityPage(rs, cs) {
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
  <title>${fullRd} 과외 | 초중고 1:1 맞춤 방문·화상 과외 | 은빛쌤</title>
  <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta name="twitter:card" content="summary_large_image">
- <meta name="description" content="${rd} 과외 전문 은빛쌤. ${dongStr} 상담 후 방문·화상 결정. ${schoolStr} 내신 완벽 대비. 첫 상담·체험 무료.">
+ <meta name="description" content="${fullRd} 과외 전문 은빛쌤. ${dongStr} 상담 후 방문·화상 결정. ${schoolStr} 내신 완벽 대비. 첫 상담·체험 무료.">
  ${COMMON_STYLE}</head><body>${NAV}
  <div style="max-width:1100px;margin:40px auto;padding:0 16px;">
 
@@ -1848,7 +1848,7 @@ function buildDongPage(rs, cs, dong) {
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
- <title>${dong} 과외 | 초중고 1:1 방문·화상 과외 | 은빛쌤</title>
+ <title>${fullRd} ${dong} 과외 | 초중고 1:1 방문·화상 과외 | 은빛쌤</title>
  <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${dong} 과외 전문 은빛쌤. 초·중·고 국어·영어·수학 1:1 맞춤 수업. ${schoolStr} 내신 완벽 대비. 상담 후 방문·화상 결정. 첫 체험 무료.">
  ${COMMON_STYLE}</head><body>${NAV}
@@ -1857,7 +1857,7 @@ function buildDongPage(rs, cs, dong) {
  <!-- 히어로 -->
  <div style="background:linear-gradient(135deg,${hexToRgba(tc,0.92)},${hexToRgba(tc,0.78)}),url('${bgImg("city",cH(rs+cs+dong))}') center/cover;color:white;border-radius:20px;padding:clamp(30px,5vw,52px);margin-bottom:24px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
  <p style="font-size:13px;opacity:.8;margin-bottom:6px;">📍 <a href="/${rs}/${cs}" style="color:white;text-decoration:underline;">${rd}</a> &gt; ${dong}</p>
- <h1 style="font-size:clamp(26px,5vw,42px);font-weight:900;margin-bottom:10px;">${dong} 과외</h1>
+ <h1 style="font-size:clamp(26px,5vw,42px);font-weight:900;margin-bottom:10px;">${fullRd} ${dong} 과외</h1>
   <p style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:14px;opacity:.9;margin-bottom:18px;">초·중·고 전 과목 | 상담 후 방문·화상 수업 방식 결정</p>
  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;">
@@ -2090,17 +2090,17 @@ function buildDetailPage(rs, cs, grade, subject) {
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
- <title>${c.title} | 1:1 방문·화상 과외 | 은빛쌤</title>
+ <title>${fullRd} ${grade} ${subject}과외 | 1:1 방문·화상 과외 | 은빛쌤</title>
  <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta name="twitter:card" content="summary_large_image">
- <meta name="description" content="${rd} ${grade} ${subject} 과외. ${c.desc.substring(0,60)}. 은빛쌤 1:1 맞춤 수업, 첫 체험 무료.">
+ <meta name="description" content="${fullRd} ${grade} ${subject} 과외. ${c.desc.substring(0,60)}. 은빛쌤 1:1 맞춤 수업, 첫 체험 무료.">
  ${COMMON_STYLE}</head><body>${NAV}
  <div style="max-width:960px;margin:40px auto;padding:0 16px;">
 
  <div style="background:linear-gradient(135deg,${hexToRgba(color,0.92)},${hexToRgba(color,0.78)}),url('${bgImg(subject,cH(rs+cs+grade+subject))}') center/cover;color:white;border-radius:20px;padding:clamp(28px,5vw,52px);margin-bottom:28px;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
  <p style="font-size:13px;opacity:.8;margin-bottom:8px;">
- <a href="/${rs}/${cs}" style="color:white;text-decoration:underline;">${rd}</a> &gt; ${grade} ${subject}
+ <a href="/${rs}/${cs}" style="color:white;text-decoration:underline;">${fullRd}</a> &gt; ${grade} ${subject}
  </p>
- <h1 style="font-size:clamp(24px,5vw,40px);font-weight:900;margin-bottom:12px;">${c.title}</h1>
+ <h1 style="font-size:clamp(24px,5vw,40px);font-weight:900;margin-bottom:12px;">${fullRd} ${grade} ${subject}과외</h1>
   <p style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:14px;opacity:.9;line-height:1.8;">${c.desc}</p>
  </div>
