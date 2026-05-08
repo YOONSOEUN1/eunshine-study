@@ -1500,7 +1500,7 @@ function buildRegionPage(rs) {
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
  <title>${rn} 과외 | 방문·화상 1:1 맞춤 과외 | 은빛쌤</title>
- <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${bgImg('city',cH(loc+city))}"><meta name="twitter:card" content="summary_large_image">
+ <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${rn} 전 지역 1:1 맞춤 과외. 방문/화상 모두 가능, 35년 경력 은빛쌤. 첫 상담·체험 수업 무료.">
  ${COMMON_STYLE}</head><body>${NAV}
 
@@ -1610,7 +1610,7 @@ function buildCityPage(rs, cs) {
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
  <title>${rd} 과외 | 초중고 1:1 맞춤 방문·화상 과외 | 은빛쌤</title>
- <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${bgImg('city',cH(loc+city))}"><meta name="twitter:card" content="summary_large_image">
+ <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${rd} 과외 전문 은빛쌤. ${dongStr} 상담 후 방문·화상 결정. ${schoolStr} 내신 완벽 대비. 첫 상담·체험 무료.">
  ${COMMON_STYLE}</head><body>${NAV}
  <div style="max-width:1100px;margin:40px auto;padding:0 16px;">
@@ -1847,7 +1847,7 @@ function buildDongPage(rs, cs, dong) {
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
  <title>${dong} 과외 | 초중고 1:1 방문·화상 과외 | 은빛쌤</title>
- <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${bgImg('city',cH(loc+city))}"><meta name="twitter:card" content="summary_large_image">
+ <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${dong} 과외 전문 은빛쌤. 초·중·고 국어·영어·수학 1:1 맞춤 수업. ${schoolStr} 내신 완벽 대비. 상담 후 방문·화상 결정. 첫 체험 무료.">
  ${COMMON_STYLE}</head><body>${NAV}
  <div style="max-width:1100px;margin:40px auto;padding:0 16px;">
@@ -2087,7 +2087,7 @@ function buildDetailPage(rs, cs, grade, subject) {
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
  <title>${c.title} | 1:1 방문·화상 과외 | 은빛쌤</title>
- <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${bgImg('city',cH(loc+city))}"><meta name="twitter:card" content="summary_large_image">
+ <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${rd} ${grade} ${subject} 과외. ${c.desc.substring(0,60)}. 은빛쌤 1:1 맞춤 수업, 첫 체험 무료.">
  ${COMMON_STYLE}</head><body>${NAV}
  <div style="max-width:960px;margin:40px auto;padding:0 16px;">
@@ -2471,7 +2471,7 @@ function buildSchoolPage(rs, cs, schoolShort) {
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
  <title>${schoolFull} 과외 | 1:1 방문·화상 과외 | 은빛쌤</title>
- <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${bgImg('school',cH(schoolName))}"><meta name="twitter:card" content="summary_large_image">
+ <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${schoolFull} 과외 전문 은빛쌤. ${schoolFull} 내신 기출 완벽 분석, 1:1 맞춤 수업, 35년 교육 노하우. 첫 상담·체험 무료.">
  ${COMMON_STYLE}</head><body>${NAV}
  <div style="max-width:1100px;margin:40px auto;padding:0 16px;">
@@ -3917,7 +3917,7 @@ var _studyReviewHtml = _guideHtml + _rvHtml;
  <div style="margin-bottom:16px;"><a href="/academy/${encodeURIComponent(slug)}" style="color:#888;text-decoration:none;font-size:13px;">← ${ct.n} 센터 페이지로</a></div>
 
  <!-- Hero -->
- <div style="background:linear-gradient(135deg,rgba(15,22,40,0.7),rgba(20,30,50,0.65),rgba(15,22,40,0.75)),url('${bgImg(subject,cH(ct.sl+grade))}') center/cover;padding:48px 20px 36px;text-align:center;border-radius:20px;margin:0 auto 24px;max-width:900px">
+ <div style="background:linear-gradient(135deg,rgba(15,22,40,0.7),rgba(20,30,50,0.65),rgba(15,22,40,0.75)),url('https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png') center/cover;padding:48px 20px 36px;text-align:center;border-radius:20px;margin:0 auto 24px;max-width:900px">
  <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(200,169,110,0.15);border-radius:50%;"></div>
  <div style="display:flex;gap:8px;justify-content:center;margin-bottom:14px;position:relative;flex-wrap:wrap;">
  <span style="background:rgba(255,255,255,.2);padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;color:#fff;">${heroLabel}</span>
@@ -4978,13 +4978,13 @@ function buildSubjectPage(subSlug){
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
  <title>${s.name} 과외 | 은빛스터디</title>
- <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${bgImg(s.name,cH(s.slug))}"><meta name="twitter:card" content="summary_large_image">
+ <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${s.name} 1:1 맞춤 과외. ${s.desc}">
  ${COMMON_STYLE}
  <style>.gt{transition:all .2s;}.gt:hover{transform:translateY(-2px);}@media(max-width:768px){.grade-tabs{flex-direction:column!important;}}</style>
  </head><body>
  ${NAV}
- <div style="background:linear-gradient(135deg,rgba(26,35,64,0.85),rgba(42,61,107,0.78)),url('${bgImg(s.name,cH(s.slug))}') center/cover;min-height:320px;display:flex;flex-direction:column;justify-content:center;padding:60px 20px 40px;text-align:center;position:relative;">
+ <div style="background:linear-gradient(135deg,rgba(26,35,64,0.85),rgba(42,61,107,0.78)),url('https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png') center/cover;min-height:320px;display:flex;flex-direction:column;justify-content:center;padding:60px 20px 40px;text-align:center;position:relative;">
   <div style="font-size:3rem;margin-bottom:14px;">${s.icon}</div>
   <h1 style="font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;color:#fff;margin-bottom:10px;text-shadow:0 2px 8px rgba(0,0,0,0.3);">${s.name} 과외</h1>
   <p style="font-size:0.95rem;color:rgba(255,255,255,0.85);line-height:1.8;max-width:550px;margin:0 auto 24px;">${s.desc}</p>
