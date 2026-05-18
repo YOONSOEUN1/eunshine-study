@@ -4603,7 +4603,7 @@ async function submitIndexNowChunk(urlList) {
  urlList: urlList
  };
  try {
- // Naver + Bing 동시 제출
+ // Naver + Bing + Yandex + IndexNow.org 동시 제출
  const resp = await fetch("https://searchadvisor.naver.com/indexnow", {
  method: "POST",
  headers: {"Content-Type": "application/json; charset=utf-8"},
@@ -4613,6 +4613,18 @@ async function submitIndexNowChunk(urlList) {
  try { respText = await resp.text(); } catch(e) {}
  // Bing에도 제출
  try { await fetch("https://www.bing.com/indexnow", {
+ method: "POST",
+ headers: {"Content-Type": "application/json; charset=utf-8"},
+ body: JSON.stringify(body)
+ }); } catch(e) {}
+ // Yandex에도 제출
+ try { await fetch("https://yandex.com/indexnow", {
+ method: "POST",
+ headers: {"Content-Type": "application/json; charset=utf-8"},
+ body: JSON.stringify(body)
+ }); } catch(e) {}
+ // IndexNow.org에도 제출
+ try { await fetch("https://api.indexnow.org/indexnow", {
  method: "POST",
  headers: {"Content-Type": "application/json; charset=utf-8"},
  body: JSON.stringify(body)
@@ -5100,11 +5112,11 @@ function buildSubjectPage(subSlug){
    const batch = urls.slice(0,500);
    const body = JSON.stringify({host:"eunshinestudy.com",key:INDEXNOW_KEY,keyLocation:base+"/"+INDEXNOW_KEY+".txt",urlList:batch});
    const results = [];
-   for (const ep of ["https://api.indexnow.org/indexnow","https://www.bing.com/indexnow"]) {
+   for (const ep of ["https://api.indexnow.org/indexnow","https://www.bing.com/indexnow","https://yandex.com/indexnow","https://searchadvisor.naver.com/indexnow"]) {
     try { const res = await fetch(ep,{method:"POST",headers:{"Content-Type":"application/json"},body:body}); results.push({endpoint:ep,status:res.status,ok:res.ok}); }
     catch(e) { results.push({endpoint:ep,error:e.message}); }
    }
-   return new Response(JSON.stringify({success:true,submitted:batch.length,totalUrls:urls.length,results},null,2),{headers:{"Content-Type":"application/json"}});
+   return new Response(JSON.stringify({success:true,submitted:batch.length,results,message:batch.length+"개 URL을 IndexNow에 제출했습니다."},null,2),{headers:{"Content-Type":"application/json"}});
   } catch(e) { return new Response(JSON.stringify({success:false,error:e.message}),{headers:{"Content-Type":"application/json"}}); }
  }
 
