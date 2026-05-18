@@ -404,6 +404,86 @@ function buildWhyBlock(kw,tc,seed){
  return '<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;"><h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid '+tc+';padding-left:14px;margin-bottom:16px;">🏙️ '+kw+', 왜 은빛쌤일까요?</h2><p style="font-size:14px;color:#444;line-height:2;margin-bottom:20px;">'+introHtml+'</p><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;">'+cards+'</div></div>';
 }
 
+const STUDY_TIPS=[
+{i:"🧠",t:"개념 먼저, 문제는 나중에",b:"많은 학생이 문제만 반복해서 풀다 막히면 포기합니다. {kw} 수업에서는 개념을 완전히 이해한 뒤 문제에 적용하는 순서를 지킵니다."},
+{i:"✏️",t:"오답 노트가 성적을 바꾼다",b:"틀린 문제를 그냥 넘기면 같은 실수를 반복합니다. {kw} 수업에서는 오답 원인을 함께 분석하고 같은 유형에서 다시 틀리지 않도록 관리합니다."},
+{i:"📅",t:"꾸준함이 실력이다",b:"하루 10시간 벼락치기보다 매일 1시간 꾸준한 학습이 장기 기억에 훨씬 효과적입니다. {kw} 학생이 스스로 루틴을 만들 수 있도록 함께 설계합니다."},
+{i:"🗣️",t:"말로 설명해야 진짜 안다",b:"배운 내용을 선생님 없이 스스로 설명할 수 있는지 확인합니다. {kw} 수업에서는 학생이 직접 말해보는 활동을 반드시 포함합니다."},
+{i:"🔍",t:"취약점을 먼저 찾는다",b:"{kw} 수업은 학생이 어디서 막히는지 정확히 파악하는 것부터 시작합니다. 취약 단원을 집중 공략해야 점수가 빠르게 오릅니다."},
+{i:"📊",t:"데이터로 성적을 관리한다",b:"매 수업마다 이해도와 정답률을 기록하고 추이를 분석합니다. {kw} 수업은 감이 아닌 데이터를 기반으로 다음 학습을 설계합니다."},
+{i:"🎯",t:"시험 범위에 집중한다",b:"학교마다 시험 출제 범위와 스타일이 다릅니다. {kw} 수업은 해당 학교의 기출 경향을 분석해 실제 시험에 나올 내용만 효율적으로 다룹니다."},
+{i:"📖",t:"교과서가 가장 좋은 교재다",b:"사교육 교재에만 의존하면 학교 시험과 괴리가 생깁니다. {kw} 수업은 교과서 본문을 중심으로 개념을 정리하고 확장합니다."},
+{i:"⏰",t:"짧고 굵게 집중한다",b:"집중력이 떨어진 상태에서 긴 시간 공부해도 효과가 없습니다. {kw} 수업은 50분 집중 + 10분 휴식 사이클로 최대 효율을 끌어냅니다."},
+{i:"🔄",t:"반복 학습 주기를 설계한다",b:"한 번 배운 내용은 3일·7일·14일 간격으로 반복해야 장기 기억에 저장됩니다. {kw} 수업은 이 복습 주기를 커리큘럼에 자동으로 반영합니다."},
+{i:"💡",t:"왜 틀렸는지를 먼저 묻는다",b:"정답을 알려주기 전에 학생이 어떤 사고 과정을 거쳤는지 함께 따라갑니다. {kw} 수업은 오류의 원인을 찾아 사고 패턴을 교정합니다."},
+{i:"📝",t:"노트 정리 습관을 만든다",b:"잘 정리된 노트는 시험 직전 가장 효과적인 복습 도구입니다. {kw} 수업은 학생만의 요약 노트를 만들 수 있도록 정리법을 직접 가르칩니다."},
+{i:"🏃",t:"선행보다 현행 완성이 먼저다",b:"기초가 부족한 채로 선행을 나가면 둘 다 무너집니다. {kw} 수업은 현재 학년 내용을 완벽히 소화한 뒤에만 다음 단계로 넘어갑니다."},
+{i:"🧩",t:"개념끼리 연결해서 기억한다",b:"단편적으로 외운 지식은 금방 잊힙니다. {kw} 수업은 개념 간 관계를 그림으로 그리며 연결해 전체 흐름을 이해시킵니다."},
+{i:"🎓",t:"시험 유형별 전략이 다르다",b:"서술형·객관식·단답형은 풀이 전략이 완전히 다릅니다. {kw} 수업은 유형별 접근법을 따로 훈련시켜 실전 적응력을 키웁니다."},
+{i:"📱",t:"디지털 도구를 활용한다",b:"타이머 앱, 플래시 카드, 오답 앱 등 학습 효율을 높이는 도구를 함께 활용합니다. {kw} 수업은 학생에게 맞는 디지털 학습법도 제안합니다."},
+{i:"🌱",t:"작은 목표부터 달성한다",b:"한 번에 전교 1등을 목표로 하면 중간에 지칩니다. {kw} 수업은 주 단위 작은 목표를 세우고 달성 경험을 쌓아 자신감을 키워갑니다."},
+{i:"🤝",t:"학부모와 함께 방향을 잡는다",b:"학생의 학습 상황을 부모님도 정확히 알아야 효과적인 응원이 가능합니다. {kw} 수업은 매주 학부모님께 진행 상황과 다음 계획을 공유합니다."},
+{i:"🔬",t:"실험·사례 중심으로 이해한다",b:"추상적인 개념도 실제 예시와 연결하면 쉽게 이해됩니다. {kw} 수업은 교과서 밖 사례를 풍부하게 활용해 개념을 생생하게 전달합니다."},
+{i:"⚡",t:"약점 보강에 시간을 쓴다",b:"이미 잘하는 단원에 시간을 쓰는 건 비효율적입니다. {kw} 수업은 진단 결과를 바탕으로 부족한 부분에 집중 시간을 배분합니다."}
+];
+const TUTOR_FEATS=[
+{t:"수업 전 학생 진단",b:"첫 수업 전 학생의 현재 수준·학습 습관·목표를 파악합니다. 진단 결과를 바탕으로 딱 맞는 커리큘럼을 설계합니다."},
+{t:"시험 직전 집중 대비",b:"중간·기말고사 2~3주 전부터 학교별 기출 분석과 예상 문제 풀이를 강화합니다."},
+{t:"카카오톡 24시간 질문",b:"수업이 없는 날도 모르는 문제가 생기면 언제든 카카오톡으로 질문할 수 있습니다."},
+{t:"매주 학부모 피드백",b:"매주 수업 후 학습 진도·과제 완료율·성적 변화를 부모님께 공유합니다."},
+{t:"학교별 기출 분석 수업",b:"학생이 다니는 학교의 최근 3년간 기출 문제를 분석해 출제 패턴과 빈출 단원을 미리 파악합니다."},
+{t:"맞춤 교재 선정",b:"시중 교재를 학생 수준에 맞게 선별하고, 필요하면 자체 프린트 자료를 제작해 보충합니다."},
+{t:"단계별 난이도 조절",b:"쉬운 문제로 자신감을 쌓은 뒤 점진적으로 난이도를 올려 학생이 포기하지 않도록 이끕니다."},
+{t:"오답 원인 분류 시스템",b:"틀린 문제를 개념 부족·계산 실수·시간 부족 등으로 분류해 원인별 맞춤 보완 전략을 세웁니다."},
+{t:"수업 녹화 복습 제공",b:"화상 수업 시 녹화본을 제공해 학생이 언제든 다시 보며 복습할 수 있도록 합니다."},
+{t:"학습 플래너 함께 작성",b:"주간·월간 학습 계획표를 학생과 함께 세우고 매주 실행 여부를 점검합니다."},
+{t:"방문·화상 자유 전환",b:"시험 기간에는 방문, 방학에는 화상 등 상황에 따라 수업 방식을 유연하게 전환할 수 있습니다."},
+{t:"형제·자매 동시 수업 할인",b:"형제·자매가 함께 수업할 경우 할인 혜택이 있으며, 시간대를 연속으로 배정해 효율적으로 운영합니다."},
+{t:"수능·내신 병행 전략",b:"내신과 수능을 동시에 대비하는 학생을 위해 시기별로 비중을 조절하는 투트랙 전략을 제공합니다."},
+{t:"시험 후 즉시 오답 분석",b:"시험이 끝나면 시험지를 바로 분석해 어디서 점수를 잃었는지 파악하고 다음 시험 대비 방향을 세웁니다."},
+{t:"자기주도 학습 전환 코칭",b:"장기적으로 학생이 혼자서도 공부할 수 있는 방법을 익히도록 자기주도 학습 스킬을 함께 훈련합니다."},
+{t:"온라인 질문 게시판 운영",b:"수업 외 시간에 사진으로 문제를 찍어 올리면 담당 선생님이 풀이와 개념 설명을 직접 달아드립니다."},
+{t:"수준별 숙제 분량 조절",b:"학생의 컨디션과 시험 일정에 따라 숙제 양을 탄력적으로 조절해 부담 없이 꾸준히 할 수 있게 합니다."},
+{t:"모의고사 실전 시뮬레이션",b:"실제 시험과 동일한 시간·환경에서 모의 시험을 진행해 시험장 긴장감에 익숙해지도록 훈련합니다."},
+{t:"진로·입시 상담 병행",b:"단순 성적 관리를 넘어 학생의 진로 목표에 맞는 과목 선택과 입시 전략까지 함께 상담합니다."},
+{t:"체험 수업 후 결정",b:"첫 수업을 무료로 진행해 학생과 선생님의 궁합을 확인한 뒤 정식 수업 여부를 결정합니다."}
+];
+const METHOD_POOL=[
+"무료 상담 → 학생 수준 진단 → 맞춤 선생님 매칭 → 방문 또는 화상 중 선택 → 정규 수업 시작",
+"카카오톡·전화 상담 → 학습 목표 설정 → 최적 강사 배정 → 체험 수업 후 결정 → 본 수업 진행",
+"온라인 또는 전화 상담 → 학생 성향·수준 파악 → 맞춤형 커리큘럼 설계 → 방문·화상 수업 방식 확정",
+"무료 상담 신청 → 코디네이터 24시간 내 연락 → 학생 진단 → 강사 추천 → 무료 체험 → 정식 수업",
+"상담 접수 → 학생 학교·성적 분석 → 수업 방식과 시간 조율 → 첫 수업 무료 진행 → 만족 시 계속",
+"카카오톡으로 간편 신청 → 전담 상담사 배정 → 학생 맞춤 강사 매칭 → 첫 회 무료 체험 → 수업 시작",
+"네이버 폼·카카오톡·전화 중 편한 방법으로 상담 → 학생 정보 확인 → 48시간 내 최적 강사 추천 → 체험 수업",
+"무료 상담 → 학습 습관·취약점 진단 → 방문과 화상 중 최적 방식 결정 → 맞춤 커리큘럼 구성 → 수업 개시",
+"전화 또는 카카오톡 상담 → 학생·학부모 요구 사항 파악 → 강사 프로필 제안 → 무료 수업 1회 → 진행 결정",
+"상담 신청 → 지역·학교·과목에 맞는 강사 탐색 → 무료 시범 수업 → 학부모·학생 피드백 확인 → 정규 수업 스타트",
+"온라인 간편 상담 → 학생 목표·수준 분석 → 수업 방식 및 교재 제안 → 무료 체험 후 계약 여부 결정",
+"첫 상담에서 학생의 현재 실력과 목표 점수를 함께 정리합니다. 이후 가장 적합한 선생님을 추천하고 첫 수업을 무료로 진행합니다",
+"상담 → 학생 유형 분류(기초 보강형·내신 집중형·수능 대비형) → 유형에 맞는 전문 강사 배정 → 체험 수업 → 정식 수업",
+"카카오톡으로 학생 정보 전송 → 24시간 내 최적 강사 3인 추천 → 프로필 비교 후 선택 → 무료 체험 → 수업 확정",
+"상담 신청 후 코디네이터가 학교·성적·희망 요일을 꼼꼼히 파악합니다. 3일 내 맞춤 강사를 연결해 드리며 첫 수업은 무료입니다"
+];
+function buildStudyBlock(kw,tc,seed){
+ var picks=pkU(STUDY_TIPS,seed,4,7);
+ var cards=picks.map(function(c){return '<div style="background:#f8faff;border-radius:14px;padding:20px;"><div style="font-size:26px;margin-bottom:10px;">'+c.i+'</div><div style="font-weight:800;color:#1A2340;margin-bottom:8px;">'+c.t+'</div><div style="font-size:13px;color:#555;line-height:1.8;">'+c.b.replace(/\{kw\}/g,kw)+'</div></div>';}).join('');
+ return '<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;"><h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid '+tc+';padding-left:14px;margin-bottom:20px;">📖 '+kw+' 공부법 가이드</h2><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;">'+cards+'</div></div>';
+}
+function buildTutorBlock(kw,tc,seed){
+ var picks=pkU(TUTOR_FEATS,seed,4,13);
+ var items=picks.map(function(f,i){return '<div style="display:flex;gap:14px;align-items:flex-start;background:#f8faff;border-radius:12px;padding:16px 18px;"><div style="background:'+tc+';color:white;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0;">'+(i+1)+'</div><div><div style="font-weight:800;color:#1A2340;margin-bottom:4px;font-size:14px;">'+f.t+'</div><div style="font-size:13px;color:#555;line-height:1.7;">'+f.b+'</div></div></div>';}).join('');
+ return '<h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid '+tc+';padding-left:14px;margin-bottom:16px;margin-top:8px;">💡 '+kw+' 은빛쌤만의 특징</h2><div style="display:flex;flex-direction:column;gap:12px;">'+items+'</div>';
+}
+function buildFaqBlock(kw,tc,seed){
+ var picks=pkU(FAQ_POOL,seed,4,19);
+ var qs=picks.map(function(f){return '<div><p style="font-weight:700;color:#2563eb;font-size:15px;margin-bottom:8px;">Q. '+f.q+'</p><p style="font-size:14px;color:#444;line-height:1.8;">'+f.a+'</p></div>';}).join('');
+ return '<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;"><h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid '+tc+';padding-left:14px;margin-bottom:20px;">❓ '+kw+' 자주 묻는 질문</h2><div style="display:flex;flex-direction:column;gap:24px;">'+qs+'</div></div>';
+}
+function getMethodDesc(seed){return METHOD_POOL[(seed>>>0)%METHOD_POOL.length];}
+
+
+
 const TIP_SUBJ_ELEM={
 "국어":[
 "초등 국어의 핵심은 독해력입니다. 글을 읽고 주제와 중심 생각을 파악하는 훈련을 매일 꾸준히 하면 중학교 국어에서도 흔들리지 않는 실력을 갖출 수 있습니다. 특히 문단별 핵심 문장을 찾아 밑줄 치는 습관이 효과적입니다.",
@@ -945,7 +1025,19 @@ const CITY_EXTRA=[
 {t:"{rd} 학생들의 실제 성적 변화",b:"{rd} 지역에서 은빛과외와 함께한 학생들의 변화를 소개합니다. 수학 4등급에서 2등급으로 올라간 학생은 기초 개념 재정리와 오답 분석을 통해 3개월 만에 두 등급을 상승시켰습니다. 영어가 계속 60점대였던 학생은 독해 전략과 문법 체계 재정리를 통해 89점까지 향상되었습니다. 국어 서술형에서 계속 감점되던 학생은 답안 작성 구조 훈련을 통해 서술형 만점을 달성했습니다. 이 모든 변화의 공통점은 학생 개개인의 약점을 정확히 진단하고 맞춤으로 보강한 결과입니다."},
 {t:"중학교에서 고등학교 학습 전환 전략",b:"중학교에서 고등학교로 올라가면 학습 난이도와 양이 급격히 증가합니다. 가장 큰 차이는 수학과 영어의 깊이입니다. 중학교 때 기본기를 확실히 다지지 않으면 고등학교에서 따라가기 매우 어렵습니다. {rd} 은빛과외는 중3 겨울방학부터 고1 수학과 영어를 미리 접할 수 있는 선행 커리큘럼을 제공합니다. 고등학교는 자기주도학습 시간이 성적을 결정하므로 중학교 때부터 자기 공부 시간을 확보하는 습관을 길러야 합니다."},
 {t:"{rd} 방문 과외와 화상 과외 비교",b:"방문 과외는 선생님이 집으로 직접 와서 수업하므로 학생이 이동할 필요 없이 가장 편한 환경에서 수업할 수 있습니다. 학생의 교재와 학습 환경을 직접 확인하며 수업할 수 있어 더 세밀한 지도가 가능합니다. 화상 과외는 장소에 구애받지 않아 전국 어디서든 수업이 가능합니다. 화면 공유를 통해 교재 학습과 실시간 필기 피드백 등이 원활하며 수업 녹화 후 복습도 가능합니다. {rd} 은빛과외는 학생의 상황에 맞게 두 가지 방식을 선택하거나 병행할 수 있습니다."},
-{t:"시험 2주 전 집중 대비 전략",b:"시험 2주 전에는 새로운 내용을 공부하기보다 이미 배운 내용을 반복하는 것이 핵심입니다. 1주차에는 교과서와 노트를 정독하며 개념을 재정리하고 단원별 핵심 문제를 풀어봅니다. 2주차에는 오답 노트를 집중 복습하고 예상 문제를 풀며 실전 감각을 기릅니다. 시험 전날에는 정리 노트만 빠르게 훑으며 핵심만 확인합니다. {rd} 은빛과외는 시험 기간에 맞춘 집중 대비 플랜을 별도 운영합니다. 학교별 기출 분석을 바탕으로 출제 예상 포인트를 짚어주고 취약 유형을 반복 훈련합니다."}
+{t:"시험 2주 전 집중 대비 전략",b:"시험 2주 전에는 새로운 내용을 공부하기보다 이미 배운 내용을 반복하는 것이 핵심입니다. 1주차에는 교과서와 노트를 정독하며 개념을 재정리하고 단원별 핵심 문제를 풀어봅니다. 2주차에는 오답 노트를 집중 복습하고 예상 문제를 풀며 실전 감각을 기릅니다. 시험 전날에는 정리 노트만 빠르게 훑으며 핵심만 확인합니다. {rd} 은빛과외는 시험 기간에 맞춘 집중 대비 플랜을 별도 운영합니다. 학교별 기출 분석을 바탕으로 출제 예상 포인트를 짚어주고 취약 유형을 반복 훈련합니다."},
+{q:"선생님이 마음에 안 들면 교체 가능한가요?",a:"학생과 선생님의 궁합이 중요하기 때문에, 무료 체험 수업 후 불만족 시 다른 선생님으로 즉시 교체 가능합니다. 추가 비용은 없습니다."},
+{q:"초등학생도 과외가 필요한가요?",a:"초등학생은 학습 습관과 기초 실력을 잡는 가장 중요한 시기입니다. 공부가 재미있다는 경험을 만들어 주는 것이 장기적으로 가장 큰 효과를 냅니다."},
+{q:"성적이 많이 낮은 학생도 가능한가요?",a:"기초가 부족한 학생일수록 1:1 맞춤 수업이 효과적입니다. 어디서부터 막혔는지 정확히 진단한 뒤, 부족한 학년부터 차근차근 보완합니다."},
+{q:"수업을 빠지면 보강이 되나요?",a:"학생 사정으로 수업을 빠질 경우, 다른 날짜로 보강 수업을 잡아드립니다. 최소 24시간 전에 알려주시면 무료로 보강합니다."},
+{q:"재수생·N수생도 수업 가능한가요?",a:"재수생과 N수생을 위한 수능 전문 커리큘럼을 별도로 운영합니다. 취약 과목 집중 보강과 실전 모의고사 훈련을 병행합니다."},
+{q:"과외 선생님의 학력은 어떻게 되나요?",a:"서울 상위권 대학 재학·졸업 선생님 위주로 매칭하며, 과외 경력과 수강생 성적 향상 이력을 검증한 뒤에만 추천드립니다."},
+{q:"코딩이나 논술 과외도 가능한가요?",a:"코딩(스크래치·파이썬·C언어), 논술(인문·자연), 검정고시 등 특수 과목도 전문 선생님 매칭이 가능합니다. 상담 시 요청해 주세요."},
+{q:"여러 과목을 동시에 수업할 수 있나요?",a:"한 선생님이 2~3과목을 같이 가르치거나, 과목별로 전문 선생님을 따로 매칭하는 것 모두 가능합니다. 상담 시 가장 효율적인 방식을 안내드립니다."},
+{q:"수업 중간에 과목을 변경할 수 있나요?",a:"학기 중이라도 과목 변경이 가능합니다. 시험 기간에 취약 과목으로 변경하는 학생도 많습니다. 선생님 교체 없이 과목만 바꾸는 것도 가능합니다."},
+{q:"첫 상담에서 어떤 이야기를 하나요?",a:"학생의 현재 성적, 학습 습관, 목표를 파악하고 적합한 수업 방식과 선생님 유형을 추천드립니다. 강매는 절대 없으며, 상담 후 결정하셔도 됩니다."},
+{q:"외국에서 살다 온 학생도 수업 가능한가요?",a:"해외 거주 경험이 있는 학생의 한국 교육과정 적응을 위한 별도 커리큘럼이 있습니다. 부족한 교과 내용을 단기간에 따라잡을 수 있도록 집중 수업합니다."},
+{q:"학부모도 수업 내용을 알 수 있나요?",a:"매 수업 후 카카오톡으로 수업 내용·과제·학생 태도를 공유드립니다. 월 1회 상세 리포트도 제공하여 학습 진행 상황을 투명하게 확인하실 수 있습니다."}
 ];
 
 
@@ -1596,6 +1688,10 @@ function buildRegionPage(rs) {
  <!-- WHY 블록 (공용 헬퍼) -->
  <div style="max-width:900px;margin:0 auto 24px;padding:0 20px;">
  ${buildWhyBlock(`${rn} 과외`,tc,cH(rs+'region-why'))}
+ ${buildStudyBlock(`${rn} 과외`,tc,cH(rs+'region-study'))}
+ <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+ ${buildTutorBlock(`${rn} 과외`,tc,cH(rs+'region-tutor'))}
+ </div>
  </div>
 
  <!-- 본문 카드 -->
@@ -1666,7 +1762,7 @@ function buildCityPage(rs, cs) {
  // ── 추가 교육 칼럼 (2000자+) ──
  const cSeed = cH(rs+cs);
  const extraPicks = pkU(CITY_EXTRA, cSeed, 4, 17);
- const cityExtraHtml = extraPicks.map(e => {
+ const cityExtraHtml = extraPicks.filter(e=>e&&e.t).map(e => {
   const title = e.t.replace(/\{rd\}/g, rd);
   const body = e.b.replace(/\{rd\}/g, rd);
   return '<div style="margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid #eee;"><h3 style="font-size:17px;font-weight:800;color:#1A2340;margin-bottom:12px;">'+title+'</h3><p style="font-size:14px;color:#555;line-height:2;">'+body+'</p></div>';
@@ -1700,7 +1796,7 @@ function buildCityPage(rs, cs) {
  <div>
  <div style="font-weight:800;color:#b7770d;font-size:15px;margin-bottom:6px;">수업 방식 안내</div>
  <p style="font-size:14px;color:#555;line-height:1.8;margin:0;">
- <strong>무료 상담 → 선생님·학생 테스트 매칭 → 방문과외 / 화상과외 중 최종 결정</strong> 방식으로 진행됩니다.<br>
+ <strong>${getMethodDesc(cH(rs+cs+'method'))}</strong> 방식으로 진행됩니다.<br>
  지역·거리·스케줄에 따라 최적의 수업 방식을 함께 결정해 드립니다.
  </p>
  </div>
@@ -1720,75 +1816,16 @@ function buildCityPage(rs, cs) {
  </div>
  </div>
 
- <!-- 공부법 & 과외 특징 글밥 -->
+ <!-- 공부법 (풀 기반) -->
+ ${buildStudyBlock(`${fullRd} 과외`,tc,cH(rs+cs+'study'))}
+
+ <!-- 은빛쌤 특징 (풀 기반) -->
  <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
- <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:20px;">📖 은빛쌤이 생각하는 올바른 공부법</h2>
- <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-bottom:24px;">
- <div style="background:#f8faff;border-radius:14px;padding:20px;">
- <div style="font-size:26px;margin-bottom:10px;">🧠</div>
- <div style="font-weight:800;color:#1A2340;margin-bottom:8px;">개념 먼저, 문제는 나중에</div>
- <div style="font-size:13px;color:#555;line-height:1.8;">많은 학생이 문제만 반복해서 풀다 막히면 포기합니다. 은빛쌤은 개념을 완전히 이해한 뒤 문제에 적용하는 순서를 지킵니다. 기초가 탄탄해야 심화도 흔들리지 않습니다.</div>
- </div>
- <div style="background:#f8faff;border-radius:14px;padding:20px;">
- <div style="font-size:26px;margin-bottom:10px;">✏️</div>
- <div style="font-weight:800;color:#1A2340;margin-bottom:8px;">오답 노트가 성적을 바꾼다</div>
- <div style="font-size:13px;color:#555;line-height:1.8;">틀린 문제를 그냥 넘기면 같은 실수를 반복합니다. 은빛쌤은 오답 원인을 함께 분석하고, 같은 유형에서 다시 틀리지 않도록 체계적으로 관리합니다.</div>
- </div>
- <div style="background:#f8faff;border-radius:14px;padding:20px;">
- <div style="font-size:26px;margin-bottom:10px;">📅</div>
- <div style="font-weight:800;color:#1A2340;margin-bottom:8px;">꾸준함이 실력이다</div>
- <div style="font-size:13px;color:#555;line-height:1.8;">하루 10시간 벼락치기보다 매일 1시간 꾸준한 학습이 장기 기억에 훨씬 효과적입니다. 은빛쌤은 학생이 스스로 공부 습관을 만들 수 있도록 함께 루틴을 설계합니다.</div>
- </div>
- <div style="background:#f8faff;border-radius:14px;padding:20px;">
- <div style="font-size:26px;margin-bottom:10px;">🗣️</div>
- <div style="font-weight:800;color:#1A2340;margin-bottom:8px;">말로 설명할 수 있어야 진짜 안다</div>
- <div style="font-size:13px;color:#555;line-height:1.8;">배운 내용을 선생님 없이 스스로 설명할 수 있는지 확인합니다. 설명하지 못하면 아직 이해가 덜 된 것입니다. 은빛쌤은 학생이 직접 말해보는 활동을 수업에 반드시 포함합니다.</div>
- </div>
+ ${buildTutorBlock(`${fullRd} 과외`,tc,cH(rs+cs+'tutor'))}
  </div>
 
- <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:16px;margin-top:8px;">💡 은빛쌤 1:1 과외만의 특징</h2>
- <div style="display:flex;flex-direction:column;gap:12px;">
- <div style="display:flex;gap:14px;align-items:flex-start;background:#f8faff;border-radius:12px;padding:16px 18px;">
- <div style="background:${tc};color:white;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0;">1</div>
- <div><div style="font-weight:800;color:#1A2340;margin-bottom:4px;font-size:14px;">수업 전 학생 진단</div><div style="font-size:13px;color:#555;line-height:1.7;">첫 수업 전 학생의 현재 수준·학습 습관·목표를 파악합니다. 진단 결과를 바탕으로 딱 맞는 커리큘럼을 설계합니다.</div></div>
- </div>
- <div style="display:flex;gap:14px;align-items:flex-start;background:#f8faff;border-radius:12px;padding:16px 18px;">
- <div style="background:${tc};color:white;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0;">2</div>
- <div><div style="font-weight:800;color:#1A2340;margin-bottom:4px;font-size:14px;">시험 직전 집중 대비</div><div style="font-size:13px;color:#555;line-height:1.7;">중간·기말고사 2~3주 전부터 학교별 기출 분석과 예상 문제 풀이를 강화합니다. 시험 직전 핵심만 빠르게 정리하는 벼락치기 플랜도 함께 진행합니다.</div></div>
- </div>
- <div style="display:flex;gap:14px;align-items:flex-start;background:#f8faff;border-radius:12px;padding:16px 18px;">
- <div style="background:${tc};color:white;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0;">3</div>
- <div><div style="font-weight:800;color:#1A2340;margin-bottom:4px;font-size:14px;">카카오톡 24시간 질문</div><div style="font-size:13px;color:#555;line-height:1.7;">수업이 없는 날도 모르는 문제가 생기면 언제든 카카오톡으로 질문할 수 있습니다. 질문을 미루지 않는 습관이 성적을 만듭니다.</div></div>
- </div>
- <div style="display:flex;gap:14px;align-items:flex-start;background:#f8faff;border-radius:12px;padding:16px 18px;">
- <div style="background:${tc};color:white;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0;">4</div>
- <div><div style="font-weight:800;color:#1A2340;margin-bottom:4px;font-size:14px;">매주 학부모 피드백</div><div style="font-size:13px;color:#555;line-height:1.7;">매주 수업 후 학습 진도·과제 완료율·성적 변화를 부모님께 공유합니다. 투명한 소통으로 학부모님도 안심하고 맡길 수 있습니다.</div></div>
- </div>
- </div>
- </div>
-
- <!-- FAQ -->
- <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
- <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:20px;">자주 묻는 질문</h2>
- <div style="display:flex;flex-direction:column;gap:24px;">
- <div>
- <p style="font-weight:700;color:#2563eb;font-size:15px;margin-bottom:8px;">Q. ${rd}에서 과외 선생님 찾는 데 얼마나 걸리나요?</p>
- <p style="font-size:14px;color:#444;line-height:1.8;">상담 신청 후 24시간 이내 코디네이터가 연락드립니다. ${schoolStr} 기출을 잘 아는 선생님 위주로 추천해드립니다. 빠르면 당일 매칭도 가능합니다.</p>
- </div>
- <div>
- <p style="font-weight:700;color:#2563eb;font-size:15px;margin-bottom:8px;">Q. 수업료는 어떻게 되나요?</p>
- <p style="font-size:14px;color:#444;line-height:1.8;">선생님 경력·학력·수업 방식에 따라 다르며, 무료 상담 후 학부모님 예산에 맞는 선생님을 투명하게 안내해드립니다. 첫 체험 수업은 무료입니다.</p>
- </div>
- <div>
- <p style="font-weight:700;color:#2563eb;font-size:15px;margin-bottom:8px;">Q. 학원과 과외를 병행해도 되나요?</p>
- <p style="font-size:14px;color:#444;line-height:1.8;">학원에서 부족한 부분을 1:1로 집중 보완하는 방식으로 병행하는 학생이 많습니다. 학원 진도에 맞춰 선행·복습을 병행하는 커리큘럼으로 운영합니다.</p>
- </div>
- <div>
- <p style="font-weight:700;color:#2563eb;font-size:15px;margin-bottom:8px;">Q. 몇 개월 정도 수업하면 효과가 나타나나요?</p>
- <p style="font-size:14px;color:#444;line-height:1.8;">학생마다 다르지만 보통 2~3개월 꾸준히 수업하면 내신 성적 변화가 나타납니다. 단기 집중 과외(시험 대비 4~8주)도 운영합니다.</p>
- </div>
- </div>
- </div>
+ <!-- FAQ (풀 기반) -->
+ ${buildFaqBlock(`${fullRd} 과외`,tc,cH(rs+cs+'faq'))}
 
  
     <!-- 추가 교육 칼럼 -->
@@ -1909,13 +1946,17 @@ function buildDongPage(rs, cs, dong) {
  <div>
  <div style="font-weight:800;color:#b7770d;font-size:14px;margin-bottom:5px;">수업 방식 안내</div>
  <p style="font-size:13px;color:#555;line-height:1.8;margin:0;">
- <strong>무료 상담 → 선생님·학생 테스트 매칭 → 방문과외 / 화상과외 중 최종 결정</strong> 방식으로 진행됩니다.
+ <strong>${getMethodDesc(cH(rs+cs+dong+"method"))}</strong> 방식으로 진행됩니다.
  </p>
  </div>
  </div>
 
  <!-- 지역 소개 (공용 헬퍼) -->
  ${buildWhyBlock(`${fullRd} ${dong} 과외`,tc,cH(rs+cs+dong+'why'))}
+ ${buildStudyBlock(`${fullRd} ${dong} 과외`,tc,cH(rs+cs+dong+'-study'))}
+ <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+ ${buildTutorBlock(`${fullRd} ${dong} 과외`,tc,cH(rs+cs+dong+'-tutor'))}
+ </div>
 
  <!-- 인근 학교 -->
  ${schoolBlock}
@@ -2019,6 +2060,10 @@ function buildDongDetailPage(rs, cs, dong, grade, subject) {
 
  <!-- WHY 블록 (공용 헬퍼) -->
  ${buildWhyBlock(title,color,cH(rs+cs+dong+grade+subject+'why'))}
+ ${buildStudyBlock(`${title}`,color,cH(rs+cs+dong+grade+subject+'-study'))}
+ <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+ ${buildTutorBlock(`${title}`,color,cH(rs+cs+dong+grade+subject+'-tutor'))}
+ </div>
 
  <div style="background:white;border-radius:20px;box-shadow:0 4px 24px rgba(0,0,0,0.08);padding:clamp(22px,4vw,40px);margin-bottom:20px;">
  <h2 style="font-size:18px;font-weight:900;color:#1A2340;border-left:5px solid ${color};padding-left:12px;margin-bottom:16px;">👤 이런 학생에게 추천합니다</h2>
@@ -2117,6 +2162,10 @@ function buildDetailPage(rs, cs, grade, subject) {
 
  <!-- WHY 블록 (공용 헬퍼) -->
  ${buildWhyBlock(`${fullRd} ${grade} ${subject}과외`,color,cH(rs+cs+grade+subject+'why'))}
+ ${buildStudyBlock(`${fullRd} ${grade} ${subject}과외`,color,cH(rs+cs+grade+subject+'-study'))}
+ <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+ ${buildTutorBlock(`${fullRd} ${grade} ${subject}과외`,color,cH(rs+cs+grade+subject+'-tutor'))}
+ </div>
 
  <div style="background:white;border-radius:20px;box-shadow:0 4px 24px rgba(0,0,0,0.08);padding:clamp(22px,4vw,40px);margin-bottom:20px;">
  <h2 style="font-size:18px;font-weight:900;color:#1A2340;border-left:5px solid ${color};padding-left:12px;margin-bottom:16px;">👤 이런 학생에게 추천합니다</h2>
@@ -2457,16 +2506,7 @@ function buildSchoolPage(rs, cs, schoolShort) {
  reviewSection += `</div></div>`;
 
  // ── FAQ (4개, 펼쳐진 형태) ──
- let faqSection = `<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
- <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${typeColor};padding-left:14px;margin-bottom:20px;">자주 묻는 질문</h2>
- <div style="display:flex;flex-direction:column;gap:24px;">`;
- ct.faqs.slice(0,4).forEach(function(fq){
- faqSection += `<div>
- <p style="font-weight:700;color:#2563eb;font-size:15px;margin-bottom:8px;">Q. ${fq.q}</p>
- <p style="font-size:14px;color:#444;line-height:1.8;margin:0;">${fq.a}</p>
- </div>`;
- });
- faqSection += `</div></div>`;
+ let faqSection = `${buildFaqBlock(`${schoolFull+" 과외"}`,typeColor,cH(rs+cs+schoolShort+"faq"))}`;
 
  // ── 과목 카드 (학교 유형에 맞는 학년 + 5과목) ──
  let subjectCards = "";
@@ -2629,15 +2669,7 @@ function buildGradePage(gradeCode) {
  reviewSection += `</div><div class="rv-dots" id="rvGradeD"><button class="rv-dot on" onclick="rvGo('rvGrade',0)"></button><button class="rv-dot" onclick="rvGo('rvGrade',1)"></button><button class="rv-dot" onclick="rvGo('rvGrade',2)"></button></div></div></div>`;
  // FAQ
  const faqs = pkU(FAQ_POOL, seed, 4, 13);
- let faqSection = `<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
- <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:20px;">자주 묻는 질문</h2>
- <div style="display:flex;flex-direction:column;gap:24px;">`;
- faqs.forEach(function(fq){
- faqSection += `<div>
- <p style="font-weight:700;color:#2563eb;font-size:15px;margin-bottom:8px;">Q. ${gd.name} ${fq.q}</p>
- <p style="font-size:14px;color:#444;line-height:1.8;margin:0;">${fq.a}</p></div>`;
- });
- faqSection += `</div></div>`;
+ let faqSection = `${buildFaqBlock(`${gd.name+" 과외"}`,tc,cH("grade-"+gradeCode+"-faq"))}`;
 
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
@@ -2662,6 +2694,10 @@ function buildGradePage(gradeCode) {
  </div>
  </div>
  ${buildWhyBlock(`${gd.name} 과외`,tc,cH('grade-'+gradeCode+'-why'))}
+ ${buildStudyBlock(`${gd.name} 과외`,tc,cH('grade-'+gradeCode+'-study'))}
+ <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+ ${buildTutorBlock(`${gd.name} 과외`,tc,cH('grade-'+gradeCode+'-tutor'))}
+ </div>
  <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
  <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:16px;">⭐ ${gd.name} 과외 개요</h2>
  <p style="font-size:14px;color:#444;line-height:2;margin:0;">${gd.desc}</p>
@@ -2768,15 +2804,7 @@ function buildGradeSubjectPage(gradeCode, subject) {
  reviewSection += `</div></div>`;
  // FAQ
  const faqs = pkU(FAQ_POOL, seed, 5, 13);
- let faqSection = `<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
- <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:20px;">자주 묻는 질문</h2>
- <div style="display:flex;flex-direction:column;gap:24px;">`;
- faqs.forEach(function(fq){
- faqSection += `<div>
- <p style="font-weight:700;color:#2563eb;font-size:15px;margin-bottom:8px;">Q. ${gd.name} ${subject} ${fq.q}</p>
- <p style="font-size:14px;color:#444;line-height:1.8;margin:0;">${fq.a}</p></div>`;
- });
- faqSection += `</div></div>`;
+ let faqSection = `${buildFaqBlock(`${gd.name+" "+subject+"과외"}`,tc,cH("gradeSub-"+gradeCode+"-"+subject+"-faq"))}`;
  // 배경 이미지
  const heroImg = bgImg(subject, seed);
 
@@ -2803,6 +2831,10 @@ function buildGradeSubjectPage(gradeCode, subject) {
  </div>
  </div>
  ${buildWhyBlock(`${gd.name} ${subject}과외`,tc,cH('gradeSubj-'+gradeCode+'-'+subject+'-why'))}
+ ${buildStudyBlock(`${gd.name} ${subject}과외`,tc,cH('gradeSubj-'+gradeCode+'-'+subject+'-study'))}
+ <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+ ${buildTutorBlock(`${gd.name} ${subject}과외`,tc,cH('gradeSubj-'+gradeCode+'-'+subject+'-tutor'))}
+ </div>
  <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
  <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:16px;">⭐ ${gd.name} ${subject}과외 개요</h2>
  <p style="font-size:14px;color:#444;line-height:2;margin:0;">${subjDesc} ${gd.desc}</p>
@@ -4816,10 +4848,7 @@ function buildLangPage(slug){
   <p style="font-size:14px;color:#888;margin-bottom:24px;padding-left:19px;">수준에 맞는 단계에서 시작하여 체계적으로 실력을 향상시킵니다</p>
   <div style="display:flex;flex-direction:column;gap:20px;">${curHtml}</div>
  </div>
- <div style="background:#fff;border-radius:20px;padding:clamp(24px,4vw,40px);margin-bottom:24px;box-shadow:0 4px 24px rgba(0,0,0,0.07);">
-  <h2 style="font-size:22px;font-weight:900;color:#1A2340;margin-bottom:20px;text-align:center;">자주 묻는 질문</h2>
-  ${faqHtml}
- </div>
+ ${buildFaqBlock(`${d.n}`,d.clr,cH("lang-"+slug+"-faq"))}
  <div style="background:#fff;border-radius:20px;padding:clamp(24px,4vw,40px);margin-bottom:24px;box-shadow:0 4px 24px rgba(0,0,0,0.07);">
   <h2 style="font-size:22px;font-weight:900;color:#1A2340;margin-bottom:20px;">📂 ${d.n} 주제별 수업 가이드</h2>
   <div class="topic-grid">${subLinksHtml}</div>
