@@ -4066,6 +4066,12 @@ var _studyReviewHtml = _guideHtml + _rvHtml;
  <!-- 학원 정보 -->
  
 
+ </div>
+ ${_eduExtra}
+ ${_studyReviewHtml}
+ ${_kwBottom}
+
+ <div style="max-width:900px;margin:0 auto;padding:0 16px;">
  <!-- 자주 묻는 질문 (펼침 상태) -->
  <div style="background:white;border-radius:20px;padding:36px 28px;margin-bottom:28px;box-shadow:0 2px 12px #0000000f;">
  <div style="text-align:center;margin-bottom:24px;">
@@ -4081,9 +4087,6 @@ var _studyReviewHtml = _guideHtml + _rvHtml;
  
 
  </div>
- ${_eduExtra}
- ${_studyReviewHtml}
- ${_kwBottom}
   ${ACAD_FORM('학원 서브페이지 ('+ct.n+' '+title+')')}
  ${ACAD_FOOTER}${ACAD_FLOATING}
  <style>@media(max-width:768px){div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}}</style>
