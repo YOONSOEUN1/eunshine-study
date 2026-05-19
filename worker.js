@@ -1283,7 +1283,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:99999;background:rgba(255,255,25
 </nav>
 <script>function switchDD(i){for(var j=0;j<3;j++){document.getElementById('ddC'+j).style.display=j===i?(j===1?'block':'grid'):'none';var t=document.querySelectorAll('.ddt');t[j].style.background=j===i?'#1A2340':'#fff';t[j].style.color=j===i?'#fff':'#334155';}}document.addEventListener('click',function(e){['ddF','ddS','ddL'].forEach(function(id){var d=document.getElementById(id);if(d&&!d.parentElement.contains(e.target))d.style.display='none';});});</script>`;
 const FAVICON_TAGS = '<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><link rel="apple-touch-icon" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta property="og:site_name" content="은빛스터디"><meta property="og:type" content="website"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/banner1.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/banner1.png">';
-const COMMON_STYLE = `<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><link rel="apple-touch-icon" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Malgun Gothic',sans-serif;background:#f4f7f6;padding-top:70px;}.rv-carousel{position:relative;overflow:hidden;}.rv-track{display:flex;gap:16px;animation:rvScroll 30s linear infinite;width:max-content;}.rv-carousel:hover .rv-track{animation-play-state:paused;}@keyframes rvScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}.rv-track .rv-card{min-width:300px;max-width:300px;flex-shrink:0;box-sizing:border-box;}@media(max-width:768px){.rv-track .rv-card{min-width:280px;max-width:280px;}}.rv-dots{display:flex;justify-content:center;gap:6px;margin-top:16px;}.rv-dot{width:28px;height:4px;border-radius:2px;background:rgba(26,35,64,.12);cursor:pointer;border:none;padding:0;transition:all .3s;}.rv-dot.on{width:40px;background:#C8A96E;}</style>${FAVICON_TAGS}`;
+const COMMON_STYLE = `<link rel="alternate" type="application/rss+xml" title="은빛스터디 RSS" href="https://eunshinestudy.com/rss"><link rel="icon" type="image/png" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><link rel="apple-touch-icon" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Malgun Gothic',sans-serif;background:#f4f7f6;padding-top:70px;}.rv-carousel{position:relative;overflow:hidden;}.rv-track{display:flex;gap:16px;animation:rvScroll 30s linear infinite;width:max-content;}.rv-carousel:hover .rv-track{animation-play-state:paused;}@keyframes rvScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}.rv-track .rv-card{min-width:300px;max-width:300px;flex-shrink:0;box-sizing:border-box;}@media(max-width:768px){.rv-track .rv-card{min-width:280px;max-width:280px;}}.rv-dots{display:flex;justify-content:center;gap:6px;margin-top:16px;}.rv-dot{width:28px;height:4px;border-radius:2px;background:rgba(26,35,64,.12);cursor:pointer;border:none;padding:0;transition:all .3s;}.rv-dot.on{width:40px;background:#C8A96E;}</style>${FAVICON_TAGS}`;
 const FLOATING = `<div style="position:fixed;bottom:24px;right:18px;display:flex;flex-direction:column;gap:8px;z-index:9998;">
  <a href="tel:01023370458"
  style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:white;color:#1A2340;text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.18);white-space:nowrap;">
@@ -5125,9 +5125,66 @@ function buildSubjectPage(subSlug){
  // ── robots.txt ──
  if (p === "/robots.txt") {
  return new Response(
-  "User-agent: *\nAllow: /\n\nSitemap: https://eunshinestudy.com/sitemap.xml\n",
+  "User-agent: *\nAllow: /\n\nSitemap: https://eunshinestudy.com/sitemap.xml\nSitemap: https://eunshinestudy.com/rss\n",
   { headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "public, max-age=86400" } }
  );
+ }
+
+ // ── RSS Feed ──
+ if (p === "/rss" || p === "/feed" || p === "/rss.xml") {
+  const base = "https://eunshinestudy.com";
+  const now = new Date().toUTCString();
+  const items = [];
+  function addItem(title, url, desc) {
+   items.push(`<item><title><![CDATA[${title}]]></title><link>${url}</link><description><![CDATA[${desc}]]></description><guid>${url}</guid><pubDate>${now}</pubDate></item>`);
+  }
+  // 메인
+  addItem("은빛스터디 - 1:1 방문 화상 과외", base+"/", "초·중·고 전 과목 1:1 맞춤 과외. 방문·화상 수업 선택 가능. 무료 상담 및 체험 수업.");
+  // 지역 페이지
+  Object.keys(locations).forEach(function(rs){
+   const rn = locations[rs].name;
+   addItem(rn+" 과외 | 은빛스터디", base+"/"+rs, rn+" 지역 초·중·고 1:1 맞춤 과외. 상담 후 방문·화상 결정. 첫 상담 무료.");
+   // 주요 시/구/군
+   Object.keys(locations[rs].cities||{}).slice(0,10).forEach(function(cs){
+    const ci = locations[rs].cities[cs];
+    const cn = ci.name || cs;
+    addItem(rn+" "+cn+" 과외 | 은빛스터디", base+"/"+rs+"/"+cs, rn+" "+cn+" 초·중·고 전 과목 1:1 맞춤 과외. 학교별 내신 분석. 무료 상담.");
+   });
+  });
+  // 과목 페이지
+  SUBJECT_LIST.forEach(function(k){
+   const s = SUBJECTS[k];
+   addItem(s.name+" 과외 | 은빛스터디", base+"/subject/"+s.slug, s.name+" 전문 1:1 과외. 초·중·고 학년별 맞춤 커리큘럼. 무료 체험 수업.");
+  });
+  // 학년 페이지
+  Object.keys(GRADE_DATA).forEach(function(gc){
+   const gd = GRADE_DATA[gc];
+   addItem(gd.name+" 과외 | 은빛스터디", base+"/grade/"+gc, gd.name+" 맞춤 1:1 과외. 학교 내신 완벽 대비. 방문·화상 선택 가능.");
+  });
+  // 외국어
+  ["english","japanese","chinese"].forEach(function(l){
+   const names = {english:"영어 회화",japanese:"일본어 회화",chinese:"중국어 회화"};
+   addItem(names[l]+" | 은빛스터디", base+"/language/"+l, names[l]+" 1:1 맞춤 수업. 비즈니스·여행·일상 회화. 무료 테스트 수업.");
+  });
+  // 학원
+  addItem("학원수업 | 은빛스터디", base+"/academy", "전국 학습코칭 학원 안내. 체계적인 학습 관리 시스템. 센터별 상세 정보.");
+  
+  // 최대 200개로 제한
+  const limitedItems = items.slice(0, 200);
+  
+  const rss = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+ <title>은빛스터디 - 1:1 방문 화상 과외</title>
+ <link>${base}</link>
+ <description>초·중·고 전 과목 1:1 맞춤 과외. 방문·화상 수업 모두 가능. 무료 상담 및 체험 수업.</description>
+ <language>ko</language>
+ <lastBuildDate>${now}</lastBuildDate>
+ <atom:link href="${base}/rss" rel="self" type="application/rss+xml"/>
+ ${limitedItems.join("\n ")}
+</channel>
+</rss>`;
+  return new Response(rss, {headers:{"Content-Type":"application/rss+xml; charset=utf-8","Cache-Control":"public, max-age=3600"}});
  }
 
  if (p === "/api/indexnow-submit") {
