@@ -3986,7 +3986,7 @@ var _studyReviewHtml = _guideHtml + _rvHtml;
  <div style="margin-bottom:16px;"><a href="/academy/${encodeURIComponent(slug)}" style="color:#888;text-decoration:none;font-size:13px;">← ${ct.n} 센터 페이지로</a></div>
 
  <!-- Hero -->
- <div style="background:linear-gradient(135deg,rgba(15,22,40,0.7),rgba(20,30,50,0.65),rgba(15,22,40,0.75)),url('https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png') center/cover;padding:48px 20px 36px;text-align:center;border-radius:20px;margin:0 auto 24px;max-width:900px">
+ <div style="background:linear-gradient(135deg,rgba(15,22,40,0.7),rgba(20,30,50,0.65),rgba(15,22,40,0.75)),url('${bgImg("city",cH(ct.sl+grade+subject))}') center/cover;padding:48px 20px 36px;text-align:center;border-radius:20px;margin:0 auto 24px;max-width:900px">
  <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(200,169,110,0.15);border-radius:50%;"></div>
  <div style="display:flex;gap:8px;justify-content:center;margin-bottom:14px;position:relative;flex-wrap:wrap;">
  <span style="background:rgba(255,255,255,.2);padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;color:#fff;">${heroLabel}</span>
@@ -5063,7 +5063,7 @@ function buildSubjectPage(subSlug){
  <style>.gt{transition:all .2s;}.gt:hover{transform:translateY(-2px);}@media(max-width:768px){.grade-tabs{flex-direction:column!important;}}</style>
  </head><body>
  ${NAV}
- <div style="background:linear-gradient(135deg,rgba(26,35,64,0.85),rgba(42,61,107,0.78)),url('https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png') center/cover;min-height:320px;display:flex;flex-direction:column;justify-content:center;padding:60px 20px 40px;text-align:center;position:relative;">
+ <div style="background:linear-gradient(135deg,rgba(26,35,64,0.85),rgba(42,61,107,0.78)),url('${bgImg("school",42)}') center/cover;min-height:320px;display:flex;flex-direction:column;justify-content:center;padding:60px 20px 40px;text-align:center;position:relative;">
   <div style="font-size:3rem;margin-bottom:14px;">${s.icon}</div>
   <h1 style="font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;color:#fff;margin-bottom:10px;text-shadow:0 2px 8px rgba(0,0,0,0.3);">${s.name} 과외</h1>
   <p style="font-size:0.95rem;color:rgba(255,255,255,0.85);line-height:1.8;max-width:550px;margin:0 auto 24px;">${s.desc}</p>
