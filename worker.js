@@ -4081,14 +4081,13 @@ var _studyReviewHtml = _guideHtml + _rvHtml;
  
 
  </div>
+ ${_eduExtra}
+ ${_studyReviewHtml}
+ ${_kwBottom}
   ${ACAD_FORM('학원 서브페이지 ('+ct.n+' '+title+')')}
  ${ACAD_FOOTER}${ACAD_FLOATING}
  <style>@media(max-width:768px){div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}}</style>
  ${ACAD_SCRIPT('학원 서브페이지 ('+ct.n+' '+title+')')}
- 
-${_eduExtra}
-${_kwBottom}
-${_kwBottom}
 </body></html>`;
 }
 
