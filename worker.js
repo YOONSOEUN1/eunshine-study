@@ -1706,6 +1706,7 @@ function buildCityPage(rs, cs) {
  const ci = (eduData[rs]||{})[cs];
  if (!ci) return null;
  const ri = locations[rs]||{};
+ const rn = ri.name||rs;
  const tc = ri.color||"#3498db";
  const rd = ci.region_display;
  const fullRd = fullCityName(rs, rd);
@@ -1884,6 +1885,7 @@ function buildDongPage(rs, cs, dong) {
  const ci = (eduData[rs]||{})[cs];
  if (!ci) return null;
  const ri = locations[rs]||{};
+ const rn = ri.name||rs;
  const tc = ri.color||"#3498db";
  const rd = ci.region_display;
  const fullRd = fullCityName(rs, rd);
