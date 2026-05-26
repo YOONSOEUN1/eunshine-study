@@ -2333,8 +2333,8 @@ function buildSchoolListPage(rs, cs) {
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
- <title>${kn} 학교별 과외 | 초·중·고 1:1 맞춤 과외 | 은빛쌤</title>
- <meta name="description" content="${kn} 지역 초등·중등·고등학교 재학생을 위한 학교별 맞춤 1:1 과외. 해당 학교 기출을 완벽히 파악한 검증된 선생님을 빠르게 매칭해드립니다.">
+ <title>${fullRd} 학교별 과외 | 초·중·고 1:1 맞춤 과외 | 은빛쌤</title>
+ <meta name="description" content="${fullRd} 지역 초등·중등·고등학교 재학생을 위한 학교별 맞춤 1:1 과외. 해당 학교 기출을 완벽히 파악한 검증된 선생님을 빠르게 매칭해드립니다.">
  ${COMMON_STYLE}</head><body>${NAV}
 
  <!-- 상단 텍스트 (흰 배경) -->
@@ -2343,11 +2343,11 @@ function buildSchoolListPage(rs, cs) {
  <a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo;
  <a href="/schools" style="color:#888;text-decoration:none;">학교별 과외</a> &rsaquo;
  <a href="/${rs}/${cs}" style="color:#888;text-decoration:none;">${rd}</a> &rsaquo;
- <span style="color:#1A2340;font-weight:700;">${kn}</span>
+ <span style="color:#1A2340;font-weight:700;">${fullRd}</span>
  </p>
- <div style="display:inline-block;background:${tc};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:14px;">🏫 ${kn}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${kn} 학교별 과외 | ${totalCount}개교 맞춤 1:1 과외</h1>
- <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${kn} 지역 초등·중등·고등학교 재학생을 위한 학교별 맞춤 1:1 과외를 연결합니다. 해당 학교 기출을 완벽히 파악한 검증된 선생님을 빠르게 매칭해드립니다.</p>
+ <div style="display:inline-block;background:${tc};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:14px;">🏫 ${fullRd}</div>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${fullRd} 학교별 과외 | ${totalCount}개교 맞춤 1:1 과외</h1>
+ <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${fullRd} 지역 초등·중등·고등학교 재학생을 위한 학교별 맞춤 1:1 과외를 연결합니다. 해당 학교 기출을 완벽히 파악한 검증된 선생님을 빠르게 매칭해드립니다.</p>
  </div>
 
  <!-- 풍경 썸네일 배너 -->
@@ -2359,7 +2359,7 @@ function buildSchoolListPage(rs, cs) {
  <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.2) 50%,rgba(0,0,0,0.15) 100%);"></div>
  <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:clamp(24px,4vw,40px);">
  <p style="font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:6px;">📍 은빛쌤 1:1 맞춤 과외</p>
- <h2 style="font-size:clamp(24px,4vw,36px);font-weight:900;color:#fff;margin:0 0 12px 0;">${kn} 학교별 과외</h2>
+ <h2 style="font-size:clamp(24px,4vw,36px);font-weight:900;color:#fff;margin:0 0 12px 0;">${fullRd} 학교별 과외</h2>
  <div style="display:flex;gap:10px;flex-wrap:wrap;">
  <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 첫 상담 무료</span>
  <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 체험 수업 무료</span>
@@ -2393,7 +2393,7 @@ function buildSchoolListPage(rs, cs) {
 
  <!-- WHY 블록 (공용 헬퍼) -->
  <div style="max-width:1100px;margin:36px auto 0;padding:0 20px;">
- ${buildWhyBlock(`${kn} 학교별 과외`,tc,cH(rs+cs+'schoollist-why'))}
+ ${buildWhyBlock(`${fullRd} 학교별 과외`,tc,cH(rs+cs+'schoollist-why'))}
  </div>
 
  <!-- 학교 목록 -->
