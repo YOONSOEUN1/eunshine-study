@@ -1775,20 +1775,38 @@ function buildCityPage(rs, cs) {
  <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${fullRd} 과외 전문 은빛쌤. ${dongStr} 상담 후 방문·화상 결정. ${schoolStr} 내신 완벽 대비. 첫 상담·체험 무료.">
  ${COMMON_STYLE}</head><body>${NAV}
- <div style="max-width:1100px;margin:40px auto;padding:0 16px;">
+ <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
 
- <!-- 히어로 배너 -->
- <div style="background:linear-gradient(135deg,${hexToRgba(tc,0.92)},${hexToRgba(tc,0.78)}),url('${bgImg("city",cH(rs+cs))}') center/cover;color:white;border-radius:20px;padding:clamp(32px,5vw,56px);margin-bottom:24px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
- <p style="font-size:13px;opacity:.8;margin-bottom:8px;">📍 은빛쌤 1:1 맞춤 과외</p>
- <h1 style="font-size:clamp(28px,5vw,44px);font-weight:900;margin-bottom:12px;">${fullRd} 과외</h1>
-  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
- <p style="font-size:15px;opacity:.9;margin-bottom:20px;">초·중·고 전 과목 | 무료 상담 후 방문·화상 수업 방식 결정</p>
- <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;">
- <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:7px 18px;font-size:13px;font-weight:600;">✅ 첫 상담 무료</span>
- <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:7px 18px;font-size:13px;font-weight:600;">✅ 체험 수업 무료</span>
- <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:7px 18px;font-size:13px;font-weight:600;">✅ 24시간 내 연락</span>
+ <!-- 브레드크럼 -->
+ <p style="font-size:13px;color:#888;margin-bottom:16px;">
+ <a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo;
+ <a href="/directory" style="color:#888;text-decoration:none;">지역별 과외</a> &rsaquo;
+ <a href="/${rs}" style="color:#888;text-decoration:none;">${rn}</a> &rsaquo;
+ <span style="color:#1A2340;font-weight:700;">${rd}</span>
+ </p>
+ <div style="display:inline-block;background:${tc};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:14px;">📍 ${fullRd}</div>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${fullRd} 과외 | 지역별 맞춤 1:1 과외 안내</h1>
+ <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
+ <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${fullRd} 전 지역 초·중·고 전 과목 1:1 맞춤 과외. 방문/화상 모두 가능하며, 첫 상담과 체험 수업은 완전 무료입니다.</p>
+ </div>
+
+ <!-- 풍경 썸네일 배너 -->
+ <div style="max-width:900px;margin:0 auto 36px;padding:0 20px;">
+ <div style="position:relative;border-radius:20px;overflow:hidden;height:clamp(200px,30vw,320px);background:url('${bgImg("city",cH(rs+cs))}') center/cover no-repeat,linear-gradient(135deg,#1A2340,#2a3d6b);">
+ <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.2) 50%,rgba(0,0,0,0.15) 100%);"></div>
+ <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:clamp(24px,4vw,40px);">
+ <p style="font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:6px;">${fullRd} 전 지역</p>
+ <h2 style="font-size:clamp(24px,4vw,36px);font-weight:900;color:#fff;margin:0 0 12px 0;">${fullRd} 과외</h2>
+ <div style="display:flex;gap:10px;flex-wrap:wrap;">
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 첫 상담·체험 무료</span>
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 상담 후 방문·화상 결정</span>
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 빠른 수업 시작</span>
  </div>
  </div>
+ </div>
+ </div>
+
+ <div style="max-width:900px;margin:0 auto;padding:0 20px;">
 
  <!-- 수업 방식 안내 -->
  <div style="background:#fff8e6;border:2px solid #f5c842;border-radius:16px;padding:20px 24px;margin-bottom:24px;display:flex;gap:14px;align-items:flex-start;">
@@ -1925,20 +1943,38 @@ function buildDongPage(rs, cs, dong) {
  <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${dong} 과외 전문 은빛쌤. 초·중·고 국어·영어·수학 1:1 맞춤 수업. ${schoolStr} 내신 완벽 대비. 상담 후 방문·화상 결정. 첫 체험 무료.">
  ${COMMON_STYLE}</head><body>${NAV}
- <div style="max-width:1100px;margin:40px auto;padding:0 16px;">
+ <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
 
- <!-- 히어로 -->
- <div style="background:linear-gradient(135deg,${hexToRgba(tc,0.92)},${hexToRgba(tc,0.78)}),url('${bgImg("city",cH(rs+cs+dong))}') center/cover;color:white;border-radius:20px;padding:clamp(30px,5vw,52px);margin-bottom:24px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
- <p style="font-size:13px;opacity:.8;margin-bottom:6px;">📍 <a href="/${rs}/${cs}" style="color:white;text-decoration:underline;">${rd}</a> &gt; ${dong}</p>
- <h1 style="font-size:clamp(26px,5vw,42px);font-weight:900;margin-bottom:10px;">${fullRd} ${dong} 과외</h1>
-  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
- <p style="font-size:14px;opacity:.9;margin-bottom:18px;">초·중·고 전 과목 | 상담 후 방문·화상 수업 방식 결정</p>
- <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;">
- <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ 첫 상담·체험 무료</span>
- <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ 상담 후 방문·화상 결정</span>
- <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ 빠른 수업 시작</span>
+ <!-- 브레드크럼 -->
+ <p style="font-size:13px;color:#888;margin-bottom:16px;">
+ <a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo;
+ <a href="/${rs}" style="color:#888;text-decoration:none;">${rn}</a> &rsaquo;
+ <a href="/${rs}/${cs}" style="color:#888;text-decoration:none;">${rd}</a> &rsaquo;
+ <span style="color:#1A2340;font-weight:700;">${dong}</span>
+ </p>
+ <div style="display:inline-block;background:${tc};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:14px;">📍 ${fullRd} ${dong}</div>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${fullRd} ${dong} 과외 | 지역별 맞춤 1:1 과외 안내</h1>
+ <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
+ <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${fullRd} ${dong} 초·중·고 전 과목 1:1 맞춤 과외. 방문/화상 모두 가능하며, 첫 상담과 체험 수업은 완전 무료입니다.</p>
+ </div>
+
+ <!-- 풍경 썸네일 배너 -->
+ <div style="max-width:900px;margin:0 auto 36px;padding:0 20px;">
+ <div style="position:relative;border-radius:20px;overflow:hidden;height:clamp(200px,30vw,320px);background:url('${bgImg("city",cH(rs+cs+dong))}') center/cover no-repeat,linear-gradient(135deg,#1A2340,#2a3d6b);">
+ <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.2) 50%,rgba(0,0,0,0.15) 100%);"></div>
+ <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:clamp(24px,4vw,40px);">
+ <p style="font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:6px;">${fullRd} ${dong}</p>
+ <h2 style="font-size:clamp(24px,4vw,36px);font-weight:900;color:#fff;margin:0 0 12px 0;">${fullRd} ${dong} 과외</h2>
+ <div style="display:flex;gap:10px;flex-wrap:wrap;">
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 첫 상담·체험 무료</span>
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 상담 후 방문·화상 결정</span>
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 빠른 수업 시작</span>
  </div>
  </div>
+ </div>
+ </div>
+
+ <div style="max-width:900px;margin:0 auto;padding:0 20px;">
 
  <!-- 수업 방식 안내 -->
  <div style="background:#fff8e6;border:2px solid #f5c842;border-radius:16px;padding:18px 22px;margin-bottom:24px;display:flex;gap:12px;align-items:flex-start;">
@@ -5006,6 +5042,9 @@ async function handle(req) {
  }
  if (p.startsWith("/subject/")) {
   const subSlug = p.split("/")[2];
+  // 잘못된 URL 리다이렉트 (explore → exam)
+  if (subSlug === "science-explore") return Response.redirect("https://eunshinestudy.com/subject/science-exam", 301);
+  if (subSlug === "social-explore") return Response.redirect("https://eunshinestudy.com/subject/social-exam", 301);
   const page = buildSubjectPage(subSlug);
   if (page) return new Response(page, {headers:{"Content-Type":"text/html;charset=utf-8"}});
  }
