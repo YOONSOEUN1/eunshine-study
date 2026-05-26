@@ -3568,18 +3568,24 @@ function buildCenterDetailPage(slug) {
  <meta property="og:url" content="https://eunshinestudy.com/academy/${encodeURIComponent(ct.sl)}">
  ${COMMON_STYLE}
  </head><body>${NAV}
- <div style="max-width:900px;margin:40px auto;padding:0 16px;">
- <div style="margin-bottom:16px;"><a href="/academy" style="color:#888;text-decoration:none;font-size:13px;">← 전체 센터 목록으로</a></div>
-
- <!-- Hero -->
- <div style="background:linear-gradient(135deg,rgba(26,35,64,0.88),rgba(45,58,92,0.82)),url('${bgImg("city",cH(ct.sl))}') center/cover;color:white;border-radius:24px;padding:clamp(36px,6vw,56px);margin-bottom:28px;text-align:center;position:relative;overflow:hidden;">
- <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(200,169,110,0.15);border-radius:50%;"></div>
- <div style="position:absolute;bottom:-60px;left:-30px;width:160px;height:160px;background:rgba(255,255,255,0.05);border-radius:50%;"></div>
- <p style="font-size:13px;opacity:.7;margin-bottom:10px;font-weight:600;position:relative;">은빛스터디 × 학습코칭학원 · ${ct.r}</p>
- <h1 style="font-size:clamp(26px,5vw,40px);font-weight:900;margin-bottom:14px;position:relative;">${ct.n}</h1>
- <p style="font-size:14px;opacity:.85;position:relative;">📍 ${ct.a}</p>
+ <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
+ <p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <a href="/academy" style="color:#888;text-decoration:none;">학원수업</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">${ct.n}</span></p>
+ <div style="display:inline-block;background:#C8A96E;color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">🏫 ${ct.n}</div>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${ct.n} | 학습코칭학원</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
+ <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">📍 ${ct.a}</p>
  </div>
+ <div style="max-width:900px;margin:0 auto 36px;padding:0 20px;">
+ <div style="position:relative;border-radius:20px;overflow:hidden;height:clamp(200px,30vw,320px);background:url('${bgImg("city",cH(ct.sl))}') center/cover no-repeat,linear-gradient(135deg,#1A2340,#2a3d6b);">
+ <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.2) 50%,rgba(0,0,0,0.15) 100%);"></div>
+ <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:clamp(24px,4vw,40px);">
+ <p style="font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:6px;">${ct.r}</p>
+ <h2 style="font-size:clamp(24px,4vw,36px);font-weight:900;color:#fff;margin:0 0 12px 0;">${ct.n}</h2>
+ <div style="display:flex;gap:10px;flex-wrap:wrap;">
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 1:1 맞춤 코칭</span>
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 첫 상담 무료</span>
+ </div></div></div></div>
+ <div style="max-width:900px;margin:0 auto;padding:0 20px;">
 
  <!-- 수업 과목 + 타겟 학교 -->
  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;">
@@ -4050,22 +4056,23 @@ var _studyReviewHtml = _guideHtml + _rvHtml;
  <meta property="og:image" content="${bgImg(subject,cH(ct.sl+grade+subject))}">
  ${COMMON_STYLE}
  </head><body>${NAV}
- <div style="max-width:900px;margin:40px auto;padding:0 16px;">
- <div style="margin-bottom:16px;"><a href="/academy/${encodeURIComponent(slug)}" style="color:#888;text-decoration:none;font-size:13px;">← ${ct.n} 센터 페이지로</a></div>
-
- <!-- Hero -->
- <div style="background:linear-gradient(135deg,rgba(15,22,40,0.7),rgba(20,30,50,0.65),rgba(15,22,40,0.75)),url('${bgImg("city",cH(ct.sl+grade+subject))}') center/cover;padding:48px 20px 36px;text-align:center;border-radius:20px;margin:0 auto 24px;max-width:900px">
- <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(200,169,110,0.15);border-radius:50%;"></div>
- <div style="display:flex;gap:8px;justify-content:center;margin-bottom:14px;position:relative;flex-wrap:wrap;">
- <span style="background:rgba(255,255,255,.2);padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;color:#fff;">${heroLabel}</span>
- <span style="background:${gradeColor};color:white;padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;">${grade}</span>
- <span style="background:${subjColor};color:white;padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;">${subject}</span>
+ <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
+ <p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <a href="/academy" style="color:#888;text-decoration:none;">학원수업</a> &rsaquo; <a href="/academy/${encodeURIComponent(slug)}" style="color:#888;text-decoration:none;">${ct.n}</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">${grade} ${subject}</span></p>
+ <div style="display:inline-block;background:${subjColor};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">${heroLabel} ${grade} ${subject}</div>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${title}</h1>
+ <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
+ <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${ct.n} · ${ct.a}</p>
  </div>
- <h1 style="font-size:clamp(26px,5vw,40px);font-weight:900;margin-bottom:12px;position:relative;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,0.5);">${title}</h1>
- <p style="font-size:12px;color:rgba(255,255,255,0.7);margin-top:8px;position:relative;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
- <p style="font-size:14px;position:relative;color:rgba(255,255,255,0.9);text-shadow:0 1px 6px rgba(0,0,0,0.4);">${ct.n} · ${ct.a}</p>
- ${landmarkTxt?'<p style="font-size:13px;margin-top:6px;position:relative;color:rgba(255,255,255,0.85);text-shadow:0 1px 4px rgba(0,0,0,0.4);">📍 '+landmarkTxt+'</p>':''}
- </div>
+ <div style="max-width:900px;margin:0 auto 36px;padding:0 20px;">
+ <div style="position:relative;border-radius:20px;overflow:hidden;height:clamp(200px,30vw,320px);background:url('${bgImg("city",cH(ct.sl+grade+subject))}') center/cover no-repeat,linear-gradient(135deg,#1A2340,#2a3d6b);">
+ <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.2) 50%,rgba(0,0,0,0.15) 100%);"></div>
+ <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:clamp(24px,4vw,40px);">
+ <h2 style="font-size:clamp(24px,4vw,36px);font-weight:900;color:#fff;margin:0 0 12px 0;">${title}</h2>
+ <div style="display:flex;gap:10px;flex-wrap:wrap;">
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 맞춤 코칭</span>
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 첫 상담 무료</span>
+ </div></div></div></div>
+ <div style="max-width:900px;margin:0 auto;padding:0 16px;">
 
 
  <div style="background:white;border-radius:20px;padding:36px 28px;margin-bottom:28px;box-shadow:0 2px 12px #0000000f;">
@@ -4265,24 +4272,23 @@ function buildAcademyPage() {
  .review-nav button:hover{border-color:#1A2340;color:#1A2340;}
  </style>
  </head><body>${NAV}
- <div style="max-width:1100px;margin:40px auto;padding:0 16px;">
-
- <!-- Hero -->
- <div style="background:linear-gradient(135deg,rgba(26,35,64,0.88),rgba(45,58,92,0.78),rgba(200,169,110,0.8)),url('${bgImg("school",42)}') center/cover;color:white;border-radius:24px;padding:clamp(36px,6vw,64px);margin-bottom:40px;text-align:center;position:relative;overflow:hidden;">
- <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(200,169,110,0.15);border-radius:50%;"></div>
- <div style="position:absolute;bottom:-60px;left:-30px;width:160px;height:160px;background:rgba(255,255,255,0.05);border-radius:50%;"></div>
- <p style="font-size:14px;opacity:.7;margin-bottom:10px;font-weight:600;">은빛스터디 × 학습코칭학원 · 전국 205개 센터</p>
- <h1 style="font-size:clamp(24px,4.5vw,38px);font-weight:900;margin-bottom:24px;line-height:1.4;">둥지 × 플랜 × 학습 × 생활<br>4가지가 하나로 연결될 때, 성적이 바뀝니다</h1>
- <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;">
- <span style="background:rgba(59,130,246,.2);color:#93c5fd;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:700;">🏫 전국 205개 센터</span>
- <span style="background:rgba(16,185,129,.2);color:#6ee7b7;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:700;">📚 초·중·고 전과목</span>
- <span style="background:rgba(245,158,11,.2);color:#fcd34d;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:700;">🎯 1:1 맞춤 코칭</span>
+ <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
+ <p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">학원수업</span></p>
+ <div style="display:inline-block;background:#C8A96E;color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">🏫 학원수업</div>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">학습코칭학원 | 전국 205개 센터</h1>
+ <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
+ <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">플랜관리·학습관리·생활관리 3대 개별 맞춤 관리 시스템. 4C 코칭, 둥지 학습, AI학습클래스. 초중고 전과목 학원수업.</p>
  </div>
- <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:24px;">
- <a href="#acadGrid" style="background:white;color:#1A2340;text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:800;font-size:15px;display:inline-block;box-shadow:0 4px 16px rgba(0,0,0,0.15);transition:transform .2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">🔍 학원 찾기</a>
- <a href="#acadForm" onclick="var f=document.getElementById('acadForm');if(f)f.scrollIntoView({behavior:'smooth'});return false;" style="background:linear-gradient(135deg,#C8A96E,#e0c080);color:#1A2340;text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:800;font-size:15px;display:inline-block;box-shadow:0 4px 16px rgba(200,169,110,0.4);transition:transform .2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">📝 무료 상담 신청</a>
- </div>
- </div>
+ <div style="max-width:900px;margin:0 auto 36px;padding:0 20px;">
+ <div style="position:relative;border-radius:20px;overflow:hidden;height:clamp(200px,30vw,320px);background:url('${bgImg("school",42)}') center/cover no-repeat,linear-gradient(135deg,#1A2340,#2a3d6b);">
+ <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.2) 50%,rgba(0,0,0,0.15) 100%);"></div>
+ <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:clamp(24px,4vw,40px);">
+ <h2 style="font-size:clamp(24px,4vw,36px);font-weight:900;color:#fff;margin:0 0 12px 0;">학습코칭학원 전국 205개 센터</h2>
+ <div style="display:flex;gap:10px;flex-wrap:wrap;">
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 1:1 맞춤 코칭</span>
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 초·중·고 전과목</span>
+ </div></div></div></div>
+ <div style="max-width:1100px;margin:0 auto;padding:0 16px;">
 
  <!-- 4C 코칭 시스템 -->
  <div style="margin-bottom:40px;">
@@ -4880,19 +4886,22 @@ function buildLangPage(slug){
  var subLinksHtml=subLinks.map(function(s){return '<a href="/language/'+slug+'/'+s.slug+'" class="topic-card"><div class="topic-icon">'+s.icon+'</div><div class="topic-info"><div class="topic-title">'+s.t+'</div><div class="topic-desc">'+s.desc+'</div></div><span class="topic-arrow">›</span></a>';}).join('');
  var others=Object.keys(LANG_DATA).filter(function(k){return k!==slug;}).map(function(k){var o=LANG_DATA[k];return '<a href="/language/'+k+'" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:16px;padding:20px 24px;text-decoration:none;border:2px solid #e5e7eb;transition:all .25s;flex:1;min-width:200px;" onmouseover="this.style.borderColor=\''+o.clr+'\';this.style.transform=\'translateY(-3px)\';this.style.boxShadow=\'0 8px 24px rgba(0,0,0,0.1)\'" onmouseout="this.style.borderColor=\'#e5e7eb\';this.style.transform=\'\';this.style.boxShadow=\'\'"><span style="font-size:36px;">'+o.flag+'</span><div><div style="font-size:16px;font-weight:800;color:#1A2340;">'+o.n+'</div><div style="font-size:13px;color:#888;margin-top:2px;">자세히 보기 →</div></div></a>';}).join('');
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>${d.n} | ${d.sub} - 은빛스터디</title><meta name="description" content="은빛스터디 ${d.n} 1:1 화상·전화 수업. ${d.sub}. 무료 테스트 수업으로 시작하세요."><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">${COMMON_STYLE}<style></style></head><body>${NAV}
-<div style="position:relative;min-height:420px;background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.65)),url(https://images.unsplash.com/photo-${d.bg}?w=1400&q=80) center/cover no-repeat;display:flex;flex-direction:column;justify-content:center;padding:100px 20px 50px;">
- <div style="max-width:900px;margin:0 auto;width:100%;">
-  <p style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:20px;"><a href="/" style="color:rgba(255,255,255,0.6);text-decoration:none;">홈</a> › <a href="/language" style="color:rgba(255,255,255,0.6);text-decoration:none;">제2외국어</a> › ${d.n}</p>
-  <span style="background:${d.clr};color:#fff;padding:8px 20px;border-radius:50px;font-size:12px;font-weight:700;letter-spacing:1px;display:inline-block;margin-bottom:16px;">${d.emoji} ${d.n} 화상·전화 수업</span>
-  <h1 style="font-family:'Noto Serif KR',serif;font-size:clamp(28px,5vw,44px);font-weight:900;color:#fff;line-height:1.35;margin-bottom:12px;">${d.heroTitle}</h1>
-  <p style="font-size:15px;color:rgba(255,255,255,0.75);margin-bottom:28px;">${d.sub}</p>
-  <div style="display:flex;gap:12px;flex-wrap:wrap;">
-   <div style="background:rgba(255,255,255,0.12);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.2);border-radius:12px;padding:14px 22px;text-align:center;"><div style="font-size:15px;font-weight:900;color:#fff;">빠르게</div><div style="font-size:11px;color:rgba(255,255,255,0.6);">코치 매칭</div></div>
-   <div style="background:rgba(255,255,255,0.12);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.2);border-radius:12px;padding:14px 22px;text-align:center;"><div style="font-size:15px;font-weight:900;color:#fff;">3단계</div><div style="font-size:11px;color:rgba(255,255,255,0.6);">코치 검증</div></div>
-   <div style="background:rgba(255,255,255,0.12);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.2);border-radius:12px;padding:14px 22px;text-align:center;"><div style="font-size:15px;font-weight:900;color:#fff;">무료</div><div style="font-size:11px;color:rgba(255,255,255,0.6);">테스트 수업</div></div>
-   <div style="background:rgba(255,255,255,0.12);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.2);border-radius:12px;padding:14px 22px;text-align:center;"><div style="font-size:15px;font-weight:900;color:#fff;">화상, 전화</div><div style="font-size:11px;color:rgba(255,255,255,0.6);">수업 진행</div></div>
-  </div>
- </div>
+<div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
+ <p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <a href="/language" style="color:#888;text-decoration:none;">제2외국어</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">${d.n}</span></p>
+ <div style="display:inline-block;background:${d.clr};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">${d.emoji} ${d.n}</div>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${d.n} | ${d.sub}</h1>
+ <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
+ <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${d.sub}. 무료 테스트 수업으로 시작하세요.</p>
+</div>
+<div style="max-width:900px;margin:0 auto 36px;padding:0 20px;">
+ <div style="position:relative;border-radius:20px;overflow:hidden;height:clamp(200px,30vw,320px);background:url(https://images.unsplash.com/photo-${d.bg}?w=1400&q=80) center/cover no-repeat,linear-gradient(135deg,#1A2340,#2a3d6b);">
+ <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.2) 50%,rgba(0,0,0,0.15) 100%);"></div>
+ <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:clamp(24px,4vw,40px);">
+ <h2 style="font-size:clamp(24px,4vw,36px);font-weight:900;color:#fff;margin:0 0 12px 0;">${d.heroTitle}</h2>
+ <div style="display:flex;gap:10px;flex-wrap:wrap;">
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 무료 테스트 수업</span>
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 화상·전화 수업</span>
+ </div></div></div>
 </div>
 <div style="max-width:900px;margin:0 auto;padding:0 20px;">
  ${buildWhyBlock(`${d.n}`,d.clr,cH('lang-'+slug+'-why'))}
@@ -4937,16 +4946,22 @@ function buildLangMainPage(){
   var tagHtml=l.tags.map(function(t){return '<span style="background:'+l.c+'12;color:'+l.c+';padding:4px 12px;border-radius:50px;font-size:11px;font-weight:600;">'+t+'</span>';}).join('');
   return '<a href="/language/'+l.s+'" style="background:#fff;border-radius:20px;padding:36px 28px;text-decoration:none;border:2px solid '+l.c+'22;box-shadow:0 4px 24px rgba(0,0,0,0.07);transition:all .3s;display:block;" onmouseover="this.style.transform=\'translateY(-8px)\';this.style.boxShadow=\'0 16px 48px rgba(0,0,0,0.13)\';this.style.borderColor=\''+l.c+'\'" onmouseout="this.style.transform=\'\';this.style.boxShadow=\'0 4px 24px rgba(0,0,0,0.07)\';this.style.borderColor=\''+l.c+'22\'"><div style="font-size:52px;margin-bottom:14px;">'+l.f+'</div><h3 style="font-size:22px;font-weight:900;color:#1A2340;margin-bottom:10px;">'+l.n+'</h3><p style="font-size:14px;color:#666;line-height:1.75;margin-bottom:16px;">'+l.d+'</p><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;">'+tagHtml+'</div><span style="display:inline-block;background:'+l.c+';color:#fff;padding:12px 32px;border-radius:50px;font-size:14px;font-weight:700;">자세히 보기 →</span></a>';}).join('');
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>제2외국어 수업 | 영어·일본어·중국어 1:1 화상·전화 수업 - 은빛스터디</title><meta name="description" content="은빛스터디 제2외국어 1:1 화상·전화 수업. 영어, 일본어, 중국어 회화를 맞춤 수업으로 배우세요. 무료 테스트 수업."><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">${COMMON_STYLE}</head><body>${NAV}
- <div style="background:linear-gradient(140deg,#0D1526,#1e2d50 55%,#2a3d6b);padding:100px 20px 60px;text-align:center;">
-  <div style="max-width:800px;margin:0 auto;">
-   <span style="background:rgba(200,169,110,.2);color:#C8A96E;padding:8px 24px;border-radius:50px;font-size:12px;font-weight:700;letter-spacing:2px;display:inline-block;margin-bottom:20px;">제2외국어 수업</span>
-   <h1 style="font-family:'Noto Serif KR',serif;font-size:clamp(28px,5vw,44px);font-weight:900;color:#fff;line-height:1.4;margin-bottom:16px;">🌏 제2외국어,<br>은빛쌤과 함께 시작하세요</h1>
-   <p style="font-size:16px;color:rgba(255,255,255,.7);line-height:1.8;margin-bottom:32px;">영어·일본어·중국어 1:1 화상·전화 수업으로<br>원하는 언어를 체계적으로 배울 수 있습니다</p>
-   <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-    <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:14px 24px;text-align:center;"><div style="font-size:18px;font-weight:900;color:#C8A96E;">1:1</div><div style="font-size:11px;color:rgba(255,255,255,.5);">맞춤 수업</div></div>
-    <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:14px 24px;text-align:center;"><div style="font-size:18px;font-weight:900;color:#C8A96E;">무료</div><div style="font-size:11px;color:rgba(255,255,255,.5);">테스트 수업</div></div>
-    <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:14px 24px;text-align:center;"><div style="font-size:18px;font-weight:900;color:#C8A96E;">화상, 전화</div><div style="font-size:11px;color:rgba(255,255,255,.5);">수업 진행</div></div>
-   </div>
+ <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
+ <p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">제2외국어</span></p>
+ <div style="display:inline-block;background:#C8A96E;color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">🌏 제2외국어</div>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">제2외국어 수업 | 영어·일본어·중국어 1:1 수업</h1>
+ <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
+ <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">영어·일본어·중국어 1:1 화상·전화 수업으로 원하는 언어를 체계적으로 배울 수 있습니다. 무료 테스트 수업으로 시작하세요.</p>
+ </div>
+ <div style="max-width:900px;margin:0 auto 36px;padding:0 20px;">
+ <div style="position:relative;border-radius:20px;overflow:hidden;height:clamp(200px,30vw,320px);background:url('${bgImg("city",42)}') center/cover no-repeat,linear-gradient(135deg,#1A2340,#2a3d6b);">
+ <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.2) 50%,rgba(0,0,0,0.15) 100%);"></div>
+ <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:clamp(24px,4vw,40px);">
+ <h2 style="font-size:clamp(24px,4vw,36px);font-weight:900;color:#fff;margin:0 0 12px 0;">🌏 제2외국어 수업</h2>
+ <div style="display:flex;gap:10px;flex-wrap:wrap;">
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 무료 테스트 수업</span>
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 1:1 맞춤 수업</span>
+ </div></div></div></div>
   </div>
  </div>
  <div style="max-width:1100px;margin:36px auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;">${cards}</div>
@@ -5099,11 +5114,23 @@ function buildSubjectMainPage(){
  ${COMMON_STYLE}
  </head><body>
  ${NAV}
- <div style="background:#0D1526;padding:60px 20px 30px;text-align:center;">
-  <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#fff;margin-bottom:12px;">📚 과목별 수업 안내</h1>
-  <p style="font-size:15px;color:rgba(255,255,255,.6);line-height:1.7;">초·중·고 전 과목, 학생에게 꼭 맞는 1:1 맞춤 수업을 제공합니다</p>
+ <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
+ <p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">과목별 수업</span></p>
+ <div style="display:inline-block;background:#C8A96E;color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">📚 과목별 수업</div>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">과목별 수업 안내 | 초·중·고 1:1 맞춤 수업</h1>
+ <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
+ <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">초·중·고 전 과목, 학생에게 꼭 맞는 1:1 맞춤 수업을 제공합니다.</p>
  </div>
- <div style="background:#1A2340;padding:30px 20px 60px;">
+ <div style="max-width:900px;margin:0 auto 36px;padding:0 20px;">
+ <div style="position:relative;border-radius:20px;overflow:hidden;height:clamp(200px,30vw,320px);background:url('${bgImg("school",7)}') center/cover no-repeat,linear-gradient(135deg,#1A2340,#2a3d6b);">
+ <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.2) 50%,rgba(0,0,0,0.15) 100%);"></div>
+ <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:clamp(24px,4vw,40px);">
+ <h2 style="font-size:clamp(24px,4vw,36px);font-weight:900;color:#fff;margin:0 0 12px 0;">📚 과목별 수업 안내</h2>
+ <div style="display:flex;gap:10px;flex-wrap:wrap;">
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 첫 상담·체험 무료</span>
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 맞춤 커리큘럼</span>
+ </div></div></div></div>
+ <div style="background:#f8fafc;padding:40px 20px;">
   <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;">
    ${cards}
   </div>
