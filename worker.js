@@ -2085,16 +2085,31 @@ function buildDongDetailPage(rs, cs, dong, grade, subject) {
  <title>${title} | 1:1 방문·화상 과외 | 은빛쌤</title>
  <meta name="description" content="${dong} ${grade} ${subject} 과외. ${rawDesc.substring(0,60)}. 은빛쌤 1:1 맞춤 수업, 첫 체험 무료.">
  ${COMMON_STYLE}</head><body>${NAV}
- <div style="max-width:960px;margin:40px auto;padding:0 16px;">
-
- <div style="background:linear-gradient(135deg,${hexToRgba(color,0.92)},${hexToRgba(color,0.78)}),url('${bgImg(subject,cH(rs+cs+dong+grade+subject))}') center/cover;color:white;border-radius:20px;padding:clamp(28px,5vw,52px);margin-bottom:28px;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
- <p style="font-size:13px;opacity:.8;margin-bottom:8px;">
- <a href="/${rs}/${cs}" style="color:white;text-decoration:underline;">${rd}</a> &gt;
- <a href="/${rs}/${cs}/${encodeURIComponent(dong)}" style="color:white;text-decoration:underline;">${dong}</a> &gt; ${grade} ${subject}
+ <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
+ <p style="font-size:13px;color:#888;margin-bottom:16px;">
+ <a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo;
+ <a href="/${rs}/${cs}" style="color:#888;text-decoration:none;">${rd}</a> &rsaquo;
+ <a href="/${rs}/${cs}/${encodeURIComponent(dong)}" style="color:#888;text-decoration:none;">${dong}</a> &rsaquo;
+ <span style="color:#1A2340;font-weight:700;">${grade} ${subject}</span>
  </p>
- <h1 style="font-size:clamp(24px,5vw,40px);font-weight:900;margin-bottom:12px;">${title}</h1>
- <p style="font-size:14px;opacity:.9;line-height:1.8;">${rawDesc}</p>
+ <div style="display:inline-block;background:${color};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">📍 ${dong} ${grade} ${subject}</div>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${title} | 맞춤 1:1 과외 안내</h1>
+ <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
+ <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${rawDesc}</p>
  </div>
+ <div style="max-width:900px;margin:0 auto 36px;padding:0 20px;">
+ <div style="position:relative;border-radius:20px;overflow:hidden;height:clamp(200px,30vw,320px);background:url('${bgImg(subject,cH(rs+cs+dong+grade+subject))}') center/cover no-repeat,linear-gradient(135deg,#1A2340,#2a3d6b);">
+ <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.2) 50%,rgba(0,0,0,0.15) 100%);"></div>
+ <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:clamp(24px,4vw,40px);">
+ <h2 style="font-size:clamp(24px,4vw,36px);font-weight:900;color:#fff;margin:0 0 12px 0;">${title}</h2>
+ <div style="display:flex;gap:10px;flex-wrap:wrap;">
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 첫 상담·체험 무료</span>
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 상담 후 방문·화상 결정</span>
+ </div>
+ </div>
+ </div>
+ </div>
+ <div style="max-width:900px;margin:0 auto;padding:0 20px;">
 
  <!-- WHY 블록 (공용 헬퍼) -->
  ${buildWhyBlock(title,color,cH(rs+cs+dong+grade+subject+'why'))}
@@ -2187,16 +2202,23 @@ function buildDetailPage(rs, cs, grade, subject) {
  <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${fullRd} ${grade} ${subject} 과외. ${c.desc.substring(0,60)}. 은빛쌤 1:1 맞춤 수업, 첫 체험 무료.">
  ${COMMON_STYLE}</head><body>${NAV}
- <div style="max-width:960px;margin:40px auto;padding:0 16px;">
-
- <div style="background:linear-gradient(135deg,${hexToRgba(color,0.92)},${hexToRgba(color,0.78)}),url('${bgImg(subject,cH(rs+cs+grade+subject))}') center/cover;color:white;border-radius:20px;padding:clamp(28px,5vw,52px);margin-bottom:28px;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
- <p style="font-size:13px;opacity:.8;margin-bottom:8px;">
- <a href="/${rs}/${cs}" style="color:white;text-decoration:underline;">${fullRd}</a> &gt; ${grade} ${subject}
- </p>
- <h1 style="font-size:clamp(24px,5vw,40px);font-weight:900;margin-bottom:12px;">${fullRd} ${grade} ${subject}과외</h1>
-  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
- <p style="font-size:14px;opacity:.9;line-height:1.8;">${c.desc}</p>
+ <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
+ <p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <a href="/${rs}/${cs}" style="color:#888;text-decoration:none;">${fullRd}</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">${grade} ${subject}</span></p>
+ <div style="display:inline-block;background:${color};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">📍 ${fullRd} ${grade} ${subject}</div>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${fullRd} ${grade} ${subject}과외 | 맞춤 1:1 과외 안내</h1>
+ <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
+ <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${c.desc}</p>
  </div>
+ <div style="max-width:900px;margin:0 auto 36px;padding:0 20px;">
+ <div style="position:relative;border-radius:20px;overflow:hidden;height:clamp(200px,30vw,320px);background:url('${bgImg(subject,cH(rs+cs+grade+subject))}') center/cover no-repeat,linear-gradient(135deg,#1A2340,#2a3d6b);">
+ <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.2) 50%,rgba(0,0,0,0.15) 100%);"></div>
+ <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:clamp(24px,4vw,40px);">
+ <h2 style="font-size:clamp(24px,4vw,36px);font-weight:900;color:#fff;margin:0 0 12px 0;">${fullRd} ${grade} ${subject}과외</h2>
+ <div style="display:flex;gap:10px;flex-wrap:wrap;">
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 첫 상담·체험 무료</span>
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 상담 후 방문·화상 결정</span>
+ </div></div></div></div>
+ <div style="max-width:900px;margin:0 auto;padding:0 20px;">
 
  <!-- WHY 블록 (공용 헬퍼) -->
  ${buildWhyBlock(`${fullRd} ${grade} ${subject}과외`,color,cH(rs+cs+grade+subject+'why'))}
@@ -2576,26 +2598,24 @@ function buildSchoolPage(rs, cs, schoolShort) {
  <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${schoolFull} 과외 전문 은빛쌤. ${schoolFull} 내신 기출 완벽 분석, 1:1 맞춤 수업, 35년 교육 노하우. 첫 상담·체험 무료.">
  ${COMMON_STYLE}</head><body>${NAV}
- <div style="max-width:1100px;margin:40px auto;padding:0 16px;">
- <p style="font-size:13px;color:#888;margin-bottom:12px;">
- <a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo;
- <a href="/${rs}/${cs}/schools" style="color:#888;text-decoration:none;">학교별 과외</a> &rsaquo;
- <a href="/${rs}/${cs}" style="color:#888;text-decoration:none;">${rd}</a> &rsaquo;
- <span style="color:#1A2340;font-weight:600;">${schoolFull}</span>
- </p>
-
- <!-- 히어로 -->
- <div style="background:linear-gradient(135deg,${hexToRgba(typeColor,0.92)},${hexToRgba(typeColor,0.78)}),url('${bgImg("school",seed)}') center/cover;color:white;border-radius:20px;padding:clamp(30px,5vw,52px);margin-bottom:24px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
- <p style="font-size:13px;opacity:.8;margin-bottom:6px;">📍 ${rd} ${kn} · ${schoolType}</p>
- <h1 style="font-size:clamp(26px,5vw,42px);font-weight:900;margin-bottom:10px;">${schoolFull} 과외</h1>
-  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
- <p style="font-size:14px;opacity:.9;margin-bottom:18px;">은빛쌤 1:1 맞춤 과외 | 상담 후 방문·화상 수업 결정</p>
- <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;">
- <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ 35년 교육 노하우</span>
- <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ 내신 기출 완벽 분석</span>
- <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ 첫 상담·체험 무료</span>
+ <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
+ <p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <a href="/${rs}/${cs}/schools" style="color:#888;text-decoration:none;">학교별 과외</a> &rsaquo; <a href="/${rs}/${cs}" style="color:#888;text-decoration:none;">${fullRd}</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">${schoolFull}</span></p>
+ <div style="display:inline-block;background:${typeColor};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">🏫 ${schoolFull}</div>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${schoolFull} 과외 | 맞춤 1:1 과외 안내</h1>
+ <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
+ <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${fullRd} ${schoolFull} 재학생을 위한 맞춤 1:1 과외. 방문/화상 모두 가능하며, 첫 상담과 체험 수업은 완전 무료입니다.</p>
  </div>
- </div>
+ <div style="max-width:900px;margin:0 auto 36px;padding:0 20px;">
+ <div style="position:relative;border-radius:20px;overflow:hidden;height:clamp(200px,30vw,320px);background:url('${bgImg("school",seed)}') center/cover no-repeat,linear-gradient(135deg,#1A2340,#2a3d6b);">
+ <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.2) 50%,rgba(0,0,0,0.15) 100%);"></div>
+ <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:clamp(24px,4vw,40px);">
+ <p style="font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:6px;">${fullRd}</p>
+ <h2 style="font-size:clamp(24px,4vw,36px);font-weight:900;color:#fff;margin:0 0 12px 0;">${schoolFull} 과외</h2>
+ <div style="display:flex;gap:10px;flex-wrap:wrap;">
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 내신 기출 완벽 분석</span>
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 첫 상담·체험 무료</span>
+ </div></div></div></div>
+ <div style="max-width:900px;margin:0 auto;padding:0 20px;">
 
  ${buildWhyBlock(`${schoolFull} 과외`,typeColor,cH(rs+cs+schoolShort+'why'))}
 
@@ -2861,22 +2881,23 @@ function buildGradeSubjectPage(gradeCode, subject) {
  <title>${gd.name} ${subject}과외 | 1:1 방문·화상 과외 | 은빛쌤</title>
  <meta name="description" content="${gd.name} ${subject} 과외 전문 은빛쌤. ${subjDesc.substring(0,60)} 35년 교육 노하우, 첫 상담·체험 무료.">
  ${COMMON_STYLE}</head><body>${NAV}
- <div style="max-width:1100px;margin:40px auto;padding:0 16px;">
- <p style="font-size:13px;color:#888;margin-bottom:12px;">
- <a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo;
- <a href="/grade/${gradeCode}" style="color:#888;text-decoration:none;">${gd.name}</a> &rsaquo;
- <span style="color:#1A2340;font-weight:600;">${subject}과외</span>
- </p>
- <div style="background:linear-gradient(135deg,${hexToRgba(tc,0.92)},${hexToRgba(tc,0.78)}),url('${heroImg}') center/cover;color:white;border-radius:20px;padding:clamp(30px,5vw,52px);margin-bottom:24px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
- <p style="font-size:13px;opacity:.8;margin-bottom:6px;">${gd.emoji} ${gd.name}</p>
- <h1 style="font-size:clamp(26px,5vw,42px);font-weight:900;margin-bottom:10px;">${gd.name} ${subject}과외</h1>
- <p style="font-size:14px;opacity:.9;margin-bottom:18px;">은빛쌤 1:1 맞춤 과외 | 상담 후 방문·화상 수업 결정</p>
- <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;">
- <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ 35년 교육 노하우</span>
- <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ ${subject} 기출 완벽 분석</span>
- <span style="background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;">✅ 첫 상담·체험 무료</span>
+ <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
+ <p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <a href="/grade/${gradeCode}" style="color:#888;text-decoration:none;">${gd.name}</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">${subject}과외</span></p>
+ <div style="display:inline-block;background:${tc};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">📚 ${gd.name} ${subject}</div>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${gd.name} ${subject}과외 | 맞춤 1:1 과외 안내</h1>
+ <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
+ <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${gd.name} ${subject} 전문 1:1 맞춤 과외. 학교별 내신 완벽 대비. 방문/화상 모두 가능하며, 첫 상담과 체험 수업은 완전 무료입니다.</p>
  </div>
- </div>
+ <div style="max-width:900px;margin:0 auto 36px;padding:0 20px;">
+ <div style="position:relative;border-radius:20px;overflow:hidden;height:clamp(200px,30vw,320px);background:url('${heroImg}') center/cover no-repeat,linear-gradient(135deg,#1A2340,#2a3d6b);">
+ <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.2) 50%,rgba(0,0,0,0.15) 100%);"></div>
+ <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:clamp(24px,4vw,40px);">
+ <h2 style="font-size:clamp(24px,4vw,36px);font-weight:900;color:#fff;margin:0 0 12px 0;">${gd.name} ${subject}과외</h2>
+ <div style="display:flex;gap:10px;flex-wrap:wrap;">
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 첫 상담·체험 무료</span>
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 학교별 기출 분석</span>
+ </div></div></div></div>
+ <div style="max-width:900px;margin:0 auto;padding:0 20px;">
  ${buildWhyBlock(`${gd.name} ${subject}과외`,tc,cH('gradeSubj-'+gradeCode+'-'+subject+'-why'))}
  ${buildStudyBlock(`${gd.name} ${subject}과외`,tc,cH('gradeSubj-'+gradeCode+'-'+subject+'-study'))}
  <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
