@@ -5303,20 +5303,21 @@ function buildSubjectPage(subSlug){
 
  if (p === "/api/indexnow-submit") {
   try {
-   const base = "https://eunshinestudy.com";
-   const urls = [base+"/",base+"/directory",base+"/schools",base+"/academy",base+"/subject",base+"/language"];
-   SUBJECT_LIST.forEach(function(k){urls.push(base+"/subject/"+SUBJECTS[k].slug);});
-   Object.keys(GRADE_DATA).forEach(function(g){urls.push(base+"/grade/"+g);});
-   Object.keys(locations).forEach(function(rs){urls.push(base+"/"+rs);Object.keys(locations[rs].cities||{}).forEach(function(cs){urls.push(base+"/"+rs+"/"+cs);});});
-   ACAD_DETAIL.forEach(function(ct){urls.push(base+"/academy/"+encodeURIComponent(ct.sl));});
-   const batch = urls.slice(0,500);
-   const body = JSON.stringify({host:"eunshinestudy.com",key:INDEXNOW_KEY,keyLocation:base+"/"+INDEXNOW_KEY+".txt",urlList:batch});
-   const results = [];
-   for (const ep of ["https://api.indexnow.org/indexnow","https://www.bing.com/indexnow","https://yandex.com/indexnow","https://searchadvisor.naver.com/indexnow"]) {
-    try { const res = await fetch(ep,{method:"POST",headers:{"Content-Type":"application/json"},body:body}); results.push({endpoint:ep,status:res.status,ok:res.ok}); }
-    catch(e) { results.push({endpoint:ep,error:e.message}); }
+   const urls = buildAllSiteUrls();
+   const PAGE_SIZE = 500;
+   const totalPages = Math.ceil(urls.length / PAGE_SIZE);
+   const allResults = [];
+   let totalSubmitted = 0;
+   for (let pg = 0; pg < totalPages; pg++) {
+    const batch = urls.slice(pg * PAGE_SIZE, (pg + 1) * PAGE_SIZE);
+    const body = JSON.stringify({host:"eunshinestudy.com",key:INDEXNOW_KEY,keyLocation:"https://eunshinestudy.com/"+INDEXNOW_KEY+".txt",urlList:batch});
+    for (const ep of ["https://api.indexnow.org/indexnow","https://www.bing.com/indexnow","https://yandex.com/indexnow","https://searchadvisor.naver.com/indexnow"]) {
+     try { const res = await fetch(ep,{method:"POST",headers:{"Content-Type":"application/json"},body:body}); if(pg===0) allResults.push({endpoint:ep,status:res.status,ok:res.ok}); }
+     catch(e) { if(pg===0) allResults.push({endpoint:ep,error:e.message}); }
+    }
+    totalSubmitted += batch.length;
    }
-   return new Response(JSON.stringify({success:true,submitted:batch.length,results,message:batch.length+"개 URL을 IndexNow에 제출했습니다."},null,2),{headers:{"Content-Type":"application/json"}});
+   return new Response(JSON.stringify({success:true,submitted:totalSubmitted,totalUrls:urls.length,pages:totalPages,results:allResults,message:totalSubmitted+"개 URL을 IndexNow에 제출했습니다."},null,2),{headers:{"Content-Type":"application/json"}});
   } catch(e) { return new Response(JSON.stringify({success:false,error:e.message}),{headers:{"Content-Type":"application/json"}}); }
  }
 
