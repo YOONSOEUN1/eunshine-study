@@ -977,8 +977,8 @@ function renderUniqueContent(ct,dong,grade,subj,tc,rd,schools){
 // ============================================================
 // Unsplash 무료 CDN 사용 - 사람 없는 교육/도시/학교 테마 이미지
 const BG_IMG_BOOKS=["1481627834876-b7833e8f5570","1456513080510-7bf3a84b82f8","1532012197267-da84d127e765","1497633762265-9d179a990aa6","1507842217343-583bb7270b66","1513475382585-d06e58bcb0e0","1544947950-fa07a98d237f","1457369804613-52c61a468e7d","1543002588-bfa74002ed7e","1495446815901-a7297e633e8d"];
-const BG_IMG_SCHOOL=["1523050854058-8df90110c9f1","1562774053-701939374585","1497486751825-1233686f5d54","1519682337058-a94d519337bc","1541339907198-e08756dedf3f","1444723121867-3555ceca6c5f","1497633762265-9d179a990aa6"];
-const BG_IMG_CITY=["1477959858617-67f85cf4f1df","1480714378408-67cf0d13bc1b","1506905925346-21bda4d32df4","1514565131-fce0801e5785","1449824913935-59a10b8d2000","1466442929976-97f336a657be","1486406146926-c627a92ad1ab","1513635269975-59663e0ac1ad","1467269204594-9661b134dd2b","1502602898657-3e91760cbb34"];
+const BG_IMG_SCHOOL=["1580582932707-520aed937b7b","1503676260728-1c00da094a0b","1519682337058-a94d519337bc","1497486751825-1233686f5d54","1523050854058-8df90110c9f1","1562774053-701939374585","1568667256549-094345857637"];
+const BG_IMG_CITY=["1538485399081-7191377e8241","1517154421773-0529f29ea451","1534430480872-3498386e7856","1486325212027-8081e485255e","1549490349-8643362247b5","1540541338287-41700207dee6","1596422846543-75c6fc197f07","1578637387939-43c525550085","1546874177-9e664107314e"];
 const BG_IMG_MATH=["1635070041078-e363dbe005cb","1509228468518-180dd4864904","1518152006812-edab29b069ac","1453733190371-0a9bedd82893","1596495577886-d920f1fb7238"];
 const BG_IMG_SCIENCE=["1532094349884-543bc11b234d","1581093588401-fbb62a02f120","1582719471384-894fbb16e074","1576086213369-97a306d36557","1564325724739-bae0bd08762c"];
 const BG_IMG_KOREAN=["1481627834876-b7833e8f5570","1456513080510-7bf3a84b82f8","1532012197267-da84d127e765","1455390582262-044cdead277a","1457369804613-52c61a468e7d"];
@@ -4031,7 +4031,7 @@ var _studyGuides = {
 '사회':'사회는 이해 과목입니다. 제도가 왜 만들어졌는지, 어떤 문제를 해결하려는 것인지를 이해하면 암기량이 절반으로 줄어듭니다. 교과서 목차를 먼저 파악하고 핵심 개념 20개를 뽑아 각각 2줄로 설명할 수 있는지 테스트해 보세요. 그래프와 통계표를 정확히 읽는 연습도 매우 중요합니다.'
 };
 var _guideText = _studyGuides[subject] || '학습 코칭에서 가장 중요한 것은 학생 개개인에 맞는 전략을 설계하는 것입니다. 내신 시험에서는 학교별 출제 경향을 분석하는 것이 핵심이며, 최소 3년치 기출을 풀어 유형을 파악하세요.';
-var _guideHtml = '<div style="max-width:900px;margin:0 auto 24px;padding:0 20px;"><div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;"><h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid #C8A96E;padding-left:14px;margin-bottom:16px;">📚 '+subject+' 학습 가이드</h2><p style="font-size:14px;color:#444;line-height:2.1;">'+_guideText+'</p></div>';
+var _guideHtml = '<div style="max-width:900px;margin:0 auto 24px;padding:0 20px;"><div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;"><div style="text-align:center;margin-bottom:24px;"><h2 style="font-size:clamp(20px,4vw,26px);font-weight:900;color:#1A2340;margin-bottom:8px;">📚 '+subject+' 학습 가이드</h2><div style="width:40px;height:3px;background:#C8A96E;margin:12px auto 0;"></div></div><p style="font-size:14px;color:#444;line-height:2.1;">'+_guideText+'</p></div>';
 var _rvData = [
 {nm:'김○○',gr:'초등',body:'아이가 공부에 흥미를 잃었었는데 코치 선생님 덕분에 다시 공부가 재미있다고 해요. 맞춤형 수업이라 아이 수준에 딱 맞게 진행해주셔서 정말 감사합니다.'},
 {nm:'이○○',gr:'초등',body:'처음에는 반신반의했는데 한 달 만에 시험 성적이 15점이나 올랐어요. 매주 보내주시는 학습 리포트도 정말 유용합니다.'},
@@ -4145,11 +4145,23 @@ var _studyReviewHtml = _guideHtml + _rvHtml;
  
 
  </div>
- ${_eduExtra}
- ${_studyReviewHtml}
- ${_kwBottom}
+ ${_rvHtml}
 
  <div style="max-width:900px;margin:0 auto;padding:0 16px;">
+
+ <!-- 학원 정보 테이블 -->
+ <div style="background:white;border-radius:20px;padding:36px 28px;margin-bottom:28px;box-shadow:0 2px 12px #0000000f;">
+ <div style="text-align:center;margin-bottom:24px;">
+ <h2 style="font-size:clamp(20px,4vw,26px);font-weight:900;color:#1A2340;margin-bottom:8px;">학원 정보</h2>
+ <div style="width:40px;height:3px;background:#C8A96E;margin:12px auto 0;"></div>
+ </div>
+ <table style="width:100%;border-collapse:collapse;">
+ <tr style="border-bottom:1px solid #eee;"><td style="padding:14px 18px;font-size:13px;color:#888;width:120px;">지점명</td><td style="padding:14px 18px;font-size:14px;font-weight:700;color:#1A2340;">${ct.sl}</td></tr>
+ <tr style="border-bottom:1px solid #eee;"><td style="padding:14px 18px;font-size:13px;color:#888;">주소</td><td style="padding:14px 18px;font-size:14px;color:#333;">${ct.a}</td></tr>
+ ${ct.edu ? '<tr><td style="padding:14px 18px;font-size:13px;color:#888;">교육지원청</td><td style="padding:14px 18px;font-size:14px;color:#333;">'+ct.edu+'</td></tr>' : ''}
+ </table>
+ </div>
+
  <!-- 자주 묻는 질문 (펼침 상태) -->
  <div style="background:white;border-radius:20px;padding:36px 28px;margin-bottom:28px;box-shadow:0 2px 12px #0000000f;">
  <div style="text-align:center;margin-bottom:24px;">
@@ -4166,6 +4178,9 @@ var _studyReviewHtml = _guideHtml + _rvHtml;
 
  </div>
   ${ACAD_FORM('학원 서브페이지 ('+ct.n+' '+title+')')}
+ ${_eduExtra}
+ ${_guideHtml}
+ ${_kwBottom}
  ${ACAD_FOOTER}${ACAD_FLOATING}
  <style>@media(max-width:768px){div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}}</style>
  ${ACAD_SCRIPT('학원 서브페이지 ('+ct.n+' '+title+')')}
