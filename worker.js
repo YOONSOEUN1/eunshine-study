@@ -4146,22 +4146,11 @@ var _studyReviewHtml = _guideHtml + _rvHtml;
 
  </div>
  ${_rvHtml}
+ ${_eduExtra}
+ ${_guideHtml}
+ ${_kwBottom}
 
  <div style="max-width:900px;margin:0 auto;padding:0 16px;">
-
- <!-- 학원 정보 테이블 -->
- <div style="background:white;border-radius:20px;padding:36px 28px;margin-bottom:28px;box-shadow:0 2px 12px #0000000f;">
- <div style="text-align:center;margin-bottom:24px;">
- <h2 style="font-size:clamp(20px,4vw,26px);font-weight:900;color:#1A2340;margin-bottom:8px;">학원 정보</h2>
- <div style="width:40px;height:3px;background:#C8A96E;margin:12px auto 0;"></div>
- </div>
- <table style="width:100%;border-collapse:collapse;">
- <tr style="border-bottom:1px solid #eee;"><td style="padding:14px 18px;font-size:13px;color:#888;width:120px;">지점명</td><td style="padding:14px 18px;font-size:14px;font-weight:700;color:#1A2340;">${ct.sl}</td></tr>
- <tr style="border-bottom:1px solid #eee;"><td style="padding:14px 18px;font-size:13px;color:#888;">주소</td><td style="padding:14px 18px;font-size:14px;color:#333;">${ct.a}</td></tr>
- ${ct.edu ? '<tr><td style="padding:14px 18px;font-size:13px;color:#888;">교육지원청</td><td style="padding:14px 18px;font-size:14px;color:#333;">'+ct.edu+'</td></tr>' : ''}
- </table>
- </div>
-
  <!-- 자주 묻는 질문 (펼침 상태) -->
  <div style="background:white;border-radius:20px;padding:36px 28px;margin-bottom:28px;box-shadow:0 2px 12px #0000000f;">
  <div style="text-align:center;margin-bottom:24px;">
@@ -4178,9 +4167,6 @@ var _studyReviewHtml = _guideHtml + _rvHtml;
 
  </div>
   ${ACAD_FORM('학원 서브페이지 ('+ct.n+' '+title+')')}
- ${_eduExtra}
- ${_guideHtml}
- ${_kwBottom}
  ${ACAD_FOOTER}${ACAD_FLOATING}
  <style>@media(max-width:768px){div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}}</style>
  ${ACAD_SCRIPT('학원 서브페이지 ('+ct.n+' '+title+')')}
