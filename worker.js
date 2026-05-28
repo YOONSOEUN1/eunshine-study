@@ -3737,7 +3737,7 @@ function buildCenterSubPage(slug, grade, subject, school) {
  const ct = ACAD_DETAIL.find(function(c){return c.sl===slug;});
  if(!ct) return null;
  const loc = LOC_DATA[slug];
- if(!loc || !loc.d) return null;
+ if(!loc) return null;
  const info = CENTER_INFO[slug] || {r:'',p:'B'};
  const subjColors={"국어":"#3b82f6","영어":"#10b981","수학":"#f59e0b","과학":"#8b5cf6","사회":"#ef4444"};
  const gradeColor = grade==='초등'?'#3b82f6':(grade==='중등'?'#10b981':'#f59e0b');
