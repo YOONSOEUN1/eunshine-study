@@ -3737,6 +3737,11 @@ function buildCenterSubPage(slug, grade, subject, school) {
  const ct = ACAD_DETAIL.find(function(c){return c.sl===slug;});
  if(!ct) return null;
  const loc = LOC_DATA[slug] || {d:'',l:[]};
+ // 동 이름이 없으면 정확한 매핑에서 가져오기
+ if(!loc.d) {
+  var _dongMap={"봉담점":"봉담읍","목감점_모두":"목감동","중동점_W+":"중동","화정점_W+":"화정동","은평점_글로리드":"진관동","다산점_W+":"다산동","수지점_글로리드":"풍덕천동","부발점":"부발읍","은평점_W+":"진관동","후곡점_W+":"후곡동","불당점":"불당동","탕정점_모두":"탕정면","퇴계원점":"퇴계원읍","용인백현점_모두":"백현동","대구역점2호관":"북성로","진천점_모두":"유천동","별내중앙점_모두":"별내동","수지점_W+":"풍덕천동","향남점":"향남읍","송도점":"송도동","전주혁신점":"이서면","오산대역점":"내삼미동","석사점":"석사동","송도점_W+":"송도동","둔산점_W+":"둔산동","진접점":"진접읍"};
+  loc.d = _dongMap[slug] || slug.replace(/_.*$/,'').replace(/점$/,'').replace(/\d+호관$/,'') + '동';
+ }
  const info = CENTER_INFO[slug] || {r:'',p:'B'};
  const subjColors={"국어":"#3b82f6","영어":"#10b981","수학":"#f59e0b","과학":"#8b5cf6","사회":"#ef4444"};
  const gradeColor = grade==='초등'?'#3b82f6':(grade==='중등'?'#10b981':'#f59e0b');
