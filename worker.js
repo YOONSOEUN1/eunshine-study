@@ -5550,35 +5550,35 @@ if (p.startsWith("/sitemap-") && p.endsWith(".xml")) {
  return new Response(JSON.stringify(handleSuggest(q)),{headers:J});
  }
  if (parts.length===2) {
- const html=buildCityPage(parts[0],parts[1]);
+ const html=buildCityPage(parts[0],decodeURIComponent(parts[1]));
  if(!html) return new Response(NOT_FOUND_HTML,{status:404,headers:{"Content-Type":"text/html;charset=utf-8"}});
  return new Response(html,{headers:H});
  }
  if (parts.length===3 && parts[2]==="schools") {
- const html = buildSchoolListPage(parts[0], parts[1]);
+ const html = buildSchoolListPage(parts[0], decodeURIComponent(parts[1]));
  if(!html) return new Response(NOT_FOUND_HTML,{status:404,headers:{"Content-Type":"text/html;charset=utf-8"}});
  return new Response(html,{headers:H});
  }
  if (parts.length===4 && parts[2]==="school") {
  const school = decodeURIComponent(parts[3]);
- const html = buildSchoolPage(parts[0], parts[1], school);
+ const html = buildSchoolPage(parts[0], decodeURIComponent(parts[1]), school);
  if(!html) return new Response(NOT_FOUND_HTML,{status:404,headers:{"Content-Type":"text/html;charset=utf-8"}});
  return new Response(html,{headers:H});
  }
  if (parts.length===3) {
  const dong = decodeURIComponent(parts[2]);
- const html = buildDongPage(parts[0], parts[1], dong);
+ const html = buildDongPage(parts[0], decodeURIComponent(parts[1]), dong);
  if(!html) return new Response(NOT_FOUND_HTML,{status:404,headers:{"Content-Type":"text/html;charset=utf-8"}});
  return new Response(html,{headers:H});
  }
  if (parts.length===5) {
  const dong = decodeURIComponent(parts[2]);
- const html = buildDongDetailPage(parts[0],parts[1],dong,decodeURIComponent(parts[3]),decodeURIComponent(parts[4]));
+ const html = buildDongDetailPage(parts[0],decodeURIComponent(parts[1]),dong,decodeURIComponent(parts[3]),decodeURIComponent(parts[4]));
  if(!html) return new Response(NOT_FOUND_HTML,{status:404,headers:{"Content-Type":"text/html;charset=utf-8"}});
  return new Response(html,{headers:H});
  }
  if (parts.length===4) {
- const html=buildDetailPage(parts[0],parts[1],decodeURIComponent(parts[2]),decodeURIComponent(parts[3]));
+ const html=buildDetailPage(parts[0],decodeURIComponent(parts[1]),decodeURIComponent(parts[2]),decodeURIComponent(parts[3]));
  if(!html) return new Response(NOT_FOUND_HTML,{status:404,headers:{"Content-Type":"text/html;charset=utf-8"}});
  return new Response(html,{headers:H});
  }
