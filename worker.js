@@ -1282,7 +1282,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:99999;background:rgba(255,255,25
 </div>
 </nav>
 <script>function switchDD(i){for(var j=0;j<3;j++){document.getElementById('ddC'+j).style.display=j===i?(j===1?'block':'grid'):'none';var t=document.querySelectorAll('.ddt');t[j].style.background=j===i?'#1A2340':'#fff';t[j].style.color=j===i?'#fff':'#334155';}}document.addEventListener('click',function(e){['ddF','ddS','ddL'].forEach(function(id){var d=document.getElementById(id);if(d&&!d.parentElement.contains(e.target))d.style.display='none';});});</script>`;
-const FAVICON_TAGS = '<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><link rel="apple-touch-icon" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta property="og:site_name" content="은빛스터디"><meta property="og:type" content="website"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/banner1.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/banner1.png">';
+const FAVICON_TAGS = '<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><link rel="apple-touch-icon" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta property="og:site_name" content="은빛스터디"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image">';
 const COMMON_STYLE = `<link rel="alternate" type="application/rss+xml" title="은빛스터디 RSS" href="https://eunshinestudy.com/rss"><link rel="icon" type="image/png" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><link rel="apple-touch-icon" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Malgun Gothic',sans-serif;background:#f4f7f6;padding-top:70px;}.rv-carousel{position:relative;overflow:hidden;}.rv-track{display:flex;gap:16px;animation:rvScroll 30s linear infinite;width:max-content;}.rv-carousel:hover .rv-track{animation-play-state:paused;}@keyframes rvScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}.rv-track .rv-card{min-width:300px;max-width:300px;flex-shrink:0;box-sizing:border-box;}@media(max-width:768px){.rv-track .rv-card{min-width:280px;max-width:280px;}}.rv-dots{display:flex;justify-content:center;gap:6px;margin-top:16px;}.rv-dot{width:28px;height:4px;border-radius:2px;background:rgba(26,35,64,.12);cursor:pointer;border:none;padding:0;transition:all .3s;}.rv-dot.on{width:40px;background:#C8A96E;}</style>${FAVICON_TAGS}`;
 
 const FLOATING = `<div style="position:fixed;bottom:24px;right:18px;display:flex;flex-direction:column;gap:8px;z-index:9998;">
@@ -1655,7 +1655,7 @@ function buildRegionPage(rs) {
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
  <title>${rn} 과외 | 방문·화상 1:1 맞춤 과외 | 은빛쌤</title>
- <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/banner1.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
+ <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${sceneImg}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${rn} 전 지역 1:1 맞춤 과외. 방문/화상 모두 가능, 35년 경력 은빛쌤. 첫 상담·체험 수업 무료.">
  ${COMMON_STYLE}</head><body>${NAV}
 
@@ -1776,7 +1776,7 @@ function buildCityPage(rs, cs) {
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
  <title>${fullRd} 과외 | 초중고 1:1 맞춤 방문·화상 과외 | 은빛쌤</title>
- <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/banner1.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
+ <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${bgImg("city",cH(rs+cs))}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${fullRd} 과외 전문 은빛쌤. ${dongStr} 상담 후 방문·화상 결정. ${schoolStr} 내신 완벽 대비. 첫 상담·체험 무료.">
  ${COMMON_STYLE}</head><body>${NAV}
  <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
@@ -1945,7 +1945,7 @@ function buildDongPage(rs, cs, dong) {
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
  <title>${fullRd} ${dong} 과외 | 초중고 1:1 방문·화상 과외 | 은빛쌤</title>
- <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/banner1.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
+ <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${bgImg("city",cH(rs+cs+dong))}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${dong} 과외 전문 은빛쌤. 초·중·고 국어·영어·수학 1:1 맞춤 수업. ${schoolStr} 내신 완벽 대비. 상담 후 방문·화상 결정. 첫 체험 무료.">
  ${COMMON_STYLE}</head><body>${NAV}
  <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
@@ -2086,6 +2086,7 @@ function buildDongDetailPage(rs, cs, dong, grade, subject) {
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
  <title>${title} | 1:1 방문·화상 과외 | 은빛쌤</title>
+ <meta property="og:image" content="${bgImg(subject,cH(rs+cs+dong+grade+subject))}">
  <meta name="description" content="${dong} ${grade} ${subject} 과외. ${rawDesc.substring(0,60)}. 은빛쌤 1:1 맞춤 수업, 첫 체험 무료.">
  ${COMMON_STYLE}</head><body>${NAV}
  <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
@@ -2202,7 +2203,7 @@ function buildDetailPage(rs, cs, grade, subject) {
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
  <title>${fullRd} ${grade} ${subject}과외 | 1:1 방문·화상 과외 | 은빛쌤</title>
- <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/banner1.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
+ <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${bgImg(subject,cH(rs+cs+grade+subject))}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${fullRd} ${grade} ${subject} 과외. ${c.desc.substring(0,60)}. 은빛쌤 1:1 맞춤 수업, 첫 체험 무료.">
  ${COMMON_STYLE}</head><body>${NAV}
  <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
@@ -2359,6 +2360,7 @@ function buildSchoolListPage(rs, cs) {
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
  <title>${fullRd} 학교별 과외 | 초·중·고 1:1 맞춤 과외 | 은빛쌤</title>
+ <meta property="og:image" content="${bgImg("school",cH(rs+cs+"schools"))}">
  <meta name="description" content="${fullRd} 지역 초등·중등·고등학교 재학생을 위한 학교별 맞춤 1:1 과외. 해당 학교 기출을 완벽히 파악한 검증된 선생님을 빠르게 매칭해드립니다.">
  ${COMMON_STYLE}</head><body>${NAV}
 
@@ -2598,7 +2600,7 @@ function buildSchoolPage(rs, cs, schoolShort) {
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
  <title>${schoolFull} 과외 | 1:1 방문·화상 과외 | 은빛쌤</title>
- <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/banner1.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
+ <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${bgImg("school",seed)}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${schoolFull} 과외 전문 은빛쌤. ${schoolFull} 내신 기출 완벽 분석, 1:1 맞춤 수업, 35년 교육 노하우. 첫 상담·체험 무료.">
  ${COMMON_STYLE}</head><body>${NAV}
  <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
@@ -2736,7 +2738,7 @@ function buildGradePage(gradeCode) {
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
  <title>${gd.name} 과외 | 1:1 방문·화상 과외 | 은빛쌤</title>
- <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/banner1.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
+ <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${bgImg("school",seed)}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${gd.name} 과외 전문 은빛쌤. ${gd.short} 맞춤 1:1 과외, 35년 교육 노하우. 첫 상담·체험 무료.">
  ${COMMON_STYLE}</head><body>${NAV}
  <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
@@ -2882,6 +2884,7 @@ function buildGradeSubjectPage(gradeCode, subject) {
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
  <title>${gd.name} ${subject}과외 | 1:1 방문·화상 과외 | 은빛쌤</title>
+ <meta property="og:image" content="${heroImg}">
  <meta name="description" content="${gd.name} ${subject} 과외 전문 은빛쌤. ${subjDesc.substring(0,60)} 35년 교육 노하우, 첫 상담·체험 무료.">
  ${COMMON_STYLE}</head><body>${NAV}
  <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
@@ -4229,7 +4232,7 @@ function buildAcademyPage() {
  <meta property="og:type" content="website">
  <meta property="og:title" content="학원수업 | 학습코칭학원 전국 205개 센터 | 은빛스터디">
  <meta property="og:description" content="학습코칭학원 전국 205개 센터. 플랜관리·학습관리·생활관리 3대 개별 맞춤 관리 시스템으로 초중고 전과목 1:1 맞춤 코칭.">
- <meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/banner1.png">
+ <meta property="og:image" content="${bgImg("school",42)}">
  <meta property="og:url" content="https://eunshinestudy.com/academy">
  ${COMMON_STYLE}
  <style>
@@ -4897,7 +4900,8 @@ function buildLangPage(slug){
  var subLinks=LANG_SUBS[slug]||[];
  var subLinksHtml=subLinks.map(function(s){return '<a href="/language/'+slug+'/'+s.slug+'" class="topic-card"><div class="topic-icon">'+s.icon+'</div><div class="topic-info"><div class="topic-title">'+s.t+'</div><div class="topic-desc">'+s.desc+'</div></div><span class="topic-arrow">›</span></a>';}).join('');
  var others=Object.keys(LANG_DATA).filter(function(k){return k!==slug;}).map(function(k){var o=LANG_DATA[k];return '<a href="/language/'+k+'" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:16px;padding:20px 24px;text-decoration:none;border:2px solid #e5e7eb;transition:all .25s;flex:1;min-width:200px;" onmouseover="this.style.borderColor=\''+o.clr+'\';this.style.transform=\'translateY(-3px)\';this.style.boxShadow=\'0 8px 24px rgba(0,0,0,0.1)\'" onmouseout="this.style.borderColor=\'#e5e7eb\';this.style.transform=\'\';this.style.boxShadow=\'\'"><span style="font-size:36px;">'+o.flag+'</span><div><div style="font-size:16px;font-weight:800;color:#1A2340;">'+o.n+'</div><div style="font-size:13px;color:#888;margin-top:2px;">자세히 보기 →</div></div></a>';}).join('');
- return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>${d.n} | ${d.sub} - 은빛스터디</title><meta name="description" content="은빛스터디 ${d.n} 1:1 화상·전화 수업. ${d.sub}. 무료 테스트 수업으로 시작하세요."><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">${COMMON_STYLE}<style></style></head><body>${NAV}
+ return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>${d.n} | ${d.sub} - 은빛스터디</title>
+ <meta property="og:image" content="https://images.unsplash.com/photo-${d.bg}?w=1200&q=80"><meta name="description" content="은빛스터디 ${d.n} 1:1 화상·전화 수업. ${d.sub}. 무료 테스트 수업으로 시작하세요."><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">${COMMON_STYLE}<style></style></head><body>${NAV}
 <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
  <p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <a href="/language" style="color:#888;text-decoration:none;">제2외국어</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">${d.n}</span></p>
  <div style="display:inline-block;background:${d.clr};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">${d.emoji} ${d.n}</div>
@@ -4957,7 +4961,8 @@ function buildLangMainPage(){
  var cards=[{s:"english",f:"🇺🇸",n:"영어 회화",c:"#2563eb",d:"비즈니스·생활·수능 영어까지, 1:1 맞춤 영어 회화 수업으로 자신감을 키워보세요.",tags:["생활영어","비즈니스","토익스피킹","수능영어"]},{s:"japanese",f:"🇯🇵",n:"일본어 회화",c:"#dc2626",d:"JLPT·여행·취업 일본어, 한국인 맞춤 학습법으로 가장 빠르게 습득할 수 있습니다.",tags:["JLPT","여행일본어","비즈니스","애니메이션"]},{s:"chinese",f:"🇨🇳",n:"중국어 회화",c:"#ea580c",d:"HSK·비즈니스 중국어, 성조부터 실전 회화까지 체계적으로 학습하세요.",tags:["HSK","비즈니스","여행중국어","성조교정"]}].map(function(l){
   var tagHtml=l.tags.map(function(t){return '<span style="background:'+l.c+'12;color:'+l.c+';padding:4px 12px;border-radius:50px;font-size:11px;font-weight:600;">'+t+'</span>';}).join('');
   return '<a href="/language/'+l.s+'" style="background:#fff;border-radius:20px;padding:36px 28px;text-decoration:none;border:2px solid '+l.c+'22;box-shadow:0 4px 24px rgba(0,0,0,0.07);transition:all .3s;display:block;" onmouseover="this.style.transform=\'translateY(-8px)\';this.style.boxShadow=\'0 16px 48px rgba(0,0,0,0.13)\';this.style.borderColor=\''+l.c+'\'" onmouseout="this.style.transform=\'\';this.style.boxShadow=\'0 4px 24px rgba(0,0,0,0.07)\';this.style.borderColor=\''+l.c+'22\'"><div style="font-size:52px;margin-bottom:14px;">'+l.f+'</div><h3 style="font-size:22px;font-weight:900;color:#1A2340;margin-bottom:10px;">'+l.n+'</h3><p style="font-size:14px;color:#666;line-height:1.75;margin-bottom:16px;">'+l.d+'</p><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;">'+tagHtml+'</div><span style="display:inline-block;background:'+l.c+';color:#fff;padding:12px 32px;border-radius:50px;font-size:14px;font-weight:700;">자세히 보기 →</span></a>';}).join('');
- return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>제2외국어 수업 | 영어·일본어·중국어 1:1 화상·전화 수업 - 은빛스터디</title><meta name="description" content="은빛스터디 제2외국어 1:1 화상·전화 수업. 영어, 일본어, 중국어 회화를 맞춤 수업으로 배우세요. 무료 테스트 수업."><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">${COMMON_STYLE}</head><body>${NAV}
+ return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>제2외국어 수업 | 영어·일본어·중국어 1:1 화상·전화 수업 - 은빛스터디</title>
+ <meta property="og:image" content="${bgImg("city",42)}"><meta name="description" content="은빛스터디 제2외국어 1:1 화상·전화 수업. 영어, 일본어, 중국어 회화를 맞춤 수업으로 배우세요. 무료 테스트 수업."><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">${COMMON_STYLE}</head><body>${NAV}
  <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
  <p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">제2외국어</span></p>
  <div style="display:inline-block;background:#C8A96E;color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">🌏 제2외국어</div>
@@ -5127,6 +5132,8 @@ function buildSubjectMainPage(){
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
  <title>과목별 수업 | 은빛스터디</title>
+ <meta name="description" content="초·중·고 전 과목 1:1 맞춤 과외. 국어, 수학, 영어, 과학, 사회, 코딩, 논술 등 전 과목 수업 안내.">
+ <meta property="og:image" content="${bgImg("school",7)}">
  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
  ${COMMON_STYLE}
  </head><body>
@@ -5174,7 +5181,7 @@ function buildSubjectPage(subSlug){
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
  <title>${s.name} 과외 | 은빛스터디</title>
- <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/banner1.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
+ <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${bgImg("school",cH(sKey))}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${s.name} 1:1 맞춤 과외. ${s.desc}">
  ${COMMON_STYLE}
  <style>.gt{transition:all .2s;}.gt:hover{transform:translateY(-2px);}@media(max-width:768px){.grade-tabs{flex-direction:column!important;}}</style>
