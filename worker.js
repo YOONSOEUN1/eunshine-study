@@ -5129,7 +5129,7 @@ async function handle(req) {
   return new Response(buildSubjectMainPage(), {headers:{"Content-Type":"text/html;charset=utf-8"}});
  }
  if (p.startsWith("/subject/")) {
-  const subSlug = p.split("/")[2];
+  let subSlug = p.split("/")[2];
   // 잘못된 URL 리다이렉트 (explore → exam)
   if (subSlug === "science-explore") subSlug = "science-exam";
   if (subSlug === "social-explore") subSlug = "social-exam";
