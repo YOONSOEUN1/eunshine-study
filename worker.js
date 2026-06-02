@@ -2766,6 +2766,7 @@ function buildGradePage(gradeCode) {
  </p>
  <div style="display:inline-block;background:${tc};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:14px;">${gd.emoji} ${gd.name}</div>
  <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${gd.name} 과외 | 맞춤 1:1 과외 안내</h1>
+ <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  </div>
  <div style="max-width:900px;margin:0 auto 36px;padding:0 20px;">
  <div style="position:relative;border-radius:20px;overflow:hidden;height:clamp(200px,30vw,320px);background:url('${bgImg("school",seed)}') center/cover no-repeat,linear-gradient(135deg,#1A2340,#2a3d6b);">
