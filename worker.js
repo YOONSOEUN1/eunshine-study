@@ -2422,11 +2422,16 @@ function buildSchoolListPage(rs, cs) {
  ${buildWhyBlock(`${fullRd} 학교별 과외`,tc,cH(rs+cs+'schoollist-why'))}
  </div>
 
- <!-- 학교 목록 -->
+ <!-- 학교 목록 (탭) -->
  <div style="max-width:1100px;margin:0 auto;padding:44px 16px 60px;">
- ${renderGroup("초등학교", "초", "#3498db", "#eaf4fd", elemList)}
- ${renderGroup("중학교", "중", "#2ecc71", "#e8f8f5", midList)}
- ${renderGroup("고등학교", "고", "#e74c3c", "#fdecea", highList)}
+ <div style="display:flex;gap:0;margin-bottom:24px;">
+  <button onclick="document.querySelectorAll('.sl-tab').forEach(t=>{t.style.background='#fff';t.style.color='#888';});this.style.background='#3498db';this.style.color='#fff';document.querySelectorAll('.sl-panel').forEach(p=>p.style.display='none');document.getElementById('sl-elem').style.display='block';" class="sl-tab" style="flex:1;padding:14px;border:none;border-radius:12px 0 0 12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;background:#3498db;color:#fff;">🏫 초등학교 <span style="font-size:12px;opacity:.8;">${elemList.length}개교</span></button>
+  <button onclick="document.querySelectorAll('.sl-tab').forEach(t=>{t.style.background='#fff';t.style.color='#888';});this.style.background='#2ecc71';this.style.color='#fff';document.querySelectorAll('.sl-panel').forEach(p=>p.style.display='none');document.getElementById('sl-mid').style.display='block';" class="sl-tab" style="flex:1;padding:14px;border:none;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;background:#fff;color:#888;border-top:1px solid #eee;border-bottom:1px solid #eee;">📘 중학교 <span style="font-size:12px;opacity:.8;">${midList.length}개교</span></button>
+  <button onclick="document.querySelectorAll('.sl-tab').forEach(t=>{t.style.background='#fff';t.style.color='#888';});this.style.background='#e74c3c';this.style.color='#fff';document.querySelectorAll('.sl-panel').forEach(p=>p.style.display='none');document.getElementById('sl-high').style.display='block';" class="sl-tab" style="flex:1;padding:14px;border:none;border-radius:0 12px 12px 0;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;background:#fff;color:#888;border-top:1px solid #eee;border-bottom:1px solid #eee;border-right:1px solid #eee;">🎓 고등학교 <span style="font-size:12px;opacity:.8;">${highList.length}개교</span></button>
+ </div>
+ <div id="sl-elem" class="sl-panel" style="display:block;">${renderGroup("초등학교", "초", "#3498db", "#eaf4fd", elemList)}</div>
+ <div id="sl-mid" class="sl-panel" style="display:none;">${renderGroup("중학교", "중", "#2ecc71", "#e8f8f5", midList)}</div>
+ <div id="sl-high" class="sl-panel" style="display:none;">${renderGroup("고등학교", "고", "#e74c3c", "#fdecea", highList)}</div>
  </div>${CONTACT}${FOOTER}${FLOATING}</body></html>`;
 }
 
