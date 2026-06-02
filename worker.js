@@ -1739,29 +1739,34 @@ function buildCityPage(rs, cs) {
 
  // ── 과목 카드
  let subjectCards = "";
+ let tabContents = {};
  for (const g of grades) {
- subjectCards += `
- <div style="margin-bottom:32px;">
- <h3 style="font-size:17px;font-weight:800;color:${gc[g]};border-left:5px solid ${gc[g]};padding-left:12px;margin:0 0 14px;">
- ${g==="초등"?"🌱":g==="중등"?"📘":"🔥"} ${g} ${kn} 과외 과목
- </h3>
- <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">`;
- for (const c of ci.classes) {
- if (c.grade!==g) continue;
- subjectCards += `
- <a href="/${rs}/${cs}/${encodeURIComponent(g)}/${encodeURIComponent(c.subject)}" style="text-decoration:none;">
- <div style="background:white;border:2px solid ${gc[g]};border-radius:14px;padding:16px;height:100%;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;"
- onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 20px rgba(0,0,0,0.1)'"
- onmouseout="this.style.transform='';this.style.boxShadow=''">
- <div style="background:${gcBg[g]};color:${gc[g]};font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;margin-bottom:8px;display:inline-block;">${g}</div>
- <div style="font-size:14px;font-weight:900;color:#1A2340;margin-bottom:6px;">${c.title}</div>
- <div style="font-size:12px;color:#666;line-height:1.6;flex:1;">${c.desc.substring(0,55)}...</div>
- <div style="margin-top:10px;color:${gc[g]};font-weight:700;font-size:11px;">자세히 보기 →</div>
+  let cards = "";
+  for (const c of ci.classes) {
+   if (c.grade!==g) continue;
+   cards += `
+   <a href="/${rs}/${cs}/${encodeURIComponent(g)}/${encodeURIComponent(c.subject)}" style="text-decoration:none;">
+   <div style="background:white;border:2px solid ${gc[g]};border-radius:14px;padding:16px;height:100%;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;"
+   onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 20px rgba(0,0,0,0.1)'"
+   onmouseout="this.style.transform='';this.style.boxShadow=''">
+   <div style="background:${gcBg[g]};color:${gc[g]};font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;margin-bottom:8px;display:inline-block;">${g}</div>
+   <div style="font-size:14px;font-weight:900;color:#1A2340;margin-bottom:6px;">${c.title}</div>
+   <div style="font-size:12px;color:#666;line-height:1.6;flex:1;">${c.desc.substring(0,55)}...</div>
+   <div style="margin-top:10px;color:${gc[g]};font-weight:700;font-size:11px;">자세히 보기 →</div>
+   </div>
+   </a>`;
+  }
+  tabContents[g] = cards;
+ }
+ subjectCards = `
+ <div style="display:flex;gap:0;margin-bottom:20px;">
+  <button onclick="document.querySelectorAll('.cg-tab').forEach(t=>{t.style.background='#fff';t.style.color='#888';});this.style.background='#3498db';this.style.color='#fff';document.querySelectorAll('.cg-panel').forEach(p=>p.style.display='none');document.getElementById('cg-elem').style.display='grid';" class="cg-tab" style="flex:1;padding:12px;border:none;border-radius:12px 0 0 12px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;background:#3498db;color:#fff;">🌱 초등</button>
+  <button onclick="document.querySelectorAll('.cg-tab').forEach(t=>{t.style.background='#fff';t.style.color='#888';});this.style.background='#2ecc71';this.style.color='#fff';document.querySelectorAll('.cg-panel').forEach(p=>p.style.display='none');document.getElementById('cg-mid').style.display='grid';" class="cg-tab" style="flex:1;padding:12px;border:none;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;background:#fff;color:#888;border-top:1px solid #eee;border-bottom:1px solid #eee;">📘 중등</button>
+  <button onclick="document.querySelectorAll('.cg-tab').forEach(t=>{t.style.background='#fff';t.style.color='#888';});this.style.background='#e74c3c';this.style.color='#fff';document.querySelectorAll('.cg-panel').forEach(p=>p.style.display='none');document.getElementById('cg-high').style.display='grid';" class="cg-tab" style="flex:1;padding:12px;border:none;border-radius:0 12px 12px 0;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;background:#fff;color:#888;border-top:1px solid #eee;border-bottom:1px solid #eee;border-right:1px solid #eee;">🔥 고등</button>
  </div>
- </a>`;
- }
- subjectCards += `</div></div>`;
- }
+ <div id="cg-elem" class="cg-panel" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">${tabContents["초등"]}</div>
+ <div id="cg-mid" class="cg-panel" style="display:none;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">${tabContents["중등"]}</div>
+ <div id="cg-high" class="cg-panel" style="display:none;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">${tabContents["고등"]}</div>`;
 
  // ── 추가 교육 칼럼 (2000자+) ──
  const cSeed = cH(rs+cs);
@@ -1828,17 +1833,6 @@ function buildCityPage(rs, cs) {
  <!-- 지역 소개 + 특징 (공용 헬퍼) -->
  ${buildWhyBlock(`${fullRd} 과외`,tc,cH(rs+cs+'why'))}
 
- <!-- 주요 학교 -->
- <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
- <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:6px;">⭐ ${rd} 주요 학교</h2>
- <p style="font-size:13px;color:#888;margin-bottom:16px;">아래 학교 재학생 내신 기출 분석 및 맞춤 수업이 가능합니다.</p>
- ${highTags ? `<div style="margin-bottom:12px;display:flex;align-items:center;flex-wrap:wrap;gap:4px;"><span style="font-size:13px;font-weight:700;color:#e74c3c;margin-right:6px;white-space:nowrap;">고등학교</span>${highTags}</div>` : ""}
- ${midTags ? `<div style="margin-bottom:12px;display:flex;align-items:center;flex-wrap:wrap;gap:4px;"><span style="font-size:13px;font-weight:700;color:#27ae60;margin-right:6px;white-space:nowrap;">중학교</span>${midTags}</div>` : ""}
- <div style="margin-top:14px;background:#f8faff;border-radius:12px;padding:14px 18px;font-size:13px;color:#555;line-height:1.8;">
- 💡 위 학교 외에도 ${rd} 내 모든 학교 재학생 수업이 가능합니다. 상담 시 학교명을 알려주시면 해당 기출 자료를 준비해 드립니다.
- </div>
- </div>
-
  <!-- 공부법 (풀 기반) -->
  ${buildStudyBlock(`${fullRd} 과외`,tc,cH(rs+cs+'study'))}
 
@@ -1863,8 +1857,8 @@ function buildCityPage(rs, cs) {
  onmouseover="this.style.transform='translateY(-3px)'"
  onmouseout="this.style.transform=''">
  <div>
- <div style="font-size:22px;font-weight:900;margin-bottom:6px;">⭐ ${kn} 학교별 과외</div>
- <div style="font-size:14px;opacity:.9;">${kn} 지역 초·중·고 ${(ci.schools||[]).length}개 학교별 맞춤 1:1 과외 →</div>
+ <div style="font-size:22px;font-weight:900;margin-bottom:6px;">🏫 ${fullRd} 학교별 과외</div>
+ <div style="font-size:14px;opacity:.9;">클릭하면 ${fullRd} 초·중·고 ${(ci.schools||[]).length}개 학교별 홈페이지를 확인 할 수 있습니다.</div>
  </div>
  <div style="font-size:32px;">→</div>
  </div>
@@ -4924,7 +4918,8 @@ function buildLangPage(slug){
  var subLinksHtml=subLinks.map(function(s){return '<a href="/language/'+slug+'/'+s.slug+'" class="topic-card"><div class="topic-icon">'+s.icon+'</div><div class="topic-info"><div class="topic-title">'+s.t+'</div><div class="topic-desc">'+s.desc+'</div></div><span class="topic-arrow">›</span></a>';}).join('');
  var others=Object.keys(LANG_DATA).filter(function(k){return k!==slug;}).map(function(k){var o=LANG_DATA[k];return '<a href="/language/'+k+'" style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:16px;padding:20px 24px;text-decoration:none;border:2px solid #e5e7eb;transition:all .25s;flex:1;min-width:200px;" onmouseover="this.style.borderColor=\''+o.clr+'\';this.style.transform=\'translateY(-3px)\';this.style.boxShadow=\'0 8px 24px rgba(0,0,0,0.1)\'" onmouseout="this.style.borderColor=\'#e5e7eb\';this.style.transform=\'\';this.style.boxShadow=\'\'"><span style="font-size:36px;">'+o.flag+'</span><div><div style="font-size:16px;font-weight:800;color:#1A2340;">'+o.n+'</div><div style="font-size:13px;color:#888;margin-top:2px;">자세히 보기 →</div></div></a>';}).join('');
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>${d.n} | ${d.sub} - 은빛스터디</title>
- <meta property="og:image" content="https://images.unsplash.com/photo-${d.bg}?w=1200&q=80"><meta name="description" content="은빛스터디 ${d.n} 1:1 화상·전화 수업. ${d.sub}. 무료 테스트 수업으로 시작하세요."><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">${COMMON_STYLE}<style></style></head><body>${NAV}
+ <meta property="og:image" content="https://images.unsplash.com/photo-${d.bg}?w=1200&q=80">
+ <meta property="article:modified_time" content="${getUpdateDateISO()}"><meta name="description" content="은빛스터디 ${d.n} 1:1 화상·전화 수업. ${d.sub}. 무료 테스트 수업으로 시작하세요."><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">${COMMON_STYLE}<style></style></head><body>${NAV}
 <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
  <p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <a href="/language" style="color:#888;text-decoration:none;">제2외국어</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">${d.n}</span></p>
  <div style="display:inline-block;background:${d.clr};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">${d.emoji} ${d.n}</div>
