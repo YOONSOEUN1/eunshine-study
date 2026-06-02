@@ -2766,8 +2766,6 @@ function buildGradePage(gradeCode) {
  </p>
  <div style="display:inline-block;background:${tc};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:14px;">${gd.emoji} ${gd.name}</div>
  <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${gd.name} 과외 | 맞춤 1:1 과외 안내</h1>
- <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
- <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${gd.name} 맞춤 1:1 과외. 학교별 내신 완벽 대비. 방문/화상 모두 가능하며, 첫 상담과 체험 수업은 완전 무료입니다.</p>
  </div>
  <div style="max-width:900px;margin:0 auto 36px;padding:0 20px;">
  <div style="position:relative;border-radius:20px;overflow:hidden;height:clamp(200px,30vw,320px);background:url('${bgImg("school",seed)}') center/cover no-repeat,linear-gradient(135deg,#1A2340,#2a3d6b);">
@@ -2783,15 +2781,14 @@ function buildGradePage(gradeCode) {
  </div>
  </div>
  <div style="max-width:900px;margin:0 auto;padding:0 20px;">
+ <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
+ <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:16px;">📌 ${gd.name} 과외가 필요한 이유</h2>
+ <p style="font-size:14px;color:#444;line-height:2;margin:0;">${gd.desc}</p>
+ </div>
  ${buildWhyBlock(`${gd.name} 과외`,tc,cH('grade-'+gradeCode+'-why'))}
  ${buildStudyBlock(`${gd.name} 과외`,tc,cH('grade-'+gradeCode+'-study'))}
  <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
  ${buildTutorBlock(`${gd.name} 과외`,tc,cH('grade-'+gradeCode+'-tutor'))}
- </div>
- <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
- <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:16px;">⭐ ${gd.name} 과외 개요</h2>
- <p style="font-size:14px;color:#444;line-height:2;margin:0;">${gd.desc}</p>
-  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  </div>
  <div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
  <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:18px;">📚 ${gd.name} 과목별 과외</h2>
