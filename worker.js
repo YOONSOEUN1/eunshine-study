@@ -1270,7 +1270,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:99999;background:rgba(255,255,25
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <nav>
-<a href="/" class="nav-logo">🌟 <span class="accent">은빛</span>스터디</a>
+<a href="/" class="nav-logo"><img src="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png" alt="은빛스터디" style="width:28px;height:28px;object-fit:contain;"> <span class="accent">은빛</span> 스터디</a>
 <button id="navToggle" onclick="var m=document.getElementById('navMenu');m.classList.toggle('open');this.innerHTML=m.classList.contains('open')?'✕':'☰';">☰</button>
 <div class="nav-links" id="navMenu">
 <div class="nrw"><a href="#" class="nrb" onclick="event.preventDefault();var p=document.getElementById('ddF');p.style.display=p.style.display==='block'?'none':'block';">과외찾기 <span class="nra">▾</span></a><div class="nrd" id="ddF" style="width:420px;"><div style="display:flex;gap:8px;margin-bottom:12px;"><button class="ddt" onclick="switchDD(0)" style="flex:1;padding:8px;border-radius:8px;border:1.5px solid #E2E8F0;background:#1A2340;color:#fff;font-size:0.8rem;font-weight:700;cursor:pointer;font-family:inherit;">📍 지역별</button><button class="ddt" onclick="switchDD(1)" style="flex:1;padding:8px;border-radius:8px;border:1.5px solid #E2E8F0;background:#fff;color:#334155;font-size:0.8rem;font-weight:700;cursor:pointer;font-family:inherit;">🎓 학년별</button><button class="ddt" onclick="switchDD(2)" style="flex:1;padding:8px;border-radius:8px;border:1.5px solid #E2E8F0;background:#fff;color:#334155;font-size:0.8rem;font-weight:700;cursor:pointer;font-family:inherit;">🏫 학교별</button></div><div id="ddC0" style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;"><a href="/seoul">📍 서울</a><a href="/gyeonggi">🌳 경기</a><a href="/incheon">🌊 인천</a><a href="/busan">🐟 부산</a><a href="/daegu">🍎 대구</a><a href="/daejeon">🌲 대전</a><a href="/gwangju">🌺 광주</a><a href="/ulsan">⚙ 울산</a><a href="/sejong">🏛 세종</a><a href="/gangwon">🏔 강원</a><a href="/chungbuk">🌾 충북</a><a href="/chungnam">🌊 충남</a><a href="/jeonbuk">🌿 전북</a><a href="/jeonnam">🍃 전남</a><a href="/gyeongbuk">🍎 경북</a><a href="/gyeongnam">🌊 경남</a><a href="/jeju">🌸 제주</a></div><div id="ddC1" style="display:none;"><div style="font-size:0.72rem;font-weight:700;color:#C8A96E;margin-bottom:6px;">🌱 초등학생</div><div style="display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-bottom:10px;"><a href="/grade/elem1">초1</a><a href="/grade/elem2">초2</a><a href="/grade/elem3">초3</a><a href="/grade/elem4">초4</a><a href="/grade/elem5">초5</a><a href="/grade/elem6">초6</a></div><div style="font-size:0.72rem;font-weight:700;color:#C8A96E;margin-bottom:6px;">📘 중학생</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:10px;"><a href="/grade/mid1">중1</a><a href="/grade/mid2">중2</a><a href="/grade/mid3">중3</a></div><div style="font-size:0.72rem;font-weight:700;color:#C8A96E;margin-bottom:6px;">📕 고등학생</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:8px;"><a href="/grade/high1">고1</a><a href="/grade/high2">고2</a><a href="/grade/high3">고3</a></div><div><a href="/grade/nsu" style="border-color:#e74c3c;color:#e74c3c;">🔥 재수생</a></div></div><div id="ddC2" style="display:none;grid-template-columns:repeat(4,1fr);gap:4px;"><a href="/schools/seoul">📍 서울</a><a href="/schools/gyeonggi">🌳 경기</a><a href="/schools/incheon">🌊 인천</a><a href="/schools/busan">🐟 부산</a><a href="/schools/daegu">🍎 대구</a><a href="/schools/daejeon">🌲 대전</a><a href="/schools/gwangju">🌺 광주</a><a href="/schools/ulsan">⚙ 울산</a><a href="/schools/sejong">🏛 세종</a><a href="/schools/gangwon">🏔 강원</a><a href="/schools/chungbuk">🌾 충북</a><a href="/schools/chungnam">🌊 충남</a><a href="/schools/jeonbuk">🌿 전북</a><a href="/schools/jeonnam">🍃 전남</a><a href="/schools/gyeongbuk">🍎 경북</a><a href="/schools/gyeongnam">🌊 경남</a><a href="/schools/jeju">🌸 제주</a></div></div></div>
@@ -2175,6 +2175,29 @@ function buildDongDetailPage(rs, cs, dong, grade, subject) {
  </div>${CONTACT}${FOOTER}${FLOATING}</body></html>`;
 }
 
+function buildSchoolDetailPage(rs, cs, schoolShort, grade, subject) {
+ const ci = (eduData[rs]||{})[cs];
+ if (!ci) return null;
+ if (!(ci.schools||[]).includes(schoolShort)) return null;
+ const schoolFull = expandSchoolName(schoolShort);
+ const ri = locations[rs]||{};
+ const fullRd = fullCityName(rs, ci.region_display);
+ // 기존 buildDetailPage를 호출하고 학교 컨텍스트로 변환
+ let html = buildDetailPage(rs, cs, grade, subject);
+ if (!html) return null;
+ // 타이틀, H1, 메타 디스크립션 등에 학교명 삽입
+ const oldTitle = fullRd+' '+grade+' '+subject+'과외';
+ const newTitle = schoolFull+' '+grade+' '+subject+'과외';
+ // 모든 fullRd+grade+subject 조합을 schoolFull로 교체
+ html = html.split(oldTitle).join(newTitle);
+ // 브레드크럼에 학교 추가
+ html = html.replace(
+  '<p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <a href="/'+rs+'/'+cs+'" style="color:#888;text-decoration:none;">'+fullRd+'</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">'+grade+' '+subject+'</span></p>',
+  '<p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <a href="/'+rs+'/'+cs+'/schools" style="color:#888;text-decoration:none;">학교별 과외</a> &rsaquo; <a href="/'+rs+'/'+cs+'/school/'+encodeURIComponent(schoolShort)+'" style="color:#888;text-decoration:none;">'+schoolFull+'</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">'+grade+' '+subject+'</span></p>'
+ );
+ return html;
+}
+
 function buildDetailPage(rs, cs, grade, subject) {
  const ci = (eduData[rs]||{})[cs];
  if (!ci) return null;
@@ -2586,7 +2609,7 @@ function buildSchoolPage(rs, cs, schoolShort) {
  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">`;
  for (const c of ci.classes) {
  if (c.grade !== g) continue;
- subjectCards += `<a href="/${rs}/${cs}/${encodeURIComponent(g)}/${encodeURIComponent(c.subject)}" style="text-decoration:none;">
+ subjectCards += `<a href="/${rs}/${cs}/school/${encodeURIComponent(schoolShort)}/${encodeURIComponent(g)}/${encodeURIComponent(c.subject)}" style="text-decoration:none;">
  <div style="background:white;border:2px solid ${gc[g]};border-radius:14px;padding:16px;height:100%;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;"
  onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 20px rgba(0,0,0,0.1)'"
  onmouseout="this.style.transform='';this.style.boxShadow=''">
@@ -5586,6 +5609,14 @@ if (p.startsWith("/sitemap-") && p.endsWith(".xml")) {
  if (parts.length===4 && parts[2]==="school") {
  const school = decodeURIComponent(parts[3]);
  const html = buildSchoolPage(parts[0], decodeURIComponent(parts[1]), school);
+ if(!html) return new Response(NOT_FOUND_HTML,{status:404,headers:{"Content-Type":"text/html;charset=utf-8"}});
+ return new Response(html,{headers:H});
+ }
+ if (parts.length===6 && parts[2]==="school") {
+ const school = decodeURIComponent(parts[3]);
+ const grade = decodeURIComponent(parts[4]);
+ const subject = decodeURIComponent(parts[5]);
+ const html = buildSchoolDetailPage(parts[0], decodeURIComponent(parts[1]), school, grade, subject);
  if(!html) return new Response(NOT_FOUND_HTML,{status:404,headers:{"Content-Type":"text/html;charset=utf-8"}});
  return new Response(html,{headers:H});
  }
