@@ -2819,7 +2819,7 @@ function buildGradePage(gradeCode) {
  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">
  ${subjects.map(function(s){
  const subjEmoji={"국어":"📖","영어":"🔤","수학":"🔢","사회":"🌍","과학":"🔬"};
- const subjDesc = (descriptions[gd.level]||descriptions["초등"])[s]||"";
+ const subjDesc = ((descriptions[gd.level]||descriptions["초등"])[s]||"").replace(/\{region\}/g,"");
  return '<a href="/grade/'+gradeCode+'/'+encodeURIComponent(s)+'" style="text-decoration:none;"><div style="background:white;border:2px solid '+tc+';border-radius:14px;padding:16px;height:100%;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform=\'translateY(-4px)\';this.style.boxShadow=\'0 8px 20px rgba(0,0,0,0.1)\'" onmouseout="this.style.transform=\'\';this.style.boxShadow=\'\'"><div style="font-size:24px;margin-bottom:8px;">'+(subjEmoji[s]||"📚")+'</div><div style="font-size:15px;font-weight:900;color:#1A2340;margin-bottom:6px;">'+gd.name+' '+s+'과외</div><div style="font-size:12px;color:#666;line-height:1.6;flex:1;">'+subjDesc.replace(/\{\{region\}\}/g,"").substring(0,55)+'...</div><div style="margin-top:10px;color:'+tc+';font-weight:700;font-size:11px;">자세히 보기 →</div></div></a>';
  }).join("")}
  </div>
@@ -2843,7 +2843,7 @@ function buildGradeSubjectPage(gradeCode, subject) {
  const tc = gd.color;
  const level = gd.level;
  const seed = cH("gradeSubj|"+gradeCode+"|"+subject);
- const subjDesc = ((descriptions[level]||descriptions["초등"])[subject]||"").replace(/\{\{region\}\}/g, "");
+ const subjDesc = ((descriptions[level]||descriptions["초등"])[subject]||"").replace(/\{region\}/g, gd.name);
  var tipPool = TIP_SUBJ;
  if(level==="초등") tipPool = TIP_SUBJ_ELEM;
  else if(level==="중등") tipPool = TIP_SUBJ_MID;
