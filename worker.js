@@ -2182,21 +2182,139 @@ function buildSchoolDetailPage(rs, cs, schoolShort, grade, subject) {
  const schoolFull = expandSchoolName(schoolShort);
  const ri = locations[rs]||{};
  const fullRd = fullCityName(rs, ci.region_display);
- // 기존 buildDetailPage를 호출하고 학교 컨텍스트로 변환
  let html = buildDetailPage(rs, cs, grade, subject);
  if (!html) return null;
- // 타이틀, H1, 메타 디스크립션 등에 학교명 삽입
  const oldTitle = fullRd+' '+grade+' '+subject+'과외';
  const newTitle = schoolFull+' '+grade+' '+subject+'과외';
- // 모든 fullRd+grade+subject 조합을 schoolFull로 교체
  html = html.split(oldTitle).join(newTitle);
- // 브레드크럼에 학교 추가
  html = html.replace(
   '<p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <a href="/'+rs+'/'+cs+'" style="color:#888;text-decoration:none;">'+fullRd+'</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">'+grade+' '+subject+'</span></p>',
   '<p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <a href="/'+rs+'/'+cs+'/schools" style="color:#888;text-decoration:none;">학교별 과외</a> &rsaquo; <a href="/'+rs+'/'+cs+'/school/'+encodeURIComponent(schoolShort)+'" style="color:#888;text-decoration:none;">'+schoolFull+'</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">'+grade+' '+subject+'</span></p>'
  );
+
+ // === 학교별 고유 콘텐츠 (시드 기반 변형) ===
+ const seed = cH(rs+cs+schoolShort+grade+subject);
+ const sn = schoolFull;
+ const sg = sn+' '+grade+' '+subject;
+
+ // 풀 1: 학교별 접근법 (15개 중 3개 선택)
+ const approachPool = [
+  sn+' 학생들의 교과 진도에 맞춘 실시간 맞춤 커리큘럼을 설계합니다.',
+  sn+'의 최근 시험 출제 패턴을 분석해 우선순위 단원부터 집중 공략합니다.',
+  sn+' 재학생 다수를 지도한 경험을 바탕으로 학교 특성을 반영합니다.',
+  sn+'의 학사 일정과 평가 방식을 고려한 진도 계획을 함께 짭니다.',
+  sn+' 학생들이 자주 어려워하는 단원을 미리 파악해 선행 학습을 진행합니다.',
+  sn+' 시험에서 변별력 있는 문항 유형을 집중 분석해 대비합니다.',
+  sn+' 교사진의 출제 스타일을 분석해 시험 대비 전략을 수립합니다.',
+  sn+'의 교과서 외 참고 자료까지 분석해 맞춤 학습 자료를 제공합니다.',
+  sn+' 학생 성취도 데이터를 기반으로 학생 개인별 학습 로드맵을 만듭니다.',
+  sn+'의 학년별 교과 흐름을 고려해 단원 간 연계 학습을 강화합니다.',
+  sn+' 특유의 시험 난이도에 맞춘 단계별 문제 풀이를 진행합니다.',
+  sn+' 정기고사 출제 비중이 높은 단원에 학습 시간을 우선 배분합니다.',
+  sn+' 학생들의 평균 학업 수준을 고려한 적정 난이도 수업을 운영합니다.',
+  sn+'의 학교 특성 (자율형/특목/일반)을 반영한 맞춤 전략을 적용합니다.',
+  sn+'의 진학 실적과 진로 흐름을 고려한 장기 학습 계획을 함께 설계합니다.'
+ ];
+
+ // 풀 2: 학교별 혜택 (15개 중 3개 선택)
+ const benefitPool = [
+  sn+' 시험에 자주 출제되는 유형을 집중 훈련합니다.',
+  sn+' 내신 등급 상승을 위한 단계별 학습 플랜을 제공합니다.',
+  sn+' 출제 경향을 반영한 예상 문제로 실전 감각을 키웁니다.',
+  sn+' 학생 수준에 맞춰 난이도를 유연하게 조절합니다.',
+  sn+'의 평가 기준에 맞춘 서술형·논술형 대비를 진행합니다.',
+  sn+' 진도와 동기화된 주간 학습 계획을 함께 운영합니다.',
+  sn+' 시험 2~3주 전부터 집중 대비 모드로 전환합니다.',
+  sn+' 학생만의 오답 노트를 만들어 약점을 체계적으로 보완합니다.',
+  sn+' 시험 직후 분석 리포트를 통해 다음 시험을 더 잘 대비합니다.',
+  sn+' 학생들이 자주 놓치는 함정 문제 패턴을 미리 학습합니다.',
+  sn+' 교내 수행평가까지 함께 챙겨드립니다.',
+  sn+' 학생들이 가장 어려워하는 단원을 반복 학습으로 완벽 정복합니다.',
+  sn+' 시험 직전 핵심 요약 자료를 제공해 마무리 학습을 돕습니다.',
+  sn+' 학생의 학습 패턴을 분석해 가장 효율적인 공부법을 찾아드립니다.',
+  sn+'의 시험 출제 빈도 TOP 단원을 우선 마스터합니다.'
+ ];
+
+ // 풀 3: 학교별 시험 대비 포인트 (10개 중 3개 선택)
+ const examPool = [
+  sn+' 정기고사는 객관식과 서술형 비율이 일정하게 유지되므로, 두 유형 모두 균형 있게 훈련합니다.',
+  sn+'의 시험은 교과서 본문과 응용 문제 모두 출제되므로 기본기와 심화 학습을 병행합니다.',
+  sn+' 시험 문항은 단원 통합형이 많아 단원 간 연결 학습이 핵심입니다.',
+  sn+'의 출제 경향상 핵심 개념 + 자료 해석 능력이 동시에 요구됩니다.',
+  sn+' 시험은 시간 관리가 중요하므로 실전 모의고사로 시간 배분을 훈련합니다.',
+  sn+' 정기고사에서 자주 등장하는 함정 유형을 사전에 학습합니다.',
+  sn+'의 시험은 단순 암기보다 응용력을 평가하는 문제 비중이 높습니다.',
+  sn+' 학년 평균을 분석해 학생의 현재 위치와 목표를 명확히 설정합니다.',
+  sn+'의 출제 패턴을 분석한 결과, 변별력 문항은 특정 단원에 집중됩니다.',
+  sn+' 시험은 수행평가 비중도 크므로 평소 학습 태도까지 관리합니다.'
+ ];
+
+ // 풀 4: 학교별 FAQ (10개 중 3개 선택)
+ const schoolFaqPool = [
+  {q:sn+' 학생인데 이번 시험을 망쳤어요. 다음 시험까지 시간이 부족할까요?',a:sn+' 시험 일정을 기준으로 역산해 학습 계획을 짭니다. 우선순위 단원부터 빠르게 잡으면 한 번의 시험으로도 의미 있는 변화가 가능합니다.'},
+  {q:sn+'의 시험은 다른 학교보다 어렵나요?',a:sn+'의 시험은 출제 경향이 일정해서 패턴을 파악하면 충분히 대비 가능합니다. 변별력 있는 문항도 단원이 한정되어 있어 집중 학습으로 극복할 수 있습니다.'},
+  {q:sn+' 학생 전용 자료가 있나요?',a:'네, '+sn+' 재학생 다수를 지도한 경험을 바탕으로 만든 학교 특화 자료를 활용합니다. 첫 상담 시 학교명을 알려주시면 준비해 드립니다.'},
+  {q:'다른 학원에서 '+sn+' 학생 전용반에 들어가지 못했어요. 가능할까요?',a:'1:1 과외는 인원 제한이 없으므로 언제든 시작 가능합니다. '+sn+' 학생 맞춤 커리큘럼을 별도로 설계해 드립니다.'},
+  {q:sn+' 학생 평균이 어느 정도인가요?',a:sn+'의 학년 평균 데이터를 참고해 학생의 현재 위치를 분석합니다. 목표 등급에 도달하기 위한 구체적 학습량을 산출해 드립니다.'},
+  {q:sn+'의 수행평가도 도와주시나요?',a:'네, 정기고사뿐 아니라 '+sn+'의 수행평가까지 함께 챙깁니다. 발표 준비, 보고서 작성, 프로젝트 과제 등 수행평가 유형에 맞춰 체계적으로 도와드립니다.'},
+  {q:sn+' 학년이 올라가면서 성적이 떨어졌어요. 회복이 가능할까요?',a:sn+'의 학년별 난이도 변화를 분석해 학생이 어느 단원에서 막혔는지 정확히 진단합니다. 빈틈을 메우면 학년이 올라가도 흔들리지 않는 실력을 만들 수 있습니다.'},
+  {q:sn+'의 시험 범위가 너무 넓어요. 어디부터 시작해야 할까요?',a:sn+' 시험 출제 빈도가 높은 단원부터 우선 학습합니다. 시험 범위 전체를 같은 비중으로 공부하기보다 우선순위를 정해 효율적으로 대비합니다.'},
+  {q:sn+' 학생인데 학원 수업과 병행해도 되나요?',a:'네, 학원에서 부족한 부분을 '+sn+' 1:1 과외로 보완할 수 있습니다. 학원 진도와 충돌하지 않도록 커리큘럼을 조정해 드립니다.'},
+  {q:sn+'의 진로/진학 상담도 가능한가요?',a:sn+'의 진학 실적을 분석해 학생의 목표 대학·학과에 맞는 학습 전략을 함께 세웁니다. 단순 과외를 넘어 진로 멘토링까지 제공합니다.'}
+ ];
+
+ // 풀 5: 학교 학습 로드맵 (10개 중 4개 선택)
+ const roadmapPool = [
+  '1주차: '+sn+' '+grade+' '+subject+' 현재 수준 진단 및 약점 분석',
+  '2주차: '+sn+' 시험 출제 빈도 TOP 단원 집중 학습',
+  '3주차: '+sn+' 교과서 본문 + 응용 문제 통합 학습',
+  '4주차: '+sn+' 서술형·수행평가 대비 훈련',
+  '5주차: '+sn+' 기출 문제 풀이 및 오답 분석',
+  '6주차: '+sn+' 시험 직전 핵심 요약 + 실전 모의고사',
+  '7주차: '+sn+' 시험 후 결과 분석 및 다음 시험 계획 수립',
+  '8주차: '+sn+' 학년 진도 선행 및 심화 학습',
+  '9주차: '+sn+' 취약 단원 재학습 및 보완',
+  '10주차: '+sn+' 종합 정리 및 자체 평가'
+ ];
+
+ // 시드 기반 선택
+ const pick = (pool, count, offset) => {
+  const result = [];
+  const used = new Set();
+  for (let i = 0; i < count; i++) {
+   let idx = (seed + offset + i * 7) % pool.length;
+   while (used.has(idx)) idx = (idx + 1) % pool.length;
+   used.add(idx);
+   result.push(pool[idx]);
+  }
+  return result;
+ };
+
+ const approaches = pick(approachPool, 3, 0);
+ const benefits = pick(benefitPool, 3, 5);
+ const exams = pick(examPool, 3, 10);
+ const faqs = pick(schoolFaqPool, 3, 15);
+ const roadmap = pick(roadmapPool, 4, 20);
+
+ // 섹션 1: 학교 맞춤 전략 (확장)
+ const sec1 = '<div style="max-width:900px;margin:0 auto 24px;padding:0 20px;"><div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);"><h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid #C8A96E;padding-left:14px;margin-bottom:18px;">🏫 '+sn+' 학생을 위한 맞춤 전략</h2><p style="font-size:14px;color:#444;line-height:2;margin-bottom:18px;"><strong style="color:#C8A96E;">'+sg+' 과외</strong>는 동일 진도 수업과 다릅니다. '+approaches[0]+' 또한 '+approaches[1]+' 마지막으로 '+approaches[2]+'</p><div style="background:#f8faff;border-radius:12px;padding:18px 22px;"><div style="font-size:13px;font-weight:800;color:#1A2340;margin-bottom:10px;">📚 '+sn+' 학생 전용 학습 포인트</div><ul style="margin:0;padding-left:20px;font-size:13px;color:#555;line-height:2;"><li>'+benefits[0]+'</li><li>'+benefits[1]+'</li><li>'+benefits[2]+'</li></ul></div></div></div>';
+
+ // 섹션 2: 학교 내신 시험 대비
+ const sec2 = '<div style="max-width:900px;margin:0 auto 24px;padding:0 20px;"><div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);"><h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid #e74c3c;padding-left:14px;margin-bottom:18px;">📝 '+sn+' '+subject+' 시험 대비 가이드</h2><p style="font-size:14px;color:#444;line-height:2;margin-bottom:16px;">'+sn+' '+grade+' '+subject+' 정기고사는 단순한 교과서 학습으로는 부족합니다. '+exams[0]+'</p><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:16px;"><div style="border:1px solid #fde2e2;border-radius:12px;padding:16px;background:#fff5f5;"><div style="font-weight:800;color:#e74c3c;margin-bottom:8px;font-size:13px;">🎯 핵심 포인트 1</div><div style="font-size:12px;color:#555;line-height:1.8;">'+exams[1]+'</div></div><div style="border:1px solid #fde2e2;border-radius:12px;padding:16px;background:#fff5f5;"><div style="font-weight:800;color:#e74c3c;margin-bottom:8px;font-size:13px;">🎯 핵심 포인트 2</div><div style="font-size:12px;color:#555;line-height:1.8;">'+exams[2]+'</div></div></div></div></div>';
+
+ // 섹션 3: 학교 학습 로드맵
+ const sec3 = '<div style="max-width:900px;margin:0 auto 24px;padding:0 20px;"><div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);"><h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid #3498db;padding-left:14px;margin-bottom:18px;">🗓️ '+sn+' '+grade+' '+subject+' 10주 로드맵</h2><p style="font-size:13px;color:#666;margin-bottom:16px;">'+sn+' 시험 일정 기준으로 설계된 단계별 학습 플랜입니다.</p><div style="display:flex;flex-direction:column;gap:8px;">'+roadmap.map((step,i)=>'<div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;background:#f8faff;border-radius:10px;border-left:3px solid #3498db;"><span style="background:#3498db;color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;">'+(i+1)+'</span><span style="font-size:13px;color:#1A2340;line-height:1.7;">'+step+'</span></div>').join('')+'</div></div></div>';
+
+ // 섹션 4: 학교 학생 자주 묻는 질문
+ const sec4 = '<div style="max-width:900px;margin:0 auto 24px;padding:0 20px;"><div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);"><h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid #2ecc71;padding-left:14px;margin-bottom:18px;">❓ '+sn+' 학부모님이 자주 묻는 질문</h2>'+faqs.map(f=>'<div style="margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #eef2f7;"><div style="font-weight:800;color:#1A2340;margin-bottom:8px;font-size:14px;">Q. '+f.q+'</div><div style="font-size:13px;color:#555;line-height:2;">A. '+f.a+'</div></div>').join('')+'</div></div>';
+
+ // 모든 섹션 결합
+ const allSections = sec1 + sec2 + sec3 + sec4;
+ html = html.replace('<section id="form"', allSections+'<section id="form"');
  return html;
 }
+
+
 
 function buildDetailPage(rs, cs, grade, subject) {
  const ci = (eduData[rs]||{})[cs];
@@ -4715,8 +4833,18 @@ card.style.display=(!q||text.indexOf(q)>=0)?'':'none';
 
 function buildAllSiteUrls() {
  const base = "https://" + SITE_HOST;
- const urls = [base + "/", base + "/directory", base + "/schools", base + "/academy"];
+ const urls = [base + "/", base + "/directory", base + "/schools", base + "/academy", base + "/subject", base + "/language"];
+ // 과목별 페이지
+ for (const k of SUBJECT_LIST) {
+ urls.push(base + "/subject/" + SUBJECTS[k].slug);
+ }
+ // 외국어 페이지
+ for (const k of Object.keys(LANG_DATA||{})) {
+ urls.push(base + "/language/" + k);
+ }
  // 학년별 과외 URL 추가
+ const gradeList = ['초등','중등','고등'];
+ const subjList = ['국어','영어','수학','과학','사회'];
  for (const gc of Object.keys(GRADE_DATA)) {
  urls.push(base + "/grade/" + gc);
  for (const s of subjects) {
@@ -4729,11 +4857,29 @@ function buildAllSiteUrls() {
  for (const [cs, ci] of Object.entries(ri.cities)) {
  urls.push(base + "/" + rs + "/" + cs);
  urls.push(base + "/" + rs + "/" + cs + "/schools");
+ // 시군구 + 학년 + 과목
+ for (const g of gradeList) {
+  for (const s of subjList) {
+  urls.push(base + "/" + rs + "/" + cs + "/" + encodeURIComponent(g) + "/" + encodeURIComponent(s));
+  }
+ }
  for (const dong of (ci.dongs || [])) {
  urls.push(base + "/" + rs + "/" + cs + "/" + encodeURIComponent(dong));
+ // 동 + 학년 + 과목
+ for (const g of gradeList) {
+  for (const s of subjList) {
+  urls.push(base + "/" + rs + "/" + cs + "/" + encodeURIComponent(dong) + "/" + encodeURIComponent(g) + "/" + encodeURIComponent(s));
+  }
+ }
  }
  for (const sch of (ci.schools || [])) {
  urls.push(base + "/" + rs + "/" + cs + "/school/" + encodeURIComponent(sch));
+ // 학교 + 학년 + 과목 (신규 페이지)
+ for (const g of gradeList) {
+  for (const s of subjList) {
+  urls.push(base + "/" + rs + "/" + cs + "/school/" + encodeURIComponent(sch) + "/" + encodeURIComponent(g) + "/" + encodeURIComponent(s));
+  }
+ }
  }
  }
  }
@@ -5450,7 +5596,7 @@ function buildSubjectPage(subSlug){
  if (p==="/"||p==="") return new Response(getIndex(),{headers:H});
  if (p === "/sitemap.xml") {
  // Sitemap Index - points to category sitemaps
- const sitemaps = ["main","regions","subjects","academy","grades"];
+ const sitemaps = ["main","regions","subjects","schools-detail","academy","grades"];
  const idx = sitemaps.map(s => ` <sitemap><loc>https://eunshinestudy.com/sitemap-${s}.xml</loc></sitemap>`).join("\n");
  return new Response(`<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${idx}\n</sitemapindex>`, {headers:{"Content-Type":"application/xml;charset=utf-8",H}});
 }
@@ -5493,10 +5639,9 @@ if (p.startsWith("/sitemap-") && p.endsWith(".xml")) {
    const s = SUBJECTS[k];
    urls.push(base+"/subject/"+s.slug);
   });
-  // 지역별 과목 조합 (주요 지역만)
-  const mainRegions = Object.keys(locations).slice(0,10);
-  mainRegions.forEach(function(rs){
-   for (const cs of Object.keys(locations[rs].cities||{}).slice(0,5)) {
+  // 전체 시도 × 시군구 × 학년 × 과목 조합
+  Object.keys(locations).forEach(function(rs){
+   for (const cs of Object.keys(locations[rs].cities||{})) {
     ["초등","중등","고등"].forEach(function(g){
      ["국어","영어","수학","과학","사회"].forEach(function(sj){
       urls.push(base+"/"+rs+"/"+cs+"/"+encodeURIComponent(g)+"/"+encodeURIComponent(sj));
@@ -5504,6 +5649,28 @@ if (p.startsWith("/sitemap-") && p.endsWith(".xml")) {
     });
    }
   });
+ }
+ 
+ else if (cat === "schools-detail") {
+  // 학교 + 학년 + 과목 페이지 (최대 45000개로 제한)
+  let count = 0;
+  const MAX = 45000;
+  outer: for (const rs of Object.keys(locations)) {
+   const region = locations[rs];
+   for (const cs of Object.keys(region.cities||{})) {
+    const city = region.cities[cs];
+    for (const sch of (city.schools||[])) {
+     const schName = sch.n || sch;
+     for (const g of ["초등","중등","고등"]) {
+      for (const sj of ["국어","영어","수학","과학","사회"]) {
+       urls.push(base+"/"+rs+"/"+cs+"/school/"+encodeURIComponent(schName)+"/"+encodeURIComponent(g)+"/"+encodeURIComponent(sj));
+       count++;
+       if (count >= MAX) break outer;
+      }
+     }
+    }
+   }
+  }
  }
  
  else if (cat === "academy") {
