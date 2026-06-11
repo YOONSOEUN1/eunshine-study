@@ -546,6 +546,28 @@ const TIP_SUBJ_ELEM={
 "초등 사회에서 경제 단원은 용돈 관리, 물건 사기 같은 실생활과 연결해서 공부하면 쉽게 이해됩니다. 선택의 기회비용, 수요와 공급 같은 기초 경제 개념은 중학교 사회에서도 반복 출제됩니다.",
 "사회 수행평가에서 조사 보고서 쓰기가 자주 나옵니다. 주제 선정→자료 수집→정리→발표의 과정을 체계적으로 연습해두면 어떤 주제가 나와도 자신감 있게 대응할 수 있습니다."
 ]
+,
+"코딩":[
+"코딩 학습의 첫걸음은 기본 문법 이해입니다. 변수, 조건문, 반복문, 함수 등 핵심 개념을 차근차근 익히고, 간단한 예제를 직접 작성해 보면 코딩 사고력이 자연스럽게 길러집니다.",
+"코딩에서 가장 중요한 것은 문제 해결력입니다. 단순히 코드를 따라 치는 것이 아니라, 주어진 문제를 작은 단위로 나누어 단계적으로 해결하는 사고 방식을 익혀야 합니다.",
+"코딩 실력을 키우려면 매일 조금씩이라도 직접 코드를 작성해 보는 것이 중요합니다. 짧은 미니 프로젝트를 만들어 보면서 배운 내용을 실제로 활용해야 진정한 학습이 됩니다.",
+"오류 메시지를 두려워하지 마세요. 코딩 실력은 오류를 해결하는 과정에서 가장 빠르게 성장합니다. 에러가 발생했을 때 메시지를 차근차근 읽고 원인을 추적하는 습관을 길러야 합니다.",
+"코딩은 정답이 하나가 아닙니다. 같은 문제도 다양한 방법으로 풀 수 있으며, 다른 사람의 코드를 분석하면서 자신의 코드를 개선하는 능력이 실력 향상의 핵심입니다."
+],
+"논술":[
+"논술의 핵심은 논리적 구조입니다. 서론에서 주장을 명확히 제시하고, 본론에서 근거와 사례로 뒷받침하며, 결론에서 다시 강조하는 기본 구조를 익혀야 설득력 있는 글이 됩니다.",
+"논술 답안에서 가장 중요한 것은 자신의 주장을 명확하게 드러내는 것입니다. 모호한 표현보다는 단정적이고 구체적인 표현을 사용하고, 핵심 키워드를 적절히 배치해 글의 방향을 명확히 해야 합니다.",
+"논술은 평소의 독서량과 비례합니다. 다양한 주제의 글을 읽으며 사고의 폭을 넓히고, 시사 이슈에 대한 자신만의 관점을 갖는 연습을 꾸준히 해야 시험장에서 막힘 없이 글을 쓸 수 있습니다.",
+"논술 답안 작성 시 시간 배분이 매우 중요합니다. 개요 작성에 10분, 본문 작성에 50분, 검토에 10분을 할애하는 시간 관리 전략이 안정적인 글쓰기에 도움이 됩니다.",
+"논술에서 좋은 점수를 받으려면 출제자의 의도를 정확히 파악해야 합니다. 문제에서 요구하는 분량, 형식, 답안 방향을 꼼꼼히 분석하고, 조건에 정확히 부합하는 답안을 작성하는 훈련이 필수입니다."
+],
+"검정고시":[
+"검정고시 합격의 핵심은 기출문제 분석입니다. 최근 5년간의 기출문제를 풀어보면 자주 출제되는 단원과 유형이 명확히 드러나므로, 우선순위에 따라 학습 계획을 세워야 합니다.",
+"검정고시는 단원별 비중이 정해져 있으므로 전략적 학습이 효과적입니다. 모든 단원을 같은 비중으로 공부하기보다는 출제 빈도가 높은 단원에 시간을 더 투자하는 것이 합격률을 높입니다.",
+"검정고시 과목별 학습은 단순 암기보다 개념 이해가 중요합니다. 핵심 개념을 정확히 이해한 뒤 다양한 문제에 적용하는 연습을 반복하면 변형된 문제도 자신 있게 풀 수 있습니다.",
+"검정고시 시험 직전 1개월은 모의고사 중심의 실전 연습이 가장 효과적입니다. 실제 시험과 동일한 시간 배분으로 모의고사를 풀어보면 시험 당일 시간 관리와 긴장감 조절에 큰 도움이 됩니다.",
+"검정고시는 합격이 목표인 시험이므로 만점을 노리기보다 합격선을 안정적으로 넘는 전략이 효율적입니다. 60점이 합격선이라면 70점 이상을 목표로 안정적으로 점수를 확보하는 학습이 필요합니다."
+]
 }
 const TIP_SUBJ_MID={
 "국어":[
@@ -597,6 +619,28 @@ const TIP_SUBJ_MID={
 "사회 수행평가에서 보고서와 발표 비중이 높습니다. 자료 수집→분석→정리→발표의 과정을 체계적으로 연습하고, PPT나 포스터를 깔끔하게 구성하는 능력을 키우면 수행평가에서 꾸준히 높은 점수를 받을 수 있습니다.",
 "중학교 사회 시험에서 그래프, 도표, 통계 자료 분석 문제가 자주 출제됩니다. 자료를 볼 때 제목과 단위를 먼저 확인하고, 전체 추세와 특이점을 파악하는 순서로 접근하면 분석 속도가 빨라집니다.",
 "한국지리와 세계지리의 기초는 중학교에서 형성됩니다. 대한민국 8도의 특징, 세계 주요 국가의 위치와 특성을 꾸준히 익혀두면 고등학교 사회탐구 선택에서 큰 강점이 됩니다."
+]
+,
+"코딩":[
+"코딩 학습의 첫걸음은 기본 문법 이해입니다. 변수, 조건문, 반복문, 함수 등 핵심 개념을 차근차근 익히고, 간단한 예제를 직접 작성해 보면 코딩 사고력이 자연스럽게 길러집니다.",
+"코딩에서 가장 중요한 것은 문제 해결력입니다. 단순히 코드를 따라 치는 것이 아니라, 주어진 문제를 작은 단위로 나누어 단계적으로 해결하는 사고 방식을 익혀야 합니다.",
+"코딩 실력을 키우려면 매일 조금씩이라도 직접 코드를 작성해 보는 것이 중요합니다. 짧은 미니 프로젝트를 만들어 보면서 배운 내용을 실제로 활용해야 진정한 학습이 됩니다.",
+"오류 메시지를 두려워하지 마세요. 코딩 실력은 오류를 해결하는 과정에서 가장 빠르게 성장합니다. 에러가 발생했을 때 메시지를 차근차근 읽고 원인을 추적하는 습관을 길러야 합니다.",
+"코딩은 정답이 하나가 아닙니다. 같은 문제도 다양한 방법으로 풀 수 있으며, 다른 사람의 코드를 분석하면서 자신의 코드를 개선하는 능력이 실력 향상의 핵심입니다."
+],
+"논술":[
+"논술의 핵심은 논리적 구조입니다. 서론에서 주장을 명확히 제시하고, 본론에서 근거와 사례로 뒷받침하며, 결론에서 다시 강조하는 기본 구조를 익혀야 설득력 있는 글이 됩니다.",
+"논술 답안에서 가장 중요한 것은 자신의 주장을 명확하게 드러내는 것입니다. 모호한 표현보다는 단정적이고 구체적인 표현을 사용하고, 핵심 키워드를 적절히 배치해 글의 방향을 명확히 해야 합니다.",
+"논술은 평소의 독서량과 비례합니다. 다양한 주제의 글을 읽으며 사고의 폭을 넓히고, 시사 이슈에 대한 자신만의 관점을 갖는 연습을 꾸준히 해야 시험장에서 막힘 없이 글을 쓸 수 있습니다.",
+"논술 답안 작성 시 시간 배분이 매우 중요합니다. 개요 작성에 10분, 본문 작성에 50분, 검토에 10분을 할애하는 시간 관리 전략이 안정적인 글쓰기에 도움이 됩니다.",
+"논술에서 좋은 점수를 받으려면 출제자의 의도를 정확히 파악해야 합니다. 문제에서 요구하는 분량, 형식, 답안 방향을 꼼꼼히 분석하고, 조건에 정확히 부합하는 답안을 작성하는 훈련이 필수입니다."
+],
+"검정고시":[
+"검정고시 합격의 핵심은 기출문제 분석입니다. 최근 5년간의 기출문제를 풀어보면 자주 출제되는 단원과 유형이 명확히 드러나므로, 우선순위에 따라 학습 계획을 세워야 합니다.",
+"검정고시는 단원별 비중이 정해져 있으므로 전략적 학습이 효과적입니다. 모든 단원을 같은 비중으로 공부하기보다는 출제 빈도가 높은 단원에 시간을 더 투자하는 것이 합격률을 높입니다.",
+"검정고시 과목별 학습은 단순 암기보다 개념 이해가 중요합니다. 핵심 개념을 정확히 이해한 뒤 다양한 문제에 적용하는 연습을 반복하면 변형된 문제도 자신 있게 풀 수 있습니다.",
+"검정고시 시험 직전 1개월은 모의고사 중심의 실전 연습이 가장 효과적입니다. 실제 시험과 동일한 시간 배분으로 모의고사를 풀어보면 시험 당일 시간 관리와 긴장감 조절에 큰 도움이 됩니다.",
+"검정고시는 합격이 목표인 시험이므로 만점을 노리기보다 합격선을 안정적으로 넘는 전략이 효율적입니다. 60점이 합격선이라면 70점 이상을 목표로 안정적으로 점수를 확보하는 학습이 필요합니다."
 ]
 }
 const TIP_SUBJ={
@@ -684,6 +728,28 @@ const TIP_SUBJ={
 "모의고사 과학 풀이 시 시간 배분이 중요합니다. 30분 안에 20문제를 풀어야 하므로, 쉬운 문제를 먼저 해결하고 고난도 문항에 남은 시간을 집중 투자하는 전략을 연습해야 합니다.",
 "개념-문제풀이-오답 사이클을 반복하는 것이 과학 성적 향상의 정석입니다. 한 단원의 개념을 정리한 뒤 기본 문제→심화 문제→기출 문제 순으로 풀며, 오답을 분석해 약점을 즉시 보완하면 실력이 빠르게 향상됩니다.",
 "과학 개념은 그림과 도표로 정리하면 기억에 오래 남습니다. 세포 구조, 화학 반응 메커니즘, 지질 구조 같은 내용을 직접 그리며 정리하면 시각적 기억과 함께 개념이 체화됩니다."
+]
+,
+"코딩":[
+"코딩 학습의 첫걸음은 기본 문법 이해입니다. 변수, 조건문, 반복문, 함수 등 핵심 개념을 차근차근 익히고, 간단한 예제를 직접 작성해 보면 코딩 사고력이 자연스럽게 길러집니다.",
+"코딩에서 가장 중요한 것은 문제 해결력입니다. 단순히 코드를 따라 치는 것이 아니라, 주어진 문제를 작은 단위로 나누어 단계적으로 해결하는 사고 방식을 익혀야 합니다.",
+"코딩 실력을 키우려면 매일 조금씩이라도 직접 코드를 작성해 보는 것이 중요합니다. 짧은 미니 프로젝트를 만들어 보면서 배운 내용을 실제로 활용해야 진정한 학습이 됩니다.",
+"오류 메시지를 두려워하지 마세요. 코딩 실력은 오류를 해결하는 과정에서 가장 빠르게 성장합니다. 에러가 발생했을 때 메시지를 차근차근 읽고 원인을 추적하는 습관을 길러야 합니다.",
+"코딩은 정답이 하나가 아닙니다. 같은 문제도 다양한 방법으로 풀 수 있으며, 다른 사람의 코드를 분석하면서 자신의 코드를 개선하는 능력이 실력 향상의 핵심입니다."
+],
+"논술":[
+"논술의 핵심은 논리적 구조입니다. 서론에서 주장을 명확히 제시하고, 본론에서 근거와 사례로 뒷받침하며, 결론에서 다시 강조하는 기본 구조를 익혀야 설득력 있는 글이 됩니다.",
+"논술 답안에서 가장 중요한 것은 자신의 주장을 명확하게 드러내는 것입니다. 모호한 표현보다는 단정적이고 구체적인 표현을 사용하고, 핵심 키워드를 적절히 배치해 글의 방향을 명확히 해야 합니다.",
+"논술은 평소의 독서량과 비례합니다. 다양한 주제의 글을 읽으며 사고의 폭을 넓히고, 시사 이슈에 대한 자신만의 관점을 갖는 연습을 꾸준히 해야 시험장에서 막힘 없이 글을 쓸 수 있습니다.",
+"논술 답안 작성 시 시간 배분이 매우 중요합니다. 개요 작성에 10분, 본문 작성에 50분, 검토에 10분을 할애하는 시간 관리 전략이 안정적인 글쓰기에 도움이 됩니다.",
+"논술에서 좋은 점수를 받으려면 출제자의 의도를 정확히 파악해야 합니다. 문제에서 요구하는 분량, 형식, 답안 방향을 꼼꼼히 분석하고, 조건에 정확히 부합하는 답안을 작성하는 훈련이 필수입니다."
+],
+"검정고시":[
+"검정고시 합격의 핵심은 기출문제 분석입니다. 최근 5년간의 기출문제를 풀어보면 자주 출제되는 단원과 유형이 명확히 드러나므로, 우선순위에 따라 학습 계획을 세워야 합니다.",
+"검정고시는 단원별 비중이 정해져 있으므로 전략적 학습이 효과적입니다. 모든 단원을 같은 비중으로 공부하기보다는 출제 빈도가 높은 단원에 시간을 더 투자하는 것이 합격률을 높입니다.",
+"검정고시 과목별 학습은 단순 암기보다 개념 이해가 중요합니다. 핵심 개념을 정확히 이해한 뒤 다양한 문제에 적용하는 연습을 반복하면 변형된 문제도 자신 있게 풀 수 있습니다.",
+"검정고시 시험 직전 1개월은 모의고사 중심의 실전 연습이 가장 효과적입니다. 실제 시험과 동일한 시간 배분으로 모의고사를 풀어보면 시험 당일 시간 관리와 긴장감 조절에 큰 도움이 됩니다.",
+"검정고시는 합격이 목표인 시험이므로 만점을 노리기보다 합격선을 안정적으로 넘는 전략이 효율적입니다. 60점이 합격선이라면 70점 이상을 목표로 안정적으로 점수를 확보하는 학습이 필요합니다."
 ]
 }
 
@@ -1989,7 +2055,7 @@ function buildCityPage(rs, cs) {
  <span style="color:#1A2340;font-weight:700;">${rd}</span>
  </p>
  <div style="display:inline-block;background:${tc};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:14px;">📍 ${fullRd}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${fullRd} 과외 | 지역별 맞춤 1:1 과외 안내</h1>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${fullRd} 과외 | 지역별 맞춤 1:1 과외</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${fullRd} 전 지역 초·중·고 전 과목 1:1 맞춤 과외. 방문/화상 모두 가능하며, 첫 상담과 체험 수업은 완전 무료입니다.</p>
  </div>
@@ -2148,7 +2214,7 @@ function buildDongPage(rs, cs, dong) {
  <span style="color:#1A2340;font-weight:700;">${dong}</span>
  </p>
  <div style="display:inline-block;background:${tc};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:14px;">📍 ${fullRd} ${dong}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${fullRd} ${dong} 과외 | 지역별 맞춤 1:1 과외 안내</h1>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${fullRd} ${dong} 과외 | 지역별 맞춤 1:1 과외</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${fullRd} ${dong} 초·중·고 전 과목 1:1 맞춤 과외. 방문/화상 모두 가능하며, 첫 상담과 체험 수업은 완전 무료입니다.</p>
  </div>
@@ -2288,7 +2354,7 @@ function buildDongDetailPage(rs, cs, dong, grade, subject) {
  <span style="color:#1A2340;font-weight:700;">${grade} ${subject}</span>
  </p>
  <div style="display:inline-block;background:${color};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">📍 ${dong} ${grade} ${subject}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${title} | 맞춤 1:1 과외 안내</h1>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${title} | 맞춤 1:1 과외</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${rawDesc}</p>
  </div>
@@ -2552,7 +2618,7 @@ function buildDetailPage(rs, cs, grade, subject) {
  <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
  <p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <a href="/${rs}/${cs}" style="color:#888;text-decoration:none;">${fullRd}</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">${grade} ${subject}</span></p>
  <div style="display:inline-block;background:${color};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">📍 ${fullRd} ${grade} ${subject}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${fullRd} ${grade} ${subject}과외 | 맞춤 1:1 과외 안내</h1>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${fullRd} ${grade} ${subject}과외 | 맞춤 1:1 과외</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${c.desc}</p>
  </div>
@@ -2956,7 +3022,7 @@ function buildSchoolPage(rs, cs, schoolShort) {
  <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
  <p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <a href="/${rs}/${cs}/schools" style="color:#888;text-decoration:none;">학교별 과외</a> &rsaquo; <a href="/${rs}/${cs}" style="color:#888;text-decoration:none;">${fullRd}</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">${schoolFull}</span></p>
  <div style="display:inline-block;background:${typeColor};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">🏫 ${schoolFull}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${schoolFull} 과외 | 맞춤 1:1 과외 안내</h1>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${schoolFull} 과외 | 맞춤 1:1 과외</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${fullRd} ${schoolFull} 재학생을 위한 맞춤 1:1 과외. 방문/화상 모두 가능하며, 첫 상담과 체험 수업은 완전 무료입니다.</p>
  </div>
@@ -3056,7 +3122,7 @@ function buildGradePage(gradeCode) {
  if(level==="초등") tipPool = TIP_SUBJ_ELEM;
  else if(level==="중등") tipPool = TIP_SUBJ_MID;
  const seed = cH("grade|"+gradeCode);
- const subjects = ["국어","영어","수학","사회","과학"];
+ const subjects = ["국어","영어","수학","사회","과학","코딩","논술","검정고시"];
  // 과목별 팁 2개씩
  let tipSection = "";
  subjects.forEach(function(subj){
@@ -3110,7 +3176,7 @@ function buildGradePage(gradeCode) {
  <span style="color:#1A2340;font-weight:700;">${gd.name} 과외</span>
  </p>
  <div style="display:inline-block;background:${tc};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:14px;">${gd.emoji} ${gd.name}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${gd.name} 과외 | 맞춤 1:1 과외 안내</h1>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${gd.name} 과외 | 맞춤 1:1 과외</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  </div>
  <div style="max-width:900px;margin:0 auto 36px;padding:0 20px;">
@@ -3252,7 +3318,7 @@ function buildGradeSubjectPage(gradeCode, subject) {
  <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
  <p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <a href="/grade/${gradeCode}" style="color:#888;text-decoration:none;">${gd.name}</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">${subject}과외</span></p>
  <div style="display:inline-block;background:${tc};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">📚 ${gd.name} ${subject}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${gd.name} ${subject}과외 | 맞춤 1:1 과외 안내</h1>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${gd.name} ${subject}과외 | 맞춤 1:1 과외</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${gd.name} ${subject} 전문 1:1 맞춤 과외. 학교별 내신 완벽 대비. 방문/화상 모두 가능하며, 첫 상담과 체험 수업은 완전 무료입니다.</p>
  </div>
@@ -5591,7 +5657,7 @@ function buildSubjectPage(subSlug){
  <span style="color:#1A2340;font-weight:700;">${s.name} 과외</span>
  </p>
  <div style="display:inline-block;background:#C8A96E;color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:14px;">${s.icon} ${s.name}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${s.name} 과외 | 맞춤 1:1 과외 안내</h1>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${s.name} 과외 | 맞춤 1:1 과외</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${s.desc}</p>
  </div>
