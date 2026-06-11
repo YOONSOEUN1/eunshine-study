@@ -478,7 +478,18 @@ function buildTutorBlock(kw,tc,seed){
 function buildFaqBlock(kw,tc,seed){
  var picks=pkU(FAQ_POOL,seed,4,19);
  var qs=picks.map(function(f){return '<div><p style="font-weight:700;color:#2563eb;font-size:15px;margin-bottom:8px;">Q. '+f.q+'</p><p style="font-size:14px;color:#444;line-height:1.8;">'+f.a+'</p></div>';}).join('');
- return '<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;"><h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid '+tc+';padding-left:14px;margin-bottom:20px;">❓ '+kw+' 자주 묻는 질문</h2><div style="display:flex;flex-direction:column;gap:24px;">'+qs+'</div></div>';
+ // FAQ Schema (JSON-LD) - 네이버/구글 검색 결과에 펼침형 Q&A 표시
+ var jsonLd = {
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":picks.map(function(f){return {
+   "@type":"Question",
+   "name":f.q,
+   "acceptedAnswer":{"@type":"Answer","text":f.a}
+  };})
+ };
+ var schemaTag = '<script type="application/ld+json">'+JSON.stringify(jsonLd)+'</script>';
+ return schemaTag+'<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;"><h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid '+tc+';padding-left:14px;margin-bottom:20px;">❓ '+kw+' 자주 묻는 질문</h2><div style="display:flex;flex-direction:column;gap:24px;">'+qs+'</div></div>';
 }
 function getMethodDesc(seed){return METHOD_POOL[(seed>>>0)%METHOD_POOL.length];}
 
@@ -816,7 +827,7 @@ const FAQ_POOL=[
 {q:"방문과 화상 중 어떤 수업이 더 효과적인가요?",a:"두 방식 모두 동일한 커리큘럼으로 진행되므로 학습 효과는 비슷합니다. 집에서 더 집중이 잘 되는 학생은 방문 수업이, 이동 시간을 절약하고 싶은 학생은 화상 수업이 적합합니다. 두 방식을 병행하는 것도 가능합니다."},
 {q:"무료 상담에서 어떤 것을 알 수 있나요?",a:"무료 상담에서는 학생의 현재 학습 수준을 진단하고, 취약점을 파악하며, 맞춤형 학습 계획을 제안드립니다. 수업 방식, 수업료, 선생님 매칭 등에 대한 궁금한 점도 상세히 안내받을 수 있습니다."},
 {q:"시험 기간에만 수업을 받을 수 있나요?",a:"가능합니다. 시험 기간 집중 대비 수업으로 시험 범위를 빠르게 정리하고, 예상 문제를 풀며, 약점을 보강하는 단기 수업을 운영합니다. 다만 꾸준한 학습이 장기적으로 더 효과적입니다."},
-{q:"수업 취소나 변경은 가능한가요?",a:"수업 하루 전까지 연락주시면 다른 날로 변경 가능합니다. 당일 취소는 수업료가 부과될 수 있으니 가급적 미리 연락 부탁드립니다."},
+{q:"수업 취소나 변경은 가능한가요?",a:"수업 하루 전까지 연락주시면 다른 날로 변경 가능합니다. 당일 취소가 어려울 수 있으니 가급적 미리 연락 부탁드립니다."},
 {q:"수행평가도 도와주시나요?",a:"네, 수행평가 대비도 수업에 포함됩니다. 발표 준비, 보고서 작성, 프로젝트 과제 등 수행평가 유형에 맞춰 체계적으로 도와드립니다. 수행평가가 내신에 차지하는 비중이 크기 때문에 반드시 챙겨야 합니다."}
 ]
 
@@ -2306,7 +2317,17 @@ function buildSchoolDetailPage(rs, cs, schoolShort, grade, subject) {
  const sec3 = '<div style="max-width:900px;margin:0 auto 24px;padding:0 20px;"><div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);"><h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid #3498db;padding-left:14px;margin-bottom:18px;">🗓️ '+sn+' '+grade+' '+subject+' 10주 로드맵</h2><p style="font-size:13px;color:#666;margin-bottom:16px;">'+sn+' 시험 일정 기준으로 설계된 단계별 학습 플랜입니다.</p><div style="display:flex;flex-direction:column;gap:8px;">'+roadmap.map((step,i)=>'<div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;background:#f8faff;border-radius:10px;border-left:3px solid #3498db;"><span style="background:#3498db;color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;">'+(i+1)+'</span><span style="font-size:13px;color:#1A2340;line-height:1.7;">'+step+'</span></div>').join('')+'</div></div></div>';
 
  // 섹션 4: 학교 학생 자주 묻는 질문
- const sec4 = '<div style="max-width:900px;margin:0 auto 24px;padding:0 20px;"><div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);"><h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid #2ecc71;padding-left:14px;margin-bottom:18px;">❓ '+sn+' 학부모님이 자주 묻는 질문</h2>'+faqs.map(f=>'<div style="margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #eef2f7;"><div style="font-weight:800;color:#1A2340;margin-bottom:8px;font-size:14px;">Q. '+f.q+'</div><div style="font-size:13px;color:#555;line-height:2;">A. '+f.a+'</div></div>').join('')+'</div></div>';
+ // 섹션 4: 학교 학생 자주 묻는 질문 (JSON-LD FAQ Schema 포함)
+ const sec4Schema = '<script type="application/ld+json">'+JSON.stringify({
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":faqs.map(function(f){return {
+   "@type":"Question",
+   "name":f.q,
+   "acceptedAnswer":{"@type":"Answer","text":f.a}
+  };})
+ })+'</script>';
+ const sec4 = sec4Schema+'<div style="max-width:900px;margin:0 auto 24px;padding:0 20px;"><div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);"><h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid #2ecc71;padding-left:14px;margin-bottom:18px;">❓ '+sn+' 학부모님이 자주 묻는 질문</h2>'+faqs.map(f=>'<div style="margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #eef2f7;"><div style="font-weight:800;color:#1A2340;margin-bottom:8px;font-size:14px;">Q. '+f.q+'</div><div style="font-size:13px;color:#555;line-height:2;">A. '+f.a+'</div></div>').join('')+'</div></div>';
 
  // 모든 섹션 결합
  const allSections = sec1 + sec2 + sec3 + sec4;
@@ -5520,21 +5541,44 @@ function buildSubjectPage(subSlug){
 
  if (p === "/api/indexnow-submit") {
   try {
-   const urls = buildAllSiteUrls();
-   const PAGE_SIZE = 500;
-   const totalPages = Math.ceil(urls.length / PAGE_SIZE);
-   const allResults = [];
-   let totalSubmitted = 0;
-   for (let pg = 0; pg < totalPages; pg++) {
-    const batch = urls.slice(pg * PAGE_SIZE, (pg + 1) * PAGE_SIZE);
+   const allUrls = buildAllSiteUrls();
+   // IndexNow는 1회 제출당 최대 10,000개 URL 허용
+   // 25개 배치 × 4 엔드포인트 = 100개 외부 요청 (1000 한도 내)
+   const BATCH_SIZE = 10000;
+   const totalBatches = Math.ceil(allUrls.length / BATCH_SIZE);
+   const endpoints = ["https://api.indexnow.org/indexnow","https://www.bing.com/indexnow","https://yandex.com/indexnow","https://searchadvisor.naver.com/indexnow"];
+   const allPromises = [];
+   for (let i = 0; i < totalBatches; i++) {
+    const batch = allUrls.slice(i * BATCH_SIZE, (i + 1) * BATCH_SIZE);
     const body = JSON.stringify({host:"eunshinestudy.com",key:INDEXNOW_KEY,keyLocation:"https://eunshinestudy.com/"+INDEXNOW_KEY+".txt",urlList:batch});
-    for (const ep of ["https://api.indexnow.org/indexnow","https://www.bing.com/indexnow","https://yandex.com/indexnow","https://searchadvisor.naver.com/indexnow"]) {
-     try { const res = await fetch(ep,{method:"POST",headers:{"Content-Type":"application/json"},body:body}); if(pg===0) allResults.push({endpoint:ep,status:res.status,ok:res.ok}); }
-     catch(e) { if(pg===0) allResults.push({endpoint:ep,error:e.message}); }
+    for (const ep of endpoints) {
+     allPromises.push(
+      fetch(ep,{method:"POST",headers:{"Content-Type":"application/json"},body:body})
+       .then(res => ({endpoint:ep,batch:i+1,status:res.status,ok:res.ok}))
+       .catch(e => ({endpoint:ep,batch:i+1,error:e.message}))
+     );
     }
-    totalSubmitted += batch.length;
    }
-   return new Response(JSON.stringify({success:true,submitted:totalSubmitted,totalUrls:urls.length,pages:totalPages,results:allResults,message:totalSubmitted+"개 URL을 IndexNow에 제출했습니다."},null,2),{headers:{"Content-Type":"application/json"}});
+   // 모든 배치를 병렬로 처리
+   const allResults = await Promise.all(allPromises);
+   // 엔드포인트별 성공/실패 집계
+   const summary = {};
+   endpoints.forEach(ep => {
+    const epResults = allResults.filter(r => r.endpoint === ep);
+    summary[ep] = {
+     total:epResults.length,
+     ok:epResults.filter(r => r.ok).length,
+     failed:epResults.filter(r => !r.ok).length
+    };
+   });
+   return new Response(JSON.stringify({
+    success:true,
+    submitted:allUrls.length,
+    totalBatches:totalBatches,
+    totalRequests:allPromises.length,
+    summary:summary,
+    message:allUrls.length+"개 URL을 "+totalBatches+"개 배치로 제출했습니다."
+   },null,2),{headers:{"Content-Type":"application/json"}});
   } catch(e) { return new Response(JSON.stringify({success:false,error:e.message}),{headers:{"Content-Type":"application/json"}}); }
  }
 
