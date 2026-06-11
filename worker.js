@@ -1797,6 +1797,17 @@ function buildRegionPage(rs) {
  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px;">${cards}</div>
  </div>
 
+ <!-- 과목별 과외 카드 -->
+ <div style="max-width:900px;margin:0 auto;padding:0 20px 36px;">
+ <h2 style="font-size:20px;font-weight:900;color:#1A2340;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid #1A2340;">${rn} 과목별 과외 (8개)</h2>
+ <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;">
+ ${['국어','영어','수학','사회','과학','코딩','논술','검정고시'].map(function(sj){
+  var icons = {"국어":"📖","영어":"🔤","수학":"➗","사회":"🌏","과학":"🧪","코딩":"💻","논술":"✏️","검정고시":"📚"};
+  return '<a href="/'+rs+'/subject/'+encodeURIComponent(sj)+'" style="text-decoration:none;"><div style="background:white;border:2px solid '+tc+';border-radius:14px;padding:20px;height:100%;transition:all .2s;"><div style="font-size:28px;margin-bottom:8px;">'+icons[sj]+'</div><div style="font-size:15px;font-weight:900;color:#1A2340;margin-bottom:4px;">'+rn+' '+sj+'과외</div><div style="font-size:12px;color:'+tc+';font-weight:700;margin-top:8px;">자세히 보기 →</div></div></a>';
+ }).join('')}
+ </div>
+ </div>
+
  ${CONTACT}${FOOTER}${FLOATING}${CAROUSEL_SCRIPT}</body></html>`;
 }
 
@@ -1963,6 +1974,64 @@ function buildRegionLongContent(rn, tc, seed){
   '<p style="font-size:14px;color:#444;line-height:2;margin:0;">'+s.content+'</p>'+
   '</div>'
  ).join('')+'</div>';
+}
+
+function buildRegionSubjectPage(rs, subject) {
+ const ri = locations[rs];
+ if (!ri) return null;
+ const rn = ri.region_name || rs;
+ const tc = ri.color || "#3498db";
+ const subjectMap = {
+  "국어":{icon:"📖",desc:"독해·문법·어휘·서술형까지 국어 전 영역을 체계적으로 학습합니다."},
+  "영어":{icon:"🔤",desc:"문법·독해·어휘·말하기까지 영어의 기초부터 심화까지 체계적으로 지도합니다."},
+  "수학":{icon:"➗",desc:"개념·심화·수능 수학까지 단계별로 완성합니다. 취약 단원 집중 공략과 오답 분석으로 고득점을 만듭니다."},
+  "사회":{icon:"🌏",desc:"지리·역사·일반사회 등 사회 전 영역을 체계적으로 학습하며 사고력을 키웁니다."},
+  "과학":{icon:"🧪",desc:"물리·화학·생물·지구과학의 핵심 개념을 이해하고 응용 문제까지 정복합니다."},
+  "코딩":{icon:"💻",desc:"파이썬·스크래치·앱 개발까지 코딩의 기초부터 실전까지 단계별로 학습합니다."},
+  "논술":{icon:"✏️",desc:"논리적 사고와 글쓰기 능력을 키워 입시 논술과 학교 서술형 평가를 동시에 대비합니다."},
+  "검정고시":{icon:"📚",desc:"초·중·고 검정고시 전 과목을 체계적으로 대비합니다. 최단 기간 합격 전략을 제공합니다."}
+ };
+ const sInfo = subjectMap[subject] || {icon:"📚",desc:rn+" "+subject+" 과외 안내"};
+ const seed = cH(rs+subject);
+ const tipPool = (typeof TIP_SUBJ !== "undefined" && TIP_SUBJ[subject]) || [];
+ const tips = tipPool.length > 0 ? pkU(tipPool, seed, 4, 31) : [];
+
+ return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>${rn} ${subject}과외 | 1:1 맞춤 과외 · 첫 상담 무료 | 은빛스터디</title>
+ <meta name="description" content="${rn} ${subject}과외. ${sInfo.desc} 방문·화상 모두 가능하며, 첫 상담과 체험 수업은 완전 무료입니다.">
+ <meta property="og:title" content="${rn} ${subject}과외 | 1:1 맞춤 과외">
+ <meta property="og:description" content="${rn} ${subject}과외. ${sInfo.desc}">
+ <meta property="og:image" content="${bgImg(subject, seed)}">
+ <meta property="article:modified_time" content="${getUpdateDateISO()}">
+ ${FAVICON_TAGS}
+ ${COMMON_STYLE}</head><body>${NAV}
+ <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
+ <p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <a href="/${rs}" style="color:#888;text-decoration:none;">${rn}</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">${subject}과외</span></p>
+ <div style="display:inline-block;background:${tc};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">${sInfo.icon} ${subject}</div>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${rn} ${subject}과외 | 1:1 맞춤 과외</h1>
+ <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
+ <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${rn} 전 지역 ${subject}과외. ${sInfo.desc}</p>
+ </div>
+ <div style="max-width:900px;margin:0 auto 36px;padding:0 20px;">
+ <div style="position:relative;border-radius:20px;overflow:hidden;height:clamp(200px,30vw,320px);background:url('${bgImg(subject,seed)}') center/cover no-repeat,linear-gradient(135deg,#1A2340,#2a3d6b);">
+ <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.2) 50%,rgba(0,0,0,0.15) 100%);"></div>
+ <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:clamp(24px,4vw,40px);">
+ <p style="font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:6px;">${rn} 전 지역</p>
+ <h2 style="font-size:clamp(24px,4vw,36px);font-weight:900;color:#fff;margin:0 0 12px 0;">${rn} ${subject}과외</h2>
+ <div style="display:flex;gap:10px;flex-wrap:wrap;">
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 첫 상담·체험 무료</span>
+ <span style="background:rgba(255,255,255,0.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;">✅ 1:1 맞춤 수업</span>
+ </div>
+ </div>
+ </div>
+ </div>
+ <div style="max-width:900px;margin:0 auto;padding:0 20px;">
+ ${buildWhyBlock(rn+' '+subject+'과외',tc,cH(rs+subject+'why'))}
+ ${tips.length > 0 ? '<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;"><h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid '+tc+';padding-left:14px;margin-bottom:16px;">📖 '+rn+' '+subject+'과외 공부법</h2>'+tips.map(function(t){return '<div style="background:#f8faff;border-radius:14px;padding:18px 22px;margin-bottom:12px;border-left:4px solid '+tc+';"><p style="font-size:14px;color:#333;line-height:2;margin:0;">'+t+'</p></div>';}).join('')+'</div>' : ''}
+ ${buildStudyBlock(rn+' '+subject+'과외',tc,cH(rs+subject+'study'))}
+ ${buildTutorBlock(rn+' '+subject+'과외',tc,cH(rs+subject+'tutor'))}
+ ${buildFaqBlock(rn+' '+subject+'과외',tc,cH(rs+subject+'faq'))}
+ </div>
+ ${CONTACT}${FOOTER}${FLOATING}</body></html>`;
 }
 
 function buildCityPage(rs, cs) {
@@ -6044,6 +6113,11 @@ if (p.startsWith("/sitemap-") && p.endsWith(".xml")) {
  }
  if (parts.length===1 && locations[parts[0]]) {
  const html = buildRegionPage(parts[0]);
+ if (html) return new Response(html, {headers:H});
+ }
+ if (parts.length===3 && parts[1]==="subject" && locations[parts[0]]) {
+ const subject = decodeURIComponent(parts[2]);
+ const html = buildRegionSubjectPage(parts[0], subject);
  if (html) return new Response(html, {headers:H});
  }
  if (p==="/search") {
