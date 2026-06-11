@@ -1989,7 +1989,7 @@ function buildCityPage(rs, cs) {
  <span style="color:#1A2340;font-weight:700;">${rd}</span>
  </p>
  <div style="display:inline-block;background:${tc};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:14px;">📍 ${fullRd}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${seoTitle(`${fullRd} 과외`, cH(rs+cs))}</h1>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${fullRd} 과외 | 지역별 맞춤 1:1 과외 안내</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${fullRd} 전 지역 초·중·고 전 과목 1:1 맞춤 과외. 방문/화상 모두 가능하며, 첫 상담과 체험 수업은 완전 무료입니다.</p>
  </div>
@@ -2148,7 +2148,7 @@ function buildDongPage(rs, cs, dong) {
  <span style="color:#1A2340;font-weight:700;">${dong}</span>
  </p>
  <div style="display:inline-block;background:${tc};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:14px;">📍 ${fullRd} ${dong}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${seoTitle(`${fullRd} ${dong} 과외`, cH(rs+cs+dong))}</h1>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${fullRd} ${dong} 과외 | 지역별 맞춤 1:1 과외 안내</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${fullRd} ${dong} 초·중·고 전 과목 1:1 맞춤 과외. 방문/화상 모두 가능하며, 첫 상담과 체험 수업은 완전 무료입니다.</p>
  </div>
@@ -2288,7 +2288,7 @@ function buildDongDetailPage(rs, cs, dong, grade, subject) {
  <span style="color:#1A2340;font-weight:700;">${grade} ${subject}</span>
  </p>
  <div style="display:inline-block;background:${color};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">📍 ${dong} ${grade} ${subject}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${seoTitle(title, cH(rs+cs+dong+grade+subject))}</h1>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${title} | 맞춤 1:1 과외 안내</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${rawDesc}</p>
  </div>
@@ -2552,7 +2552,7 @@ function buildDetailPage(rs, cs, grade, subject) {
  <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
  <p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <a href="/${rs}/${cs}" style="color:#888;text-decoration:none;">${fullRd}</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">${grade} ${subject}</span></p>
  <div style="display:inline-block;background:${color};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">📍 ${fullRd} ${grade} ${subject}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${seoTitle(`${fullRd} ${grade} ${subject}과외`, cH(rs+cs+grade+subject))}</h1>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${fullRd} ${grade} ${subject}과외 | 맞춤 1:1 과외 안내</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${c.desc}</p>
  </div>
@@ -2956,7 +2956,7 @@ function buildSchoolPage(rs, cs, schoolShort) {
  <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
  <p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <a href="/${rs}/${cs}/schools" style="color:#888;text-decoration:none;">학교별 과외</a> &rsaquo; <a href="/${rs}/${cs}" style="color:#888;text-decoration:none;">${fullRd}</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">${schoolFull}</span></p>
  <div style="display:inline-block;background:${typeColor};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">🏫 ${schoolFull}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${seoTitle(`${schoolFull} 과외`, cH(rs+cs+schoolShort))}</h1>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${schoolFull} 과외 | 맞춤 1:1 과외 안내</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${fullRd} ${schoolFull} 재학생을 위한 맞춤 1:1 과외. 방문/화상 모두 가능하며, 첫 상담과 체험 수업은 완전 무료입니다.</p>
  </div>
@@ -3110,7 +3110,7 @@ function buildGradePage(gradeCode) {
  <span style="color:#1A2340;font-weight:700;">${gd.name} 과외</span>
  </p>
  <div style="display:inline-block;background:${tc};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:14px;">${gd.emoji} ${gd.name}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${seoTitle(`${gd.name} 과외`, cH(gradeCode))}</h1>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${gd.name} 과외 | 맞춤 1:1 과외 안내</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  </div>
  <div style="max-width:900px;margin:0 auto 36px;padding:0 20px;">
@@ -3252,7 +3252,7 @@ function buildGradeSubjectPage(gradeCode, subject) {
  <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
  <p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <a href="/grade/${gradeCode}" style="color:#888;text-decoration:none;">${gd.name}</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">${subject}과외</span></p>
  <div style="display:inline-block;background:${tc};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">📚 ${gd.name} ${subject}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${seoTitle(`${gd.name} ${subject}과외`, cH(gradeCode+subject))}</h1>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${gd.name} ${subject}과외 | 맞춤 1:1 과외 안내</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${gd.name} ${subject} 전문 1:1 맞춤 과외. 학교별 내신 완벽 대비. 방문/화상 모두 가능하며, 첫 상담과 체험 수업은 완전 무료입니다.</p>
  </div>
@@ -5591,7 +5591,7 @@ function buildSubjectPage(subSlug){
  <span style="color:#1A2340;font-weight:700;">${s.name} 과외</span>
  </p>
  <div style="display:inline-block;background:#C8A96E;color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:14px;">${s.icon} ${s.name}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${seoTitle(`${s.name} 과외`, cH(sKey))}</h1>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${s.name} 과외 | 맞춤 1:1 과외 안내</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${s.desc}</p>
  </div>
