@@ -1708,13 +1708,13 @@ function buildRegionPage(rs) {
  </div>
  </div>
 
+ ${buildRegionLongContent(rn, tc, cH(rs+'region-long'))}
+
  <!-- 본문 카드 -->
  <div style="max-width:900px;margin:0 auto;padding:0 20px 36px;">
  <h2 style="font-size:20px;font-weight:900;color:#1A2340;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid #1A2340;">${rn} 시·구·군별 과외 (${cities.length}개)</h2>
  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px;">${cards}</div>
  </div>
-
- ${buildRegionLongContent(rn, tc, cH(rs+'region-long'))}
 
  ${CONTACT}${FOOTER}${FLOATING}${CAROUSEL_SCRIPT}</body></html>`;
 }
