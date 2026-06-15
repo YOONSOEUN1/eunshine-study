@@ -1358,7 +1358,38 @@ nav{position:fixed;top:0;left:0;right:0;z-index:99999;background:rgba(255,255,25
 </div>
 </nav>
 <script>function switchDD(i){for(var j=0;j<3;j++){document.getElementById('ddC'+j).style.display=j===i?(j===1?'block':'grid'):'none';var t=document.querySelectorAll('.ddt');t[j].style.background=j===i?'#1A2340':'#fff';t[j].style.color=j===i?'#fff':'#334155';}}document.addEventListener('click',function(e){['ddF','ddS','ddL'].forEach(function(id){var d=document.getElementById(id);if(d&&!d.parentElement.contains(e.target))d.style.display='none';});});</script>`;
-const FAVICON_TAGS = '<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><link rel="apple-touch-icon" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta property="og:site_name" content="은빛스터디"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image">';
+const FAVICON_TAGS = '<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><link rel="apple-touch-icon" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta property="og:site_name" content="은빛스터디"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta name="robots" content="index, follow"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"은빛스터디","alternateName":"Eunshine Study","url":"https://eunshinestudy.com","logo":"https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png","description":"전국 1:1 맞춤 과외 매칭. 35년 교육 노하우로 학생별 맞춤 학습 설계. 방문·화상 모두 가능, 첫 상담 무료.","contactPoint":{"@type":"ContactPoint","contactType":"customer service","areaServed":"KR","availableLanguage":["Korean"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"은빛스터디","url":"https://eunshinestudy.com","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://eunshinestudy.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}</script>';
+
+// LocalBusiness Schema 생성 (지역 페이지용)
+function buildLocalBusinessSchema(regionName, pageUrl) {
+ return '<script type="application/ld+json">'+JSON.stringify({
+  "@context":"https://schema.org",
+  "@type":"LocalBusiness",
+  "name":"은빛스터디 - "+regionName,
+  "image":"https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png",
+  "url":"https://eunshinestudy.com"+(pageUrl||""),
+  "priceRange":"무료 상담",
+  "description":regionName+" 1:1 맞춤 과외. 방문·화상 모두 가능하며 첫 상담과 체험 수업은 완전 무료입니다.",
+  "address":{"@type":"PostalAddress","addressCountry":"KR","addressRegion":regionName},
+  "areaServed":{"@type":"AdministrativeArea","name":regionName},
+  "openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"09:00","closes":"22:00"}
+ })+'</script>';
+}
+
+// BreadcrumbList Schema 생성
+function buildBreadcrumbSchema(items) {
+ if (!Array.isArray(items) || items.length === 0) return '';
+ return '<script type="application/ld+json">'+JSON.stringify({
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":items.map(function(it, i){return {
+   "@type":"ListItem",
+   "position":i+1,
+   "name":it.name,
+   "item":it.url.indexOf("http")===0?it.url:("https://eunshinestudy.com"+it.url)
+  };})
+ })+'</script>';
+}
 const COMMON_STYLE = `<link rel="alternate" type="application/rss+xml" title="은빛스터디 RSS" href="https://eunshinestudy.com/rss"><link rel="icon" type="image/png" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><link rel="apple-touch-icon" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Malgun Gothic',sans-serif;background:#f4f7f6;padding-top:70px;}.rv-carousel{position:relative;overflow:hidden;}.rv-track{display:flex;gap:16px;animation:rvScroll 30s linear infinite;width:max-content;}.rv-carousel:hover .rv-track{animation-play-state:paused;}@keyframes rvScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}.rv-track .rv-card{min-width:300px;max-width:300px;flex-shrink:0;box-sizing:border-box;}@media(max-width:768px){.rv-track .rv-card{min-width:280px;max-width:280px;}}.rv-dots{display:flex;justify-content:center;gap:6px;margin-top:16px;}.rv-dot{width:28px;height:4px;border-radius:2px;background:rgba(26,35,64,.12);cursor:pointer;border:none;padding:0;transition:all .3s;}.rv-dot.on{width:40px;background:#C8A96E;}</style>${FAVICON_TAGS}`;
 
 const FLOATING = `<div style="position:fixed;bottom:24px;right:18px;display:flex;flex-direction:column;gap:8px;z-index:9998;">
@@ -1753,6 +1784,8 @@ function buildRegionPage(rs) {
 
  <!-- 상단 텍스트 (흰 배경) -->
  <div style="max-width:900px;margin:36px auto 0;padding:0 20px;">
+ ${buildLocalBusinessSchema(rn, "/"+rs)}
+ ${buildBreadcrumbSchema([{name:"홈",url:"/"},{name:"지역별 과외",url:"/directory"},{name:rn,url:"/"+rs}])}
  <p style="font-size:13px;color:#888;margin-bottom:16px;">
  <a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo;
  <a href="/directory" style="color:#888;text-decoration:none;">지역별 과외</a> &rsaquo;
@@ -2117,6 +2150,8 @@ function buildCityPage(rs, cs) {
  <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
 
  <!-- 브레드크럼 -->
+ ${buildLocalBusinessSchema(fullRd, "/"+rs+"/"+cs)}
+ ${buildBreadcrumbSchema([{name:"홈",url:"/"},{name:"지역별 과외",url:"/directory"},{name:rn,url:"/"+rs},{name:rd,url:"/"+rs+"/"+cs}])}
  <p style="font-size:13px;color:#888;margin-bottom:16px;">
  <a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo;
  <a href="/directory" style="color:#888;text-decoration:none;">지역별 과외</a> &rsaquo;
