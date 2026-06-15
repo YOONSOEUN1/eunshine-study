@@ -5171,77 +5171,49 @@ card.style.display=(!q||text.indexOf(q)>=0)?'':'none';
 }
 
 function buildAllSiteUrls() {
+ // IndexNow용 핵심 페이지 (사이트맵과 동일한 전략)
+ // 약 3,500개로 집중 → 네이버가 중요 페이지로 인식
  const base = "https://" + SITE_HOST;
  const urls = [base + "/", base + "/directory", base + "/schools", base + "/academy", base + "/subject", base + "/language"];
+ // 학년별 페이지
+ for (const gc of Object.keys(GRADE_DATA)) {
+  urls.push(base + "/grade/" + gc);
+  for (const sj of ["국어","영어","수학","사회","과학","코딩","논술","검정고시"]) {
+   urls.push(base + "/grade/" + gc + "/" + encodeURIComponent(sj));
+  }
+ }
  // 과목별 페이지
  for (const k of SUBJECT_LIST) {
- urls.push(base + "/subject/" + SUBJECTS[k].slug);
+  urls.push(base + "/subject/" + SUBJECTS[k].slug);
  }
  // 외국어 페이지
- for (const k of Object.keys(LANG_DATA||{})) {
- urls.push(base + "/language/" + k);
+ for (const l of ["english","japanese","chinese"]) {
+  urls.push(base + "/language/" + l);
  }
- // 학년별 과외 URL 추가
- const gradeList = ['초등','중등','고등'];
- const subjList = ['국어','영어','수학','과학','사회'];
- for (const gc of Object.keys(GRADE_DATA)) {
- urls.push(base + "/grade/" + gc);
- for (const s of subjects) {
- urls.push(base + "/grade/" + gc + "/" + encodeURIComponent(s));
- }
- }
+ // 17개 지역 + 모든 시군구 + 핵심 동/학교
  for (const [rs, ri] of Object.entries(locations)) {
- urls.push(base + "/" + rs);
- urls.push(base + "/schools/" + rs);
- for (const [cs, ci] of Object.entries(ri.cities)) {
- urls.push(base + "/" + rs + "/" + cs);
- urls.push(base + "/" + rs + "/" + cs + "/schools");
- // 시군구 + 학년 + 과목
- for (const g of gradeList) {
-  for (const s of subjList) {
-  urls.push(base + "/" + rs + "/" + cs + "/" + encodeURIComponent(g) + "/" + encodeURIComponent(s));
+  urls.push(base + "/" + rs);
+  urls.push(base + "/schools/" + rs);
+  // 지역 × 과목 페이지
+  for (const sj of ["국어","영어","수학","사회","과학","코딩","논술","검정고시"]) {
+   urls.push(base + "/" + rs + "/subject/" + encodeURIComponent(sj));
+  }
+  for (const [cs, ci] of Object.entries(ri.cities)) {
+   urls.push(base + "/" + rs + "/" + cs);
+   urls.push(base + "/" + rs + "/" + cs + "/schools");
+   // 시군구당 상위 5개 동만
+   (ci.dongs || []).slice(0,5).forEach(function(d){
+    urls.push(base + "/" + rs + "/" + cs + "/" + encodeURIComponent(d));
+   });
+   // 시군구당 상위 3개 학교만
+   (ci.schools || []).slice(0,3).forEach(function(sch){
+    urls.push(base + "/" + rs + "/" + cs + "/school/" + encodeURIComponent(sch.n || sch));
+   });
   }
  }
- for (const dong of (ci.dongs || [])) {
- urls.push(base + "/" + rs + "/" + cs + "/" + encodeURIComponent(dong));
- // 동 + 학년 + 과목
- for (const g of gradeList) {
-  for (const s of subjList) {
-  urls.push(base + "/" + rs + "/" + cs + "/" + encodeURIComponent(dong) + "/" + encodeURIComponent(g) + "/" + encodeURIComponent(s));
-  }
- }
- }
- for (const sch of (ci.schools || [])) {
- urls.push(base + "/" + rs + "/" + cs + "/school/" + encodeURIComponent(sch));
- // 학교 + 학년 + 과목 (신규 페이지)
- for (const g of gradeList) {
-  for (const s of subjList) {
-  urls.push(base + "/" + rs + "/" + cs + "/school/" + encodeURIComponent(sch) + "/" + encodeURIComponent(g) + "/" + encodeURIComponent(s));
-  }
- }
- }
- }
- }
- // 학원 센터 URL 추가
- var acGrades = ['초등','중등','고등'];
- var acSubjs = ['국어','영어','수학','과학','사회'];
+ // 학원 메인 페이지만 (서브 페이지 제외 - 색인 집중)
  ACAD_DETAIL.forEach(function(ct) {
- urls.push(base + "/academy/" + encodeURIComponent(ct.sl));
- acGrades.forEach(function(g) {
-  acSubjs.forEach(function(s) {
-  urls.push(base + "/academy/" + encodeURIComponent(ct.sl) + "/" + encodeURIComponent(g) + "/" + encodeURIComponent(s));
-  });
- });
- // 학교별 서브페이지
- var schools = [];
- if(ct.se) ct.se.split(',').forEach(function(s){if(s.trim())schools.push(s.trim());});
- if(ct.sm) ct.sm.split(',').forEach(function(s){if(s.trim())schools.push(s.trim());});
- if(ct.sh) ct.sh.split(',').forEach(function(s){if(s.trim())schools.push(s.trim());});
- schools.forEach(function(sch) {
-  acSubjs.forEach(function(s) {
-  urls.push(base + "/academy/" + encodeURIComponent(ct.sl) + "/" + encodeURIComponent(sch) + "/" + encodeURIComponent(s));
-  });
- });
+  urls.push(base + "/academy/" + encodeURIComponent(ct.sl));
  });
  return urls;
 }
@@ -5957,8 +5929,8 @@ function buildSubjectPage(subSlug){
 
  if (p==="/"||p==="") return new Response(getIndex(),{headers:H});
  if (p === "/sitemap.xml") {
- // Sitemap Index - points to category sitemaps
- const sitemaps = ["main","regions","subjects","schools-detail","academy","grades"];
+ // Sitemap Index - 핵심 페이지 우선 색인 전략 (1~2개월 빠른 색인)
+ const sitemaps = ["priority","subjects","academy","grades"];
  const idx = sitemaps.map(s => ` <sitemap><loc>https://eunshinestudy.com/sitemap-${s}.xml</loc></sitemap>`).join("\n");
  return new Response(`<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${idx}\n</sitemapindex>`, {headers:{"Content-Type":"application/xml;charset=utf-8",H}});
 }
@@ -5968,13 +5940,39 @@ if (p.startsWith("/sitemap-") && p.endsWith(".xml")) {
  let urls = [];
  const base = "https://eunshinestudy.com";
  
- if (cat === "main") {
+ if (cat === "main" || cat === "priority") {
+  // 🎯 핵심 페이지 (약 2,000~3,000개) - 빠른 색인 우선
   urls.push(base+"/", base+"/directory", base+"/schools", base+"/academy", base+"/subject", base+"/language");
   for (const gc of Object.keys(GRADE_DATA)) {
    urls.push(base+"/grade/"+gc);
   }
   SUBJECT_LIST.forEach(function(k){urls.push(base+"/subject/"+SUBJECTS[k].slug);});
   ["english","japanese","chinese"].forEach(function(l){urls.push(base+"/language/"+l);});
+  // 17개 지역 + 모든 시군구 + 핵심 동/학교
+  for (const rs of Object.keys(locations)) {
+   urls.push(base+"/"+rs);
+   urls.push(base+"/schools/"+rs);
+   const region = locations[rs];
+   for (const cs of Object.keys(region.cities||{})) {
+    urls.push(base+"/"+rs+"/"+cs);
+    urls.push(base+"/"+rs+"/"+cs+"/schools");
+    const city = region.cities[cs];
+    // 시군구당 상위 5개 동만 → 색인 집중
+    (city.dongs||[]).slice(0,5).forEach(function(d){
+     urls.push(base+"/"+rs+"/"+cs+"/"+encodeURIComponent(d));
+    });
+    // 시군구당 상위 3개 학교만 → 색인 집중
+    (city.schools||[]).slice(0,3).forEach(function(s){
+     urls.push(base+"/"+rs+"/"+cs+"/school/"+encodeURIComponent(s.n||s));
+    });
+   }
+  }
+  // 지역 × 과목 페이지 (17 × 8 = 136개)
+  for (const rs of Object.keys(locations)) {
+   ["국어","영어","수학","사회","과학","코딩","논술","검정고시"].forEach(function(sj){
+    urls.push(base+"/"+rs+"/subject/"+encodeURIComponent(sj));
+   });
+  }
  }
  
  else if (cat === "regions") {
