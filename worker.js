@@ -1745,7 +1745,7 @@ function buildRegionPage(rs) {
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
- <title>${rn} 과외 | 방문·화상 1:1 맞춤 과외 | 은빛쌤</title>
+ <title>${seoTitle(`${rn} 과외`, cH(rs))} | 은빛스터디</title>
  <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${sceneImg}">
  <meta property="article:modified_time" content="${getUpdateDateISO()}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${rn} 전 지역 1:1 맞춤 과외. 방문/화상 모두 가능, 35년 경력 은빛쌤. 첫 상담·체험 수업 무료.">
@@ -2109,7 +2109,7 @@ function buildCityPage(rs, cs) {
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
- <title>${fullRd} 과외 | 초중고 1:1 맞춤 방문·화상 과외 | 은빛쌤</title>
+ <title>${fullRd} 과외 | 지역별 맞춤 1:1 과외 | 은빛스터디</title>
  <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${bgImg("city",cH(rs+cs))}">
  <meta property="article:modified_time" content="${getUpdateDateISO()}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${fullRd} 과외 전문 은빛쌤. ${dongStr} 상담 후 방문·화상 결정. ${schoolStr} 내신 완벽 대비. 첫 상담·체험 무료.">
@@ -2268,7 +2268,7 @@ function buildDongPage(rs, cs, dong) {
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
- <title>${fullRd} ${dong} 과외 | 초중고 1:1 방문·화상 과외 | 은빛쌤</title>
+ <title>${fullRd} ${dong} 과외 | 지역별 맞춤 1:1 과외 | 은빛스터디</title>
  <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${bgImg("city",cH(rs+cs+dong))}">
  <meta property="article:modified_time" content="${getUpdateDateISO()}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${dong} 과외 전문 은빛쌤. 초·중·고 국어·영어·수학 1:1 맞춤 수업. ${schoolStr} 내신 완벽 대비. 상담 후 방문·화상 결정. 첫 체험 무료.">
@@ -2410,7 +2410,7 @@ function buildDongDetailPage(rs, cs, dong, grade, subject) {
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
- <title>${title} | 1:1 방문·화상 과외 | 은빛쌤</title>
+ <title>${title} | 맞춤 1:1 과외 | 은빛스터디</title>
  <meta property="og:image" content="${bgImg(subject,cH(rs+cs+dong+grade+subject))}">
  <meta property="article:modified_time" content="${getUpdateDateISO()}">
  <meta name="description" content="${dong} ${grade} ${subject} 과외. ${rawDesc.substring(0,60)}. 은빛쌤 1:1 맞춤 수업, 첫 체험 무료.">
@@ -2679,7 +2679,7 @@ function buildDetailPage(rs, cs, grade, subject) {
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
- <title>${fullRd} ${grade} ${subject}과외 | 1:1 방문·화상 과외 | 은빛쌤</title>
+ <title>${fullRd} ${grade} ${subject}과외 | 맞춤 1:1 과외 | 은빛스터디</title>
  <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${bgImg(subject,cH(rs+cs+grade+subject))}">
  <meta property="article:modified_time" content="${getUpdateDateISO()}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${fullRd} ${grade} ${subject} 과외. ${c.desc.substring(0,60)}. 은빛쌤 1:1 맞춤 수업, 첫 체험 무료.">
@@ -3083,7 +3083,7 @@ function buildSchoolPage(rs, cs, schoolShort) {
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
- <title>${schoolFull} 과외 | 1:1 방문·화상 과외 | 은빛쌤</title>
+ <title>${schoolFull} 과외 | 맞춤 1:1 과외 | 은빛스터디</title>
  <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${bgImg("school",seed)}">
  <meta property="article:modified_time" content="${getUpdateDateISO()}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${schoolFull} 과외 전문 은빛쌤. ${schoolFull} 내신 기출 완벽 분석, 1:1 맞춤 수업, 35년 교육 노하우. 첫 상담·체험 무료.">
@@ -3234,7 +3234,7 @@ function buildGradePage(gradeCode) {
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
- <title>${gd.name} 과외 | 1:1 방문·화상 과외 | 은빛쌤</title>
+ <title>${gd.name} 과외 | 맞춤 1:1 과외 | 은빛스터디</title>
  <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${bgImg("school",seed)}">
  <meta property="article:modified_time" content="${getUpdateDateISO()}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${gd.name} 과외 전문 은빛쌤. ${gd.short} 맞춤 1:1 과외, 35년 교육 노하우. 첫 상담·체험 무료.">
@@ -3379,7 +3379,7 @@ function buildGradeSubjectPage(gradeCode, subject) {
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
- <title>${gd.name} ${subject}과외 | 1:1 방문·화상 과외 | 은빛쌤</title>
+ <title>${gd.name} ${subject}과외 | 맞춤 1:1 과외 | 은빛스터디</title>
  <meta property="og:image" content="${heroImg}">
  <meta property="article:modified_time" content="${getUpdateDateISO()}">
  <meta name="description" content="${gd.name} ${subject} 과외 전문 은빛쌤. ${subjDesc.substring(0,60)} 35년 교육 노하우, 첫 상담·체험 무료.">
