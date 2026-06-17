@@ -5646,8 +5646,24 @@ async function handle(req) {
   return Response.redirect(url.origin + p.slice(0,-1) + url.search, 301);
  }
  const parts = p.split("/").filter(Boolean);
- const H = {"Content-Type":"text/html;charset=UTF-8"};
+ // 🔍 SEO: Canonical URL + Last-Modified 헤더 자동 주입
+ const canonicalUrl = "https://eunshinestudy.com" + p;
+ const updateDate = new Date(getUpdateDateISO()).toUTCString();
+ const H = {
+  "Content-Type":"text/html;charset=UTF-8",
+  "Last-Modified": updateDate,
+  "Cache-Control": "public, max-age=3600, s-maxage=86400"
+ };
  const J = {"Content-Type":"application/json;charset=UTF-8"};
+ 
+ // 페이지 응답 시 canonical URL을 자동으로 head에 주입하는 헬퍼
+ const injectCanonical = (html) => {
+  if (typeof html !== "string") return html;
+  const canonicalTag = '<link rel="canonical" href="'+canonicalUrl+'">';
+  // 이미 canonical이 있으면 그대로, 없으면 </head> 앞에 삽입
+  if (html.indexOf('rel="canonical"') >= 0) return html;
+  return html.replace('</head>', canonicalTag+'</head>');
+ };
 
  // ── 상담 신청 이메일 전송 ──────────────────────────────
  if (p === "/api/contact" && req.method === "POST") {
@@ -6193,7 +6209,8 @@ if (p.startsWith("/sitemap-") && p.endsWith(".xml")) {
  // Limit to 50000 per sitemap
  if (urls.length > 50000) urls = urls.slice(0, 50000);
  
- const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(u => ` <url><loc>${u}</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>`).join("\n")}\n</urlset>`;
+ const lastmod = getUpdateDateISO().split('T')[0];
+ const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(u => ` <url><loc>${u}</loc><lastmod>${lastmod}</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>`).join("\n")}\n</urlset>`;
  return new Response(xml, {headers:{"Content-Type":"application/xml;charset=utf-8",H}});
 }
  if (p==="/academy") return new Response(buildAcademyPage(),{headers:H});
@@ -6210,7 +6227,7 @@ if (p.startsWith("/sitemap-") && p.endsWith(".xml")) {
  if (parts.length===2 && parts[0]==="academy" && parts[1]!=="") {
  const slug = decodeURIComponent(parts[1]);
  const html = buildCenterDetailPage(slug);
- if(html) return new Response(html,{headers:H});
+ if(html) return new Response(injectCanonical(html), {headers:H});
  }
  if ((parts.length===4 || parts.length===5) && parts[0]==="academy") {
  const slug = decodeURIComponent(parts[1]);
@@ -6219,39 +6236,39 @@ if (p.startsWith("/sitemap-") && p.endsWith(".xml")) {
  const schoolName = parts[4] ? decodeURIComponent(parts[4]) : null;
  if(p2==='초등'||p2==='중등'||p2==='고등'){
   const html = buildCenterSubPage(slug, p2, subject, schoolName);
-  if(html) return new Response(html,{headers:H});
+  if(html) return new Response(injectCanonical(html), {headers:H});
  } else {
   const sn = p2;
   const gr = sn.match(/초$/) ? '초등' : (sn.match(/중$/) ? '중등' : '고등');
   const html = buildCenterSubPage(slug, gr, subject, sn);
-  if(html) return new Response(html,{headers:H});
+  if(html) return new Response(injectCanonical(html), {headers:H});
  }
  }
  if (p==="/directory") return new Response(buildDirectoryPage(),{headers:H});
  if (p==="/schools") return new Response(buildNationalSchoolsPage(),{headers:H});
  if (parts.length===2 && parts[0]==="schools" && locations[parts[1]]) {
  const html = buildRegionSchoolsPage(parts[1]);
- if(html) return new Response(html,{headers:H});
+ if(html) return new Response(injectCanonical(html), {headers:H});
  }
  // ── 학년별 과외 페이지 라우팅 ──
  if (parts.length===2 && parts[0]==="grade" && GRADE_DATA[parts[1]]) {
  const html = buildGradePage(parts[1]);
- if(html) return new Response(html,{headers:H});
+ if(html) return new Response(injectCanonical(html), {headers:H});
  }
  // ── 학년+과목 상세 페이지 라우팅 ──
  if (parts.length===3 && parts[0]==="grade" && GRADE_DATA[parts[1]]) {
  const subj = decodeURIComponent(parts[2]);
  const html = buildGradeSubjectPage(parts[1], subj);
- if(html) return new Response(html,{headers:H});
+ if(html) return new Response(injectCanonical(html), {headers:H});
  }
  if (parts.length===1 && locations[parts[0]]) {
  const html = buildRegionPage(parts[0]);
- if (html) return new Response(html, {headers:H});
+ if (html) return new Response(injectCanonical(html), {headers:H});
  }
  if (parts.length===3 && parts[1]==="subject" && locations[parts[0]]) {
  const subject = decodeURIComponent(parts[2]);
  const html = buildRegionSubjectPage(parts[0], subject);
- if (html) return new Response(html, {headers:H});
+ if (html) return new Response(injectCanonical(html), {headers:H});
  }
  if (p==="/search") {
  const q=(url.searchParams.get("q")||"").trim();
@@ -6266,18 +6283,18 @@ if (p.startsWith("/sitemap-") && p.endsWith(".xml")) {
  if (parts.length===2) {
  const html=buildCityPage(parts[0],decodeURIComponent(parts[1]));
  if(!html) return new Response(NOT_FOUND_HTML,{status:404,headers:{"Content-Type":"text/html;charset=utf-8"}});
- return new Response(html,{headers:H});
+ return new Response(injectCanonical(html), {headers:H});
  }
  if (parts.length===3 && parts[2]==="schools") {
  const html = buildSchoolListPage(parts[0], decodeURIComponent(parts[1]));
  if(!html) return new Response(NOT_FOUND_HTML,{status:404,headers:{"Content-Type":"text/html;charset=utf-8"}});
- return new Response(html,{headers:H});
+ return new Response(injectCanonical(html), {headers:H});
  }
  if (parts.length===4 && parts[2]==="school") {
  const school = decodeURIComponent(parts[3]);
  const html = buildSchoolPage(parts[0], decodeURIComponent(parts[1]), school);
  if(!html) return new Response(NOT_FOUND_HTML,{status:404,headers:{"Content-Type":"text/html;charset=utf-8"}});
- return new Response(html,{headers:H});
+ return new Response(injectCanonical(html), {headers:H});
  }
  if (parts.length===6 && parts[2]==="school") {
  const school = decodeURIComponent(parts[3]);
@@ -6285,24 +6302,24 @@ if (p.startsWith("/sitemap-") && p.endsWith(".xml")) {
  const subject = decodeURIComponent(parts[5]);
  const html = buildSchoolDetailPage(parts[0], decodeURIComponent(parts[1]), school, grade, subject);
  if(!html) return new Response(NOT_FOUND_HTML,{status:404,headers:{"Content-Type":"text/html;charset=utf-8"}});
- return new Response(html,{headers:H});
+ return new Response(injectCanonical(html), {headers:H});
  }
  if (parts.length===3) {
  const dong = decodeURIComponent(parts[2]);
  const html = buildDongPage(parts[0], decodeURIComponent(parts[1]), dong);
  if(!html) return new Response(NOT_FOUND_HTML,{status:404,headers:{"Content-Type":"text/html;charset=utf-8"}});
- return new Response(html,{headers:H});
+ return new Response(injectCanonical(html), {headers:H});
  }
  if (parts.length===5) {
  const dong = decodeURIComponent(parts[2]);
  const html = buildDongDetailPage(parts[0],decodeURIComponent(parts[1]),dong,decodeURIComponent(parts[3]),decodeURIComponent(parts[4]));
  if(!html) return new Response(NOT_FOUND_HTML,{status:404,headers:{"Content-Type":"text/html;charset=utf-8"}});
- return new Response(html,{headers:H});
+ return new Response(injectCanonical(html), {headers:H});
  }
  if (parts.length===4) {
  const html=buildDetailPage(parts[0],decodeURIComponent(parts[1]),decodeURIComponent(parts[2]),decodeURIComponent(parts[3]));
  if(!html) return new Response(NOT_FOUND_HTML,{status:404,headers:{"Content-Type":"text/html;charset=utf-8"}});
- return new Response(html,{headers:H});
+ return new Response(injectCanonical(html), {headers:H});
  }
  return new Response("Not Found",{status:404});
 }function buildHomePage() {
