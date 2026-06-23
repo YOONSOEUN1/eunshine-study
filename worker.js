@@ -1358,7 +1358,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:99999;background:rgba(255,255,25
 </div>
 </nav>
 <script>function switchDD(i){for(var j=0;j<3;j++){document.getElementById('ddC'+j).style.display=j===i?(j===1?'block':'grid'):'none';var t=document.querySelectorAll('.ddt');t[j].style.background=j===i?'#1A2340':'#fff';t[j].style.color=j===i?'#fff':'#334155';}}document.addEventListener('click',function(e){['ddF','ddS','ddL'].forEach(function(id){var d=document.getElementById(id);if(d&&!d.parentElement.contains(e.target))d.style.display='none';});});</script>`;
-const FAVICON_TAGS = '<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><link rel="apple-touch-icon" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta property="og:site_name" content="은빛스터디"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta name="robots" content="index, follow"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"은빛스터디","alternateName":"Eunshine Study","url":"https://eunshinestudy.com","logo":"https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png","description":"전국 1:1 맞춤 과외 매칭. 35년 교육 노하우로 학생별 맞춤 학습 설계. 방문·화상 모두 가능, 첫 상담 무료.","contactPoint":{"@type":"ContactPoint","contactType":"customer service","areaServed":"KR","availableLanguage":["Korean"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"은빛스터디","url":"https://eunshinestudy.com","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://eunshinestudy.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}</script>';
+const FAVICON_TAGS = '<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><link rel="apple-touch-icon" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta property="og:site_name" content="은빛스터디"><meta property="og:type" content="website"><meta property="og:locale" content="ko_KR"><meta name="twitter:card" content="summary_large_image"><meta name="robots" content="index, follow"><meta name="application-name" content="은빛스터디"><meta name="apple-mobile-web-app-title" content="은빛스터디"><meta name="naver-site-verification" content=""><meta http-equiv="content-language" content="ko"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"은빛스터디","alternateName":"은빛쌤","url":"https://eunshinestudy.com","logo":"https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png","description":"전국 1:1 맞춤 과외 매칭. 35년 교육 노하우로 학생별 맞춤 학습 설계. 방문·화상 모두 가능, 첫 상담 무료.","contactPoint":{"@type":"ContactPoint","contactType":"customer service","areaServed":"KR","availableLanguage":["Korean"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"은빛스터디","alternateName":"은빛쌤","url":"https://eunshinestudy.com","inLanguage":"ko-KR","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://eunshinestudy.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}</script><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "xbfghik5ng");</script>';
 
 // LocalBusiness Schema 생성 (지역 페이지용)
 function buildLocalBusinessSchema(regionName, pageUrl) {
@@ -1827,12 +1827,36 @@ function buildRegionPage(rs) {
  <!-- 본문 카드 -->
  <div style="max-width:900px;margin:0 auto;padding:0 20px 36px;">
  <h2 style="font-size:20px;font-weight:900;color:#1A2340;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid #1A2340;">${rn} 시·구·군별 과외 (${cities.length}개)</h2>
+ <script type="application/ld+json">${JSON.stringify({
+  "@context":"https://schema.org",
+  "@type":"ItemList",
+  "name":rn+" 시·구·군별 과외 목록",
+  "numberOfItems":cities.length,
+  "itemListElement":cities.map(function(ct, i){return {
+   "@type":"ListItem",
+   "position":i+1,
+   "url":"https://eunshinestudy.com/"+rs+"/"+ct.cs,
+   "name":ct.name+" 과외"
+  };})
+ })}</script>
  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px;">${cards}</div>
  </div>
 
  <!-- 과목별 과외 카드 -->
  <div style="max-width:900px;margin:0 auto;padding:0 20px 36px;">
  <h2 style="font-size:20px;font-weight:900;color:#1A2340;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid #1A2340;">${rn} 과목별 과외 (8개)</h2>
+ <script type="application/ld+json">${JSON.stringify({
+  "@context":"https://schema.org",
+  "@type":"ItemList",
+  "name":rn+" 과목별 과외 목록",
+  "numberOfItems":8,
+  "itemListElement":['국어','영어','수학','사회','과학','코딩','논술','검정고시'].map(function(sj, i){return {
+   "@type":"ListItem",
+   "position":i+1,
+   "url":"https://eunshinestudy.com/"+rs+"/subject/"+encodeURIComponent(sj),
+   "name":rn+" "+sj+"과외"
+  };})
+ })}</script>
  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;">
  ${['국어','영어','수학','사회','과학','코딩','논술','검정고시'].map(function(sj){
   var icons = {"국어":"📖","영어":"🔤","수학":"➗","사회":"🌏","과학":"🧪","코딩":"💻","논술":"✏️","검정고시":"📚"};
