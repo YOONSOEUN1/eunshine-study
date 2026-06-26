@@ -6,6 +6,17 @@ const BANNER1_URL="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/m
 const BANNER2_URL="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/banner2.png";
 
 const BRAND_URL="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png";
+
+// ============================================================
+// 내 썸네일 사진 (GitHub images 폴더): image1.jpg ~ image30.jpg
+// 사진 개수가 다르면 아래 30 을 바꾸세요. 확장자가 .png 면 ".jpg" 를 ".png" 로 바꾸세요.
+// ============================================================
+const THUMB_BASE = "https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/";
+const THUMB_COUNT = 30;          // <- 사진 개수
+const THUMB_EXT   = ".jpg";      // <- 확장자 (.jpg 또는 .png)
+const THUMBS = [];
+for (let i = 1; i <= THUMB_COUNT; i++) THUMBS.push(THUMB_BASE + "image" + i + THUMB_EXT);
+function pickThumb(seed){ return THUMBS[(seed >>> 0) % THUMBS.length]; }
 const locations = {
  "seoul":{
  "region_name":"서울특별시",
@@ -1063,17 +1074,8 @@ const BG_IMG_ENGLISH=["1455390582262-044cdead277a","1546410531-bb4caa6b424d","15
 const BG_IMG_SOCIAL=["1524178232363-1fb2b075b655","1502920917128-1aa500764cbd","1568667256549-094345857637","1495446815901-a7297e633e8d","1535905557558-afc4877a26fc"];
 
 function bgImg(category,seed){
- let pool;
- if(category==="school")pool=BG_IMG_SCHOOL;
- else if(category==="city")pool=BG_IMG_CITY;
- else if(category==="수학")pool=BG_IMG_MATH;
- else if(category==="과학")pool=BG_IMG_SCIENCE;
- else if(category==="국어")pool=BG_IMG_KOREAN;
- else if(category==="영어")pool=BG_IMG_ENGLISH;
- else if(category==="사회")pool=BG_IMG_SOCIAL;
- else if(category==="코딩")pool=BG_IMG_SCIENCE;else if(category==="논술")pool=BG_IMG_KOREAN;else if(category==="검정고시")pool=BG_IMG_SCHOOL;else if(category==="사회탐구")pool=BG_IMG_SOCIAL;else if(category==="과학탐구")pool=BG_IMG_SCIENCE;else pool=BG_IMG_BOOKS;
- const id=pool[((seed>>>0)+pool.length)%pool.length];
- return "https://images.unsplash.com/photo-"+id+"?w=1400&q=70&auto=format&fit=crop";
+ // 카테고리는 무시하고, 내 사진 중에서 페이지마다 하나를 고릅니다.
+ return pickThumb(seed);
 }
 
 function hexToRgba(hex,alpha){
@@ -1751,7 +1753,7 @@ function buildRegionPage(rs) {
  "gyeongnam":"https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=1200&h=400&fit=crop",
  "jeju":"https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=1200&h=400&fit=crop"
  };
- const sceneImg = sceneImgs[rs] || "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=400&fit=crop";
+ const sceneImg = pickThumb(cH(rs)); // 지역마다 내 사진 중 하나
 
  let cards = "";
  for (const [cs, ci] of cities) {
