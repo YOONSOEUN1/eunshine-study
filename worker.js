@@ -9,11 +9,11 @@ const BRAND_URL="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/mai
 
 // ============================================================
 // 내 썸네일 사진 (GitHub images 폴더): image1.jpg ~ image30.jpg
-// 사진 개수가 다르면 아래 30 을 바꾸세요. 확장자가 .png 면 ".jpg" 를 ".png" 로 바꾸세요.
+// 사진 개수가 다르면 THUMB_COUNT, 확장자가 다르면 THUMB_EXT 만 바꾸세요.
 // ============================================================
 const THUMB_BASE = "https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/";
-const THUMB_COUNT = 30;          // <- 사진 개수
-const THUMB_EXT   = ".jpg";      // <- 확장자 (.jpg 또는 .png)
+const THUMB_COUNT = 30;
+const THUMB_EXT   = ".jpg";
 const THUMBS = [];
 for (let i = 1; i <= THUMB_COUNT; i++) THUMBS.push(THUMB_BASE + "image" + i + THUMB_EXT);
 function pickThumb(seed){ return THUMBS[(seed >>> 0) % THUMBS.length]; }
@@ -1074,7 +1074,6 @@ const BG_IMG_ENGLISH=["1455390582262-044cdead277a","1546410531-bb4caa6b424d","15
 const BG_IMG_SOCIAL=["1524178232363-1fb2b075b655","1502920917128-1aa500764cbd","1568667256549-094345857637","1495446815901-a7297e633e8d","1535905557558-afc4877a26fc"];
 
 function bgImg(category,seed){
- // 카테고리는 무시하고, 내 사진 중에서 페이지마다 하나를 고릅니다.
  return pickThumb(seed);
 }
 
@@ -1392,24 +1391,24 @@ function buildBreadcrumbSchema(items) {
   };})
  })+'</script>';
 }
-const COMMON_STYLE = `<link rel="alternate" type="application/rss+xml" title="은빛스터디 RSS" href="https://eunshinestudy.com/rss"><link rel="icon" type="image/png" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><link rel="apple-touch-icon" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Malgun Gothic',sans-serif;background:#f4f7f6;padding-top:70px;}.rv-carousel{position:relative;overflow:hidden;}.rv-track{display:flex;gap:16px;animation:rvScroll 30s linear infinite;width:max-content;}.rv-carousel:hover .rv-track{animation-play-state:paused;}@keyframes rvScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}.rv-track .rv-card{min-width:300px;max-width:300px;flex-shrink:0;box-sizing:border-box;}@media(max-width:768px){.rv-track .rv-card{min-width:280px;max-width:280px;}}.rv-dots{display:flex;justify-content:center;gap:6px;margin-top:16px;}.rv-dot{width:28px;height:4px;border-radius:2px;background:rgba(26,35,64,.12);cursor:pointer;border:none;padding:0;transition:all .3s;}.rv-dot.on{width:40px;background:#C8A96E;}</style>${FAVICON_TAGS}`;
+const COMMON_STYLE = `<link rel="alternate" type="application/rss+xml" title="은빛스터디 RSS" href="https://eunshinestudy.com/rss"><link rel="icon" type="image/png" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><link rel="apple-touch-icon" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Malgun Gothic',sans-serif;background:#f4f7f6;padding-top:70px;}.rv-carousel{position:relative;overflow:hidden;}.rv-track{display:flex;gap:16px;animation:rvScroll 30s linear infinite;width:max-content;}.rv-carousel:hover .rv-track{animation-play-state:paused;}@keyframes rvScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}.rv-track .rv-card{min-width:300px;max-width:300px;flex-shrink:0;box-sizing:border-box;}@media(max-width:768px){.rv-track .rv-card{min-width:280px;max-width:280px;}}.rv-dots{display:flex;justify-content:center;gap:6px;margin-top:16px;}.rv-dot{width:28px;height:4px;border-radius:2px;background:rgba(26,35,64,.12);cursor:pointer;border:none;padding:0;transition:all .3s;}.rv-dot.on{width:40px;background:#C8A96E;}@media(max-width:768px){.efw{bottom:16px!important;right:12px!important;gap:10px!important;}.efb{width:48px!important;height:48px!important;padding:0!important;border-radius:50%!important;justify-content:center!important;font-size:20px!important;}.efl{display:none!important;}img{max-width:100%!important;height:auto!important;}table{max-width:100%!important;}}</style>${FAVICON_TAGS}`;
 
-const FLOATING = `<div style="position:fixed;bottom:24px;right:18px;display:flex;flex-direction:column;gap:8px;z-index:9998;">
- <a href="tel:01023370458"
+const FLOATING = `<div class="efw" style="position:fixed;bottom:24px;right:18px;display:flex;flex-direction:column;gap:8px;z-index:9998;">
+ <a href="tel:01023370458" class="efb"
  style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:white;color:#1A2340;text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.18);white-space:nowrap;">
- 📞 <span>전화 상담</span>
+ 📞 <span class="efl">전화 상담</span>
  </a>
- <a href="#form" onclick="document.getElementById(\x27form\x27).scrollIntoView({behavior:\x27smooth\x27});return false;"
+ <a href="#form" onclick="document.getElementById(\x27form\x27).scrollIntoView({behavior:\x27smooth\x27});return false;" class="efb"
  style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:linear-gradient(135deg,#C8A96E,#E8D09A);color:#1A2340;border:1px solid rgba(200,169,110,0.6);text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.2);white-space:nowrap;">
- ✏️ <span>빠른 상담 문의</span>
+ ✏️ <span class="efl">빠른 상담 문의</span>
  </a>
- <a href="https://naver.me/Gnva0jjW" target="_blank"
+ <a href="https://naver.me/Gnva0jjW" target="_blank" class="efb"
  style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:#03C75A;color:white;text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.15);white-space:nowrap;">
- 📋 <span>네이버 폼 신청</span>
+ 📋 <span class="efl">네이버 폼 신청</span>
  </a>
- <a href="https://pf.kakao.com/_KRAjG/chat" target="_blank"
+ <a href="https://pf.kakao.com/_KRAjG/chat" target="_blank" class="efb"
  style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:#FEE500;color:#3A1D1D;text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.15);white-space:nowrap;">
- 💬 <span>카카오톡 상담</span>
+ 💬 <span class="efl">카카오톡 상담</span>
  </a>
 </div>`
 const CONTACT = ``;
@@ -1498,11 +1497,11 @@ const ACAD_FOOTER = `
 </footer>`;
 
 const NOT_FOUND_HTML = `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>페이지를 찾을 수 없습니다 | 은빛스터디</title>${COMMON_STYLE}</head><body>${NAV}<div style="max-width:600px;margin:80px auto;padding:0 20px;text-align:center;"><div style="font-size:64px;margin-bottom:20px;">🔍</div><h1 style="font-size:28px;font-weight:900;color:#1A2340;margin-bottom:12px;">페이지를 찾을 수 없습니다</h1><p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:32px;">요청하신 페이지가 존재하지 않거나 주소가 변경되었습니다.</p><div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;"><a href="/" style="background:#1A2340;color:#fff;padding:14px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;">🏠 홈으로 가기</a><a href="/directory" style="background:#f0f0f0;color:#1A2340;padding:14px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;">📍 전체 지역 보기</a><a href="/subject" style="background:#f0f0f0;color:#1A2340;padding:14px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;">📚 과목별 수업</a></div></div>${FOOTER}</body></html>`;
-const ACAD_FLOATING = `<div style="position:fixed;bottom:24px;right:18px;display:flex;flex-direction:column;gap:8px;z-index:9998;">
- <a href="tel:01023370458" style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:white;color:#1A2340;text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.18);white-space:nowrap;">📞 <span>전화 상담</span></a>
- <a href="#acadForm" onclick="var f=document.getElementById('acadForm');if(f)f.scrollIntoView({behavior:'smooth'});return false;" style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:linear-gradient(135deg,#C8A96E,#E8D09A);color:#1A2340;border:1px solid rgba(200,169,110,0.6);text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.2);white-space:nowrap;">✏️ <span>상담 신청</span></a>
- <a href="https://naver.me/GieISRs0" target="_blank" style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:#03C75A;color:white;text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.15);white-space:nowrap;">📋 <span>네이버 폼 신청</span></a>
- <a href="https://pf.kakao.com/_KRAjG/chat" target="_blank" style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:#FEE500;color:#3A1D1D;text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.15);white-space:nowrap;">💬 <span>카카오톡 상담</span></a>
+const ACAD_FLOATING = `<div class="efw" style="position:fixed;bottom:24px;right:18px;display:flex;flex-direction:column;gap:8px;z-index:9998;">
+ <a href="tel:01023370458" class="efb" style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:white;color:#1A2340;text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.18);white-space:nowrap;">📞 <span class="efl">전화 상담</span></a>
+ <a href="#acadForm" onclick="var f=document.getElementById('acadForm');if(f)f.scrollIntoView({behavior:'smooth'});return false;" class="efb" style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:linear-gradient(135deg,#C8A96E,#E8D09A);color:#1A2340;border:1px solid rgba(200,169,110,0.6);text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.2);white-space:nowrap;">✏️ <span class="efl">상담 신청</span></a>
+ <a href="https://naver.me/GieISRs0" target="_blank" class="efb" style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:#03C75A;color:white;text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.15);white-space:nowrap;">📋 <span class="efl">네이버 폼 신청</span></a>
+ <a href="https://pf.kakao.com/_KRAjG/chat" target="_blank" class="efb" style="display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:#FEE500;color:#3A1D1D;text-decoration:none;font-weight:700;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.15);white-space:nowrap;">💬 <span class="efl">카카오톡 상담</span></a>
 </div>`;
 const ACAD_FORM = function(src){
  var safeSrc = (src||'').replace(/'/g, "\\'");
@@ -1753,7 +1752,7 @@ function buildRegionPage(rs) {
  "gyeongnam":"https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=1200&h=400&fit=crop",
  "jeju":"https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=1200&h=400&fit=crop"
  };
- const sceneImg = pickThumb(cH(rs)); // 지역마다 내 사진 중 하나
+ const sceneImg = pickThumb(cH(rs));
 
  let cards = "";
  for (const [cs, ci] of cities) {
@@ -5699,30 +5698,56 @@ async function handle(req) {
  const srcLabel = source || '메인(과외)';
  const srcColor = srcLabel.includes('학원') ? '#10b981' : '#3b82f6';
 
- const html = `
- <div style="font-family:'Apple SD Gothic Neo',sans-serif;max-width:600px;margin:0 auto;background:#f8f9fc;border-radius:12px;overflow:hidden;">
- <div style="background:linear-gradient(135deg,#1A2340,#2a3d6b);padding:28px 32px;">
- <h1 style="color:#C8A96E;margin:0;font-size:22px;">📚 새 상담 신청이 도착했습니다</h1>
- <p style="color:rgba(255,255,255,0.6);margin:6px 0 0;font-size:13px;">은빛스터디 홈페이지 상담 신청</p>
- <div style="margin-top:12px;display:inline-block;background:${srcColor};color:white;padding:5px 16px;border-radius:50px;font-size:12px;font-weight:700;">📍 유입 경로: ${srcLabel}</div>
+ const html = `<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<style>
+ body{margin:0;padding:0;background:#eef1f6;}
+ .ew{width:100%;max-width:600px;margin:0 auto;background:#f8f9fc;border-radius:12px;overflow:hidden;font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif;}
+ .ew-head{background:linear-gradient(135deg,#1A2340,#2a3d6b);padding:28px;}
+ .ew-body{padding:24px 28px;background:#fff;}
+ .ew-foot{padding:16px 28px;background:#f8f9fc;font-size:12px;color:#aaa;text-align:center;}
+ table.ew-tbl{width:100%;border-collapse:collapse;}
+ table.ew-tbl td{padding:10px 6px;border-bottom:1px solid #eee;vertical-align:top;word-break:break-word;}
+ td.lbl{color:#888;font-size:13px;width:96px;white-space:nowrap;}
+ td.val{font-weight:600;color:#1A2340;font-size:15px;}
+ @media only screen and (max-width:600px){
+  .ew-head{padding:22px 18px!important;}
+  .ew-body{padding:18px 16px!important;}
+  .ew-foot{padding:14px 16px!important;}
+  table.ew-tbl td{display:block!important;width:auto!important;border-bottom:none!important;padding:2px 0!important;}
+  td.lbl{padding:10px 0 2px!important;font-size:12px!important;}
+  td.val{padding:0 0 8px!important;border-bottom:1px solid #eee!important;}
+ }
+</style>
+</head>
+<body>
+ <div class="ew">
+  <div class="ew-head">
+   <h1 style="color:#C8A96E;margin:0;font-size:20px;">📚 새 상담 신청이 도착했습니다</h1>
+   <p style="color:rgba(255,255,255,0.6);margin:6px 0 0;font-size:13px;">은빛스터디 홈페이지 상담 신청</p>
+   <div style="margin-top:12px;display:inline-block;background:${srcColor};color:white;padding:5px 16px;border-radius:50px;font-size:12px;font-weight:700;">📍 유입 경로: ${srcLabel}</div>
+  </div>
+  <div class="ew-body">
+   <table class="ew-tbl">
+    <tr><td class="lbl" style="color:${srcColor};font-weight:700;">📍 유입 페이지</td><td class="val" style="color:${srcColor};font-weight:800;">${srcLabel}</td></tr>
+    <tr><td class="lbl">학생 이름</td><td class="val">${name || '-'}</td></tr>
+    <tr><td class="lbl">연락처</td><td class="val">${contact || '-'}</td></tr>
+    <tr><td class="lbl">학생 학교</td><td class="val">${school || '-'}</td></tr>
+    <tr><td class="lbl">거주 지역</td><td class="val">${address || '-'}</td></tr>
+    <tr><td class="lbl">수업 방식</td><td class="val">${method || '-'}</td></tr>
+    <tr><td class="lbl">학년</td><td class="val">${grade || '-'}</td></tr>
+    <tr><td class="lbl">희망 과목</td><td class="val">${subject || '-'}</td></tr>
+    <tr><td class="lbl">문의 사항</td><td class="val" style="font-weight:400;line-height:1.6;">${message || '없음'}</td></tr>
+   </table>
+  </div>
+  <div class="ew-foot">은빛스터디 · eunshinestudy.com · 010-2337-0458</div>
  </div>
- <div style="padding:28px 32px;background:#fff;">
- <table style="width:100%;border-collapse:collapse;">
- <tr style="background:#f0fdf4;"><td style="padding:10px 12px;border-bottom:1px solid #eee;color:${srcColor};font-size:13px;font-weight:700;width:110px;">📍 유입 페이지</td><td style="padding:10px 12px;border-bottom:1px solid #eee;font-weight:800;color:${srcColor};font-size:15px;">${srcLabel}</td></tr>
- <tr><td style="padding:10px 0;border-bottom:1px solid #eee;color:#888;font-size:13px;width:110px;">학생 이름</td><td style="padding:10px 0;border-bottom:1px solid #eee;font-weight:600;color:#1A2340;">${name || '-'}</td></tr>
- <tr><td style="padding:10px 0;border-bottom:1px solid #eee;color:#888;font-size:13px;">연락처</td><td style="padding:10px 0;border-bottom:1px solid #eee;font-weight:600;color:#1A2340;">${contact || '-'}</td></tr>
- <tr><td style="padding:10px 0;border-bottom:1px solid #eee;color:#888;font-size:13px;">학생 학교</td><td style="padding:10px 0;border-bottom:1px solid #eee;font-weight:600;color:#1A2340;">${school || "-"}</td></tr>
- <tr><td style="padding:10px 0;border-bottom:1px solid #eee;color:#888;font-size:13px;">거주 지역</td><td style="padding:10px 0;border-bottom:1px solid #eee;font-weight:600;color:#1A2340;">${address || '-'}</td></tr>
- <tr><td style="padding:10px 0;border-bottom:1px solid #eee;color:#888;font-size:13px;">수업 방식</td><td style="padding:10px 0;border-bottom:1px solid #eee;color:#1A2340;">${method || '-'}</td></tr>
- <tr><td style="padding:10px 0;border-bottom:1px solid #eee;color:#888;font-size:13px;">학년</td><td style="padding:10px 0;border-bottom:1px solid #eee;color:#1A2340;">${grade || '-'}</td></tr>
- <tr><td style="padding:10px 0;border-bottom:1px solid #eee;color:#888;font-size:13px;">희망 과목</td><td style="padding:10px 0;border-bottom:1px solid #eee;color:#1A2340;">${subject || '-'}</td></tr>
- <tr><td style="padding:10px 0;color:#888;font-size:13px;vertical-align:top;">문의 사항</td><td style="padding:10px 0;color:#1A2340;line-height:1.6;">${message || '없음'}</td></tr>
- </table>
- </div>
- <div style="padding:16px 32px;background:#f8f9fc;font-size:12px;color:#aaa;text-align:center;">
- 은빛스터디 · eunshinestudy.com · 010-2337-0458
- </div>
- </div>`;
+</body>
+</html>`;
 
  const apiKey = typeof RESEND_API_KEY !== "undefined" ? RESEND_API_KEY : "";
  if (!apiKey) {
