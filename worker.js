@@ -5695,8 +5695,9 @@ async function handle(req) {
  try {
  const data = await req.json();
  const { method, grade, subject, name, contact, school, address, message, source } = data;
- const srcLabel = source || '메인(과외)';
- const srcColor = srcLabel.includes('학원') ? '#10b981' : '#3b82f6';
+ let srcLabel = source || '메인(과외)';
+ try { srcLabel = decodeURIComponent(srcLabel); } catch(e) {}
+ const srcColor = srcLabel.includes('학원') ? '#10b981' : '#C8A96E';
 
  const html = `<!DOCTYPE html>
 <html lang="ko">
@@ -5706,45 +5707,53 @@ async function handle(req) {
 <meta name="format-detection" content="telephone=no">
 <style>
  body{margin:0;padding:0;background:#eef1f6;}
- .ew{width:100%;max-width:600px;margin:0 auto;background:#f8f9fc;border-radius:12px;overflow:hidden;font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif;}
- .ew-head{background:linear-gradient(135deg,#1A2340,#2a3d6b);padding:28px;}
- .ew-body{padding:24px 28px;background:#fff;}
- .ew-foot{padding:16px 28px;background:#f8f9fc;font-size:12px;color:#aaa;text-align:center;}
- table.ew-tbl{width:100%;border-collapse:collapse;}
- table.ew-tbl td{padding:10px 6px;border-bottom:1px solid #eee;vertical-align:top;word-break:break-word;}
- td.lbl{color:#888;font-size:13px;width:96px;white-space:nowrap;}
- td.val{font-weight:600;color:#1A2340;font-size:15px;}
+ .ew{width:100%;max-width:600px;margin:24px auto;background:#ffffff;border-radius:16px;overflow:hidden;font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif;box-shadow:0 8px 30px rgba(26,35,64,0.12);}
+ .ew-head{background:linear-gradient(135deg,#141b30,#26324f);padding:32px 34px;}
+ .ew-brand{color:#C8A96E;font-size:13px;font-weight:800;letter-spacing:2px;margin:0 0 10px;}
+ .ew-title{color:#ffffff;font-size:22px;font-weight:800;margin:0;line-height:1.35;}
+ .ew-date{color:rgba(255,255,255,0.55);font-size:12px;margin:10px 0 0;}
+ .ew-body{padding:20px 34px 8px;}
+ .ew-row{display:flex;align-items:flex-start;gap:12px;padding:15px 2px;border-bottom:1px solid #f0f2f6;}
+ .ew-row:last-child{border-bottom:none;}
+ .ew-lbl{color:#8a93a6;font-size:13px;font-weight:600;width:92px;flex-shrink:0;line-height:1.7;}
+ .ew-val{color:#1A2340;font-size:15px;font-weight:700;line-height:1.7;word-break:break-word;flex:1;}
+ .ew-chip{display:inline-block;background:rgba(200,169,110,0.14);color:#a9822f;border-radius:50px;padding:5px 14px;font-size:14px;font-weight:700;}
+ .ew-note{margin:16px 34px 26px;border-left:4px solid #C8A96E;background:#faf7f0;border-radius:10px;padding:16px 18px;}
+ .ew-note b{display:block;color:#1A2340;font-size:14px;margin-bottom:4px;}
+ .ew-note span{color:#6b7280;font-size:13px;line-height:1.6;}
+ .ew-foot{padding:16px;background:#f8f9fc;font-size:12px;color:#aaa;text-align:center;}
  @media only screen and (max-width:600px){
-  .ew-head{padding:22px 18px!important;}
-  .ew-body{padding:18px 16px!important;}
-  .ew-foot{padding:14px 16px!important;}
-  table.ew-tbl td{display:block!important;width:auto!important;border-bottom:none!important;padding:2px 0!important;}
-  td.lbl{padding:10px 0 2px!important;font-size:12px!important;}
-  td.val{padding:0 0 8px!important;border-bottom:1px solid #eee!important;}
+  .ew{margin:0;border-radius:0;}
+  .ew-head{padding:26px 20px;}
+  .ew-body{padding:14px 20px 4px;}
+  .ew-note{margin:14px 20px 22px;}
+  .ew-lbl{width:84px;font-size:12px;}
  }
 </style>
 </head>
 <body>
  <div class="ew">
   <div class="ew-head">
-   <h1 style="color:#C8A96E;margin:0;font-size:20px;">📚 새 상담 신청이 도착했습니다</h1>
-   <p style="color:rgba(255,255,255,0.6);margin:6px 0 0;font-size:13px;">은빛스터디 홈페이지 상담 신청</p>
-   <div style="margin-top:12px;display:inline-block;background:${srcColor};color:white;padding:5px 16px;border-radius:50px;font-size:12px;font-weight:700;">📍 유입 경로: ${srcLabel}</div>
+   <p class="ew-brand">✦ EUNSHINE STUDY</p>
+   <h1 class="ew-title">🔔 새로운 상담 신청이 도착했습니다</h1>
+   <p class="ew-date">${new Date().toLocaleString('ko-KR',{timeZone:'Asia/Seoul'})} KST</p>
   </div>
   <div class="ew-body">
-   <table class="ew-tbl">
-    <tr><td class="lbl" style="color:${srcColor};font-weight:700;">📍 유입 페이지</td><td class="val" style="color:${srcColor};font-weight:800;">${srcLabel}</td></tr>
-    <tr><td class="lbl">학생 이름</td><td class="val">${name || '-'}</td></tr>
-    <tr><td class="lbl">연락처</td><td class="val">${contact || '-'}</td></tr>
-    <tr><td class="lbl">학생 학교</td><td class="val">${school || '-'}</td></tr>
-    <tr><td class="lbl">거주 지역</td><td class="val">${address || '-'}</td></tr>
-    <tr><td class="lbl">수업 방식</td><td class="val">${method || '-'}</td></tr>
-    <tr><td class="lbl">학년</td><td class="val">${grade || '-'}</td></tr>
-    <tr><td class="lbl">희망 과목</td><td class="val">${subject || '-'}</td></tr>
-    <tr><td class="lbl">문의 사항</td><td class="val" style="font-weight:400;line-height:1.6;">${message || '없음'}</td></tr>
-   </table>
+   <div class="ew-row"><div class="ew-lbl">📍 유입 경로</div><div class="ew-val"><span class="ew-chip">${srcLabel}</span></div></div>
+   <div class="ew-row"><div class="ew-lbl">👤 학생 이름</div><div class="ew-val">${name || '-'}</div></div>
+   <div class="ew-row"><div class="ew-lbl">📞 연락처</div><div class="ew-val" style="color:#C8912E;">${contact || '-'}</div></div>
+   <div class="ew-row"><div class="ew-lbl">🏫 학생 학교</div><div class="ew-val">${school || '-'}</div></div>
+   <div class="ew-row"><div class="ew-lbl">📍 거주 지역</div><div class="ew-val">${address || '-'}</div></div>
+   <div class="ew-row"><div class="ew-lbl">💻 수업 방식</div><div class="ew-val">${method || '-'}</div></div>
+   <div class="ew-row"><div class="ew-lbl">🎓 학년</div><div class="ew-val">${grade || '-'}</div></div>
+   <div class="ew-row"><div class="ew-lbl">📚 희망 과목</div><div class="ew-val">${subject || '-'}</div></div>
+   <div class="ew-row"><div class="ew-lbl">💬 문의 내용</div><div class="ew-val" style="font-weight:500;color:#4b5563;">${message || '(없음)'}</div></div>
   </div>
-  <div class="ew-foot">은빛스터디 · eunshinestudy.com · 010-2337-0458</div>
+  <div class="ew-note">
+   <b>⚡ 빠른 대응 안내</b>
+   <span>고객의 연락처로 24시간 이내에 상담 전화를 드려주세요.</span>
+  </div>
+  <div class="ew-foot">eunshinestudy.com 홈페이지 문의 폼에서 자동 발송되었습니다.</div>
  </div>
 </body>
 </html>`;
