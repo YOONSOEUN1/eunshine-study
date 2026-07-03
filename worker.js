@@ -407,12 +407,22 @@ const WHY_FEATURES=[
 {i:"🗓️",t:"중장기 학습 로드맵",d:"내신·수능·진학 시점을 기준으로 분기별 목표를 잡고, 시기마다 전략 자체를 바꿔 운영합니다."},
 {i:"💡",t:"학부모 상담 동행",d:"성적 변화와 학습 태도에 대한 객관적 정보를 정기적으로 공유드려 가정에서의 응원이 정확해집니다."}
 ];
+// 상담 신청 + 전화 CTA 칸 (하위 페이지 공통)
+const CTA_BAND = `<div style="background:linear-gradient(135deg,#1a2340,#2a3d6b);border-radius:20px;padding:clamp(26px,5vw,40px);margin-bottom:24px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+ <div style="color:#fff;font-size:clamp(18px,4vw,23px);font-weight:900;margin-bottom:8px;">📞 지금 바로 상담받아 보세요</div>
+ <div style="color:rgba(255,255,255,0.72);font-size:14px;margin-bottom:22px;line-height:1.6;">첫 상담·체험 무료 · 24시간 이내 연락드립니다</div>
+ <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+  <a href="#form" onclick="var f=document.getElementById('form');if(f){f.scrollIntoView({behavior:'smooth'});}return false;" style="display:inline-block;background:linear-gradient(135deg,#C8A96E,#E8D09A);color:#1A2340;text-decoration:none;font-weight:800;font-size:15px;padding:15px 32px;border-radius:50px;box-shadow:0 4px 14px rgba(200,169,110,0.4);">✏️ 상담 신청하기</a>
+  <a href="tel:01023370458" style="display:inline-block;background:#fff;color:#1A2340;text-decoration:none;font-weight:800;font-size:15px;padding:15px 32px;border-radius:50px;box-shadow:0 4px 14px rgba(0,0,0,0.15);">📞 전화 상담</a>
+ </div>
+</div>`;
+
 function buildWhyBlock(kw,tc,seed){
  const pickedIntros=pkU(WHY_INTROS,seed,2,11);
  const introHtml=pickedIntros.map(t=>t.replace(/\{kw\}/g,'<strong style="color:'+tc+'">'+kw+'</strong>')).join(' ');
  const feats=pkU(WHY_FEATURES,seed,4,31);
  const cards=feats.map(f=>'<div style="border:1px solid #e8edf5;border-radius:14px;padding:18px;"><div style="font-size:24px;margin-bottom:8px;">'+f.i+'</div><div style="font-weight:800;color:#1A2340;margin-bottom:5px;font-size:14px;">'+f.t+'</div><div style="font-size:12px;color:#666;line-height:1.7;">'+f.d.replace(/\{kw\}/g,kw)+'</div></div>').join('');
- return '<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;"><h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid '+tc+';padding-left:14px;margin-bottom:16px;">🏙️ '+kw+', 왜 은빛쌤일까요?</h2><p style="font-size:14px;color:#444;line-height:2;margin-bottom:20px;">'+introHtml+'</p><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;">'+cards+'</div></div>';
+ return '<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;"><h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid '+tc+';padding-left:14px;margin-bottom:16px;">🏙️ '+kw+', 왜 은빛쌤일까요?</h2><p style="font-size:14px;color:#444;line-height:2;margin-bottom:20px;">'+introHtml+'</p><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;">'+cards+'</div></div>'+CTA_BAND;
 }
 
 const STUDY_TIPS=[
