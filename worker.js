@@ -986,20 +986,72 @@ const reviews=pkU(rvPool,seed,6,7);
  return{tips:tips,strat:strat,reviews:reviewMeta,analysis:analysis,faqs:faqs,stories:stories,columns:columns,schoolContents:schoolContents};
 }
 
+// ── 페이지 다양화: 소제목 동의어 풀 + 섹션 순서 셔플 ──
+const _HDR_ENV=["교육 환경 분석","학군·학습 여건 분석","지역 교육 여건 리포트","학습 환경 진단","교육 인프라 살펴보기"];
+const _HDR_STUDY=["학습법 가이드","공부법 로드맵","성적 향상 학습 전략","맞춤 학습 로드맵","실전 공부법 안내"];
+const _HDR_STRAT=["학습 전략","공략법","단계별 학습 플랜","맞춤 학습 전략","성적 관리 로드맵"];
+const _HDR_SCHOOL=["인근 학교별 맞춤 정보 & 공부법","학교별 내신 공략 가이드","지역 학교별 맞춤 전략","인근 학교 시험 분석","학교별 출제 경향 분석"];
+const _HDR_GUIDE=["재학생 맞춤 학습 가이드","재학생 내신 공략법","맞춤 학습 포인트","시험 대비 가이드","재학생 성적 관리 전략"];
+const _HDR_REVIEW=["학부모님 생생 후기","수강 학부모 실후기","학부모 리얼 후기","학부모님 수업 평가","학부모 만족 후기"];
+const _HDR_STORY=["실제 성적 향상 사례","성적 변화 실사례","등급 상승 스토리","점수 향상 사례","실제 등급 상승 기록"];
+const _HDR_FAQ=["자주 묻는 질문","자주 하시는 질문 모음","궁금해하시는 질문들","자주 받는 문의","학부모님 자주 묻는 질문"];
+function _hp(seed,salt,arr){return arr[((seed>>>0)+salt*97)%arr.length];}
+function _varyHeaders(html,seed){
+ var M=[
+  ["왜 은빛쌤일까요?",["왜 은빛쌤일까요?","은빛쌤을 선택하는 이유","왜 은빛과외인가요?","은빛쌤이 다른 점"]],
+  ["이런 학생에게 추천합니다",["이런 학생에게 추천합니다","이런 학생에게 딱 맞아요","다음과 같은 학생께 추천","이런 분께 추천드려요"]],
+  ["수업 구성 & 커리큘럼",["수업 구성 & 커리큘럼","커리큘럼 & 수업 흐름","수업 진행 & 커리큘럼","커리큘럼 구성 안내"]],
+  ["은빛쌤만의 특징",["은빛쌤만의 특징","은빛과외만의 강점","은빛쌤의 차별점","은빛과외의 특별함"]],
+  ["과외의 특별함",["과외의 특별함","과외가 특별한 이유","과외의 강점","과외의 차별점"]],
+  ["공부법 가이드",["공부법 가이드","학습법 안내","공부 로드맵","성적 향상 가이드"]]
+ ];
+ var s=seed>>>0;
+ for(var k=0;k<M.length;k++){
+  var canon=M[k][0], arr=M[k][1];
+  s=(s*1103515245+12345)&0x7fffffff;
+  var pick=arr[s%arr.length];
+  if(pick!==canon){ html=html.split(canon).join(pick); }
+ }
+ return html;
+}
+function _diversifyCards(html,seed){
+ var re=/(<div style="background:white;border-radius:20px;box-shadow:0 4px (?:20px rgba\(0,0,0,0\.07\)|24px rgba\(0,0,0,0\.08\));padding:clamp\(22px,4vw,40px\);margin-bottom:(?:24px|20px);">)/;
+ var bits=html.split(re);
+ if(bits.length<6) return html;
+ var pre=bits[0];
+ var cards=[];
+ for(var i=1;i<bits.length;i+=2){ cards.push(bits[i]+(bits[i+1]||"")); }
+ if(cards.length<3) return html;
+ var last=cards.pop();
+ var s=seed>>>0;
+ for(var i=cards.length-1;i>0;i--){ s=(s*1103515245+12345)&0x7fffffff; var j=s%(i+1); var t=cards[i]; cards[i]=cards[j]; cards[j]=t; }
+ return pre+cards.join("")+last;
+}
+function _shuffleCards(h,seed){
+ var D='<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">';
+ var parts=h.split(D);
+ var head=parts.shift();
+ if(parts.length<2) return h;
+ var cards=parts.map(function(p){return D+p;});
+ var s=seed>>>0;
+ for(var i=cards.length-1;i>0;i--){ s=(s*1103515245+12345)&0x7fffffff; var j=s%(i+1); var t=cards[i]; cards[i]=cards[j]; cards[j]=t; }
+ return head+cards.join("");
+}
 function renderUniqueContent(ct,dong,grade,subj,tc,rd,schools){
+ const _seed=cH((dong||"")+"|"+(rd||"")+"|"+(grade||"")+"|"+(subj||""));
  let h="";
  const area=dong||rd||"";
  const schoolStr=(schools||[]).slice(0,4).join(", ");
  // ── 교육 환경 분석 + 학습법 통합 ──
  h+=`<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
- <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">📊 ${area} 교육 환경 분석</h2>
+ <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">📊 ${area} ${_hp(_seed,1,_HDR_ENV)}</h2>
  <p style="font-size:14px;color:#444;line-height:2;margin-bottom:20px;">${ct.analysis.replace(/이 지역/g,area)}</p>`;
  if(ct.tips.length>0){
- h+=`<h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">📖 ${area}${grade?" "+grade:""}${subj?" "+subj:""} 학습법 가이드</h2>`;
+ h+=`<h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">📖 ${area}${grade?" "+grade:""}${subj?" "+subj:""} ${_hp(_seed,2,_HDR_STUDY)}</h2>`;
  ct.tips.forEach(function(t){h+=`<div style="background:#f8faff;border-radius:14px;padding:18px 22px;margin-bottom:12px;"><p style="font-size:14px;color:#333;line-height:2;margin:0;">${t}</p></div>`;});
  }
  if(ct.strat){
- h+=`<h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin:20px 0 14px;">🎓 ${grade||""} 학습 전략</h2>
+ h+=`<h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin:20px 0 14px;">🎓 ${grade||""} ${_hp(_seed,3,_HDR_STRAT)}</h2>
  <p style="font-size:14px;color:#444;line-height:2;">${ct.strat}</p>`;
  }
  h+=`</div>`;
@@ -1011,16 +1063,16 @@ function renderUniqueContent(ct,dong,grade,subj,tc,rd,schools){
  // ── 학교별 맞춤 정보 & 공부법 ──
  if(ct.schoolContents&&ct.schoolContents.length>0){
  h+=`<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
- <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:20px;">⭐ ${area} 인근 학교별 맞춤 정보 & 공부법</h2>`;
+ <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:20px;">⭐ ${area} ${_hp(_seed,4,_HDR_SCHOOL)}</h2>`;
  ct.schoolContents.forEach(function(sc){
  h+=`<div style="background:#f8faff;border-radius:14px;padding:20px 22px;margin-bottom:14px;border-left:4px solid ${tc};">
- <h3 style="font-size:16px;font-weight:800;color:${tc};margin:0 0 10px 0;">${sc.school} 재학생 맞춤 학습 가이드</h3>
+ <h3 style="font-size:16px;font-weight:800;color:${tc};margin:0 0 10px 0;">${sc.school} ${_hp(_seed,5,_HDR_GUIDE)}</h3>
  <p style="font-size:14px;color:#333;line-height:2;margin:0;">${sc.body}</p></div>`;});
  
   }
  // ── 학부모 후기 + 성적 사례 통합 ──
  h+=`<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
- <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">💬 ${area} 학부모님 생생 후기</h2>
+ <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">💬 ${area} ${_hp(_seed,6,_HDR_REVIEW)}</h2>
  <div class="rv-carousel" id="rvCity"><div class="rv-track" id="rvCityT">`;
  ct.reviews.forEach(function(rv){
  h+=`<div class="rv-card" style="border:2px solid ${tc}22;border-radius:16px;padding:20px;background:white;">
@@ -1037,7 +1089,7 @@ function renderUniqueContent(ct,dong,grade,subj,tc,rd,schools){
  <div style="font-size:12px;color:#888;">${area} · ${rv.grade} ${rv.subj}</div></div></div>
  <p style="font-size:13px;color:#555;line-height:1.8;margin:0;">"${rv.body}"</p></div>`;});
  h+=`</div></div>
- <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;margin-top:36px;">📈 실제 성적 향상 사례</h2>
+ <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;margin-top:36px;">📈 ${_hp(_seed,7,_HDR_STORY)}</h2>
  <div class="rv-carousel"><div class="rv-track">`;
  ct.stories.forEach(function(st){
  h+=`<div class="rv-card" style="border:2px solid ${tc}22;border-radius:16px;padding:20px;background:white;">
@@ -1054,7 +1106,7 @@ function renderUniqueContent(ct,dong,grade,subj,tc,rd,schools){
  // ── 자주 묻는 질문 (펼쳐진 형태, 지역명 포함) ──
  if(ct.faqs.length>0){
  h+=`<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
- <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:20px;">자주 묻는 질문</h2>
+ <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:20px;">${_hp(_seed,8,_HDR_FAQ)}</h2>
  <div style="display:flex;flex-direction:column;gap:24px;">`;
  ct.faqs.forEach(function(fq){
  var q=fq.q.replace(/과외/,"과외 선생님").replace(/되나요/,"되나요");
@@ -1067,7 +1119,7 @@ function renderUniqueContent(ct,dong,grade,subj,tc,rd,schools){
  h+=`</div></div>`;}
 
 
- return h;
+ return _shuffleCards(h,_seed);
 }
 
 // ============================================================
@@ -5696,6 +5748,9 @@ async function handle(req) {
  // 페이지 응답 시 canonical URL을 자동으로 head에 주입하는 헬퍼
  const injectCanonical = (html) => {
   if (typeof html !== "string") return html;
+  var _tt=(html.match(/<title>([^<]*)<\/title>/)||[])[1]||"";
+  html=_diversifyCards(html, cH(_tt));
+  html=_varyHeaders(html, cH(_tt)+7);
   const canonicalTag = '<link rel="canonical" href="'+canonicalUrl+'">';
   // 이미 canonical이 있으면 그대로, 없으면 </head> 앞에 삽입
   if (html.indexOf('rel="canonical"') >= 0) return html;
