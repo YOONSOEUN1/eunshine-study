@@ -2783,10 +2783,10 @@ function buildDetailPage(rs, cs, grade, subject) {
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
- <title>${fullRd} ${grade} ${subject}과외 | 맞춤 1:1 과외 | 은빛스터디</title>
+ <title>${ci.name} ${grade} ${subject}과외 - 1:1 맞춤 내신 대비 | ${fullRd} | 은빛스터디</title>
  <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${bgImg(subject,cH(rs+cs+grade+subject))}">
  <meta property="article:modified_time" content="${getUpdateDateISO()}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
- <meta name="description" content="${fullRd} ${grade} ${subject} 과외. ${c.desc.substring(0,60)}. 은빛쌤 1:1 맞춤 수업, 첫 체험 무료.">
+ <meta name="description" content="${fullRd} ${grade} ${subject}과외 - ${(ci.schools.filter(function(s){var x=grade==='초등'?'초':grade==='중등'?'중':'고';return s.slice(-1)===x;}).slice(0,4).join('·'))||ci.schools.slice(0,4).join('·')} 등 ${ci.name} 지역 학교 내신 기출 분석 및 1:1 맞춤 지도. ${c.desc.substring(0,25)}. 첫 상담·체험 무료.">
  ${COMMON_STYLE}</head><body>${NAV}
  <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
  <p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <a href="/${rs}/${cs}" style="color:#888;text-decoration:none;">${fullRd}</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">${grade} ${subject}</span></p>
