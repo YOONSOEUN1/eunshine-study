@@ -1741,7 +1741,7 @@ function buildRegionSchoolsPage(rs) {
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
- <title>${rn} 학교별 과외 | 초·중·고 1:1 맞춤 과외 | 은빛쌤</title>
+ <title>${seoTitle(rn+' 학교별 과외', cH(rn+'schools'))} | 은빛스터디</title>
  <meta name="description" content="${rn} 지역 초등·중등·고등학교 재학생을 위한 학교별 맞춤 1:1 과외. 해당 학교 기출을 완벽히 파악한 검증된 선생님을 빠르게 매칭해드립니다.">
  ${COMMON_STYLE}</head><body>${NAV}
  <div style="max-width:900px;margin:36px auto;padding:0 20px;">
@@ -2116,7 +2116,7 @@ function buildRegionSubjectPage(rs, subject) {
  const tipPool = (typeof TIP_SUBJ !== "undefined" && TIP_SUBJ[subject]) || [];
  const tips = tipPool.length > 0 ? pkU(tipPool, seed, 4, 31) : [];
 
- return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>${rn} ${subject}과외 | 1:1 맞춤 과외 · 첫 상담 무료 | 은빛스터디</title>
+ return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>${seoTitle(rn+' '+subject+'과외', cH(rn+subject))} | 은빛스터디</title>
  <meta name="description" content="${rn} ${subject}과외. ${sInfo.desc} 방문·화상 모두 가능하며, 첫 상담과 체험 수업은 완전 무료입니다.">
  <meta property="og:title" content="${rn} ${subject}과외 | 1:1 맞춤 과외">
  <meta property="og:description" content="${rn} ${subject}과외. ${sInfo.desc}">
@@ -2229,7 +2229,7 @@ function buildCityPage(rs, cs) {
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
- <title>${fullRd} 과외 | 지역별 맞춤 1:1 과외 | 은빛스터디</title>
+ <title>${seoTitle(fullRd+' 과외', cH(fullRd))} | 은빛스터디</title>
  <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${bgImg("city",cH(rs+cs))}">
  <meta property="article:modified_time" content="${getUpdateDateISO()}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${fullRd} 과외 전문 은빛쌤. ${dongStr} 상담 후 방문·화상 결정. ${schoolStr} 내신 완벽 대비. 첫 상담·체험 무료.">
@@ -2399,7 +2399,7 @@ function buildDongPage(rs, cs, dong) {
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
- <title>${fullRd} ${dong} 과외 | 지역별 맞춤 1:1 과외 | 은빛스터디</title>
+ <title>${seoTitle(fullRd+' '+dong+' 과외', cH(fullRd+dong))} | 은빛스터디</title>
  <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${bgImg("city",cH(rs+cs+dong))}">
  <meta property="article:modified_time" content="${getUpdateDateISO()}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${dong} 과외 전문 은빛쌤. 초·중·고 국어·영어·수학 1:1 맞춤 수업. ${schoolStr} 내신 완벽 대비. 상담 후 방문·화상 결정. 첫 체험 무료.">
@@ -2553,7 +2553,7 @@ function buildDongDetailPage(rs, cs, dong, grade, subject) {
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
- <title>${title} | 맞춤 1:1 과외 | 은빛스터디</title>
+ <title>${seoTitle(title, cH(title))} | 은빛스터디</title>
  <meta property="og:image" content="${bgImg(subject,cH(rs+cs+dong+grade+subject))}">
  <meta property="article:modified_time" content="${getUpdateDateISO()}">
  <meta name="description" content="${dong} ${grade} ${subject} 과외. ${rawDesc.substring(0,60)}. 은빛쌤 1:1 맞춤 수업, 첫 체험 무료.">
@@ -3239,7 +3239,7 @@ function buildSchoolPage(rs, cs, schoolShort) {
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
- <title>${schoolFull} 과외 | 맞춤 1:1 과외 | 은빛스터디</title>
+ <title>${seoTitle(schoolFull+' 과외', cH(schoolFull))} | 은빛스터디</title>
  <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${bgImg("school",seed)}">
  <meta property="article:modified_time" content="${getUpdateDateISO()}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${schoolFull} 과외 전문 은빛쌤. ${schoolFull} 내신 기출 완벽 분석, 1:1 맞춤 수업, 35년 교육 노하우. 첫 상담·체험 무료.">
@@ -3390,7 +3390,7 @@ function buildGradePage(gradeCode) {
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
- <title>${gd.name} 과외 | 맞춤 1:1 과외 | 은빛스터디</title>
+ <title>${seoTitle(gd.name+' 과외', cH(gd.name))} | 은빛스터디</title>
  <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${bgImg("school",seed)}">
  <meta property="article:modified_time" content="${getUpdateDateISO()}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${gd.name} 과외 전문 은빛쌤. ${gd.short} 맞춤 1:1 과외, 35년 교육 노하우. 첫 상담·체험 무료.">
@@ -3579,7 +3579,7 @@ function buildGradeSubjectPage(gradeCode, subject) {
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
- <title>${gd.name} ${subject}과외 | 맞춤 1:1 과외 | 은빛스터디</title>
+ <title>${seoTitle(gd.name+' '+subject+'과외', cH(gd.name+subject))} | 은빛스터디</title>
  <meta property="og:image" content="${heroImg}">
  <meta property="article:modified_time" content="${getUpdateDateISO()}">
  <meta name="description" content="${gd.name} ${subject} 과외 전문 은빛쌤. ${subjDesc.substring(0,60)} 35년 교육 노하우, 첫 상담·체험 무료.">
@@ -5876,7 +5876,7 @@ function buildSubjectPage(subSlug){
  const gradeColors=grades.map(g=>g.color);
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
- <title>${s.name} 과외 | 은빛스터디</title>
+ <title>${seoTitle(s.name+' 과외', cH(s.name))} | 은빛스터디</title>
  <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${bgImg("school",cH(sKey))}">
  <meta property="article:modified_time" content="${getUpdateDateISO()}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
  <meta name="description" content="${s.name} 1:1 맞춤 과외. ${s.desc}">
