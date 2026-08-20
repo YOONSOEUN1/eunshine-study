@@ -358,6 +358,42 @@ const subjects = ["국어","영어","수학","사회","과학","코딩","논술"
 // ============================================================
 function maskName(n){if(!n||n.length<2)return n;return n.charAt(0)+"○".repeat(n.length-1);}
 function cH(s){let h=5381;for(let i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))&0x7fffffff;return h;}
+// H1 부제목 다양화 (페이지마다 다르게)
+const _H1SUB=["| 맞춤 1:1 과외","· 1:1 개인 맞춤 수업","| 검증된 쌤 1:1 과외","· 학교별 내신 맞춤 과외","| 1:1 방문·화상 과외","· 첫 상담 무료 1:1 맞춤","| 초·중·고 전과목 1:1 과외","· 내신·수능 1:1 대비","| 성적 향상 1:1 밀착 과외","· 개념부터 심화까지 1:1","| 학생 맞춤 커리큘럼 과외","· 검증된 선생님 빠른 매칭","| 방문·화상 선택 1:1 과외","· 시험대비 집중 1:1 과외","| 기초·내신·수능 완성"];
+function _h1sub(seed){return _H1SUB[(seed>>>0)%_H1SUB.length];}
+function _h1sub2(seed,schools,grade){
+ if(schools&&schools.length){
+  var x=grade==="초등"?"초":grade==="중등"?"중":grade==="고등"?"고":"";
+  var list=x?schools.filter(function(s){return s.slice(-1)===x;}):schools;
+  if(!list||!list.length) list=schools;
+  var pick=list.slice(0,2).join("·");
+  var tails=[" 내신 1:1 맞춤"," 내신·기출 맞춤"," 1:1 맞춤 대비"," 학교별 1:1 과외"," 시험대비 1:1 맞춤"];
+  return "· "+pick+tails[(seed>>>0)%tails.length];
+ }
+ return _h1sub(seed);
+}
+function _relatedLinks(rs,cs,ci,fullRd,grade,subject,color){
+ var enc=encodeURIComponent;
+ var subs=subjects.filter(function(s){return s!==subject;});
+ var grds=["초등","중등","고등"].filter(function(g){return g!==grade;});
+ var dongs=(ci.dongs||[]).slice(0,8);
+ function chip(href,txt){return '<a href="'+href+'" style="display:inline-block;background:#f4f6fb;color:#1A2340;text-decoration:none;font-size:13px;font-weight:600;padding:8px 14px;border-radius:50px;border:1px solid #e5e9f2;margin:0 6px 8px 0;">'+txt+'</a>';}
+ var h='<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">';
+ h+='<h2 style="font-size:18px;font-weight:900;color:#1A2340;border-left:5px solid '+color+';padding-left:12px;margin-bottom:16px;">🔗 '+fullRd+' 다른 과외도 찾아보세요</h2>';
+ h+='<div style="margin-bottom:14px;"><div style="font-size:13px;color:#888;font-weight:700;margin-bottom:8px;">'+grade+' 다른 과목</div>';
+ h+=subs.map(function(s){return chip("/"+rs+"/"+cs+"/"+enc(grade)+"/"+enc(s), fullRd+" "+grade+" "+s+"과외");}).join("");
+ h+='</div>';
+ h+='<div style="margin-bottom:14px;"><div style="font-size:13px;color:#888;font-weight:700;margin-bottom:8px;">'+subject+' 다른 학년</div>';
+ h+=grds.map(function(g){return chip("/"+rs+"/"+cs+"/"+enc(g)+"/"+enc(subject), fullRd+" "+g+" "+subject+"과외");}).join("");
+ h+='</div>';
+ if(dongs.length){
+  h+='<div><div style="font-size:13px;color:#888;font-weight:700;margin-bottom:8px;">인근 동네 '+subject+'과외</div>';
+  h+=dongs.map(function(d){return chip("/"+rs+"/"+cs+"/"+enc(d)+"/"+enc(grade)+"/"+enc(subject), d+" "+grade+" "+subject+"과외");}).join("");
+  h+='</div>';
+ }
+ h+='</div>';
+ return h;
+}
 function pk(a,h,o){return a[((h>>>0)+(o||0))%a.length];}
 function pkU(a,h,n,b){const arr=a.slice(),r=[];let rng=(Math.imul(h>>>0,2654435769)^Math.imul((b||0)+1,1597334677))>>>0;for(let i=0;i<n&&arr.length>0;i++){rng=(Math.imul(rng,1664525)+1013904223)>>>0;rng=(rng^(rng>>>16))>>>0;const idx=rng%arr.length;r.push(arr.splice(idx,1)[0]);}return r;}
 
@@ -2246,7 +2282,7 @@ function buildCityPage(rs, cs) {
  <span style="color:#1A2340;font-weight:700;">${rd}</span>
  </p>
  <div style="display:inline-block;background:${tc};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:14px;">📍 ${fullRd}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${fullRd} 과외 | 지역별 맞춤 1:1 과외</h1>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${fullRd} 과외 ${_h1sub2(cH(fullRd+'h1'),ci.schools,'')}</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${fullRd} 전 지역 초·중·고 전 과목 1:1 맞춤 과외. 방문/화상 모두 가능하며, 첫 상담과 체험 수업은 완전 무료입니다.</p>
  </div>
@@ -2414,7 +2450,7 @@ function buildDongPage(rs, cs, dong) {
  <span style="color:#1A2340;font-weight:700;">${dong}</span>
  </p>
  <div style="display:inline-block;background:${tc};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:14px;">📍 ${fullRd} ${dong}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${fullRd} ${dong} 과외 | 지역별 맞춤 1:1 과외</h1>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${fullRd} ${dong} 과외 ${_h1sub2(cH(fullRd+dong),ci.schools,'')}</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${fullRd} ${dong} 초·중·고 전 과목 1:1 맞춤 과외. 방문/화상 모두 가능하며, 첫 상담과 체험 수업은 완전 무료입니다.</p>
  </div>
@@ -2566,7 +2602,7 @@ function buildDongDetailPage(rs, cs, dong, grade, subject) {
  <span style="color:#1A2340;font-weight:700;">${grade} ${subject}</span>
  </p>
  <div style="display:inline-block;background:${color};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">📍 ${dong} ${grade} ${subject}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${title} | 맞춤 1:1 과외</h1>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${title} ${_h1sub2(cH(title+'h1'),ci.schools,grade)}</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${rawDesc}</p>
  </div>
@@ -2843,7 +2879,7 @@ function buildDetailPage(rs, cs, grade, subject) {
  <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
  <p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <a href="/${rs}/${cs}" style="color:#888;text-decoration:none;">${fullRd}</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">${grade} ${subject}</span></p>
  <div style="display:inline-block;background:${color};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">📍 ${fullRd} ${grade} ${subject}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${fullRd} ${grade} ${subject}과외 | 맞춤 1:1 과외</h1>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${fullRd} ${grade} ${subject}과외 ${_h1sub2(cH(fullRd+grade+subject),ci.schools,grade)}</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${c.desc}</p>
  </div>
@@ -2918,7 +2954,7 @@ function buildDetailPage(rs, cs, grade, subject) {
  <p style="font-size:13px;color:#999;margin-top:12px;">첫 상담 및 체험 수업은 완전 무료입니다</p>
  </div>
 
- </div>${CONTACT}${FOOTER}${FLOATING}</body></html>`;
+ </div>${_relatedLinks(rs,cs,ci,fullRd,grade,subject,color)}${CONTACT}${FOOTER}${FLOATING}</body></html>`;
 }
 
 // ── 학교 이름 축약 → 전체 이름 복원 ──
@@ -3247,7 +3283,7 @@ function buildSchoolPage(rs, cs, schoolShort) {
  <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
  <p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <a href="/${rs}/${cs}/schools" style="color:#888;text-decoration:none;">학교별 과외</a> &rsaquo; <a href="/${rs}/${cs}" style="color:#888;text-decoration:none;">${fullRd}</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">${schoolFull}</span></p>
  <div style="display:inline-block;background:${typeColor};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">🏫 ${schoolFull}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${schoolFull} 과외 | 맞춤 1:1 과외</h1>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${schoolFull} 과외 ${_h1sub(cH(schoolFull+'h1'))}</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${fullRd} ${schoolFull} 재학생을 위한 맞춤 1:1 과외. 방문/화상 모두 가능하며, 첫 상담과 체험 수업은 완전 무료입니다.</p>
  </div>
@@ -3401,7 +3437,7 @@ function buildGradePage(gradeCode) {
  <span style="color:#1A2340;font-weight:700;">${gd.name} 과외</span>
  </p>
  <div style="display:inline-block;background:${tc};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:14px;">${gd.emoji} ${gd.name}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${gd.name} 과외 | 맞춤 1:1 과외</h1>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${gd.name} 과외 ${_h1sub(cH(gd.name+'h1'))}</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  </div>
  <div style="max-width:900px;margin:0 auto 36px;padding:0 20px;">
@@ -3587,7 +3623,7 @@ function buildGradeSubjectPage(gradeCode, subject) {
  <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
  <p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <a href="/grade/${gradeCode}" style="color:#888;text-decoration:none;">${gd.name}</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">${subject}과외</span></p>
  <div style="display:inline-block;background:${tc};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">📚 ${gd.name} ${subject}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${gd.name} ${subject}과외 | 맞춤 1:1 과외</h1>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${gd.name} ${subject}과외 ${_h1sub(cH(gd.name+subject))}</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${gd.name} ${subject} 전문 1:1 맞춤 과외. 학교별 내신 완벽 대비. 방문/화상 모두 가능하며, 첫 상담과 체험 수업은 완전 무료입니다.</p>
  </div>
@@ -5891,7 +5927,7 @@ function buildSubjectPage(subSlug){
  <span style="color:#1A2340;font-weight:700;">${s.name} 과외</span>
  </p>
  <div style="display:inline-block;background:#C8A96E;color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:14px;">${s.icon} ${s.name}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${s.name} 과외 | 맞춤 1:1 과외</h1>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${s.name} 과외 ${_h1sub(cH(s.name+'h1'))}</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${s.desc}</p>
  </div>
