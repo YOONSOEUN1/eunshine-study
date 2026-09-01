@@ -1809,7 +1809,7 @@ function seoTitle(kw, seed) {
   kw + ' 추천 | 1:1 맞춤 과외 · 첫 상담 무료',
   kw + ' | 35년 노하우 1:1 맞춤 · 학교별 내신 완벽 대비',
   kw + ' 신청 가이드 | 검증된 선생님 · 무료 체험 수업',
-  kw + ' 비용·후기·신청 | 방문·화상 모두 가능',
+  kw + ' 비용·후기·신청 | 내신 기출 분석 1:1 맞춤',
   kw + ' | 초·중·고 전 과목 1:1 맞춤 수업',
   kw + ' | 1:1 맞춤 과외 · 학교별 기출 분석',
   kw + ' | 검증된 선생님 빠른 매칭 · 첫 상담 무료'
@@ -3275,15 +3275,15 @@ function buildSchoolPage(rs, cs, schoolShort) {
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
  <meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/>
  <meta name="viewport" content="width=device-width,initial-scale=1.0">
- <title>${seoTitle(schoolFull+' 과외', cH(schoolFull))} | 은빛스터디</title>
+ <title>${seoTitle(kn+' '+schoolFull+' 과외', cH(schoolFull+fullRd))} | 은빛스터디</title>
  <meta property="og:type" content="website"><meta property="og:site_name" content="은빛스터디"><meta property="og:image" content="${bgImg("school",seed)}">
  <meta property="article:modified_time" content="${getUpdateDateISO()}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
- <meta name="description" content="${schoolFull} 과외 전문 은빛쌤. ${schoolFull} 내신 기출 완벽 분석, 1:1 맞춤 수업, 35년 교육 노하우. 첫 상담·체험 무료.">
+ <meta name="description" content="${fullRd} ${schoolFull} 과외 전문 은빛쌤. ${schoolFull} 내신 기출 완벽 분석, 1:1 맞춤 수업, 35년 교육 노하우. 첫 상담·체험 무료.">
  ${COMMON_STYLE}</head><body>${NAV}
  <div style="max-width:900px;margin:40px auto 0;padding:0 20px;">
  <p style="font-size:13px;color:#888;margin-bottom:16px;"><a href="/" style="color:#888;text-decoration:none;">홈</a> &rsaquo; <a href="/${rs}/${cs}/schools" style="color:#888;text-decoration:none;">학교별 과외</a> &rsaquo; <a href="/${rs}/${cs}" style="color:#888;text-decoration:none;">${fullRd}</a> &rsaquo; <span style="color:#1A2340;font-weight:700;">${schoolFull}</span></p>
  <div style="display:inline-block;background:${typeColor};color:#fff;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:800;margin-bottom:14px;">🏫 ${schoolFull}</div>
- <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${schoolFull} 과외 ${_h1sub(cH(schoolFull+'h1'))}</h1>
+ <h1 style="font-size:clamp(26px,5vw,38px);font-weight:900;color:#1A2340;margin:0 0 10px 0;line-height:1.3;">${kn} ${schoolFull} 과외 ${_h1sub(cH(schoolFull+fullRd+'h1'))}</h1>
  <p style="font-size:12px;color:#999;margin-top:8px;">✏️ 은빛스터디 편집팀 &nbsp;|&nbsp; 📅 ${getUpdateDate()}</p>
  <p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:28px;">${fullRd} ${schoolFull} 재학생을 위한 맞춤 1:1 과외. 방문/화상 모두 가능하며, 첫 상담과 체험 수업은 완전 무료입니다.</p>
  </div>
