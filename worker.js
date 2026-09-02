@@ -5758,8 +5758,33 @@ function buildLangSubPage(lang,sub){
  return '<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>'+s.t+' | '+d.n+' - 은빛스터디</title><meta name="description" content="'+s.desc+'. 은빛스터디 1:1 '+d.n+' 수업."><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">'+COMMON_STYLE+'<style>.sub-link-card2{display:flex;align-items:center;gap:14px;background:#fff;border-radius:16px;padding:20px;text-decoration:none;border:2px solid #e5e7eb;transition:all .2s;}.sub-link-card2:hover{border-color:#C8A96E;transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.08);}</style></head><body>'+NAV+'<div style="background:linear-gradient(135deg,#0D1526,#1e2d50);padding:100px 20px 50px;"><div style="max-width:900px;margin:0 auto;"><p style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:16px;"><a href="/" style="color:rgba(255,255,255,0.5);text-decoration:none;">홈</a> › <a href="/language" style="color:rgba(255,255,255,0.5);text-decoration:none;">제2외국어</a> › <a href="/language/'+lang+'" style="color:rgba(255,255,255,0.5);text-decoration:none;">'+d.n+'</a> › '+s.t+'</p><div style="font-size:44px;margin-bottom:14px;">'+s.icon+'</div><h1 style="font-family:Noto Serif KR,serif;font-size:clamp(26px,5vw,40px);font-weight:900;color:#fff;line-height:1.35;margin-bottom:10px;">'+s.t+'</h1><p style="font-size:15px;color:rgba(255,255,255,0.65);">'+s.desc+'</p></div></div><div style="max-width:900px;margin:32px auto;padding:0 20px;">'+buildWhyBlock(s.t,d.clr,cH('langsub-'+lang+'-'+sub+'-why'))+'<div style="background:#fff;border-radius:20px;padding:clamp(24px,4vw,40px);margin-bottom:24px;box-shadow:0 4px 24px rgba(0,0,0,0.07);"><h2 style="font-size:22px;font-weight:900;color:#1A2340;border-left:5px solid '+d.clr+';padding-left:14px;margin-bottom:20px;">'+s.icon+' '+s.t+'</h2><p style="font-size:15px;color:#444;line-height:2.1;">'+s.content+'</p></div><div style="background:#fff;border-radius:20px;padding:clamp(24px,4vw,40px);margin-bottom:24px;box-shadow:0 4px 24px rgba(0,0,0,0.07);"><h2 style="font-size:20px;font-weight:800;color:#1A2340;margin-bottom:16px;">📌 관련 '+d.n+' 수업</h2><div style="display:flex;flex-direction:column;gap:12px;">'+otherSubs+'</div></div><div style="background:linear-gradient(135deg,'+d.clr+'11,'+d.clrL+');border:2px solid '+d.clr+'33;border-radius:20px;padding:clamp(24px,4vw,40px);margin-bottom:24px;text-align:center;"><h2 style="font-size:22px;font-weight:900;color:#1A2340;margin-bottom:10px;">무료 테스트 수업 신청</h2><p style="font-size:14px;color:#666;margin-bottom:20px;">지금 바로 은빛스터디의 '+d.n+' 수업을 무료로 체험해 보세요</p><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;"><a href="#form" onclick="document.getElementById(\x27form\x27).scrollIntoView({behavior:\x27smooth\x27});return false;" style="background:'+d.clr+';color:#fff;text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:700;font-size:15px;display:inline-block;">무료 상담 신청</a><a href="tel:01023370458" style="background:#fff;border:2px solid '+d.clr+';color:'+d.clr+';text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:700;font-size:15px;display:inline-block;">📞 전화 상담</a></div></div></div>'+FOOTER+FLOATING+'</body></html>';
 }
 
+/* ── 전화 클릭 → 텔레그램 알림 (tel-alert) ───────────────────
+   모든 HTML 응답의 </body> 앞에 추적 스크립트를 자동으로 넣습니다.
+   사이트 이름을 바꾸려면 아래 data-site 값만 수정하세요.        */
+const TEL_ALERT_TAG =
+ '<script defer src="https://tel-aler.thdmsdidfl.workers.dev/t.js" data-site="은빛스터디"></script>';
+
+async function injectTelAlert(res) {
+ try {
+  const ct = res.headers.get("content-type") || "";
+  if (!ct.includes("text/html")) return res;
+
+  let html = await res.text();
+  if (html.indexOf("/t.js") >= 0) return new Response(html, res);
+
+  if (html.indexOf("</body>") >= 0) {
+   html = html.replace("</body>", TEL_ALERT_TAG + "</body>");
+  } else {
+   html += TEL_ALERT_TAG;
+  }
+  return new Response(html, res);
+ } catch (e) {
+  return res;
+ }
+}
+
 addEventListener("fetch", event => {
- event.respondWith(handle(event.request));
+ event.respondWith(handle(event.request).then(injectTelAlert));
 });
 
 async function handle(req) {
