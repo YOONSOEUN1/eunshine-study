@@ -7038,9 +7038,9 @@ function callSection(s){
   let body = \`<div class="kpi">
     <div><b>\${calls.length}</b><span>클릭</span></div>
     <div><b>\${done}</b><span>통화됨</span></div>
-    <div><b>\${miss}</b><span>못받음</span></div>
+    <div><b>\${miss}</b><span>전화 안 옴</span></div>
     <div><b>\${wait}</b><span>미표시</span></div>
-    <div><b>\${rate}%</b><span>응답률</span></div>
+    <div><b>\${rate}%</b><span>통화율</span></div>
   </div>\`;
 
   if(series && sum(series)>0){
@@ -7057,15 +7057,15 @@ function callSection(s){
       const t = new Date(c.t);
       const when = isNaN(t) ? '-' : new Date(t.getTime()+9*3600*1000).toISOString().slice(5,16).replace('T',' ');
       const tag = c.status==='connected' ? '<span class="tag on">통화됨</span>'
-                : c.status==='missed' ? '<span class="tag off">못받음</span>'
+                : c.status==='missed' ? '<span class="tag off">전화 안 옴</span>'
                 : '<span class="tag">미표시</span>';
       return \`<tr data-cid="\${esc(c.id)}">
         <td style="white-space:nowrap">\${when}</td>
         <td>\${esc(c.src)}</td><td>\${esc(c.dev)}</td>
         <td>\${esc(c.title && c.title !== '-' ? c.title : c.path)}</td>
         <td><div class="mini">
-          <button data-mark="connected" class="\${c.status==='connected'?'sel':''}">됨</button>
-          <button data-mark="missed" class="\${c.status==='missed'?'sel':''}">못받음</button>
+          <button data-mark="connected" class="\${c.status==='connected'?'sel':''}">통화됨</button>
+          <button data-mark="missed" class="\${c.status==='missed'?'sel':''}">안 옴</button>
         </div><div style="margin-top:4px">\${tag}</div></td>
       </tr>\`;
     }).join('')}</tbody></table></div>\`;
