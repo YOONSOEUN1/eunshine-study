@@ -5758,33 +5758,75 @@ function buildLangSubPage(lang,sub){
  return '<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>'+s.t+' | '+d.n+' - 은빛스터디</title><meta name="description" content="'+s.desc+'. 은빛스터디 1:1 '+d.n+' 수업."><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">'+COMMON_STYLE+'<style>.sub-link-card2{display:flex;align-items:center;gap:14px;background:#fff;border-radius:16px;padding:20px;text-decoration:none;border:2px solid #e5e7eb;transition:all .2s;}.sub-link-card2:hover{border-color:#C8A96E;transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.08);}</style></head><body>'+NAV+'<div style="background:linear-gradient(135deg,#0D1526,#1e2d50);padding:100px 20px 50px;"><div style="max-width:900px;margin:0 auto;"><p style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:16px;"><a href="/" style="color:rgba(255,255,255,0.5);text-decoration:none;">홈</a> › <a href="/language" style="color:rgba(255,255,255,0.5);text-decoration:none;">제2외국어</a> › <a href="/language/'+lang+'" style="color:rgba(255,255,255,0.5);text-decoration:none;">'+d.n+'</a> › '+s.t+'</p><div style="font-size:44px;margin-bottom:14px;">'+s.icon+'</div><h1 style="font-family:Noto Serif KR,serif;font-size:clamp(26px,5vw,40px);font-weight:900;color:#fff;line-height:1.35;margin-bottom:10px;">'+s.t+'</h1><p style="font-size:15px;color:rgba(255,255,255,0.65);">'+s.desc+'</p></div></div><div style="max-width:900px;margin:32px auto;padding:0 20px;">'+buildWhyBlock(s.t,d.clr,cH('langsub-'+lang+'-'+sub+'-why'))+'<div style="background:#fff;border-radius:20px;padding:clamp(24px,4vw,40px);margin-bottom:24px;box-shadow:0 4px 24px rgba(0,0,0,0.07);"><h2 style="font-size:22px;font-weight:900;color:#1A2340;border-left:5px solid '+d.clr+';padding-left:14px;margin-bottom:20px;">'+s.icon+' '+s.t+'</h2><p style="font-size:15px;color:#444;line-height:2.1;">'+s.content+'</p></div><div style="background:#fff;border-radius:20px;padding:clamp(24px,4vw,40px);margin-bottom:24px;box-shadow:0 4px 24px rgba(0,0,0,0.07);"><h2 style="font-size:20px;font-weight:800;color:#1A2340;margin-bottom:16px;">📌 관련 '+d.n+' 수업</h2><div style="display:flex;flex-direction:column;gap:12px;">'+otherSubs+'</div></div><div style="background:linear-gradient(135deg,'+d.clr+'11,'+d.clrL+');border:2px solid '+d.clr+'33;border-radius:20px;padding:clamp(24px,4vw,40px);margin-bottom:24px;text-align:center;"><h2 style="font-size:22px;font-weight:900;color:#1A2340;margin-bottom:10px;">무료 테스트 수업 신청</h2><p style="font-size:14px;color:#666;margin-bottom:20px;">지금 바로 은빛스터디의 '+d.n+' 수업을 무료로 체험해 보세요</p><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;"><a href="#form" onclick="document.getElementById(\x27form\x27).scrollIntoView({behavior:\x27smooth\x27});return false;" style="background:'+d.clr+';color:#fff;text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:700;font-size:15px;display:inline-block;">무료 상담 신청</a><a href="tel:01023370458" style="background:#fff;border:2px solid '+d.clr+';color:'+d.clr+';text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:700;font-size:15px;display:inline-block;">📞 전화 상담</a></div></div></div>'+FOOTER+FLOATING+'</body></html>';
 }
 
-/* ── 전화 클릭 → 텔레그램 알림 (tel-alert) ───────────────────
-   모든 HTML 응답의 </body> 앞에 추적 스크립트를 자동으로 넣습니다.
-   사이트 이름을 바꾸려면 아래 data-site 값만 수정하세요.        */
-const TEL_ALERT_TAG =
- '<script defer src="https://tel-aler.thdmsdidfl.workers.dev/t.js" data-site="은빛스터디"></script>';
-
-async function injectTelAlert(res) {
- try {
-  const ct = res.headers.get("content-type") || "";
-  if (!ct.includes("text/html")) return res;
-
-  let html = await res.text();
-  if (html.indexOf("/t.js") >= 0) return new Response(html, res);
-
-  if (html.indexOf("</body>") >= 0) {
-   html = html.replace("</body>", TEL_ALERT_TAG + "</body>");
-  } else {
-   html += TEL_ALERT_TAG;
+// ===== 방문·문의 통계 대시보드 =====
+function _statsKV(){ try { return (typeof EUNSHINE_STATS !== "undefined") ? EUNSHINE_STATS : null; } catch(e){ return null; } }
+function _dayKST(offset){ var d=new Date(Date.now()+9*3600*1000 - (offset||0)*86400000); return d.toISOString().slice(0,10); }
+async function trackVisit(req){
+  var kv=_statsKV(); if(!kv) return;
+  try{
+    var u=new URL(req.url), p=u.pathname;
+    if(req.method!=="GET") return;
+    if(p.startsWith("/api/")||p.startsWith("/admin/")||p.startsWith("/sitemap")||p==="/robots.txt"||p==="/rss"||/[.][a-z0-9]+$/i.test(p)) return;
+    var day=_dayKST(0);
+    var raw=await kv.get("stats:visits"); var obj=raw?JSON.parse(raw):{};
+    obj[day]=(obj[day]||0)+1;
+    var ks=Object.keys(obj); if(ks.length>70){ ks.sort(); for(var x=0;x<ks.length-60;x++) delete obj[ks[x]]; }
+    await kv.put("stats:visits", JSON.stringify(obj));
+  }catch(e){}
+}
+async function logInquiry(data){
+  var kv=_statsKV(); if(!kv) return;
+  try{
+    var day=_dayKST(0);
+    var raw=await kv.get("stats:inquiries"); var obj=raw?JSON.parse(raw):{};
+    obj[day]=(obj[day]||0)+1;
+    var ks=Object.keys(obj); if(ks.length>70){ ks.sort(); for(var x=0;x<ks.length-60;x++) delete obj[ks[x]]; }
+    await kv.put("stats:inquiries", JSON.stringify(obj));
+    var ts=Date.now();
+    var rec={t:ts,name:(data.name||"").slice(0,20),contact:(data.contact||"").slice(0,25),subject:(data.subject||"").slice(0,40),grade:(data.grade||"").slice(0,20),source:(data.source||"").slice(0,80)};
+    await kv.put("iq:"+ts+"-"+Math.floor(Math.random()*10000), JSON.stringify(rec), {expirationTtl:60*60*24*120});
+  }catch(e){}
+}
+async function buildDashboard(){
+  var kv=_statsKV();
+  var esc=function(s){return String(s||"").replace(/[<>&"]/g,function(m){return {"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"}[m];});};
+  if(!kv){
+    return '<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>\ub300\uc2dc\ubcf4\ub4dc \uc124\uc815</title></head><body style="font-family:\'Malgun Gothic\',sans-serif;background:#eef1f6;padding:40px 16px;margin:0;"><div style="max-width:600px;margin:0 auto;background:#fff;border-radius:16px;padding:32px;box-shadow:0 8px 30px rgba(0,0,0,0.1);"><h1 style="font-size:20px;color:#1A2340;margin-top:0;">\ud83d\udcca \ub300\uc2dc\ubcf4\ub4dc \uc124\uc815\uc774 \ud544\uc694\ud574\uc694</h1><p style="color:#555;line-height:1.8;font-size:14px;">\ubc29\ubb38\u00b7\ubb38\uc758 \uc218\uce58\ub97c \uc800\uc7a5\ud560 \uacf5\uac04(KV)\uc774 \uc544\uc9c1 \uc5f0\uacb0\ub418\uc9c0 \uc54a\uc558\uc5b4\uc694. Cloudflare\uc5d0\uc11c \uc544\ub798 5\ub2e8\uacc4\ub9cc \ud558\uba74 \uc774 \ud654\uba74\uc5d0 \uc2e4\uc81c \uc218\uce58\uac00 \ub098\uc640\uc694.</p><ol style="color:#333;line-height:2.1;font-size:14px;"><li>Cloudflare \ub300\uc2dc\ubcf4\ub4dc \u2192 \uc67c\ucabd <b>Storage &amp; Databases \u2192 KV</b></li><li><b>Create namespace</b> \ud074\ub9ad \u2192 \uc774\ub984 <b>eunshine_stats</b> \uc785\ub825 \u2192 Add</li><li><b>Workers &amp; Pages \u2192 \ub0b4 \uc6cc\ucee4 \u2192 Settings \u2192 Bindings</b></li><li>Add binding \u2192 <b>KV namespace</b> \u2192 Variable name <b>EUNSHINE_STATS</b>, \ub124\uc784\uc2a4\ud398\uc774\uc2a4\ub294 eunshine_stats \uc120\ud0dd \u2192 Deploy</li><li>\uba87 \ubd84 \ub4a4 \uc774 \ud398\uc774\uc9c0 \uc0c8\ub85c\uace0\uce68</li></ol><p style="color:#999;font-size:12px;">\u2731 Variable name\uc740 \ubc18\ub4dc\uc2dc <b>EUNSHINE_STATS</b> \ub85c \uc801\uc5b4\uc57c \ud574\uc694.</p></div></body></html>';
   }
-  return new Response(html, res);
- } catch (e) {
-  return res;
- }
+  var vraw=await kv.get("stats:visits"); var V=vraw?JSON.parse(vraw):{};
+  var iraw=await kv.get("stats:inquiries"); var I=iraw?JSON.parse(iraw):{};
+  var days=[],vis=[],inq=[]; for(var i=13;i>=0;i--){var d=_dayKST(i);days.push(d);vis.push(V[d]||0);inq.push(I[d]||0);}
+  var todayV=vis[13], yestV=vis[12]||0, weekV=vis.slice(7).reduce(function(a,b){return a+b;},0);
+  var weekI=inq.slice(7).reduce(function(a,b){return a+b;},0), todayI=inq[13];
+  var diff=todayV-yestV; var diffTxt=(diff>0?"\u25b2 +"+diff:diff<0?"\u25bc "+diff:"\u2013")+" \uc5b4\uc81c \ub300\ube44";
+  var maxV=Math.max(1,Math.max.apply(null,vis));
+  var bars=""; var bw=100/14;
+  for(var j=0;j<14;j++){ var h=Math.round(vis[j]/maxV*120); var x=j*bw; var lbl=days[j].slice(5); 
+    bars+='<g><rect x="'+(x+1)+'%" y="'+(140-h)+'" width="'+(bw-2)+'%" height="'+h+'" rx="3" fill="#C8A96E"></rect>'
+    +'<text x="'+(x+bw/2)+'%" y="158" font-size="8" fill="#999" text-anchor="middle">'+lbl+'</text>'
+    +(vis[j]>0?'<text x="'+(x+bw/2)+'%" y="'+(136-h)+'" font-size="9" fill="#1A2340" text-anchor="middle" font-weight="700">'+vis[j]+'</text>':'')+'</g>';
+  }
+  var iqList=[];
+  try{ var l=await kv.list({prefix:"iq:",limit:60}); var keys=(l.keys||[]).map(function(k){return k.name;}).sort().reverse().slice(0,15);
+    for(var m=0;m<keys.length;m++){ var r=await kv.get(keys[m]); if(r) iqList.push(JSON.parse(r)); } }catch(e){}
+  var rows=iqList.map(function(q){ var dt=new Date(q.t+9*3600*1000); var when=dt.toISOString().slice(5,16).replace("T"," ");
+    return '<tr><td style="padding:10px 8px;border-bottom:1px solid #f0f2f6;font-size:13px;color:#888;white-space:nowrap;">'+when+'</td><td style="padding:10px 8px;border-bottom:1px solid #f0f2f6;font-size:14px;font-weight:700;color:#1A2340;">'+esc(q.name)+'</td><td style="padding:10px 8px;border-bottom:1px solid #f0f2f6;font-size:13px;color:#C8912E;">'+esc(q.contact)+'</td><td style="padding:10px 8px;border-bottom:1px solid #f0f2f6;font-size:13px;color:#555;">'+esc(q.grade)+' '+esc(q.subject)+'</td></tr>';
+  }).join("");
+  if(!rows) rows='<tr><td colspan="4" style="padding:24px;text-align:center;color:#aaa;font-size:14px;">\uc544\uc9c1 \uc811\uc218\ub41c \ubb38\uc758\uac00 \uc5c6\uc5b4\uc694</td></tr>';
+  function card(label,val,sub,clr){ return '<div style="background:#fff;border-radius:14px;padding:20px;box-shadow:0 3px 14px rgba(0,0,0,0.06);flex:1;min-width:130px;"><div style="font-size:12px;color:#8a93a6;font-weight:700;margin-bottom:8px;">'+label+'</div><div style="font-size:30px;font-weight:900;color:'+(clr||"#1A2340")+';line-height:1;">'+val+'</div><div style="font-size:11px;color:#aaa;margin-top:6px;">'+(sub||"")+'</div></div>'; }
+  return '<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>\uc740\ube5b\uc2a4\ud130\ub514 \ub300\uc2dc\ubcf4\ub4dc</title></head><body style="font-family:\'Apple SD Gothic Neo\',\'Malgun Gothic\',sans-serif;background:#eef1f6;margin:0;padding:24px 14px;"><div style="max-width:760px;margin:0 auto;"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;"><h1 style="font-size:22px;color:#1A2340;margin:0;">\ud83d\udcca \uc740\ube5b\uc2a4\ud130\ub514 \ubc29\ubb38 \ud604\ud669</h1><span style="font-size:12px;color:#999;">\uc624\ub298 '+_dayKST(0)+'</span></div>'
+    +'<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px;">'
+    +card("\uc624\ub298 \ubc29\ubb38",todayV,diffTxt,"#1A2340")+card("\uc774\ubc88\uc8fc \ubc29\ubb38(7\uc77c)",weekV,"","#2a7d52")+card("\uc624\ub298 \ubb38\uc758",todayI,"","#C8912E")+card("\uc774\ubc88\uc8fc \ubb38\uc758",weekI,"","#c0392b")
+    +'</div>'
+    +'<div style="background:#fff;border-radius:16px;padding:22px;box-shadow:0 3px 14px rgba(0,0,0,0.06);margin-bottom:20px;"><div style="font-size:14px;font-weight:800;color:#1A2340;margin-bottom:14px;">\ucd5c\uadfc 14\uc77c \ubc29\ubb38\uc790</div><svg viewBox="0 0 100 165" preserveAspectRatio="none" style="width:100%;height:200px;">'+bars+'</svg></div>'
+    +'<div style="background:#fff;border-radius:16px;padding:22px;box-shadow:0 3px 14px rgba(0,0,0,0.06);"><div style="font-size:14px;font-weight:800;color:#1A2340;margin-bottom:6px;">\ucd5c\uadfc \ubb38\uc758 (\ucd5c\ub300 15\uac74)</div><table style="width:100%;border-collapse:collapse;"><thead><tr><th style="text-align:left;padding:8px;font-size:12px;color:#8a93a6;">\uc2dc\uac04</th><th style="text-align:left;padding:8px;font-size:12px;color:#8a93a6;">\uc774\ub984</th><th style="text-align:left;padding:8px;font-size:12px;color:#8a93a6;">\uc5f0\ub77d\ucc98</th><th style="text-align:left;padding:8px;font-size:12px;color:#8a93a6;">\ud559\ub144\u00b7\uacfc\ubaa9</th></tr></thead><tbody>'+rows+'</tbody></table></div>'
+    +'<p style="text-align:center;color:#bbb;font-size:12px;margin-top:20px;">\u2731 \uc774 \ud398\uc774\uc9c0\ub294 \uc0ac\uc7a5\ub2d8\ub9cc \ubcfc \uc218 \uc788\uc5b4\uc694(token \ud544\uc694). \ubb38\uc758\uac00 \ub4e4\uc5b4\uc624\uba74 \uc5ec\uae30\uc640 \uba54\uc77c \ub458 \ub2e4\uc5d0 \uae30\ub85d\ub429\ub2c8\ub2e4.</p>'
+    +'</div></body></html>';
 }
 
 addEventListener("fetch", event => {
- event.respondWith(handle(event.request).then(injectTelAlert));
+ event.respondWith(handle(event.request));
+ try{ if(event.request.method==="GET") event.waitUntil(trackVisit(event.request)); }catch(e){}
 });
 
 async function handle(req) {
@@ -5849,6 +5891,7 @@ async function handle(req) {
  });
 
  if (res.ok) {
+ try{ await logInquiry(data); }catch(e){}
  return new Response(JSON.stringify({ok:true}), {headers:J, status:200});
  } else {
  const err = await res.text();
@@ -6135,6 +6178,11 @@ function buildSubjectPage(subSlug){
 
  // ── 네이버 IndexNow: 색인 요청 트리거 ──
  // 사용법: /admin/indexnow-ping?token=...&page=1 (page 생략 시 전체 URL 목록만 표시)
+ if (p === "/admin/dashboard") {
+  if (url.searchParams.get("token") !== INDEXNOW_ADMIN_TOKEN) return new Response("Forbidden: ?token= \ud30c\ub77c\ubbf8\ud130\uac00 \ud544\uc694\ud569\ub2c8\ub2e4.", {status:403});
+  var _dh = await buildDashboard();
+  return new Response(_dh, {headers:{"Content-Type":"text/html;charset=utf-8"}});
+ }
  if (p === "/admin/indexnow-ping") {
  if (url.searchParams.get("token") !== INDEXNOW_ADMIN_TOKEN) {
  return new Response("Forbidden", {status: 403});
@@ -6223,7 +6271,7 @@ if (p.startsWith("/sitemap-") && p.endsWith(".xml")) {
    const region = locations[rs];
    for (const cs of Object.keys(region.cities||{})) {
     const city = region.cities[cs];
-    (city.schools||[]).slice(0,3).forEach(function(s){
+    (city.schools||[]).forEach(function(s){
      urls.push(base+"/"+rs+"/"+cs+"/school/"+encodeURIComponent(s.n||s));
     });
    }
@@ -6236,7 +6284,7 @@ if (p.startsWith("/sitemap-") && p.endsWith(".xml")) {
    const region = locations[rs];
    for (const cs of Object.keys(region.cities||{})) {
     const city = region.cities[cs];
-    (city.dongs||[]).slice(0,5).forEach(function(d){
+    (city.dongs||[]).forEach(function(d){
      urls.push(base+"/"+rs+"/"+cs+"/"+encodeURIComponent(d));
     });
    }
