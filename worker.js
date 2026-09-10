@@ -6759,8 +6759,12 @@ const BOARD_HTML = `<!DOCTYPE html>
   .bars .fill{height:100%;background:var(--accent,#5A7A8F);border-radius:2px}
   .bars .val{color:var(--ink-3);font-size:12.5px;font-variant-numeric:tabular-nums}
 
+  .sub{margin-top:18px;padding-top:16px;border-top:1px dashed var(--rule)}
+  .sub h3{font-size:13.5px;font-weight:700;margin:0 0 10px;letter-spacing:-.01em}
   .kpi{display:flex;gap:28px;flex-wrap:wrap;margin-bottom:18px}
   .kpi div{min-width:80px}
+  .detail .kpi{gap:20px;margin-bottom:14px}
+  .detail .kpi b{font-size:21px}
   .kpi b{display:block;font-size:26px;font-weight:800;letter-spacing:-.02em;line-height:1.2;font-variant-numeric:tabular-nums}
   .kpi span{font-size:12.5px;color:var(--ink-3)}
 
@@ -6794,23 +6798,10 @@ const BOARD_HTML = `<!DOCTYPE html>
   <nav class="tabs" role="tablist">
     <button role="tab" data-tab="pane-sites" aria-selected="true">사이트</button>
     <button role="tab" data-tab="pane-traffic" aria-selected="false">유입</button>
-    <button role="tab" data-tab="pane-calls" aria-selected="false">전화</button>
-    <button role="tab" data-tab="pane-keywords" aria-selected="false">키워드</button>
   </nav>
 
   <!-- ── 사이트 ── -->
   <section class="tab on" id="pane-sites">
-    <div class="panel mark">
-      <h2>모든 사이트가 함께 쓰는 것</h2>
-      <p class="lede">전화 알림과 방문 집계를 워커 하나가 처리합니다.</p>
-      <dl class="kv">
-        <dt>수집 워커</dt><dd><span contenteditable data-shared="alertWorker" data-ph="워커 주소"></span></dd>
-        <dt>수정 위치</dt><dd><span contenteditable data-shared="localFolder" data-ph="로컬 폴더"></span></dd>
-        <dt>배포 명령</dt><dd><span contenteditable data-shared="deployCmd" data-ph="명령어"></span></dd>
-        <dt>대표 번호</dt><dd><span contenteditable data-shared="phone" data-ph="전화번호"></span></dd>
-        <dt>메모</dt><dd><span class="memo" contenteditable data-shared="memo" data-ph="기억해둘 것"></span></dd>
-      </dl>
-    </div>
     <div id="groups"></div>
   </section>
 
@@ -6832,26 +6823,6 @@ const BOARD_HTML = `<!DOCTYPE html>
       <p class="lede">주소 대신 페이지 제목으로 모았습니다.</p>
       <div id="page-blocks"></div>
     </div>
-  </section>
-
-  <!-- ── 전화 ── -->
-  <section class="tab" id="pane-calls">
-    <div class="panel">
-      <h2>전화 클릭</h2>
-      <p class="lede">텔레그램 알림의 버튼을 누르거나 여기서 직접 표시할 수 있습니다.</p>
-      <div class="kpi" id="call-kpi"></div>
-      <div id="click-chart"></div>
-      <div class="legend" id="click-legend"></div>
-    </div>
-    <div class="panel">
-      <h2>최근 기록</h2>
-      <div class="scroll" id="call-table"></div>
-    </div>
-  </section>
-
-  <!-- ── 키워드 ── -->
-  <section class="tab" id="pane-keywords">
-    <div id="kw-body"></div>
   </section>
 
   <footer>
@@ -6945,7 +6916,6 @@ function siteHTML(s, opened){
     <div class="detail">
       <div class="actions">
         <a class="btn" href="\${esc(link(s.url))||'#'}" target="_blank" rel="noopener" \${s.url?'':'aria-disabled="true"'}>사이트 열기</a>
-        <a class="btn ghost" href="\${esc(link(s.repo))||'#'}" target="_blank" rel="noopener" \${s.repo?'':'aria-disabled="true"'}>GitHub 저장소</a>
         <a class="btn ghost" href="https://dash.cloudflare.com" target="_blank" rel="noopener">Cloudflare</a>
         <button class="btn ghost" data-act="alert">전화 알림 \${s.alert?'해제':'표시'}</button>
         <button class="btn quiet" data-act="del">삭제</button>
@@ -6954,19 +6924,14 @@ function siteHTML(s, opened){
         <dt>분류</dt><dd><select data-act="move">\${opts}</select></dd>
         <dt>이름</dt><dd><span contenteditable data-f="name" data-ph="사이트 이름">\${esc(s.name)}</span></dd>
         <dt>사이트 주소</dt><dd><span contenteditable data-f="url" data-ph="https://">\${esc(s.url)}</span></dd>
-        <dt>GitHub</dt><dd><span contenteditable data-f="repo" data-ph="저장소 주소">\${esc(s.repo)}</span></dd>
-        <dt>워커 이름</dt><dd><span contenteditable data-f="worker" data-ph="Cloudflare 워커명">\${esc(s.worker)}</span></dd>
-        <dt>코드 구조</dt><dd><span contenteditable data-f="style" data-ph="구형 / 모듈">\${esc(s.style)}</span></dd>
-        <dt>메모</dt><dd><span class="memo" contenteditable data-f="memo" data-ph="기억할 것">\${esc(s.memo)}</span></dd>
       </dl>
+      \${callSection(s)}
+      \${kwSection(s)}
     </div>
   </article>\`;
 }
 
 function renderSites(){
-  document.querySelectorAll('[data-shared]').forEach(el=>{
-    if(document.activeElement!==el) el.textContent = data.shared[el.dataset.shared]||'';
-  });
   const box = $('groups');
   const opened = new Set([...box.querySelectorAll('.site.open')].map(n=>n.dataset.id));
   box.innerHTML = data.groups.map(g=>{
@@ -7059,29 +7024,35 @@ function renderTraffic(){
   ).join('') || '<p class="empty">아직 자료가 없습니다.</p>';
 }
 
-/* ══════ 전화 탭 ══════ */
+/* ══════ 사이트 안의 전화 기록 ══════ */
 
-function renderCalls(){
-  if(!STATS.ok){ $('pane-calls').innerHTML = notReady(); return; }
-  const calls = STATS.calls||[];
+function callSection(s){
+  if(!STATS.ok) return '';
+  const calls = (STATS.calls||[]).filter(c=>c.site===s.name);
+  const series = (STATS.clicks||{})[s.name];
   const done = calls.filter(c=>c.status==='connected').length;
   const miss = calls.filter(c=>c.status==='missed').length;
   const wait = calls.length - done - miss;
   const rate = (done+miss) ? Math.round(done/(done+miss)*100) : 0;
 
-  $('call-kpi').innerHTML = \`
-    <div><b>\${calls.length}</b><span>전체 클릭</span></div>
+  let body = \`<div class="kpi">
+    <div><b>\${calls.length}</b><span>클릭</span></div>
     <div><b>\${done}</b><span>통화됨</span></div>
     <div><b>\${miss}</b><span>못받음</span></div>
     <div><b>\${wait}</b><span>미표시</span></div>
-    <div><b>\${rate}%</b><span>응답률</span></div>\`;
+    <div><b>\${rate}%</b><span>응답률</span></div>
+  </div>\`;
 
-  $('click-chart').innerHTML = lineChart(STATS.days||[], STATS.clicks||{}, 160);
-  $('click-legend').innerHTML = legend(Object.keys(STATS.clicks||{}).filter(n=>sum(STATS.clicks[n])>0));
+  if(series && sum(series)>0){
+    const one = {}; one[s.name] = series;
+    body += lineChart(STATS.days||[], one, 130);
+  }
 
-  if(!calls.length){ $('call-table').innerHTML='<p class="empty">아직 기록이 없습니다.</p>'; return; }
-  $('call-table').innerHTML = \`<table><thead><tr>
-      <th>시각</th><th>사이트</th><th>유입</th><th>기기</th><th>페이지</th><th>통화</th>
+  if(!calls.length){
+    body += '<p class="empty">아직 전화 클릭 기록이 없습니다.</p>';
+  } else {
+    body += \`<div class="scroll"><table><thead><tr>
+      <th>시각</th><th>유입</th><th>기기</th><th>페이지</th><th>통화</th>
     </tr></thead><tbody>\${calls.map(c=>{
       const t = new Date(c.t);
       const when = isNaN(t) ? '-' : new Date(t.getTime()+9*3600*1000).toISOString().slice(5,16).replace('T',' ');
@@ -7090,66 +7061,41 @@ function renderCalls(){
                 : '<span class="tag">미표시</span>';
       return \`<tr data-cid="\${esc(c.id)}">
         <td style="white-space:nowrap">\${when}</td>
-        <td>\${esc(c.site)}</td><td>\${esc(c.src)}</td><td>\${esc(c.dev)}</td>
+        <td>\${esc(c.src)}</td><td>\${esc(c.dev)}</td>
         <td>\${esc(c.title && c.title !== '-' ? c.title : c.path)}</td>
         <td><div class="mini">
           <button data-mark="connected" class="\${c.status==='connected'?'sel':''}">됨</button>
           <button data-mark="missed" class="\${c.status==='missed'?'sel':''}">못받음</button>
         </div><div style="margin-top:4px">\${tag}</div></td>
       </tr>\`;
-    }).join('')}</tbody></table>\`;
+    }).join('')}</tbody></table></div>\`;
+  }
+  return \`<div class="sub"><h3>전화 클릭</h3>\${body}</div>\`;
 }
 
-$('call-table').addEventListener('click', async e=>{
-  const b = e.target.closest('[data-mark]'); if(!b) return;
-  const row = b.closest('tr'); const id = row.dataset.cid;
-  const status = b.dataset.mark;
-  b.disabled = true;
-  try{
-    const r = await fetch(API + '/api/mark', {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ id, status })
-    });
-    if(!r.ok) throw new Error('실패');
-    const rec = (STATS.calls||[]).find(c=>c.id===id);
-    if(rec) rec.status = status;
-    renderCalls();
-  }catch(err){
-    b.disabled = false;
-    state('표시 실패 — 다시 시도해 주세요');
-  }
-});
+/* ══════ 사이트 안의 검색 키워드 ══════ */
 
-/* ══════ 키워드 탭 ══════ */
-
-function renderKeywords(){
+function kwSection(s){
+  if(!STATS.ok) return '';
   const kw = STATS.keywords;
-  if(!STATS.ok){ $('kw-body').innerHTML = notReady(); return; }
+  const wrap = inner => \`<div class="sub"><h3>검색 키워드</h3>\${inner}</div>\`;
+
   if(!kw || !kw.ready){
-    $('kw-body').innerHTML = \`<div class="panel mark">
-      <h2>검색 키워드</h2>
-      <p class="lede">\${esc((kw&&kw.reason)||'아직 연결되지 않았습니다.')}</p>
-      <p style="font-size:13.5px;color:var(--ink-2);margin:0;line-height:1.75">
-        네이버와 구글은 방문자가 어떤 검색어로 들어왔는지 홈페이지에 알려주지 않습니다.
-        실제 검색어를 보려면 구글 서치콘솔을 연결해야 하고, 그러면 검색어별 클릭수·노출수·평균 순위까지 나옵니다.<br>
-        네이버는 검색어 자료를 API로 열어주지 않아서 서치어드바이저 화면에서 직접 확인하셔야 합니다.
-        대신 네이버에서 들어온 방문 수는 유입 탭에 나옵니다.
-      </p></div>\`;
-    return;
+    return wrap(\`<p class="empty" style="padding:0 0 8px">\${esc((kw&&kw.reason)||'구글 서치콘솔이 연결되지 않았습니다.')}
+      네이버는 검색어를 알려주지 않아 서치어드바이저에서 직접 보셔야 하고, 네이버 유입 수는 유입 탭에 나옵니다.</p>\`);
   }
-  const blocks = Object.entries(kw.sites||{}).map(([label, v])=>{
-    if(v.error) return \`<div class="panel"><h2>\${esc(label)}</h2><p class="lede">불러오지 못했습니다 (\${esc(v.error)}). 서치콘솔에서 이 사이트의 권한을 확인해 주세요.</p></div>\`;
-    if(!v.rows || !v.rows.length) return \`<div class="panel"><h2>\${esc(label)}</h2><p class="lede">아직 검색 유입 자료가 없습니다.</p></div>\`;
-    return \`<div class="panel"><h2>\${esc(label)}</h2>
-      <p class="lede">\${esc(kw.start)} ~ \${esc(kw.end)} · 클릭 많은 순</p>
-      <div class="scroll"><table><thead><tr>
-        <th>검색어</th><th class="num">클릭</th><th class="num">노출</th><th class="num">평균순위</th>
-      </tr></thead><tbody>\${v.rows.map(r=>\`<tr>
-        <td>\${esc(r.q)}</td><td class="num">\${r.clicks}</td>
-        <td class="num">\${r.imp}</td><td class="num">\${r.pos}</td>
-      </tr>\`).join('')}</tbody></table></div></div>\`;
-  }).join('');
-  $('kw-body').innerHTML = blocks || '<p class="empty">연결된 사이트가 없습니다.</p>';
+  const v = (kw.sites||{})[s.name];
+  if(!v) return wrap('<p class="empty" style="padding:0 0 8px">이 사이트는 서치콘솔에 연결되지 않았습니다.</p>');
+  if(v.error) return wrap(\`<p class="empty" style="padding:0 0 8px">불러오지 못했습니다 (\${esc(v.error)}). 서치콘솔 권한을 확인해 주세요.</p>\`);
+  if(!v.rows || !v.rows.length) return wrap('<p class="empty" style="padding:0 0 8px">아직 검색 유입 자료가 없습니다.</p>');
+
+  return wrap(\`<p class="lede" style="margin:-4px 0 10px">\${esc(kw.start)} ~ \${esc(kw.end)} · 클릭 많은 순</p>
+    <div class="scroll"><table><thead><tr>
+      <th>검색어</th><th class="num">클릭</th><th class="num">노출</th><th class="num">평균순위</th>
+    </tr></thead><tbody>\${v.rows.map(r=>\`<tr>
+      <td>\${esc(r.q)}</td><td class="num">\${r.clicks}</td>
+      <td class="num">\${r.imp}</td><td class="num">\${r.pos}</td>
+    </tr>\`).join('')}</tbody></table></div>\`);
 }
 
 function notReady(){
@@ -7161,7 +7107,29 @@ function notReady(){
 /* ══════ 사이트 탭 조작 ══════ */
 
 const box = $('groups');
+
+box.addEventListener('click', async e=>{
+  const mk = e.target.closest('[data-mark]');
+  if(!mk) return;
+  const id = mk.closest('tr').dataset.cid;
+  mk.disabled = true;
+  try{
+    const r = await fetch(API + '/api/mark', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ id, status: mk.dataset.mark })
+    });
+    if(!r.ok) throw new Error('실패');
+    const rec = (STATS.calls||[]).find(c=>c.id===id);
+    if(rec) rec.status = mk.dataset.mark;
+    renderSites();
+  }catch(err){
+    mk.disabled = false;
+    state('표시 실패 — 다시 시도해 주세요');
+  }
+});
+
 box.addEventListener('click', e=>{
+  if(e.target.closest('[data-mark]')) return;
   const act = e.target.closest('[data-act]');
   const art = e.target.closest('.site');
   if(act && act.dataset.act==='addsite'){
@@ -7209,7 +7177,6 @@ document.addEventListener('blur', e=>{
   const el=e.target;
   if(!el.hasAttribute||!el.hasAttribute('contenteditable')) return;
   const val = el.textContent.trim();
-  if(el.dataset.shared){ data.shared[el.dataset.shared]=val; save(); return; }
   if(el.dataset.g){
     const g=data.groups.find(x=>x.id===el.closest('.group').dataset.gid);
     if(g[el.dataset.g]!==val){ g[el.dataset.g]=val; save(); renderSites(); }
@@ -7226,8 +7193,6 @@ document.addEventListener('blur', e=>{
 data = load() || JSON.parse(JSON.stringify(SEED));
 renderSites();
 renderTraffic();
-renderCalls();
-renderKeywords();
 
 $('t-sites').textContent = data.sites.length;
 $('t-visit').textContent = Object.values(STATS.visits||{}).reduce((a,b)=>a+sum(b),0);
