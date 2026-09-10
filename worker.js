@@ -6556,6 +6556,7 @@ async function injectTelAlert(res) {
    ══════════════════════════════════════════════════════════════ */
 
 const BOARD_PATH = "/gwanri";
+const STATS_ORIGIN = "https://tel-aler.thdmsdidfl.workers.dev";
 const BOARD_COOKIE = "dash_session";
 const BOARD_MAX_AGE = 60 * 60 * 24 * 14; // 로그인 유지: 14일
 
@@ -6654,76 +6655,51 @@ const BOARD_HTML = `<!DOCTYPE html>
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
   :root{
-    --paper:#ECEDE9;
-    --panel:#FBFBF9;
-    --ink:#1A211F;
-    --ink-2:#4E5A56;
-    --ink-3:#8A9491;
-    --rule:#D8DBD5;
-    --rule-2:#E7E9E4;
-    --ok:#2E7D5B;
+    --paper:#ECEDE9;--panel:#FBFBF9;--ink:#1A211F;--ink-2:#4E5A56;--ink-3:#8A9491;
+    --rule:#D8DBD5;--rule-2:#E7E9E4;--ok:#2E7D5B;--bad:#A03A3A;
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
-  body{
-    background:var(--paper);
-    color:var(--ink);
+  body{background:var(--paper);color:var(--ink);
     font-family:Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
-    font-size:15px;line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-    padding:40px 24px 96px;
-  }
-  .wrap{max-width:880px;margin:0 auto}
+    font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;padding:36px 24px 96px}
+  .wrap{max-width:900px;margin:0 auto}
 
-  header{
-    display:flex;align-items:flex-end;justify-content:space-between;
-    gap:20px;flex-wrap:wrap;padding-bottom:14px;
-    border-bottom:2px solid var(--ink);
-  }
-  h1{font-size:30px;font-weight:800;letter-spacing:-.03em;margin:0;line-height:1.15}
-  .tally{display:flex;gap:22px;align-items:baseline;color:var(--ink-2);font-size:13.5px}
+  header{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-bottom:14px;border-bottom:2px solid var(--ink)}
+  h1{font-size:28px;font-weight:800;letter-spacing:-.03em;margin:0;line-height:1.15}
+  .tally{display:flex;gap:20px;align-items:baseline;color:var(--ink-2);font-size:13.5px}
+  .tally b{font-size:21px;font-weight:800;color:var(--ink);letter-spacing:-.02em;margin-right:4px}
   .tally .logout{color:var(--ink-3);text-decoration:none;border-bottom:1px solid var(--rule)}
   .tally .logout:hover{color:var(--ink);border-bottom-color:var(--ink)}
-  .tally b{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-.02em;margin-right:4px}
 
-  .infra{
-    margin-top:26px;padding:20px 22px;
-    background:var(--panel);border:1px solid var(--rule);
-    border-left:5px solid var(--ink);border-radius:3px;
-  }
-  .infra h2{font-size:15px;font-weight:700;margin:0 0 4px;letter-spacing:-.01em}
-  .infra p.lede{margin:0 0 16px;color:var(--ink-2);font-size:13.5px}
+  /* 탭 */
+  nav.tabs{display:flex;gap:2px;margin:0 0 4px;border-bottom:1px solid var(--rule);flex-wrap:wrap}
+  nav.tabs button{font:inherit;font-size:14px;font-weight:650;cursor:pointer;background:none;border:none;
+    color:var(--ink-3);padding:13px 16px;border-bottom:2px solid transparent;margin-bottom:-1px}
+  nav.tabs button:hover{color:var(--ink)}
+  nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+  section.tab{display:none;padding-top:22px}
+  section.tab.on{display:block}
+
+  .panel{background:var(--panel);border:1px solid var(--rule);border-radius:3px;padding:20px 22px;margin-bottom:14px}
+  .panel.mark{border-left:5px solid var(--ink)}
+  .panel h2{font-size:15px;font-weight:700;margin:0 0 4px;letter-spacing:-.01em}
+  .panel p.lede{margin:0 0 16px;color:var(--ink-2);font-size:13.5px}
   dl.kv{margin:0;display:grid;grid-template-columns:104px minmax(0,1fr);gap:9px 16px;font-size:13.5px}
   dl.kv dt{color:var(--ink-3);font-weight:500}
   dl.kv dd{margin:0;min-width:0}
 
-  /* ── 분류 ───────────────────────────────── */
-  .group{margin-top:36px}
-  .group-head{
-    display:flex;align-items:baseline;justify-content:space-between;
-    gap:12px;flex-wrap:wrap;
-    padding-bottom:8px;margin-bottom:12px;
-    border-bottom:1px solid var(--ink);
-  }
+  /* 분류 · 사이트 */
+  .group{margin-top:30px}
+  .group:first-child{margin-top:0}
+  .group-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-bottom:8px;margin-bottom:12px;border-bottom:1px solid var(--ink)}
   .group-title{display:flex;align-items:baseline;gap:10px;min-width:0}
-  .gname{font-size:19px;font-weight:800;letter-spacing:-.02em}
+  .gname{font-size:18px;font-weight:800;letter-spacing:-.02em}
   .gmeta{font-size:12.5px;color:var(--ink-3)}
-  .gadd{
-    font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;
-    background:none;border:none;color:var(--ink-3);padding:2px 0;
-    border-bottom:1px solid var(--rule);
-  }
+  .gadd{font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;background:none;border:none;color:var(--ink-3);padding:2px 0;border-bottom:1px solid var(--rule)}
   .gadd:hover{color:var(--ink);border-bottom-color:var(--ink)}
-  .empty{
-    font-size:13px;color:var(--ink-3);padding:14px 2px;
-  }
-
-  /* ── 사이트 ─────────────────────────────── */
-  .site{
-    background:var(--panel);border:1px solid var(--rule);
-    border-left:5px solid var(--accent,#999);border-radius:3px;
-    margin-bottom:10px;overflow:hidden;
-  }
+  .empty{font-size:13px;color:var(--ink-3);padding:14px 2px}
+  .site{background:var(--panel);border:1px solid var(--rule);border-left:5px solid var(--accent,#999);border-radius:3px;margin-bottom:10px;overflow:hidden}
   .bar{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:14px;padding:15px 18px;cursor:pointer}
   .bar:hover{background:#F4F5F1}
   .idline{display:flex;align-items:baseline;gap:11px;flex-wrap:wrap;min-width:0}
@@ -6732,59 +6708,72 @@ const BOARD_HTML = `<!DOCTYPE html>
   .flags{display:flex;align-items:center;gap:14px}
   .flag{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink-2);white-space:nowrap}
   .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);flex:none}
-  .flag.off{color:var(--ink-3)}
-  .flag.off .dot{background:#C9CCC6}
+  .flag.off{color:var(--ink-3)} .flag.off .dot{background:#C9CCC6}
   .chev{width:20px;height:20px;flex:none;color:var(--ink-3);transition:transform .22s ease}
   .site.open .chev{transform:rotate(90deg)}
-
   .detail{display:none;padding:0 18px 18px;border-top:1px solid var(--rule-2)}
   .site.open .detail{display:block}
   .actions{display:flex;gap:8px;flex-wrap:wrap;padding:15px 0 16px}
-  .btn{
-    font:inherit;font-size:13px;font-weight:600;padding:7px 14px;border-radius:3px;
-    border:1px solid var(--ink);background:var(--ink);color:#fff;
-    text-decoration:none;cursor:pointer;display:inline-block;
-  }
+  .btn{font:inherit;font-size:13px;font-weight:600;padding:7px 14px;border-radius:3px;border:1px solid var(--ink);background:var(--ink);color:#fff;text-decoration:none;cursor:pointer;display:inline-block}
   .btn.ghost{background:transparent;color:var(--ink);border-color:var(--rule)}
   .btn.ghost:hover{border-color:var(--ink)}
   .btn[aria-disabled="true"]{opacity:.35;pointer-events:none}
   .btn.quiet{border-color:transparent;color:var(--ink-3);padding-left:6px;padding-right:6px}
-  .btn.quiet:hover{color:#A03A3A}
-
-  dl.fields{
-    margin:0;display:grid;grid-template-columns:104px minmax(0,1fr);
-    gap:9px 16px;font-size:13.5px;padding-top:16px;border-top:1px dashed var(--rule);
-  }
+  .btn.quiet:hover{color:var(--bad)}
+  dl.fields{margin:0;display:grid;grid-template-columns:104px minmax(0,1fr);gap:9px 16px;font-size:13.5px;padding-top:16px;border-top:1px dashed var(--rule)}
   dl.fields dt{color:var(--ink-3);font-weight:500}
   dl.fields dd{margin:0;min-width:0}
-  select{
-    font:inherit;font-size:13.5px;color:var(--ink);
-    background:#fff;border:1px solid var(--rule);border-radius:3px;
-    padding:3px 8px;max-width:100%;
-  }
-
-  [contenteditable]{
-    outline:none;border-bottom:1px solid transparent;
-    padding:1px 3px;margin:0 -3px;border-radius:2px;word-break:break-all;
-  }
+  select{font:inherit;font-size:13.5px;color:var(--ink);background:#fff;border:1px solid var(--rule);border-radius:3px;padding:3px 8px;max-width:100%}
+  [contenteditable]{outline:none;border-bottom:1px solid transparent;padding:1px 3px;margin:0 -3px;border-radius:2px;word-break:break-all}
   [contenteditable]:hover{border-bottom-color:var(--rule)}
   [contenteditable]:focus{border-bottom-color:var(--ink);background:#fff}
   [contenteditable]:empty:before{content:attr(data-ph);color:#B4BAB6}
   .memo{white-space:pre-wrap;line-height:1.65}
 
-  footer{
-    margin-top:34px;padding-top:16px;border-top:1px solid var(--rule);
-    display:flex;justify-content:space-between;align-items:center;
-    gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-3);
-  }
+  /* 그래프 */
+  .chart{width:100%;height:auto;display:block;overflow:visible}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;font-size:12.5px;color:var(--ink-2)}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .swatch{width:11px;height:3px;border-radius:2px;flex:none}
+  .gline{stroke:var(--rule-2);stroke-width:1}
+  .glabel{font-size:10.5px;fill:var(--ink-3)}
+
+  /* 표 */
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th{text-align:left;font-weight:600;color:var(--ink-3);font-size:12.5px;padding:0 10px 8px 0;border-bottom:1px solid var(--rule)}
+  td{padding:9px 10px 9px 0;border-bottom:1px solid var(--rule-2);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  td.num,th.num{text-align:right;padding-right:0;font-variant-numeric:tabular-nums}
+  .tag{display:inline-block;font-size:11.5px;font-weight:600;padding:2px 7px;border-radius:2px;background:var(--rule-2);color:var(--ink-2);white-space:nowrap}
+  .tag.on{background:#DCEBE3;color:var(--ok)}
+  .tag.off{background:#F0DEDE;color:var(--bad)}
+  .mini{display:flex;gap:5px}
+  .mini button{font:inherit;font-size:11.5px;font-weight:600;cursor:pointer;padding:2px 8px;border-radius:2px;border:1px solid var(--rule);background:#fff;color:var(--ink-2)}
+  .mini button:hover{border-color:var(--ink);color:var(--ink)}
+  .mini button.sel{background:var(--ink);border-color:var(--ink);color:#fff}
+  .scroll{overflow-x:auto}
+
+  /* 막대 */
+  .bars{display:grid;grid-template-columns:minmax(88px,auto) 1fr auto;gap:7px 12px;align-items:center;font-size:13px}
+  .bars .track{background:var(--rule-2);border-radius:2px;height:9px;overflow:hidden}
+  .bars .fill{height:100%;background:var(--accent,#5A7A8F);border-radius:2px}
+  .bars .val{color:var(--ink-3);font-size:12.5px;font-variant-numeric:tabular-nums}
+
+  .kpi{display:flex;gap:28px;flex-wrap:wrap;margin-bottom:18px}
+  .kpi div{min-width:80px}
+  .kpi b{display:block;font-size:26px;font-weight:800;letter-spacing:-.02em;line-height:1.2;font-variant-numeric:tabular-nums}
+  .kpi span{font-size:12.5px;color:var(--ink-3)}
+
+  footer{margin-top:30px;padding-top:16px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-3)}
   :focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-  @media (max-width:560px){
-    body{padding:24px 14px 64px}
-    h1{font-size:24px}
+  @media (max-width:600px){
+    body{padding:22px 14px 64px} h1{font-size:23px}
     dl.kv,dl.fields{grid-template-columns:1fr;gap:2px 0}
     dl.kv dt,dl.fields dt{margin-top:9px}
     .bar{grid-template-columns:1fr;gap:9px}
     .flags{justify-content:flex-start}
+    .panel{padding:16px 14px}
+    nav.tabs button{padding:11px 12px;font-size:13.5px}
   }
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -6795,34 +6784,78 @@ const BOARD_HTML = `<!DOCTYPE html>
   <header>
     <h1>홈페이지 관리판</h1>
     <div class="tally">
-      <span><b id="t-groups">0</b>개 분류</span>
       <span><b id="t-sites">0</b>개 사이트</span>
-      <span><b id="t-alert">0</b>개 알림 연결</span>
+      <span><b id="t-visit">0</b>명 30일 방문</span>
+      <span><b id="t-call">0</b>건 전화</span>
       <a class="logout" href="/logout">로그아웃</a>
     </div>
   </header>
 
-  <section class="infra">
-    <h2>모든 사이트가 함께 쓰는 것</h2>
-    <p class="lede">전화 클릭 알림은 워커 하나가 전체를 처리합니다. 문구를 바꾸려면 여기만 고치면 됩니다.</p>
-    <dl class="kv">
-      <dt>알림 워커</dt>
-      <dd><span contenteditable data-shared="alertWorker" data-ph="워커 주소"></span></dd>
-      <dt>수정 위치</dt>
-      <dd><span contenteditable data-shared="localFolder" data-ph="로컬 폴더"></span></dd>
-      <dt>배포 명령</dt>
-      <dd><span contenteditable data-shared="deployCmd" data-ph="명령어"></span></dd>
-      <dt>대표 번호</dt>
-      <dd><span contenteditable data-shared="phone" data-ph="전화번호"></span></dd>
-      <dt>메모</dt>
-      <dd><span class="memo" contenteditable data-shared="memo" data-ph="기억해둘 것"></span></dd>
-    </dl>
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-tab="pane-sites" aria-selected="true">사이트</button>
+    <button role="tab" data-tab="pane-traffic" aria-selected="false">유입</button>
+    <button role="tab" data-tab="pane-calls" aria-selected="false">전화</button>
+    <button role="tab" data-tab="pane-keywords" aria-selected="false">키워드</button>
+  </nav>
+
+  <!-- ── 사이트 ── -->
+  <section class="tab on" id="pane-sites">
+    <div class="panel mark">
+      <h2>모든 사이트가 함께 쓰는 것</h2>
+      <p class="lede">전화 알림과 방문 집계를 워커 하나가 처리합니다.</p>
+      <dl class="kv">
+        <dt>수집 워커</dt><dd><span contenteditable data-shared="alertWorker" data-ph="워커 주소"></span></dd>
+        <dt>수정 위치</dt><dd><span contenteditable data-shared="localFolder" data-ph="로컬 폴더"></span></dd>
+        <dt>배포 명령</dt><dd><span contenteditable data-shared="deployCmd" data-ph="명령어"></span></dd>
+        <dt>대표 번호</dt><dd><span contenteditable data-shared="phone" data-ph="전화번호"></span></dd>
+        <dt>메모</dt><dd><span class="memo" contenteditable data-shared="memo" data-ph="기억해둘 것"></span></dd>
+      </dl>
+    </div>
+    <div id="groups"></div>
   </section>
 
-  <div id="groups"></div>
+  <!-- ── 유입 ── -->
+  <section class="tab" id="pane-traffic">
+    <div class="panel">
+      <h2>최근 30일 방문</h2>
+      <p class="lede" id="traffic-lede">사이트별 일자별 방문 수입니다.</p>
+      <div id="visit-chart"></div>
+      <div class="legend" id="visit-legend"></div>
+    </div>
+    <div class="panel">
+      <h2>어디에서 들어왔나</h2>
+      <p class="lede">검색엔진이 검색어는 가려서 보내기 때문에, 경로까지만 알 수 있습니다.</p>
+      <div id="ref-blocks"></div>
+    </div>
+    <div class="panel">
+      <h2>많이 본 페이지</h2>
+      <p class="lede">주소 대신 페이지 제목으로 모았습니다.</p>
+      <div id="page-blocks"></div>
+    </div>
+  </section>
+
+  <!-- ── 전화 ── -->
+  <section class="tab" id="pane-calls">
+    <div class="panel">
+      <h2>전화 클릭</h2>
+      <p class="lede">텔레그램 알림의 버튼을 누르거나 여기서 직접 표시할 수 있습니다.</p>
+      <div class="kpi" id="call-kpi"></div>
+      <div id="click-chart"></div>
+      <div class="legend" id="click-legend"></div>
+    </div>
+    <div class="panel">
+      <h2>최근 기록</h2>
+      <div class="scroll" id="call-table"></div>
+    </div>
+  </section>
+
+  <!-- ── 키워드 ── -->
+  <section class="tab" id="pane-keywords">
+    <div id="kw-body"></div>
+  </section>
 
   <footer>
-    <span id="hint">줄을 누르면 자세히 열립니다. 고친 내용은 자동으로 저장됩니다.</span>
+    <span id="hint">고친 내용은 자동으로 저장됩니다.</span>
     <span id="save-state">불러오는 중</span>
   </footer>
 </div>
@@ -6830,6 +6863,8 @@ const BOARD_HTML = `<!DOCTYPE html>
 <script>
 const KEY = 'homepage-board-v2';
 const PALETTE = ['#5A7A8F','#7A4E8C','#2F5D50','#B8892B','#94553F','#3C5B8C'];
+const STATS = __STATS__;
+const API = __API_BASE__;
 
 const SEED = {
   shared: {
@@ -6837,59 +6872,63 @@ const SEED = {
     localFolder: '바탕화면 \\\\ tel-alert 폴더의 worker.js',
     deployCmd: 'npx wrangler deploy',
     phone: '010-2337-0458',
-    memo: '봇 토큰과 chat_id는 대시보드에서 다시 볼 수 없음. 따로 적어둘 것.\\n알림이 안 오면 /test?key=내chat_id 부터 열어보기.'
+    memo: '봇 토큰과 chat_id는 대시보드에서 다시 볼 수 없음. 따로 적어둘 것.'
   },
-  groups: [
-    { id:'g1', name:'과외', note:'' },
-    { id:'g2', name:'더세이브', note:'' },
-    { id:'g3', name:'와와', note:'' }
-  ],
+  groups: [{id:'g1',name:'과외'},{id:'g2',name:'더세이브'},{id:'g3',name:'와와'}],
   sites: [
-    { id:'s1', group:'g1', name:'은빛스터디', accent:PALETTE[0],
-      url:'https://eunshinestudy.com', repo:'', worker:'eunshine-study',
-      style:'구형 방식 (addEventListener)', alert:true,
+    { id:'s1', group:'g1', name:'은빛스터디', accent:PALETTE[0], url:'https://eunshinestudy.com',
+      repo:'', worker:'eunshine-study', style:'구형 방식 (addEventListener)', alert:true,
       memo:'파일 1.15MB. 브라우저 편집기보다 업로드가 안전함.' },
-    { id:'s4', group:'g1', name:'홈투과외', accent:PALETTE[1],
-      url:'', repo:'', worker:'hometwo',
+    { id:'s4', group:'g1', name:'홈투과외', accent:PALETTE[1], url:'', repo:'', worker:'hometwo',
       style:'구형 방식 (addEventListener)', alert:true, memo:'' },
-    { id:'s3', group:'g2', name:'마스터페이', accent:PALETTE[2],
-      url:'', repo:'', worker:'',
+    { id:'s3', group:'g2', name:'마스터페이', accent:PALETTE[2], url:'', repo:'', worker:'',
       style:'모듈 방식 (export default)', alert:true,
       memo:'전화 링크가 두 종류. 고정 번호와 코드가 채우는 번호 모두 정상 감지됨.' },
-    { id:'s2', group:'g3', name:'채움클래스', accent:PALETTE[3],
-      url:'', repo:'', worker:'',
+    { id:'s2', group:'g3', name:'채움클래스', accent:PALETTE[3], url:'', repo:'', worker:'',
       style:'모듈 방식 (export default)', alert:true, memo:'' }
   ]
 };
 
 let data = null;
-
-function load(){
-  try{
-    const v = localStorage.getItem(KEY);
-    if(v) return JSON.parse(v);
-  }catch(e){}
-  return null;
-}
-let timer = null;
-function save(){
-  clearTimeout(timer);
-  timer = setTimeout(()=>{
-    try{
-      localStorage.setItem(KEY, JSON.stringify(data));
-      state('저장됨 · ' + new Date().toLocaleTimeString('ko-KR',{hour:'numeric',minute:'2-digit'}));
-    }catch(e){ state('저장 안 됨 — 브라우저 저장공간을 쓸 수 없습니다'); }
-  }, 400);
-}
-function state(t){ document.getElementById('save-state').textContent = t; }
-
 const esc = s => String(s==null?'':s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const link = u => !u ? '' : (/^https?:\\/\\//i.test(u) ? u : 'https://' + u);
 const host = u => { try{ return new URL(u).hostname.replace(/^www\\./,''); }catch(e){ return ''; } };
+const sum = a => a.reduce((x,y)=>x+y,0);
+const $ = id => document.getElementById(id);
+
+function colorOf(siteName){
+  const s = data.sites.find(x=>x.name===siteName);
+  if (s) return s.accent;
+  const i = (STATS.sites||[]).indexOf(siteName);
+  return PALETTE[(i<0?0:i) % PALETTE.length];
+}
+
+/* ── 저장 ── */
+function load(){ try{ const v=localStorage.getItem(KEY); if(v) return JSON.parse(v); }catch(e){} return null; }
+let timer=null;
+function save(){
+  clearTimeout(timer);
+  timer=setTimeout(()=>{
+    try{ localStorage.setItem(KEY, JSON.stringify(data));
+      state('저장됨 · '+new Date().toLocaleTimeString('ko-KR',{hour:'numeric',minute:'2-digit'}));
+    }catch(e){ state('저장 안 됨'); }
+  },400);
+}
+function state(t){ $('save-state').textContent=t; }
+
+/* ── 탭 ── */
+document.querySelectorAll('nav.tabs button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('nav.tabs button').forEach(x=>x.setAttribute('aria-selected', x===b));
+    document.querySelectorAll('section.tab').forEach(s=>s.classList.toggle('on', s.id===b.dataset.tab));
+  });
+});
+
+/* ══════ 사이트 탭 ══════ */
 
 function siteHTML(s, opened){
-  const opts = data.groups.map(g =>
-    \`<option value="\${g.id}"\${g.id===s.group?' selected':''}>\${esc(g.name)}</option>\`).join('');
+  const opts = data.groups.map(g=>\`<option value="\${g.id}"\${g.id===s.group?' selected':''}>\${esc(g.name)}</option>\`).join('');
+  const v = STATS.visits && STATS.visits[s.name] ? sum(STATS.visits[s.name]) : null;
   return \`
   <article class="site\${opened.has(s.id)?' open':''}" data-id="\${s.id}" style="--accent:\${s.accent}">
     <div class="bar" role="button" tabindex="0" aria-expanded="\${opened.has(s.id)}">
@@ -6898,10 +6937,9 @@ function siteHTML(s, opened){
         <span class="host">\${esc(host(link(s.url)) || '주소 미등록')}</span>
       </div>
       <div class="flags">
+        \${v===null?'':\`<span class="flag"><span class="dot"></span>30일 \${v}명</span>\`}
         <span class="flag\${s.alert?'':' off'}"><span class="dot"></span>전화 알림</span>
-        <svg class="chev" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-          <path d="M7.5 5l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <svg class="chev" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7.5 5l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
     </div>
     <div class="detail">
@@ -6913,89 +6951,241 @@ function siteHTML(s, opened){
         <button class="btn quiet" data-act="del">삭제</button>
       </div>
       <dl class="fields">
-        <dt>분류</dt>
-        <dd><select data-act="move">\${opts}</select></dd>
-        <dt>이름</dt>
-        <dd><span contenteditable data-f="name" data-ph="사이트 이름">\${esc(s.name)}</span></dd>
-        <dt>사이트 주소</dt>
-        <dd><span contenteditable data-f="url" data-ph="https://">\${esc(s.url)}</span></dd>
-        <dt>GitHub</dt>
-        <dd><span contenteditable data-f="repo" data-ph="저장소 주소 붙여넣기">\${esc(s.repo)}</span></dd>
-        <dt>워커 이름</dt>
-        <dd><span contenteditable data-f="worker" data-ph="Cloudflare 워커명">\${esc(s.worker)}</span></dd>
-        <dt>코드 구조</dt>
-        <dd><span contenteditable data-f="style" data-ph="구형 / 모듈">\${esc(s.style)}</span></dd>
-        <dt>메모</dt>
-        <dd><span class="memo" contenteditable data-f="memo" data-ph="이 사이트에서 기억할 것">\${esc(s.memo)}</span></dd>
+        <dt>분류</dt><dd><select data-act="move">\${opts}</select></dd>
+        <dt>이름</dt><dd><span contenteditable data-f="name" data-ph="사이트 이름">\${esc(s.name)}</span></dd>
+        <dt>사이트 주소</dt><dd><span contenteditable data-f="url" data-ph="https://">\${esc(s.url)}</span></dd>
+        <dt>GitHub</dt><dd><span contenteditable data-f="repo" data-ph="저장소 주소">\${esc(s.repo)}</span></dd>
+        <dt>워커 이름</dt><dd><span contenteditable data-f="worker" data-ph="Cloudflare 워커명">\${esc(s.worker)}</span></dd>
+        <dt>코드 구조</dt><dd><span contenteditable data-f="style" data-ph="구형 / 모듈">\${esc(s.style)}</span></dd>
+        <dt>메모</dt><dd><span class="memo" contenteditable data-f="memo" data-ph="기억할 것">\${esc(s.memo)}</span></dd>
       </dl>
     </div>
   </article>\`;
 }
 
-function render(){
-  document.getElementById('t-groups').textContent = data.groups.length;
-  document.getElementById('t-sites').textContent = data.sites.length;
-  document.getElementById('t-alert').textContent = data.sites.filter(s=>s.alert).length;
-
+function renderSites(){
   document.querySelectorAll('[data-shared]').forEach(el=>{
-    if(document.activeElement !== el) el.textContent = data.shared[el.dataset.shared] || '';
+    if(document.activeElement!==el) el.textContent = data.shared[el.dataset.shared]||'';
   });
-
-  const box = document.getElementById('groups');
+  const box = $('groups');
   const opened = new Set([...box.querySelectorAll('.site.open')].map(n=>n.dataset.id));
-
   box.innerHTML = data.groups.map(g=>{
     const mine = data.sites.filter(s=>s.group===g.id);
     const on = mine.filter(s=>s.alert).length;
-    return \`
-    <section class="group" data-gid="\${g.id}">
+    return \`<section class="group" data-gid="\${g.id}">
       <div class="group-head">
         <div class="group-title">
           <span class="gname" contenteditable data-g="name" data-ph="분류 이름">\${esc(g.name)}</span>
-          <span class="gmeta">\${mine.length ? \`사이트 \${mine.length} · 알림 \${on}\` : '비어 있음'}</span>
+          <span class="gmeta">\${mine.length?\`사이트 \${mine.length} · 알림 \${on}\`:'비어 있음'}</span>
         </div>
         <button class="gadd" data-act="addsite">이 분류에 사이트 추가</button>
       </div>
-      \${mine.length ? mine.map(s=>siteHTML(s, opened)).join('')
-                    : '<p class="empty">아직 등록된 사이트가 없습니다.</p>'}
+      \${mine.length?mine.map(s=>siteHTML(s,opened)).join(''):'<p class="empty">아직 등록된 사이트가 없습니다.</p>'}
     </section>\`;
   }).join('');
 }
 
-/* ── 조작 ───────────────────────────────── */
-const box = document.getElementById('groups');
+/* ══════ 그래프 ══════ */
 
+function lineChart(days, seriesMap, height){
+  const names = Object.keys(seriesMap).filter(n=>sum(seriesMap[n])>0);
+  if(!names.length) return '<p class="empty">아직 쌓인 자료가 없습니다. 수집이 시작되면 여기에 그려집니다.</p>';
+
+  const W=880, H=height||220, L=34, R=8, T=10, B=22;
+  const iw=W-L-R, ih=H-T-B;
+  let max=0; names.forEach(n=>seriesMap[n].forEach(v=>{ if(v>max) max=v; }));
+  max = Math.max(4, Math.ceil(max*1.15));
+  const x = i => L + (days.length<2?iw/2:(i*iw)/(days.length-1));
+  const y = v => T + ih - (v/max)*ih;
+
+  let g='';
+  for(let k=0;k<=3;k++){
+    const val=Math.round(max*k/3), yy=y(val);
+    g += \`<line class="gline" x1="\${L}" y1="\${yy}" x2="\${W-R}" y2="\${yy}"/>\`
+      +  \`<text class="glabel" x="\${L-6}" y="\${yy+3.5}" text-anchor="end">\${val}</text>\`;
+  }
+  const step = Math.max(1, Math.round(days.length/6));
+  for(let i=0;i<days.length;i+=step){
+    g += \`<text class="glabel" x="\${x(i)}" y="\${H-6}" text-anchor="middle">\${days[i].slice(5).replace('-','/')}</text>\`;
+  }
+  names.forEach(n=>{
+    const c=colorOf(n);
+    const d=seriesMap[n].map((v,i)=>\`\${i?'L':'M'}\${x(i).toFixed(1)},\${y(v).toFixed(1)}\`).join(' ');
+    g += \`<path d="\${d}" fill="none" stroke="\${c}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>\`;
+    const last=seriesMap[n].length-1;
+    g += \`<circle cx="\${x(last).toFixed(1)}" cy="\${y(seriesMap[n][last]).toFixed(1)}" r="3" fill="\${c}"/>\`;
+  });
+  return \`<svg class="chart" viewBox="0 0 \${W} \${H}" preserveAspectRatio="xMidYMid meet" role="img">\${g}</svg>\`;
+}
+
+function legend(names){
+  return names.filter(n=>n).map(n=>
+    \`<span><i class="swatch" style="background:\${colorOf(n)}"></i>\${esc(n)}</span>\`).join('');
+}
+
+function barBlock(title, entries, accent){
+  if(!entries.length) return '';
+  const total = entries.reduce((a,b)=>a+b[1],0) || 1;
+  const rows = entries.map(([k,v])=>\`
+    <span>\${esc(k)}</span>
+    <span class="track"><span class="fill" style="width:\${(v/total*100).toFixed(1)}%;--accent:\${accent}"></span></span>
+    <span class="val">\${v} · \${Math.round(v/total*100)}%</span>\`).join('');
+  return \`<div style="margin-bottom:22px">
+    <div style="font-weight:700;font-size:14px;margin-bottom:10px">\${esc(title)}</div>
+    <div class="bars">\${rows}</div></div>\`;
+}
+
+/* ══════ 유입 탭 ══════ */
+
+function renderTraffic(){
+  if(!STATS.ok){ $('pane-traffic').innerHTML = notReady(); return; }
+  const days = STATS.days||[];
+  $('visit-chart').innerHTML = lineChart(days, STATS.visits||{});
+  $('visit-legend').innerHTML = legend(Object.keys(STATS.visits||{}).filter(n=>sum(STATS.visits[n])>0));
+
+  const total = Object.values(STATS.visits||{}).reduce((a,b)=>a+sum(b),0);
+  $('traffic-lede').textContent = total
+    ? \`최근 30일 합계 \${total}명. 사이트별 선으로 나눠 그렸습니다.\`
+    : '아직 자료가 없습니다. 수집 스크립트가 들어간 사이트부터 순서대로 쌓입니다.';
+
+  $('ref-blocks').innerHTML = (STATS.sites||[]).map(s=>{
+    const e = Object.entries(STATS.refs[s]||{}).sort((a,b)=>b[1]-a[1]);
+    const d = Object.entries(STATS.devs[s]||{}).sort((a,b)=>b[1]-a[1]);
+    return barBlock(s, e.concat(d), colorOf(s));
+  }).join('') || '<p class="empty">아직 자료가 없습니다.</p>';
+
+  $('page-blocks').innerHTML = (STATS.sites||[]).map(s=>
+    barBlock(s, STATS.pages[s]||[], colorOf(s))
+  ).join('') || '<p class="empty">아직 자료가 없습니다.</p>';
+}
+
+/* ══════ 전화 탭 ══════ */
+
+function renderCalls(){
+  if(!STATS.ok){ $('pane-calls').innerHTML = notReady(); return; }
+  const calls = STATS.calls||[];
+  const done = calls.filter(c=>c.status==='connected').length;
+  const miss = calls.filter(c=>c.status==='missed').length;
+  const wait = calls.length - done - miss;
+  const rate = (done+miss) ? Math.round(done/(done+miss)*100) : 0;
+
+  $('call-kpi').innerHTML = \`
+    <div><b>\${calls.length}</b><span>전체 클릭</span></div>
+    <div><b>\${done}</b><span>통화됨</span></div>
+    <div><b>\${miss}</b><span>못받음</span></div>
+    <div><b>\${wait}</b><span>미표시</span></div>
+    <div><b>\${rate}%</b><span>응답률</span></div>\`;
+
+  $('click-chart').innerHTML = lineChart(STATS.days||[], STATS.clicks||{}, 160);
+  $('click-legend').innerHTML = legend(Object.keys(STATS.clicks||{}).filter(n=>sum(STATS.clicks[n])>0));
+
+  if(!calls.length){ $('call-table').innerHTML='<p class="empty">아직 기록이 없습니다.</p>'; return; }
+  $('call-table').innerHTML = \`<table><thead><tr>
+      <th>시각</th><th>사이트</th><th>유입</th><th>기기</th><th>페이지</th><th>통화</th>
+    </tr></thead><tbody>\${calls.map(c=>{
+      const t = new Date(c.t);
+      const when = isNaN(t) ? '-' : new Date(t.getTime()+9*3600*1000).toISOString().slice(5,16).replace('T',' ');
+      const tag = c.status==='connected' ? '<span class="tag on">통화됨</span>'
+                : c.status==='missed' ? '<span class="tag off">못받음</span>'
+                : '<span class="tag">미표시</span>';
+      return \`<tr data-cid="\${esc(c.id)}">
+        <td style="white-space:nowrap">\${when}</td>
+        <td>\${esc(c.site)}</td><td>\${esc(c.src)}</td><td>\${esc(c.dev)}</td>
+        <td>\${esc(c.title && c.title !== '-' ? c.title : c.path)}</td>
+        <td><div class="mini">
+          <button data-mark="connected" class="\${c.status==='connected'?'sel':''}">됨</button>
+          <button data-mark="missed" class="\${c.status==='missed'?'sel':''}">못받음</button>
+        </div><div style="margin-top:4px">\${tag}</div></td>
+      </tr>\`;
+    }).join('')}</tbody></table>\`;
+}
+
+$('call-table').addEventListener('click', async e=>{
+  const b = e.target.closest('[data-mark]'); if(!b) return;
+  const row = b.closest('tr'); const id = row.dataset.cid;
+  const status = b.dataset.mark;
+  b.disabled = true;
+  try{
+    const r = await fetch(API + '/api/mark', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ id, status })
+    });
+    if(!r.ok) throw new Error('실패');
+    const rec = (STATS.calls||[]).find(c=>c.id===id);
+    if(rec) rec.status = status;
+    renderCalls();
+  }catch(err){
+    b.disabled = false;
+    state('표시 실패 — 다시 시도해 주세요');
+  }
+});
+
+/* ══════ 키워드 탭 ══════ */
+
+function renderKeywords(){
+  const kw = STATS.keywords;
+  if(!STATS.ok){ $('kw-body').innerHTML = notReady(); return; }
+  if(!kw || !kw.ready){
+    $('kw-body').innerHTML = \`<div class="panel mark">
+      <h2>검색 키워드</h2>
+      <p class="lede">\${esc((kw&&kw.reason)||'아직 연결되지 않았습니다.')}</p>
+      <p style="font-size:13.5px;color:var(--ink-2);margin:0;line-height:1.75">
+        네이버와 구글은 방문자가 어떤 검색어로 들어왔는지 홈페이지에 알려주지 않습니다.
+        실제 검색어를 보려면 구글 서치콘솔을 연결해야 하고, 그러면 검색어별 클릭수·노출수·평균 순위까지 나옵니다.<br>
+        네이버는 검색어 자료를 API로 열어주지 않아서 서치어드바이저 화면에서 직접 확인하셔야 합니다.
+        대신 네이버에서 들어온 방문 수는 유입 탭에 나옵니다.
+      </p></div>\`;
+    return;
+  }
+  const blocks = Object.entries(kw.sites||{}).map(([label, v])=>{
+    if(v.error) return \`<div class="panel"><h2>\${esc(label)}</h2><p class="lede">불러오지 못했습니다 (\${esc(v.error)}). 서치콘솔에서 이 사이트의 권한을 확인해 주세요.</p></div>\`;
+    if(!v.rows || !v.rows.length) return \`<div class="panel"><h2>\${esc(label)}</h2><p class="lede">아직 검색 유입 자료가 없습니다.</p></div>\`;
+    return \`<div class="panel"><h2>\${esc(label)}</h2>
+      <p class="lede">\${esc(kw.start)} ~ \${esc(kw.end)} · 클릭 많은 순</p>
+      <div class="scroll"><table><thead><tr>
+        <th>검색어</th><th class="num">클릭</th><th class="num">노출</th><th class="num">평균순위</th>
+      </tr></thead><tbody>\${v.rows.map(r=>\`<tr>
+        <td>\${esc(r.q)}</td><td class="num">\${r.clicks}</td>
+        <td class="num">\${r.imp}</td><td class="num">\${r.pos}</td>
+      </tr>\`).join('')}</tbody></table></div></div>\`;
+  }).join('');
+  $('kw-body').innerHTML = blocks || '<p class="empty">연결된 사이트가 없습니다.</p>';
+}
+
+function notReady(){
+  return \`<div class="panel mark"><h2>수집기가 아직 연결되지 않았습니다</h2>
+    <p class="lede" style="margin:0">\${esc(STATS.error||'통계 워커에서 자료를 가져오지 못했습니다.')}
+    알림 워커에 KV와 STATS_KEY를 등록했는지 확인해 주세요.</p></div>\`;
+}
+
+/* ══════ 사이트 탭 조작 ══════ */
+
+const box = $('groups');
 box.addEventListener('click', e=>{
   const act = e.target.closest('[data-act]');
   const art = e.target.closest('.site');
-
   if(act && act.dataset.act==='addsite'){
     const gid = act.closest('.group').dataset.gid;
-    data.sites.push({
-      id:'s'+Date.now(), group:gid, name:'새 사이트',
-      accent:PALETTE[data.sites.length % PALETTE.length],
-      url:'', repo:'', worker:'', style:'', alert:false, memo:''
-    });
-    save(); render();
+    data.sites.push({ id:'s'+Date.now(), group:gid, name:'새 사이트',
+      accent:PALETTE[data.sites.length%PALETTE.length], url:'', repo:'', worker:'', style:'', alert:false, memo:'' });
+    save(); renderSites();
     const last = document.querySelector(\`.group[data-gid="\${gid}"] .site:last-of-type\`);
-    last.classList.add('open');
-    last.querySelector('[data-f="name"]').focus();
-    last.scrollIntoView({behavior:'smooth', block:'center'});
+    last.classList.add('open'); last.querySelector('[data-f="name"]').focus();
+    last.scrollIntoView({behavior:'smooth',block:'center'});
     return;
   }
   if(!art) return;
   const s = data.sites.find(x=>x.id===art.dataset.id);
-
   if(act){
-    if(act.dataset.act==='alert'){ s.alert = !s.alert; save(); render(); }
+    if(act.dataset.act==='alert'){ s.alert=!s.alert; save(); renderSites(); }
     if(act.dataset.act==='del'){
       if(confirm(\`"\${s.name}" 을(를) 목록에서 지웁니다. 사이트 자체는 그대로입니다.\`)){
-        data.sites = data.sites.filter(x=>x.id!==s.id); save(); render();
+        data.sites=data.sites.filter(x=>x.id!==s.id); save(); renderSites();
       }
     }
     return;
   }
-  if(e.target.closest('[contenteditable]') || e.target.closest('a') || e.target.closest('select')) return;
+  if(e.target.closest('[contenteditable]')||e.target.closest('a')||e.target.closest('select')) return;
   if(e.target.closest('.bar')){
     art.classList.toggle('open');
     art.querySelector('.bar').setAttribute('aria-expanded', art.classList.contains('open'));
@@ -7003,44 +7193,66 @@ box.addEventListener('click', e=>{
 });
 
 box.addEventListener('change', e=>{
-  if(e.target.dataset.act !== 'move') return;
+  if(e.target.dataset.act!=='move') return;
   const s = data.sites.find(x=>x.id===e.target.closest('.site').dataset.id);
-  s.group = e.target.value;
-  save(); render();
+  s.group = e.target.value; save(); renderSites();
 });
 
 box.addEventListener('keydown', e=>{
-  if((e.key==='Enter'||e.key===' ') && e.target.classList.contains('bar')){ e.preventDefault(); e.target.click(); }
-  if(e.key==='Enter' && e.target.hasAttribute('contenteditable') && !e.target.classList.contains('memo')){
+  if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('bar')){ e.preventDefault(); e.target.click(); }
+  if(e.key==='Enter'&&e.target.hasAttribute('contenteditable')&&!e.target.classList.contains('memo')){
     e.preventDefault(); e.target.blur();
   }
 });
 
 document.addEventListener('blur', e=>{
-  const el = e.target;
-  if(!el.hasAttribute || !el.hasAttribute('contenteditable')) return;
+  const el=e.target;
+  if(!el.hasAttribute||!el.hasAttribute('contenteditable')) return;
   const val = el.textContent.trim();
-
-  if(el.dataset.shared){ data.shared[el.dataset.shared] = val; save(); return; }
+  if(el.dataset.shared){ data.shared[el.dataset.shared]=val; save(); return; }
   if(el.dataset.g){
-    const g = data.groups.find(x=>x.id === el.closest('.group').dataset.gid);
-    if(g[el.dataset.g] !== val){ g[el.dataset.g] = val; save(); render(); }
+    const g=data.groups.find(x=>x.id===el.closest('.group').dataset.gid);
+    if(g[el.dataset.g]!==val){ g[el.dataset.g]=val; save(); renderSites(); }
     return;
   }
   if(el.dataset.f){
-    const s = data.sites.find(x=>x.id === el.closest('.site').dataset.id);
-    if(s[el.dataset.f] !== val){ s[el.dataset.f] = val; save(); render(); }
+    const s=data.sites.find(x=>x.id===el.closest('.site').dataset.id);
+    if(s[el.dataset.f]!==val){ s[el.dataset.f]=val; save(); renderSites(); }
   }
 }, true);
 
+/* ══════ 시작 ══════ */
+
 data = load() || JSON.parse(JSON.stringify(SEED));
-render();
+renderSites();
+renderTraffic();
+renderCalls();
+renderKeywords();
+
+$('t-sites').textContent = data.sites.length;
+$('t-visit').textContent = Object.values(STATS.visits||{}).reduce((a,b)=>a+sum(b),0);
+$('t-call').textContent = (STATS.calls||[]).length;
+
 try{ localStorage.setItem(KEY, JSON.stringify(data)); state('저장됨'); }
-catch(e){ state('저장 안 됨 — 브라우저 저장공간을 쓸 수 없습니다'); }
+catch(e){ state('저장 안 됨'); }
 </script>
 </body>
 </html>
 `;
+
+async function _bdStats() {
+ const key = _bdSecret("STATS_KEY");
+ if (!key) return { ok: false, error: "은빛스터디 워커에 STATS_KEY 시크릿이 없습니다." };
+ try {
+  const res = await fetch(STATS_ORIGIN + "/stats?key=" + encodeURIComponent(key), {
+   cf: { cacheTtl: 0 }
+  });
+  if (!res.ok) return { ok: false, error: "수집기 응답 " + res.status + " — 양쪽 STATS_KEY 가 같은지 확인하세요." };
+  return await res.json();
+ } catch (e) {
+  return { ok: false, error: "수집기에 연결하지 못했습니다: " + (e && e.message) };
+ }
+}
 
 async function handleBoard(request, base) {
  const url = new URL(request.url);
@@ -7075,7 +7287,31 @@ async function handleBoard(request, base) {
  }
 
  const ok = await _bdTokenValid(key, _bdCookie(request, BOARD_COOKIE));
- if (!ok) return _bdRes(_bdLoginPage(base, false));
+ if (!ok) {
+  if (path.startsWith("/api/")) {
+   return new Response('{"error":"unauthorized"}', { status: 401,
+    headers: { "content-type": "application/json", "cache-control": "no-store" } });
+  }
+  return _bdRes(_bdLoginPage(base, false));
+ }
 
- return _bdRes(BOARD_HTML.replace('href="/logout"', 'href="' + base + '/logout"'));
+ // 통화 여부 표시 — 열쇠는 서버에만 있고 브라우저로 나가지 않습니다
+ if (path === "/api/mark" && request.method === "POST") {
+  const sk = _bdSecret("STATS_KEY");
+  if (!sk) return new Response('{"error":"no key"}', { status: 500,
+   headers: { "content-type": "application/json" } });
+  const body = await request.text();
+  const res = await fetch(STATS_ORIGIN + "/mark?key=" + encodeURIComponent(sk), {
+   method: "POST", headers: { "content-type": "application/json" }, body: body
+  });
+  return new Response(await res.text(), { status: res.status,
+   headers: { "content-type": "application/json", "cache-control": "no-store" } });
+ }
+
+ const stats = await _bdStats();
+ const page = BOARD_HTML
+  .replace("__STATS__", () => JSON.stringify(stats))
+  .replace("__API_BASE__", () => JSON.stringify(base))
+  .replace('href="/logout"', () => 'href="' + base + '/logout"');
+ return _bdRes(page);
 }
