@@ -5825,7 +5825,15 @@ async function buildDashboard(){
 }
 
 addEventListener("fetch", event => {
- event.respondWith(handle(event.request));
+ // 관리판은 본 사이트 라우팅을 전혀 거치지 않습니다
+ try {
+  const _bu = new URL(event.request.url).pathname;
+  if (_bu === BOARD_PATH || _bu.startsWith(BOARD_PATH + "/")) {
+   event.respondWith(handleBoard(event.request, BOARD_PATH));
+   return;
+  }
+ } catch (e) {}
+ event.respondWith(handle(event.request).then(injectTelAlert));
  try{ if(event.request.method==="GET") event.waitUntil(trackVisit(event.request)); }catch(e){}
 });
 
@@ -6508,3 +6516,566 @@ if (p.startsWith("/sitemap-") && p.endsWith(".xml")) {
  return html;
 }
 
+
+
+/* ══════════════════════════════════════════════════════════════
+   전화 클릭 → 텔레그램 알림
+   모든 HTML 응답의 </body> 앞에 추적 스크립트를 자동으로 넣습니다.
+   ══════════════════════════════════════════════════════════════ */
+
+const TEL_ALERT_TAG =
+ '<script defer src="https://tel-aler.thdmsdidfl.workers.dev/t.js" data-site="은빛스터디"></' + 'script>';
+
+async function injectTelAlert(res) {
+ try {
+  const ct = res.headers.get("content-type") || "";
+  if (!ct.includes("text/html")) return res;
+  let html = await res.text();
+  if (html.indexOf("/t.js") >= 0) return new Response(html, res);
+  if (html.indexOf("</body>") >= 0) {
+   html = html.replace("</body>", TEL_ALERT_TAG + "</body>");
+  } else {
+   html += TEL_ALERT_TAG;
+  }
+  return new Response(html, res);
+ } catch (e) {
+  return res;
+ }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   홈페이지 관리판 — 비밀번호로 잠긴 대시보드
+
+   주소를 바꾸려면 아래 BOARD_PATH 한 줄만 고치면 됩니다.
+
+   필요한 시크릿 (Cloudflare → Settings → Variables and Secrets → Secret)
+     DASH_PASS    관리판 비밀번호
+     SESSION_KEY  로그인 상태를 서명하는 임의의 긴 문자열
+
+   로그인하기 전에는 대시보드 내용이 브라우저로 전송되지 않습니다.
+   ══════════════════════════════════════════════════════════════ */
+
+const BOARD_PATH = "/gwanri";
+const BOARD_COOKIE = "dash_session";
+const BOARD_MAX_AGE = 60 * 60 * 24 * 14; // 로그인 유지: 14일
+
+function _bdSecret(name) {
+ try { return typeof self !== "undefined" && self[name] ? self[name] : null; }
+ catch (e) { return null; }
+}
+
+async function _bdHmac(key, msg) {
+ const enc = new TextEncoder();
+ const k = await crypto.subtle.importKey(
+  "raw", enc.encode(key), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]
+ );
+ const sig = await crypto.subtle.sign("HMAC", k, enc.encode(msg));
+ return Array.from(new Uint8Array(sig)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+function _bdSame(a, b) {
+ if (typeof a !== "string" || typeof b !== "string" || a.length !== b.length) return false;
+ let diff = 0;
+ for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
+ return diff === 0;
+}
+
+async function _bdMakeToken(key) {
+ const exp = Date.now() + BOARD_MAX_AGE * 1000;
+ return exp + "." + (await _bdHmac(key, String(exp)));
+}
+
+async function _bdTokenValid(key, token) {
+ if (!token) return false;
+ const dot = token.indexOf(".");
+ if (dot < 1) return false;
+ const exp = token.slice(0, dot);
+ const sig = token.slice(dot + 1);
+ if (!/^\d+$/.test(exp) || Number(exp) < Date.now()) return false;
+ return _bdSame(sig, await _bdHmac(key, exp));
+}
+
+function _bdCookie(request, name) {
+ const raw = request.headers.get("Cookie") || "";
+ const parts = raw.split(";");
+ for (let i = 0; i < parts.length; i++) {
+  const eq = parts[i].indexOf("=");
+  if (eq > 0 && parts[i].slice(0, eq).trim() === name) return parts[i].slice(eq + 1).trim();
+ }
+ return null;
+}
+
+const BOARD_HEADERS = {
+ "Content-Type": "text/html; charset=utf-8",
+ "Cache-Control": "no-store, no-cache, must-revalidate",
+ "X-Robots-Tag": "noindex, nofollow, noarchive",
+ "X-Frame-Options": "DENY",
+ "X-Content-Type-Options": "nosniff",
+ "Referrer-Policy": "no-referrer"
+};
+
+function _bdRes(body, status) {
+ return new Response(body, { status: status || 200, headers: BOARD_HEADERS });
+}
+
+function _bdLoginPage(base, failed) {
+ const msg = failed ? '<p class="err">비밀번호가 맞지 않습니다.</p>' : '';
+ return '<!DOCTYPE html><html lang="ko"><head>'
+ + '<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">'
+ + '<meta name="robots" content="noindex, nofollow, noarchive"><title>잠김</title>'
+ + '<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">'
+ + '<style>*{box-sizing:border-box}'
+ + 'body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#ECEDE9;color:#1A211F;padding:24px;'
+ + "font-family:Pretendard,-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif}"
+ + 'form{background:#FBFBF9;border:1px solid #D8DBD5;border-left:5px solid #1A211F;border-radius:3px;padding:28px 26px;width:100%;max-width:360px}'
+ + 'h1{font-size:20px;font-weight:800;letter-spacing:-.02em;margin:0 0 6px}'
+ + 'p{margin:0 0 18px;font-size:13.5px;color:#4E5A56;line-height:1.6}'
+ + 'p.err{color:#A03A3A;font-weight:600}'
+ + 'label{display:block;font-size:12.5px;color:#8A9491;margin-bottom:6px}'
+ + 'input{width:100%;font:inherit;font-size:15px;padding:9px 11px;border:1px solid #D8DBD5;border-radius:3px;background:#fff;color:#1A211F}'
+ + 'input:focus{outline:none;border-color:#1A211F}'
+ + 'button{width:100%;margin-top:14px;font:inherit;font-size:14px;font-weight:600;padding:10px;border:1px solid #1A211F;background:#1A211F;color:#fff;border-radius:3px;cursor:pointer}'
+ + '</style></head><body>'
+ + '<form method="POST" action="' + base + '/login">'
+ + '<h1>홈페이지 관리판</h1><p>관리자만 들어올 수 있습니다.</p>' + msg
+ + '<label for="pw">비밀번호</label>'
+ + '<input id="pw" name="pw" type="password" autocomplete="current-password" autofocus required>'
+ + '<button type="submit">들어가기</button>'
+ + '</form></body></html>';
+}
+
+const BOARD_HTML = `<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>홈페이지 관리판</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root{
+    --paper:#ECEDE9;
+    --panel:#FBFBF9;
+    --ink:#1A211F;
+    --ink-2:#4E5A56;
+    --ink-3:#8A9491;
+    --rule:#D8DBD5;
+    --rule-2:#E7E9E4;
+    --ok:#2E7D5B;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+    font-size:15px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    padding:40px 24px 96px;
+  }
+  .wrap{max-width:880px;margin:0 auto}
+
+  header{
+    display:flex;align-items:flex-end;justify-content:space-between;
+    gap:20px;flex-wrap:wrap;padding-bottom:14px;
+    border-bottom:2px solid var(--ink);
+  }
+  h1{font-size:30px;font-weight:800;letter-spacing:-.03em;margin:0;line-height:1.15}
+  .tally{display:flex;gap:22px;align-items:baseline;color:var(--ink-2);font-size:13.5px}
+  .tally .logout{color:var(--ink-3);text-decoration:none;border-bottom:1px solid var(--rule)}
+  .tally .logout:hover{color:var(--ink);border-bottom-color:var(--ink)}
+  .tally b{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-.02em;margin-right:4px}
+
+  .infra{
+    margin-top:26px;padding:20px 22px;
+    background:var(--panel);border:1px solid var(--rule);
+    border-left:5px solid var(--ink);border-radius:3px;
+  }
+  .infra h2{font-size:15px;font-weight:700;margin:0 0 4px;letter-spacing:-.01em}
+  .infra p.lede{margin:0 0 16px;color:var(--ink-2);font-size:13.5px}
+  dl.kv{margin:0;display:grid;grid-template-columns:104px minmax(0,1fr);gap:9px 16px;font-size:13.5px}
+  dl.kv dt{color:var(--ink-3);font-weight:500}
+  dl.kv dd{margin:0;min-width:0}
+
+  /* ── 분류 ───────────────────────────────── */
+  .group{margin-top:36px}
+  .group-head{
+    display:flex;align-items:baseline;justify-content:space-between;
+    gap:12px;flex-wrap:wrap;
+    padding-bottom:8px;margin-bottom:12px;
+    border-bottom:1px solid var(--ink);
+  }
+  .group-title{display:flex;align-items:baseline;gap:10px;min-width:0}
+  .gname{font-size:19px;font-weight:800;letter-spacing:-.02em}
+  .gmeta{font-size:12.5px;color:var(--ink-3)}
+  .gadd{
+    font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;
+    background:none;border:none;color:var(--ink-3);padding:2px 0;
+    border-bottom:1px solid var(--rule);
+  }
+  .gadd:hover{color:var(--ink);border-bottom-color:var(--ink)}
+  .empty{
+    font-size:13px;color:var(--ink-3);padding:14px 2px;
+  }
+
+  /* ── 사이트 ─────────────────────────────── */
+  .site{
+    background:var(--panel);border:1px solid var(--rule);
+    border-left:5px solid var(--accent,#999);border-radius:3px;
+    margin-bottom:10px;overflow:hidden;
+  }
+  .bar{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:14px;padding:15px 18px;cursor:pointer}
+  .bar:hover{background:#F4F5F1}
+  .idline{display:flex;align-items:baseline;gap:11px;flex-wrap:wrap;min-width:0}
+  .name{font-size:18px;font-weight:750;letter-spacing:-.02em}
+  .host{color:var(--ink-3);font-size:13px;word-break:break-all}
+  .flags{display:flex;align-items:center;gap:14px}
+  .flag{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink-2);white-space:nowrap}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);flex:none}
+  .flag.off{color:var(--ink-3)}
+  .flag.off .dot{background:#C9CCC6}
+  .chev{width:20px;height:20px;flex:none;color:var(--ink-3);transition:transform .22s ease}
+  .site.open .chev{transform:rotate(90deg)}
+
+  .detail{display:none;padding:0 18px 18px;border-top:1px solid var(--rule-2)}
+  .site.open .detail{display:block}
+  .actions{display:flex;gap:8px;flex-wrap:wrap;padding:15px 0 16px}
+  .btn{
+    font:inherit;font-size:13px;font-weight:600;padding:7px 14px;border-radius:3px;
+    border:1px solid var(--ink);background:var(--ink);color:#fff;
+    text-decoration:none;cursor:pointer;display:inline-block;
+  }
+  .btn.ghost{background:transparent;color:var(--ink);border-color:var(--rule)}
+  .btn.ghost:hover{border-color:var(--ink)}
+  .btn[aria-disabled="true"]{opacity:.35;pointer-events:none}
+  .btn.quiet{border-color:transparent;color:var(--ink-3);padding-left:6px;padding-right:6px}
+  .btn.quiet:hover{color:#A03A3A}
+
+  dl.fields{
+    margin:0;display:grid;grid-template-columns:104px minmax(0,1fr);
+    gap:9px 16px;font-size:13.5px;padding-top:16px;border-top:1px dashed var(--rule);
+  }
+  dl.fields dt{color:var(--ink-3);font-weight:500}
+  dl.fields dd{margin:0;min-width:0}
+  select{
+    font:inherit;font-size:13.5px;color:var(--ink);
+    background:#fff;border:1px solid var(--rule);border-radius:3px;
+    padding:3px 8px;max-width:100%;
+  }
+
+  [contenteditable]{
+    outline:none;border-bottom:1px solid transparent;
+    padding:1px 3px;margin:0 -3px;border-radius:2px;word-break:break-all;
+  }
+  [contenteditable]:hover{border-bottom-color:var(--rule)}
+  [contenteditable]:focus{border-bottom-color:var(--ink);background:#fff}
+  [contenteditable]:empty:before{content:attr(data-ph);color:#B4BAB6}
+  .memo{white-space:pre-wrap;line-height:1.65}
+
+  footer{
+    margin-top:34px;padding-top:16px;border-top:1px solid var(--rule);
+    display:flex;justify-content:space-between;align-items:center;
+    gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-3);
+  }
+  :focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+  @media (max-width:560px){
+    body{padding:24px 14px 64px}
+    h1{font-size:24px}
+    dl.kv,dl.fields{grid-template-columns:1fr;gap:2px 0}
+    dl.kv dt,dl.fields dt{margin-top:9px}
+    .bar{grid-template-columns:1fr;gap:9px}
+    .flags{justify-content:flex-start}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>홈페이지 관리판</h1>
+    <div class="tally">
+      <span><b id="t-groups">0</b>개 분류</span>
+      <span><b id="t-sites">0</b>개 사이트</span>
+      <span><b id="t-alert">0</b>개 알림 연결</span>
+      <a class="logout" href="/logout">로그아웃</a>
+    </div>
+  </header>
+
+  <section class="infra">
+    <h2>모든 사이트가 함께 쓰는 것</h2>
+    <p class="lede">전화 클릭 알림은 워커 하나가 전체를 처리합니다. 문구를 바꾸려면 여기만 고치면 됩니다.</p>
+    <dl class="kv">
+      <dt>알림 워커</dt>
+      <dd><span contenteditable data-shared="alertWorker" data-ph="워커 주소"></span></dd>
+      <dt>수정 위치</dt>
+      <dd><span contenteditable data-shared="localFolder" data-ph="로컬 폴더"></span></dd>
+      <dt>배포 명령</dt>
+      <dd><span contenteditable data-shared="deployCmd" data-ph="명령어"></span></dd>
+      <dt>대표 번호</dt>
+      <dd><span contenteditable data-shared="phone" data-ph="전화번호"></span></dd>
+      <dt>메모</dt>
+      <dd><span class="memo" contenteditable data-shared="memo" data-ph="기억해둘 것"></span></dd>
+    </dl>
+  </section>
+
+  <div id="groups"></div>
+
+  <footer>
+    <span id="hint">줄을 누르면 자세히 열립니다. 고친 내용은 자동으로 저장됩니다.</span>
+    <span id="save-state">불러오는 중</span>
+  </footer>
+</div>
+
+<script>
+const KEY = 'homepage-board-v2';
+const PALETTE = ['#5A7A8F','#7A4E8C','#2F5D50','#B8892B','#94553F','#3C5B8C'];
+
+const SEED = {
+  shared: {
+    alertWorker: 'tel-aler.thdmsdidfl.workers.dev',
+    localFolder: '바탕화면 \\\\ tel-alert 폴더의 worker.js',
+    deployCmd: 'npx wrangler deploy',
+    phone: '010-2337-0458',
+    memo: '봇 토큰과 chat_id는 대시보드에서 다시 볼 수 없음. 따로 적어둘 것.\\n알림이 안 오면 /test?key=내chat_id 부터 열어보기.'
+  },
+  groups: [
+    { id:'g1', name:'과외', note:'' },
+    { id:'g2', name:'더세이브', note:'' },
+    { id:'g3', name:'와와', note:'' }
+  ],
+  sites: [
+    { id:'s1', group:'g1', name:'은빛스터디', accent:PALETTE[0],
+      url:'https://eunshinestudy.com', repo:'', worker:'eunshine-study',
+      style:'구형 방식 (addEventListener)', alert:true,
+      memo:'파일 1.15MB. 브라우저 편집기보다 업로드가 안전함.' },
+    { id:'s4', group:'g1', name:'홈투과외', accent:PALETTE[1],
+      url:'', repo:'', worker:'hometwo',
+      style:'구형 방식 (addEventListener)', alert:true, memo:'' },
+    { id:'s3', group:'g2', name:'마스터페이', accent:PALETTE[2],
+      url:'', repo:'', worker:'',
+      style:'모듈 방식 (export default)', alert:true,
+      memo:'전화 링크가 두 종류. 고정 번호와 코드가 채우는 번호 모두 정상 감지됨.' },
+    { id:'s2', group:'g3', name:'채움클래스', accent:PALETTE[3],
+      url:'', repo:'', worker:'',
+      style:'모듈 방식 (export default)', alert:true, memo:'' }
+  ]
+};
+
+let data = null;
+
+function load(){
+  try{
+    const v = localStorage.getItem(KEY);
+    if(v) return JSON.parse(v);
+  }catch(e){}
+  return null;
+}
+let timer = null;
+function save(){
+  clearTimeout(timer);
+  timer = setTimeout(()=>{
+    try{
+      localStorage.setItem(KEY, JSON.stringify(data));
+      state('저장됨 · ' + new Date().toLocaleTimeString('ko-KR',{hour:'numeric',minute:'2-digit'}));
+    }catch(e){ state('저장 안 됨 — 브라우저 저장공간을 쓸 수 없습니다'); }
+  }, 400);
+}
+function state(t){ document.getElementById('save-state').textContent = t; }
+
+const esc = s => String(s==null?'':s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const link = u => !u ? '' : (/^https?:\\/\\//i.test(u) ? u : 'https://' + u);
+const host = u => { try{ return new URL(u).hostname.replace(/^www\\./,''); }catch(e){ return ''; } };
+
+function siteHTML(s, opened){
+  const opts = data.groups.map(g =>
+    \`<option value="\${g.id}"\${g.id===s.group?' selected':''}>\${esc(g.name)}</option>\`).join('');
+  return \`
+  <article class="site\${opened.has(s.id)?' open':''}" data-id="\${s.id}" style="--accent:\${s.accent}">
+    <div class="bar" role="button" tabindex="0" aria-expanded="\${opened.has(s.id)}">
+      <div class="idline">
+        <span class="name">\${esc(s.name)}</span>
+        <span class="host">\${esc(host(link(s.url)) || '주소 미등록')}</span>
+      </div>
+      <div class="flags">
+        <span class="flag\${s.alert?'':' off'}"><span class="dot"></span>전화 알림</span>
+        <svg class="chev" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M7.5 5l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+    <div class="detail">
+      <div class="actions">
+        <a class="btn" href="\${esc(link(s.url))||'#'}" target="_blank" rel="noopener" \${s.url?'':'aria-disabled="true"'}>사이트 열기</a>
+        <a class="btn ghost" href="\${esc(link(s.repo))||'#'}" target="_blank" rel="noopener" \${s.repo?'':'aria-disabled="true"'}>GitHub 저장소</a>
+        <a class="btn ghost" href="https://dash.cloudflare.com" target="_blank" rel="noopener">Cloudflare</a>
+        <button class="btn ghost" data-act="alert">전화 알림 \${s.alert?'해제':'표시'}</button>
+        <button class="btn quiet" data-act="del">삭제</button>
+      </div>
+      <dl class="fields">
+        <dt>분류</dt>
+        <dd><select data-act="move">\${opts}</select></dd>
+        <dt>이름</dt>
+        <dd><span contenteditable data-f="name" data-ph="사이트 이름">\${esc(s.name)}</span></dd>
+        <dt>사이트 주소</dt>
+        <dd><span contenteditable data-f="url" data-ph="https://">\${esc(s.url)}</span></dd>
+        <dt>GitHub</dt>
+        <dd><span contenteditable data-f="repo" data-ph="저장소 주소 붙여넣기">\${esc(s.repo)}</span></dd>
+        <dt>워커 이름</dt>
+        <dd><span contenteditable data-f="worker" data-ph="Cloudflare 워커명">\${esc(s.worker)}</span></dd>
+        <dt>코드 구조</dt>
+        <dd><span contenteditable data-f="style" data-ph="구형 / 모듈">\${esc(s.style)}</span></dd>
+        <dt>메모</dt>
+        <dd><span class="memo" contenteditable data-f="memo" data-ph="이 사이트에서 기억할 것">\${esc(s.memo)}</span></dd>
+      </dl>
+    </div>
+  </article>\`;
+}
+
+function render(){
+  document.getElementById('t-groups').textContent = data.groups.length;
+  document.getElementById('t-sites').textContent = data.sites.length;
+  document.getElementById('t-alert').textContent = data.sites.filter(s=>s.alert).length;
+
+  document.querySelectorAll('[data-shared]').forEach(el=>{
+    if(document.activeElement !== el) el.textContent = data.shared[el.dataset.shared] || '';
+  });
+
+  const box = document.getElementById('groups');
+  const opened = new Set([...box.querySelectorAll('.site.open')].map(n=>n.dataset.id));
+
+  box.innerHTML = data.groups.map(g=>{
+    const mine = data.sites.filter(s=>s.group===g.id);
+    const on = mine.filter(s=>s.alert).length;
+    return \`
+    <section class="group" data-gid="\${g.id}">
+      <div class="group-head">
+        <div class="group-title">
+          <span class="gname" contenteditable data-g="name" data-ph="분류 이름">\${esc(g.name)}</span>
+          <span class="gmeta">\${mine.length ? \`사이트 \${mine.length} · 알림 \${on}\` : '비어 있음'}</span>
+        </div>
+        <button class="gadd" data-act="addsite">이 분류에 사이트 추가</button>
+      </div>
+      \${mine.length ? mine.map(s=>siteHTML(s, opened)).join('')
+                    : '<p class="empty">아직 등록된 사이트가 없습니다.</p>'}
+    </section>\`;
+  }).join('');
+}
+
+/* ── 조작 ───────────────────────────────── */
+const box = document.getElementById('groups');
+
+box.addEventListener('click', e=>{
+  const act = e.target.closest('[data-act]');
+  const art = e.target.closest('.site');
+
+  if(act && act.dataset.act==='addsite'){
+    const gid = act.closest('.group').dataset.gid;
+    data.sites.push({
+      id:'s'+Date.now(), group:gid, name:'새 사이트',
+      accent:PALETTE[data.sites.length % PALETTE.length],
+      url:'', repo:'', worker:'', style:'', alert:false, memo:''
+    });
+    save(); render();
+    const last = document.querySelector(\`.group[data-gid="\${gid}"] .site:last-of-type\`);
+    last.classList.add('open');
+    last.querySelector('[data-f="name"]').focus();
+    last.scrollIntoView({behavior:'smooth', block:'center'});
+    return;
+  }
+  if(!art) return;
+  const s = data.sites.find(x=>x.id===art.dataset.id);
+
+  if(act){
+    if(act.dataset.act==='alert'){ s.alert = !s.alert; save(); render(); }
+    if(act.dataset.act==='del'){
+      if(confirm(\`"\${s.name}" 을(를) 목록에서 지웁니다. 사이트 자체는 그대로입니다.\`)){
+        data.sites = data.sites.filter(x=>x.id!==s.id); save(); render();
+      }
+    }
+    return;
+  }
+  if(e.target.closest('[contenteditable]') || e.target.closest('a') || e.target.closest('select')) return;
+  if(e.target.closest('.bar')){
+    art.classList.toggle('open');
+    art.querySelector('.bar').setAttribute('aria-expanded', art.classList.contains('open'));
+  }
+});
+
+box.addEventListener('change', e=>{
+  if(e.target.dataset.act !== 'move') return;
+  const s = data.sites.find(x=>x.id===e.target.closest('.site').dataset.id);
+  s.group = e.target.value;
+  save(); render();
+});
+
+box.addEventListener('keydown', e=>{
+  if((e.key==='Enter'||e.key===' ') && e.target.classList.contains('bar')){ e.preventDefault(); e.target.click(); }
+  if(e.key==='Enter' && e.target.hasAttribute('contenteditable') && !e.target.classList.contains('memo')){
+    e.preventDefault(); e.target.blur();
+  }
+});
+
+document.addEventListener('blur', e=>{
+  const el = e.target;
+  if(!el.hasAttribute || !el.hasAttribute('contenteditable')) return;
+  const val = el.textContent.trim();
+
+  if(el.dataset.shared){ data.shared[el.dataset.shared] = val; save(); return; }
+  if(el.dataset.g){
+    const g = data.groups.find(x=>x.id === el.closest('.group').dataset.gid);
+    if(g[el.dataset.g] !== val){ g[el.dataset.g] = val; save(); render(); }
+    return;
+  }
+  if(el.dataset.f){
+    const s = data.sites.find(x=>x.id === el.closest('.site').dataset.id);
+    if(s[el.dataset.f] !== val){ s[el.dataset.f] = val; save(); render(); }
+  }
+}, true);
+
+data = load() || JSON.parse(JSON.stringify(SEED));
+render();
+try{ localStorage.setItem(KEY, JSON.stringify(data)); state('저장됨'); }
+catch(e){ state('저장 안 됨 — 브라우저 저장공간을 쓸 수 없습니다'); }
+</script>
+</body>
+</html>
+`;
+
+async function handleBoard(request, base) {
+ const url = new URL(request.url);
+ const path = url.pathname.slice(base.length) || "/";
+
+ const pass = _bdSecret("DASH_PASS");
+ const key = _bdSecret("SESSION_KEY");
+ if (!pass || !key) {
+  return _bdRes('<meta charset="utf-8"><p style="font-family:sans-serif;padding:40px;line-height:1.7">'
+   + '설정이 덜 끝났습니다.<br>워커 시크릿에 DASH_PASS 와 SESSION_KEY 를 등록한 뒤 다시 배포하세요.</p>');
+ }
+
+ if (path === "/logout") {
+  return new Response(null, { status: 302, headers: {
+   "Location": base,
+   "Set-Cookie": BOARD_COOKIE + "=; Path=" + base + "; Max-Age=0; HttpOnly; Secure; SameSite=Lax",
+   "Cache-Control": "no-store"
+  }});
+ }
+
+ if (path === "/login" && request.method === "POST") {
+  const form = await request.formData();
+  const pw = String(form.get("pw") || "");
+  await new Promise(r => setTimeout(r, 700)); // 무차별 대입 속도 늦추기
+  if (!_bdSame(pw, pass)) return _bdRes(_bdLoginPage(base, true), 401);
+  const token = await _bdMakeToken(key);
+  return new Response(null, { status: 302, headers: {
+   "Location": base,
+   "Set-Cookie": BOARD_COOKIE + "=" + token + "; Path=" + base + "; Max-Age=" + BOARD_MAX_AGE + "; HttpOnly; Secure; SameSite=Lax",
+   "Cache-Control": "no-store"
+  }});
+ }
+
+ const ok = await _bdTokenValid(key, _bdCookie(request, BOARD_COOKIE));
+ if (!ok) return _bdRes(_bdLoginPage(base, false));
+
+ return _bdRes(BOARD_HTML.replace('href="/logout"', 'href="' + base + '/logout"'));
+}
