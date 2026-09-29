@@ -2158,7 +2158,9 @@ function buildRegionSubjectPage(rs, subject) {
   "논술":{icon:"✏️",desc:"논리적 사고와 글쓰기 능력을 키워 입시 논술과 학교 서술형 평가를 동시에 대비합니다."},
   "검정고시":{icon:"📚",desc:"초·중·고 검정고시 전 과목을 체계적으로 대비합니다. 최단 기간 합격 전략을 제공합니다."}
  };
- const sInfo = subjectMap[subject] || {icon:"📚",desc:rn+" "+subject+" 과외 안내"};
+ const sInfo = subjectMap[subject];
+ // SEO: 없는 과목은 404 (소프트 404 방지)
+ if (!sInfo) return null;
  const seed = cH(rs+subject);
  const tipPool = (typeof TIP_SUBJ !== "undefined" && TIP_SUBJ[subject]) || [];
  const tips = tipPool.length > 0 ? pkU(tipPool, seed, 4, 31) : [];
@@ -2389,6 +2391,8 @@ function buildRelatedLinksCard(title, items, tc) {
 function buildDongPage(rs, cs, dong) {
  const ci = (eduData[rs]||{})[cs];
  if (!ci) return null;
+ // SEO: 실제 데이터에 없는 동 이름은 404 (소프트 404 방지)
+ if (!(ci.dongs||[]).includes(dong)) return null;
  const ri = locations[rs]||{};
  const rn = ri.name||rs;
  const tc = ri.color||"#3498db";
@@ -2580,6 +2584,9 @@ function buildDongPage(rs, cs, dong) {
 function buildDongDetailPage(rs, cs, dong, grade, subject) {
  const ci = (eduData[rs]||{})[cs];
  if (!ci) return null;
+ // SEO: 없는 동·학년·과목 조합은 404 (소프트 404 방지)
+ if (!(ci.dongs||[]).includes(dong)) return null;
+ if (grades.indexOf(grade) < 0 || subjects.indexOf(subject) < 0) return null;
  const ri = locations[rs]||{};
  const tc = ri.color||"#3498db";
  const rd = ci.region_display;
@@ -4484,6 +4491,14 @@ function buildCenterDetailPage(slug) {
 function buildCenterSubPage(slug, grade, subject, school) {
  const ct = ACAD_DETAIL.find(function(c){return c.sl===slug;});
  if(!ct) return null;
+ // SEO: 지점에 없는 학년·과목·학교는 404 (소프트 404 방지)
+ if(['초등','중등','고등'].indexOf(grade) < 0) return null;
+ var _validSubj = (ct.subj && ct.subj.length) ? ct.subj : ['국어','영어','수학'];
+ if(_validSubj.indexOf(subject) < 0) return null;
+ if(school){
+  var _validSchools = [ct.se, ct.sm, ct.sh].join(',').split(',').map(function(s){return s.trim();}).filter(Boolean);
+  if(_validSchools.indexOf(school) < 0) return null;
+ }
  const loc = LOC_DATA[slug] || {d:'',l:[]};
  // 동 이름이 없으면 정확한 매핑에서 가져오기
  if(!loc.d) {
