@@ -1116,40 +1116,9 @@ function renderUniqueContent(ct,dong,grade,subj,tc,rd,schools){
  <h3 style="font-size:16px;font-weight:800;color:${tc};margin:0 0 10px 0;">${sc.school} ${_hp(_seed,5,_HDR_GUIDE)}</h3>
  <p style="font-size:14px;color:#333;line-height:2;margin:0;">${sc.body}</p></div>`;});
  
+ h+=`</div>`;
   }
- // ── 학부모 후기 + 성적 사례 통합 ──
- h+=`<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
- <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;">💬 ${area} ${_hp(_seed,6,_HDR_REVIEW)}</h2>
- <div class="rv-carousel" id="rvCity"><div class="rv-track" id="rvCityT">`;
- ct.reviews.forEach(function(rv){
- h+=`<div class="rv-card" style="border:2px solid ${tc}22;border-radius:16px;padding:20px;background:white;">
- <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
- <div style="width:40px;height:40px;border-radius:50%;background:${tc};color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;">${rv.name.charAt(0)}</div>
- <div><div style="font-weight:700;color:#1A2340;font-size:14px;">${maskName(rv.name)} 학부모님</div>
- <div style="font-size:12px;color:#888;">${area} · ${rv.grade} ${rv.subj}</div></div></div>
- <p style="font-size:13px;color:#555;line-height:1.8;margin:0;">"${rv.body}"</p></div>`;});
- ct.reviews.slice(0,3).forEach(function(rv){
- h+=`<div class="rv-card" style="border:2px solid ${tc}22;border-radius:16px;padding:20px;background:white;">
- <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
- <div style="width:40px;height:40px;border-radius:50%;background:${tc};color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;">${rv.name.charAt(0)}</div>
- <div><div style="font-weight:700;color:#1A2340;font-size:14px;">${maskName(rv.name)} 학부모님</div>
- <div style="font-size:12px;color:#888;">${area} · ${rv.grade} ${rv.subj}</div></div></div>
- <p style="font-size:13px;color:#555;line-height:1.8;margin:0;">"${rv.body}"</p></div>`;});
- h+=`</div></div>
- <h2 style="font-size:19px;font-weight:900;color:#1A2340;border-left:5px solid ${tc};padding-left:14px;margin-bottom:14px;margin-top:36px;">📈 ${_hp(_seed,7,_HDR_STORY)}</h2>
- <div class="rv-carousel"><div class="rv-track">`;
- ct.stories.forEach(function(st){
- h+=`<div class="rv-card" style="border:2px solid ${tc}22;border-radius:16px;padding:20px;background:white;">
- <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
- <span style="font-weight:800;color:#1A2340;font-size:15px;">${st.name} 학생</span>
- <span style="background:${tc}15;color:${tc};padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;">${st.grade} ${st.subj}</span></div>
- <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
- <span style="background:#fdecea;color:#e74c3c;padding:6px 14px;border-radius:8px;font-weight:800;font-size:15px;">${st.from}</span>
- <span style="font-size:20px;color:${tc};">→</span>
- <span style="background:#e8f8f5;color:#27ae60;padding:6px 14px;border-radius:8px;font-weight:800;font-size:15px;">${st.to}</span>
- <span style="font-size:12px;color:#888;">(${st.period})</span></div>
- <p style="font-size:13px;color:#555;line-height:1.8;margin:0;">${st.story}</p></div>`;});
- h+=`</div></div></div></div>`;
+ // (자동 생성 후기·성적 사례는 삭제했습니다. 실제 후기는 메인 페이지에서만 관리)
  // ── 자주 묻는 질문 (펼쳐진 형태, 지역명 포함) ──
  if(ct.faqs.length>0){
  h+=`<div style="background:white;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.07);padding:clamp(22px,4vw,40px);margin-bottom:24px;">
@@ -1209,7 +1178,6 @@ const CITY_EXTRA=[
 {t:"전 학년 학습 전략의 핵심 원칙",b:"기초가 부족하다면 거슬러 올라가 보완하는 것이 정답입니다. 현재 학년 진도를 따라가면서 동시에 과거 단원의 빈틈을 메꿔야 합니다. 은빛쌤은 학생의 과거 학년부터 점검하여 숨겨진 구멍을 정밀 진단합니다. 학습 환경도 성적에 큰 영향을 미칩니다. 집중할 수 있는 공간과 적절한 학습 도구가 갖춰져야 효과적인 학습이 가능합니다. {rd} 은빛과외는 환경 조성 팁까지 학부모님께 안내합니다. 좋은 선생님과 좋은 학생의 만남이 성적을 만듭니다."},
 {t:"{rd} 과외 선생님 선택 기준",b:"명문대 출신 여부보다 학생과의 소통 능력과 학교별 출제 경향 이해도가 더 중요합니다. 은빛쌤은 자세한 상담을 통해 학생에게 잘 맞는 수업 방식을 설계하며, 무료 체험 수업으로 수업 스타일과 학습 방향을 직접 확인하신 후 결정하실 수 있습니다. {rd} 지역 학교의 특성을 잘 아는 것도 중요한 기준입니다. 내신 시험은 학교마다 출제 경향이 다르기 때문에, 해당 학교의 기출 패턴을 파악하고 있는 과외가 훨씬 효과적입니다. 은빛과외는 {rd} 내 주요 학교의 시험 자료를 축적하고 분석합니다."},
 {t:"내신과 수능 동시 준비 전략",b:"학기 중에는 내신에 80% 비중을 두고 수능 감각 유지를 위해 주 2~3회 모의고사 유형 문제를 풀어봅니다. 방학에는 수능 대비에 집중하며 기출 분석과 약점 보완에 집중합니다. 두 가지를 동시에 잡으려면 시간 관리가 핵심이므로 주간 학습 계획을 세우고 실천 여부를 매주 점검하는 습관이 중요합니다. {rd} 은빛과외는 내신과 수능을 모두 놓치지 않는 균형 잡힌 학습 전략을 제안합니다. 학생의 목표 대학과 전형 방식에 맞춰 최적의 비율을 설정하고 유연하게 조정합니다."},
-{t:"{rd} 학생들의 실제 성적 변화",b:"{rd} 지역에서 은빛과외와 함께한 학생들의 변화를 소개합니다. 수학 4등급에서 2등급으로 올라간 학생은 기초 개념 재정리와 오답 분석을 통해 3개월 만에 두 등급을 상승시켰습니다. 영어가 계속 60점대였던 학생은 독해 전략과 문법 체계 재정리를 통해 89점까지 향상되었습니다. 국어 서술형에서 계속 감점되던 학생은 답안 작성 구조 훈련을 통해 서술형 만점을 달성했습니다. 이 모든 변화의 공통점은 학생 개개인의 약점을 정확히 진단하고 맞춤으로 보강한 결과입니다."},
 {t:"중학교에서 고등학교 학습 전환 전략",b:"중학교에서 고등학교로 올라가면 학습 난이도와 양이 급격히 증가합니다. 가장 큰 차이는 수학과 영어의 깊이입니다. 중학교 때 기본기를 확실히 다지지 않으면 고등학교에서 따라가기 매우 어렵습니다. {rd} 은빛과외는 중3 겨울방학부터 고1 수학과 영어를 미리 접할 수 있는 선행 커리큘럼을 제공합니다. 고등학교는 자기주도학습 시간이 성적을 결정하므로 중학교 때부터 자기 공부 시간을 확보하는 습관을 길러야 합니다."},
 {t:"{rd} 방문 과외와 화상 과외 비교",b:"방문 과외는 선생님이 집으로 직접 와서 수업하므로 학생이 이동할 필요 없이 가장 편한 환경에서 수업할 수 있습니다. 학생의 교재와 학습 환경을 직접 확인하며 수업할 수 있어 더 세밀한 지도가 가능합니다. 화상 과외는 장소에 구애받지 않아 전국 어디서든 수업이 가능합니다. 화면 공유를 통해 교재 학습과 실시간 필기 피드백 등이 원활하며 수업 녹화 후 복습도 가능합니다. {rd} 은빛과외는 학생의 상황에 맞게 두 가지 방식을 선택하거나 병행할 수 있습니다."},
 {t:"시험 2주 전 집중 대비 전략",b:"시험 2주 전에는 새로운 내용을 공부하기보다 이미 배운 내용을 반복하는 것이 핵심입니다. 1주차에는 교과서와 노트를 정독하며 개념을 재정리하고 단원별 핵심 문제를 풀어봅니다. 2주차에는 오답 노트를 집중 복습하고 예상 문제를 풀며 실전 감각을 기릅니다. 시험 전날에는 정리 노트만 빠르게 훑으며 핵심만 확인합니다. {rd} 은빛과외는 시험 기간에 맞춘 집중 대비 플랜을 별도 운영합니다. 학교별 기출 분석을 바탕으로 출제 예상 포인트를 짚어주고 취약 유형을 반복 훈련합니다."},
@@ -1364,6 +1332,10 @@ const INDEX_HTML = "<!DOCTYPE html>\n<html lang=\"ko\">\n<head>\n<meta charset=\
 function getIndex() {
  const bytes = new TextEncoder().encode(INDEX_HTML);
  let html = new TextDecoder("utf-8").decode(bytes);
+ // 검색로봇이 '0%','0명+'로 읽지 않도록 실제 숫자를 미리 넣어둠 (애니메이션은 그대로 동작)
+ html = html.replace(/data-target="(\d+)" data-suffix="([^"]*)">0[^<]*<\/span>/g, function(m,t,u){return 'data-target="'+t+'" data-suffix="'+u+'">'+t+u+'</span>';});
+ html = html.replace('</head>', '<meta property="og:description" content="초·중·고 전 과목 1:1 맞춤 과외. 방문·화상 수업 모두 가능, 첫 상담과 체험 수업 무료."><meta property="og:url" content="https://eunshinestudy.com/"><meta property="og:locale" content="ko_KR"><meta name="robots" content="index, follow"><meta name="naver-site-verification" content="26708e26772b453f6b142c13cdf20670ec41d976"/></head>');
+ html = html.replace('<p>© 2026 은빛스터디 All Rights Reserved.</p>', '<p><a href="/privacy" style="color:rgba(255,255,255,0.7);text-decoration:underline;">개인정보처리방침</a></p><p>© 2026 은빛스터디 All Rights Reserved.</p>');
  // 메인 홈페이지에도 세부 페이지와 동일한 로고 이미지 적용
  html = html.replace(
  '<a href="/" class="nav-logo">🌟 <span',
@@ -1468,7 +1440,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:99999;background:rgba(255,255,25
 </div>
 </nav>
 <script>function switchDD(i){for(var j=0;j<3;j++){document.getElementById('ddC'+j).style.display=j===i?(j===1?'block':'grid'):'none';var t=document.querySelectorAll('.ddt');t[j].style.background=j===i?'#1A2340':'#fff';t[j].style.color=j===i?'#fff':'#334155';}}document.addEventListener('click',function(e){['ddF','ddS','ddL'].forEach(function(id){var d=document.getElementById(id);if(d&&!d.parentElement.contains(e.target))d.style.display='none';});});</script>`;
-const FAVICON_TAGS = '<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><link rel="apple-touch-icon" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta property="og:site_name" content="은빛스터디"><meta property="og:type" content="website"><meta property="og:locale" content="ko_KR"><meta name="twitter:card" content="summary_large_image"><meta name="robots" content="index, follow"><meta name="application-name" content="은빛스터디"><meta name="apple-mobile-web-app-title" content="은빛스터디"><meta name="naver-site-verification" content=""><meta http-equiv="content-language" content="ko"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"은빛스터디","alternateName":"은빛쌤","url":"https://eunshinestudy.com","logo":"https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png","description":"전국 1:1 맞춤 과외 매칭. 35년 교육 노하우로 학생별 맞춤 학습 설계. 방문·화상 모두 가능, 첫 상담 무료.","contactPoint":{"@type":"ContactPoint","contactType":"customer service","areaServed":"KR","availableLanguage":["Korean"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"은빛스터디","alternateName":"은빛쌤","url":"https://eunshinestudy.com","inLanguage":"ko-KR","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://eunshinestudy.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}</script><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "xbfghik5ng");</script>';
+const FAVICON_TAGS = '<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><link rel="apple-touch-icon" href="https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png"><meta property="og:site_name" content="은빛스터디"><meta property="og:type" content="website"><meta property="og:locale" content="ko_KR"><meta name="twitter:card" content="summary_large_image"><meta name="robots" content="index, follow"><meta name="application-name" content="은빛스터디"><meta name="apple-mobile-web-app-title" content="은빛스터디"><meta http-equiv="content-language" content="ko"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"은빛스터디","alternateName":"은빛쌤","url":"https://eunshinestudy.com","logo":"https://raw.githubusercontent.com/YOONSOEUN1/eunshine-study/main/images/brand.png","description":"전국 1:1 맞춤 과외 매칭. 35년 교육 노하우로 학생별 맞춤 학습 설계. 방문·화상 모두 가능, 첫 상담 무료.","contactPoint":{"@type":"ContactPoint","contactType":"customer service","areaServed":"KR","availableLanguage":["Korean"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"은빛스터디","alternateName":"은빛쌤","url":"https://eunshinestudy.com","inLanguage":"ko-KR","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://eunshinestudy.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}</script><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "xbfghik5ng");</script>';
 
 // LocalBusiness Schema 생성 (지역 페이지용)
 function buildLocalBusinessSchema(regionName, pageUrl) {
@@ -1534,7 +1506,7 @@ const FOOTER = `
    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;"><div><label style="display:block;font-size:0.82rem;font-weight:700;color:#1A2340;margin-bottom:6px;">🧑‍🎓 학생 이름</label><input type="text" id="fName" placeholder="학생 이름" style="width:100%;padding:11px 14px;border:1.5px solid #E2E8F0;border-radius:10px;font-size:0.88rem;font-family:inherit;outline:none;" onfocus="this.style.borderColor='#C8A96E'" onblur="this.style.borderColor='#E2E8F0'"></div><div><label style="display:block;font-size:0.82rem;font-weight:700;color:#1A2340;margin-bottom:6px;">📱 연락처</label><input type="text" id="fPhone" placeholder="전화번호" style="width:100%;padding:11px 14px;border:1.5px solid #E2E8F0;border-radius:10px;font-size:0.88rem;font-family:inherit;outline:none;" onfocus="this.style.borderColor='#C8A96E'" onblur="this.style.borderColor='#E2E8F0'"></div></div>
    <div style="margin-bottom:14px;"><label style="display:block;font-size:0.82rem;font-weight:700;color:#1A2340;margin-bottom:6px;">📍 거주 주소</label><div style="display:flex;gap:8px;margin-bottom:6px;"><input type="text" id="fAddr" placeholder="주소 검색 클릭" readonly onclick="if(typeof daum!=='undefined')new daum.Postcode({oncomplete:function(d){document.getElementById('fAddr').value=d.userSelectedType==='R'?d.roadAddress:d.jibunAddress;document.getElementById('fAddrD').focus();}}).open();" style="flex:1;padding:11px 14px;border:1.5px solid #E2E8F0;border-radius:10px;font-size:0.88rem;font-family:inherit;outline:none;cursor:pointer;"><button type="button" onclick="if(typeof daum!=='undefined')new daum.Postcode({oncomplete:function(d){document.getElementById('fAddr').value=d.userSelectedType==='R'?d.roadAddress:d.jibunAddress;document.getElementById('fAddrD').focus();}}).open();" style="background:#1A2340;color:#fff;border:none;padding:11px 18px;border-radius:10px;font-size:0.82rem;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;">검색</button></div><input type="text" id="fAddrD" placeholder="상세주소" style="width:100%;padding:11px 14px;border:1.5px solid #E2E8F0;border-radius:10px;font-size:0.88rem;font-family:inherit;outline:none;" onfocus="this.style.borderColor='#C8A96E'" onblur="this.style.borderColor='#E2E8F0'"></div>
    <div style="margin-bottom:14px;"><label style="display:block;font-size:0.82rem;font-weight:700;color:#1A2340;margin-bottom:6px;">💬 문의사항 <span style="color:#94A3B8;font-weight:400;">(선택)</span></label><textarea id="fMsg" rows="2" placeholder="추가 전달 사항" style="width:100%;padding:11px 14px;border:1.5px solid #E2E8F0;border-radius:10px;font-size:0.88rem;font-family:inherit;outline:none;resize:vertical;" onfocus="this.style.borderColor='#C8A96E'" onblur="this.style.borderColor='#E2E8F0'"></textarea></div>
-   <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:18px;"><input type="checkbox" id="fAgree" style="width:16px;height:16px;accent-color:#C8A96E;cursor:pointer;margin-top:2px;flex-shrink:0;"><label for="fAgree" style="font-size:0.76rem;color:#64748B;cursor:pointer;line-height:1.5;">개인정보 수집 및 이용에 동의합니다. (필수)</label></div>
+   <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:18px;"><input type="checkbox" id="fAgree" style="width:16px;height:16px;accent-color:#C8A96E;cursor:pointer;margin-top:2px;flex-shrink:0;"><label for="fAgree" style="font-size:0.76rem;color:#64748B;cursor:pointer;line-height:1.5;">개인정보 수집 및 이용에 동의합니다. (필수) <a href="/privacy" target="_blank" style="color:#C8A96E;">내용 보기</a></label></div>
    <button onclick="sfSubmit()" style="width:100%;padding:15px;background:#1A2340;color:#fff;border:none;border-radius:12px;font-size:0.95rem;font-weight:800;cursor:pointer;font-family:inherit;">📝 상담 신청하기</button>
    <a href="https://pf.kakao.com/_KRAjG/chat" target="_blank" style="display:block;width:100%;padding:15px;margin-top:10px;background:#FEE500;color:#3A1D1D;border:none;border-radius:12px;font-size:0.95rem;font-weight:800;text-decoration:none;text-align:center;">💬 카카오톡으로 바로 문의</a>
   </div>
@@ -1556,7 +1528,7 @@ const FOOTER = `
    <div style="font-size:1.1rem;font-weight:800;color:rgba(255,255,255,0.8);margin-bottom:6px;">🌟 은빛스터디</div>
    <div style="margin-bottom:4px;"><a href="tel:01023370458" style="color:#E8D09A;text-decoration:none;font-weight:600;">📞 010-2337-0458</a> &nbsp;·&nbsp; <a href="https://pf.kakao.com/_KRAjG/chat" style="color:#E8D09A;text-decoration:none;font-weight:600;">💬 카카오톡 문의</a></div>
    <p>상담 가능 시간 · 평일&amp;주말 상관없이 24시간 상담 가능합니다.</p>
-   <p>© 2026 은빛스터디 All Rights Reserved.</p>
+   <p><a href="/privacy" style="color:rgba(255,255,255,0.7);text-decoration:underline;">개인정보처리방침</a></p><p>© 2026 은빛스터디 All Rights Reserved.</p>
   </div>
  </div>
 </footer>
@@ -1602,7 +1574,7 @@ const ACAD_FOOTER = `
  <div style="font-size:1.1rem;font-weight:800;color:rgba(255,255,255,0.8);margin-bottom:8px;">🌟 은빛스터디</div>
  <div style="margin-bottom:8px;"><a href="tel:01023370458" style="color:#E8D09A;text-decoration:none;font-weight:600;">📞 010-2337-0458</a> &nbsp;·&nbsp; <a href="https://pf.kakao.com/_KRAjG/chat" style="color:#E8D09A;text-decoration:none;font-weight:600;">💬 카카오톡 문의</a></div>
  <p>상담 가능 시간 · 평일&주말 상관없이 24시간 상담 가능합니다.</p>
- <p>© 2026 은빛스터디 All Rights Reserved.</p>
+ <p><a href="/privacy" style="color:rgba(255,255,255,0.7);text-decoration:underline;">개인정보처리방침</a></p><p>© 2026 은빛스터디 All Rights Reserved.</p>
 </footer>`;
 
 const NOT_FOUND_HTML = `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>페이지를 찾을 수 없습니다 | 은빛스터디</title>${COMMON_STYLE}</head><body>${NAV}<div style="max-width:600px;margin:80px auto;padding:0 20px;text-align:center;"><div style="font-size:64px;margin-bottom:20px;">🔍</div><h1 style="font-size:28px;font-weight:900;color:#1A2340;margin-bottom:12px;">페이지를 찾을 수 없습니다</h1><p style="font-size:15px;color:#666;line-height:1.8;margin-bottom:32px;">요청하신 페이지가 존재하지 않거나 주소가 변경되었습니다.</p><div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;"><a href="/" style="background:#1A2340;color:#fff;padding:14px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;">🏠 홈으로 가기</a><a href="/directory" style="background:#f0f0f0;color:#1A2340;padding:14px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;">📍 전체 지역 보기</a><a href="/subject" style="background:#f0f0f0;color:#1A2340;padding:14px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;">📚 과목별 수업</a></div></div>${FOOTER}</body></html>`;
@@ -1652,7 +1624,7 @@ const ACAD_FORM = function(src){
 </div>
 <div style="margin-bottom:18px;"><label style="display:block;font-size:13px;font-weight:600;color:#1A2340;margin-bottom:8px;">🏫 학생 학교 (선택)</label><input type="text" id="aSchool" placeholder="예) 진관초, 은평중" style="width:100%;background:#fff;border:1px solid #d0d5dd;border-radius:12px;padding:14px 18px;font-size:15px;outline:none;box-sizing:border-box;"></div>
 <div style="margin-bottom:18px;"><label style="display:block;font-size:13px;font-weight:600;color:#1A2340;margin-bottom:8px;">💬 문의 사항 (선택)</label><textarea id="aMsg" rows="3" placeholder="추가 전달 사항" style="width:100%;background:#fff;border:1px solid #d0d5dd;border-radius:12px;padding:14px 18px;font-size:15px;outline:none;resize:vertical;box-sizing:border-box;"></textarea></div>
-<div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:22px;"><input type="checkbox" id="aAgree" style="width:17px;height:17px;accent-color:#C8A96E;cursor:pointer;margin-top:2px;flex-shrink:0;"><label for="aAgree" style="font-size:12px;color:#888;cursor:pointer;line-height:1.6;">본인은 만 14세 이상이며, 개인정보 수집 및 이용에 동의합니다. (필수)</label></div>
+<div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:22px;"><input type="checkbox" id="aAgree" style="width:17px;height:17px;accent-color:#C8A96E;cursor:pointer;margin-top:2px;flex-shrink:0;"><label for="aAgree" style="font-size:12px;color:#888;cursor:pointer;line-height:1.6;">본인은 만 14세 이상이며, 개인정보 수집 및 이용에 동의합니다. (필수) <a href="/privacy" target="_blank" style="color:#C8A96E;">내용 보기</a></label></div>
 <div style="display:flex;flex-direction:column;gap:12px;">
 <button type="button" id="aSubmitBtn" onclick="submitAcadForm()" style="display:block;text-align:center;background:linear-gradient(135deg,#C8A96E,#e0c080);color:#1A2340;padding:18px;border-radius:50px;font-size:17px;font-weight:700;border:none;cursor:pointer;box-shadow:0 6px 24px rgba(200,169,110,0.4);">📝 학원수업 상담 신청하기</button>
 <a href="https://pf.kakao.com/_KRAjG" target="_blank" style="display:block;text-align:center;background:#FEE500;color:#3C1E1E;padding:18px;border-radius:50px;font-size:17px;font-weight:700;text-decoration:none;box-shadow:0 6px 24px rgba(254,229,0,0.35);">💬 카카오톡으로 바로 문의하기</a>
@@ -1665,6 +1637,32 @@ const ACAD_SCRIPT = function(src){
  return '<script>async function submitAcadForm(){var n=document.getElementById("aName").value.trim();var c=document.getElementById("aContact").value.trim();var s=document.getElementById("aSchool")?document.getElementById("aSchool").value.trim():"";var m=document.getElementById("aMsg")?document.getElementById("aMsg").value.trim():"";var ag=document.getElementById("aAgree");if(!n){alert("학생 이름을 입력해 주세요.");return;}if(!c){alert("연락처를 입력해 주세요.");return;}if(!ag||!ag.checked){alert("개인정보 수집 및 이용에 동의해 주세요.");return;}var grades=[...document.querySelectorAll("#gradeGroup .abtn.sel")].map(function(b){return b.textContent.trim();}).join(", ")||"미선택";var subjects=[...document.querySelectorAll("#subjGroup .abtn.sel")].map(function(b){return b.textContent.trim();}).join(", ")||"미선택";var btn=document.getElementById("aSubmitBtn");if(btn){btn.disabled=true;btn.textContent="전송 중...";}try{var res=await fetch("/api/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({method:"학원수업(학습코칭학원)",grade:grades,subject:subjects,name:n,contact:c,school:s,message:m,source:"'+safeSrc+'"})});if(!res.ok){var et=await res.text();throw new Error(res.status+" - "+et);}var result=await res.json();if(result.ok){alert("상담 신청이 완료되었습니다! 24시간 내로 연락드리겠습니다.");if(btn){btn.disabled=false;btn.textContent="📝 학원수업 상담 신청하기";}}else{throw new Error(result.error||"전송 실패");}}catch(e){alert("전송 중 오류가 발생했습니다.\\n카카오톡 또는 전화(010-2337-0458)로 문의해 주세요.\\n("+e.message+")");if(btn){btn.disabled=false;btn.textContent="📝 학원수업 상담 신청하기";}}}' + '</' + 'script>';
 };
 const ACAD_CONTACT = `<section style="background:#1A2340;color:white;text-align:center;padding:64px 20px;"><h2 style="font-size:clamp(22px,4vw,34px);margin-bottom:16px;font-weight:900;">학습코칭학원 상담 문의</h2><p style="font-size:16px;color:rgba(255,255,255,0.6);margin-bottom:28px;">1:1 맞춤 코칭으로 성적 향상을 경험하세요</p><div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;"><a href="#acadForm" onclick="var f=document.getElementById('acadForm');if(f)f.scrollIntoView({behavior:'smooth'});return false;" style="background:linear-gradient(135deg,#C8A96E,#E8D09A);color:#1A2340;text-decoration:none;padding:16px 38px;border-radius:50px;font-weight:700;font-size:17px;display:inline-block;">상담 신청하기</a><a href="tel:01023370458" style="background:rgba(255,255,255,0.1);border:2px solid rgba(255,255,255,0.3);color:#fff;text-decoration:none;padding:16px 38px;border-radius:50px;font-weight:700;font-size:17px;display:inline-block;">📞 전화 상담 010-2337-0458</a></div></section>`;
+
+
+// ── 개인정보처리방침 ──
+// ※ [ ] 표시된 부분은 실제 정보로 채워주세요.
+function buildPrivacyPage(){
+ var sec = function(t,b){return '<h2 style="font-size:17px;font-weight:800;color:#1A2340;margin:28px 0 10px;">'+t+'</h2><div style="font-size:14px;color:#444;line-height:1.9;">'+b+'</div>';};
+ return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+ <title>개인정보처리방침 | 은빛스터디</title><meta name="description" content="은빛스터디 개인정보처리방침">
+ ${COMMON_STYLE}</head><body>${NAV}
+ <div style="max-width:820px;margin:40px auto 60px;padding:0 20px;">
+ <div style="background:#fff;border-radius:20px;padding:clamp(24px,4vw,44px);box-shadow:0 4px 20px rgba(0,0,0,0.06);">
+ <h1 style="font-size:clamp(24px,4vw,32px);font-weight:900;color:#1A2340;margin-bottom:8px;">개인정보처리방침</h1>
+ <p style="font-size:13px;color:#888;">시행일: ${getUpdateDate()}</p>
+ <p style="font-size:14px;color:#444;line-height:1.9;margin-top:16px;">은빛스터디(이하 "회사")는 「개인정보 보호법」에 따라 이용자의 개인정보를 보호하고 관련 고충을 원활하게 처리하기 위해 다음과 같이 개인정보처리방침을 둡니다.</p>
+ ${sec('1. 수집하는 개인정보 항목','상담 신청 시: 학생 이름, 연락처, 학년, 희망 과목, 수업 방식, 거주 주소(선택), 학교명(선택), 문의 내용(선택)<br>자동 수집: 신청이 이루어진 페이지 주소, 방문 일자 및 접속 기록')}
+ ${sec('2. 수집·이용 목적','과외 및 학원 수업 상담, 수업 가능 여부 안내, 선생님 매칭, 수업 관련 연락')}
+ ${sec('3. 보유 및 이용 기간','상담 목적이 달성되면 지체 없이 파기합니다. 상담 신청 기록은 접수일로부터 최대 120일 후 자동 삭제됩니다. 단, 관계 법령에 따라 보존할 필요가 있는 경우 해당 법령이 정한 기간 동안 보관합니다.')}
+ ${sec('4. 개인정보 처리 위탁','원활한 서비스 제공을 위해 다음 업체에 처리를 위탁합니다.<br>· Cloudflare, Inc. — 웹사이트 운영 및 상담 기록 저장<br>· Resend, Inc. — 상담 신청 알림 이메일 발송<br>· Microsoft Corporation(Clarity) — 웹사이트 이용 통계 분석<br>· 카카오 — 주소 검색 서비스')}
+ ${sec('5. 제3자 제공','회사는 이용자의 동의 없이 개인정보를 제3자에게 제공하지 않습니다. 다만 수업 진행을 위해 매칭된 선생님에게 필요한 정보(학생 이름, 연락처, 학년, 과목, 주소)를 제공할 수 있으며, 이 경우 사전에 안내하고 동의를 받습니다.')}
+ ${sec('6. 파기 절차 및 방법','보유 기간이 지나거나 처리 목적이 달성된 개인정보는 지체 없이 파기하며, 전자적 파일은 복구할 수 없는 방법으로 삭제합니다.')}
+ ${sec('7. 이용자의 권리','이용자는 언제든지 자신의 개인정보 열람, 정정, 삭제, 처리 정지를 요청할 수 있으며, 아래 연락처로 요청하시면 지체 없이 조치하겠습니다.')}
+ ${sec('8. 만 14세 미만 아동','만 14세 미만 아동의 개인정보는 법정대리인(보호자)의 동의를 받아 수집하며, 상담 신청은 보호자께서 해주시기 바랍니다.')}
+ ${sec('9. 개인정보 보호책임자','성명: [보호책임자 이름]<br>연락처: 010-2337-0458<br>이메일: [담당 이메일]')}
+ ${sec('10. 권익침해 구제방법','개인정보 침해에 대한 신고나 상담이 필요하신 경우 아래 기관에 문의하실 수 있습니다.<br>· 개인정보침해신고센터: (국번없이) 118<br>· 개인정보분쟁조정위원회: 1833-6972')}
+ </div></div>${FOOTER}</body></html>`;
+}
 
 function buildDirectoryPage() {
  const sorted = Object.entries(locations).sort((a,b)=>a[1].region_name.localeCompare(b[1].region_name));
@@ -3264,6 +3262,7 @@ function buildSchoolPage(rs, cs, schoolShort) {
  });
  reviewSection += `</div></div>`;
 
+ reviewSection = "";
  // ── FAQ (4개, 펼쳐진 형태) ──
  let faqSection = `${buildFaqBlock(`${schoolFull+" 과외"}`,typeColor,cH(rs+cs+schoolShort+"faq"))}`;
 
@@ -3343,27 +3342,16 @@ const INDEXNOW_KEY = "8a3f2c6e9b1d7405f8e2a4c6b9d1e3f5";
 const INDEXNOW_ADMIN_TOKEN = "eunshine_naver_ping_2026_silver";
 const SITE_HOST = "eunshinestudy.com";
 
+// ── 사이트 수정일 ──
+// 페이지 내용을 실제로 고쳤을 때만 아래 날짜를 바꿔주세요.
+// (내용 변경 없이 날짜만 바꾸면 검색엔진이 '가짜 최신화'로 보고 신뢰도를 낮출 수 있습니다)
+const SITE_UPDATED = "2026-10-27";
 function getUpdateDate(){
- var now=new Date();
- // 4주(28일) 주기로 날짜 변경 - 기준점: 2026년 1월 5일 (월요일)
- var ref=new Date(2026,0,5);
- var diff=Math.floor((now.getTime()-ref.getTime())/(1000*60*60*24));
- var cycle=Math.floor(diff/28);
- var updateDate=new Date(ref.getTime()+cycle*28*24*60*60*1000);
- var y=updateDate.getFullYear();
- var m=updateDate.getMonth()+1;
- var d=updateDate.getDate();
- var mm=m<10?'0'+m:''+m;
- var dd=d<10?'0'+d:''+d;
- return y+'년 '+mm+'월 '+dd+'일';
+ var p=SITE_UPDATED.split('-');
+ return p[0]+'년 '+p[1]+'월 '+p[2]+'일';
 }
 function getUpdateDateISO(){
- var now=new Date();
- var ref=new Date(2026,0,5);
- var diff=Math.floor((now.getTime()-ref.getTime())/(1000*60*60*24));
- var cycle=Math.floor(diff/28);
- var updateDate=new Date(ref.getTime()+cycle*28*24*60*60*1000);
- return updateDate.toISOString().split('T')[0];
+ return SITE_UPDATED;
 }
 
 const DUPE_CITIES=['강서구','고성군','군위군','남구','동구','북구','서구','중구'];
@@ -3439,6 +3427,7 @@ function buildGradePage(gradeCode) {
  reviewSection += `</div><div class="rv-dots" id="rvGradeD"><button class="rv-dot on" onclick="rvGo('rvGrade',0)"></button><button class="rv-dot" onclick="rvGo('rvGrade',1)"></button><button class="rv-dot" onclick="rvGo('rvGrade',2)"></button></div></div></div>`;
  // FAQ
  const faqs = pkU(FAQ_POOL, seed, 4, 13);
+ reviewSection = "";
  let faqSection = `${buildFaqBlock(`${gd.name+" 과외"}`,tc,cH("grade-"+gradeCode+"-faq"))}`;
 
  return `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
@@ -4812,6 +4801,7 @@ for(var _ri=0;_ri<9;_ri++){var _rv=_rvData[_ri%6];_rvHtml+='<div style="min-widt
 _rvHtml+='</div></div></div></div>';
 var _kwTitle=title;
 var _kwBottom='<div style="max-width:900px;margin:0 auto 24px;padding:0 20px;"><div style="background:#F8FAFC;border-radius:16px;padding:20px 24px;"><p style="font-size:13px;color:#64748B;line-height:1.8;">'+_kwTitle+'은 학생 맞춤형 학습 코칭으로 실질적인 성적 향상을 이끌어냅니다. '+_kwTitle+'에 관심이 있으시다면 무료 상담을 통해 자세한 수업 안내를 받아보세요. '+_kwTitle+'의 체계적인 커리큘럼과 전담 코치 시스템을 직접 경험해 보실 수 있습니다. '+_kwTitle+'에서는 학생의 수준에 맞는 개별 커리큘럼을 설계하고, '+_kwTitle+'만의 플래너 기반 자기주도학습 시스템으로 꾸준한 성장을 돕습니다. 지금 '+_kwTitle+' 무료 상담을 신청하세요. '+_kwTitle+'이 여러분의 목표 달성을 함께 하겠습니다.</p><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;"><span style="background:white;border:1px solid #E2E8F0;padding:5px 12px;border-radius:50px;font-size:11px;color:#334155;font-weight:600;">'+_kwTitle+'</span><span style="background:white;border:1px solid #E2E8F0;padding:5px 12px;border-radius:50px;font-size:11px;color:#334155;font-weight:600;">'+ct.n+' '+subject+'</span><span style="background:white;border:1px solid #E2E8F0;padding:5px 12px;border-radius:50px;font-size:11px;color:#334155;font-weight:600;">'+loc.d+' '+grade+' 학원</span><span style="background:white;border:1px solid #E2E8F0;padding:5px 12px;border-radius:50px;font-size:11px;color:#334155;font-weight:600;">'+ct.n+' 학습코칭</span></div></div></div>';
+_rvHtml = "";
 var _studyReviewHtml = _guideHtml + _rvHtml;
 
 
@@ -5882,12 +5872,19 @@ async function handle(req) {
  };
  const J = {"Content-Type":"application/json;charset=UTF-8"};
  
+ // 자동 조합으로 만들어진 깊은 페이지는 검색 색인에서 제외 (사용자는 계속 볼 수 있음)
+ const _noindex = (parts[0]==="academy" && parts.length>=4)
+  || (parts[0]!=="academy" && ((parts.length===4 && parts[2]!=="school") || parts.length>=5));
  // 페이지 응답 시 canonical URL을 자동으로 head에 주입하는 헬퍼
  const injectCanonical = (html) => {
   if (typeof html !== "string") return html;
   var _tt=(html.match(/<title>([^<]*)<\/title>/)||[])[1]||"";
   html=_diversifyCards(html, cH(_tt));
   html=_varyHeaders(html, cH(_tt)+7);
+  if (_noindex) {
+   html = html.replace('<meta name="robots" content="index, follow">','<meta name="robots" content="noindex, follow">');
+   if (html.indexOf('content="noindex') < 0) html = html.replace('</head>','<meta name="robots" content="noindex, follow"></head>');
+  }
   const canonicalTag = '<link rel="canonical" href="'+canonicalUrl+'">';
   // 이미 canonical이 있으면 그대로, 없으면 </head> 앞에 삽입
   if (html.indexOf('rel="canonical"') >= 0) return html;
@@ -6363,16 +6360,7 @@ if (p.startsWith("/sitemap-") && p.endsWith(".xml")) {
    const s = SUBJECTS[k];
    urls.push(base+"/subject/"+s.slug);
   });
-  // 전체 시도 × 시군구 × 학년 × 과목 조합
-  Object.keys(locations).forEach(function(rs){
-   for (const cs of Object.keys(locations[rs].cities||{})) {
-    ["초등","중등","고등"].forEach(function(g){
-     ["국어","영어","수학","과학","사회"].forEach(function(sj){
-      urls.push(base+"/"+rs+"/"+cs+"/"+encodeURIComponent(g)+"/"+encodeURIComponent(sj));
-     });
-    });
-   }
-  });
+  // (시군구 × 학년 × 과목 조합 페이지는 noindex라 사이트맵에서 제외)
  }
  
  else if (cat === "schools-detail") {
@@ -6401,12 +6389,6 @@ if (p.startsWith("/sitemap-") && p.endsWith(".xml")) {
   urls.push(base+"/academy");
   ACAD_DETAIL.forEach(function(ct){
    urls.push(base+"/academy/"+encodeURIComponent(ct.sl));
-   // 학원 서브페이지
-   (ct.subj||[]).forEach(function(sj){
-    ["초등","중등","고등"].forEach(function(g){
-     urls.push(base+"/academy/"+encodeURIComponent(ct.sl)+"/"+encodeURIComponent(g)+"/"+encodeURIComponent(sj));
-    });
-   });
   });
  }
  
@@ -6457,6 +6439,7 @@ if (p.startsWith("/sitemap-") && p.endsWith(".xml")) {
   if(html) return new Response(injectCanonical(html), {headers:H});
  }
  }
+ if (p==="/privacy") return new Response(buildPrivacyPage(),{headers:H});
  if (p==="/directory") return new Response(buildDirectoryPage(),{headers:H});
  if (p==="/schools") return new Response(buildNationalSchoolsPage(),{headers:H});
  if (parts.length===2 && parts[0]==="schools" && locations[parts[1]]) {
