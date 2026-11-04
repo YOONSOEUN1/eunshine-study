@@ -5872,9 +5872,12 @@ async function handle(req) {
  };
  const J = {"Content-Type":"application/json;charset=UTF-8"};
  
- // 자동 조합으로 만들어진 깊은 페이지는 검색 색인에서 제외 (사용자는 계속 볼 수 있음)
+ // 검색 색인 제외 대상 (사용자는 계속 볼 수 있음):
+ //  - 학원(academy) 깊은 조합 페이지
+ //  - 학교 + 학년 + 과목 조합 (가장 많고 얇음, 학교 단독 페이지는 이미 색인됨)
+ // ※ 시군구/동 + 학년 + 과목(지역 과목 키워드 페이지)은 색인 허용 — 실검색 유입 핵심
  const _noindex = (parts[0]==="academy" && parts.length>=4)
-  || (parts[0]!=="academy" && ((parts.length===4 && parts[2]!=="school") || parts.length>=5));
+  || (parts[0]!=="academy" && parts[2]==="school" && parts.length>=5);
  // 페이지 응답 시 canonical URL을 자동으로 head에 주입하는 헬퍼
  const injectCanonical = (html) => {
   if (typeof html !== "string") return html;
